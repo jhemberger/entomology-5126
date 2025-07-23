@@ -79,4 +79,3 @@ cat(schedule)
 # schedule
 walk(seq(1, nrow(schedule.df)), ~show_table(.x))
 ```
-

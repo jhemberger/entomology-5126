@@ -7,13 +7,56 @@ about:
   template: jolla
   image-shape: rectangle
   image-width: 55em
-  links:
-    - text: Syllabus
-      href: media/ent5126-syllabus_sp2026.pdf
-    - text: GitHub
-      href: https://github.com/jhemberger/entomology-5126
-    - text: Email
-      href: mailto:jhemberg@umn.edu
+  # links:
+    # - text: Syllabus
+    #   href: media/ent5126-syllabus_sp2026.pdf
+    # - text: GitHub
+    #   href: https://github.com/jhemberger/entomology-5126
+    # - text: Email
+    #   href: mailto:jhemberg@umn.edu
+# engine: knitr
 ---
 
-Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. It is well known that spatial and temporal dependence in biological/ecological data can affect inference; but how can we (1) detect potential problems; (2) determine their severities; and (3) apply the appropriate methods so that our analyses robustly and accurately represent reality and allow clear and unbiased inference? Attempts to locate suitable tools often encounter mathematical jargon inaccessible to the average practitioner. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to analyze, interpret, and communicate spatially and temporally dependent data.
+:::: {layout="[ 60, 5, 35 ]"}
+
+::: {#first-column}
+<p class="landing-text">Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to *analyze*, *interpret*, and *communicate* spatially and temporally dependent data.</p>
+:::
+
+::: {#second-column}
+:::
+
+::: {#third-column}
+<p class="landing-text">**Entomology 5126 | Spring 2026**</p>
+<p class="landing-text">College of Food, Agricultural, and Natural Resources Sciences</p>
+<p class="landing-text">University of Minnesota</p>
+:::
+
+::::
+
+---
+
+:::: {layout="[ 33, 33, 33 ]"}
+::: {#first-column}
+### Instructor
+<p class="landing-text" style="text-align:center;">{{< fa person-chalkboard >}}  [Dr. Jeremy Hemberger](https://entomology.umn.edu/people/jeremy-hemberger)</p>
+<p class="landing-text" style="text-align:center;">{{< fa building >}}  408 Hodson Hall</p>
+<p class="landing-text" style="text-align:center;">{{< fa envelope >}}  [jhemberg@umn.edu](mailto:jhemberg@umn.edu)</p>
+:::
+
+::: {#second-column}
+### Lecture details
+<p class="landing-text" style="text-align:center;">{{< fa calendar >}}  Wednesday and Friday</p>
+<p class="landing-text" style="text-align:center;">{{< fa clock >}}  9:30-10:20am</p>
+<p class="landing-text" style="text-align:center;">{{< fa location-dot >}}  408 Hodson Hall</p>
+
+:::
+
+::: {#third-column}
+### Lab details
+<p class="landing-text" style="text-align:center;">{{< fa calendar >}}  Friday</p>
+<p class="landing-text" style="text-align:center;">{{< fa clock >}}  10:30-12:30pm</p>
+<p class="landing-text" style="text-align:center;">{{< fa location-dot >}}  408 Hodson Hall</p>
+:::
+
+::::

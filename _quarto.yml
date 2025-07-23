@@ -43,11 +43,10 @@ website:
 format:
   html:
     theme: 
-      - litera
       - styles.scss
     # css: styles.scss
     toc: true
-    mainfont: Reddit Mono
+    mainfont: Roboto Condensed
     page-layout: full
 
 editor: visual
