@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "entomology-5126",
+    "title": "Entomology 5126",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. It is well known that spatial and temporal dependence in biological/ecological data can affect inference; but how can we (1) detect potential problems; (2) determine their severities; and (3) apply the appropriate methods so that our analyses robustly and accurately represent reality and allow clear and unbiased inference? Attempts to locate suitable tools often encounter mathematical jargon inaccessible to the average practitioner. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to analyze, interpret, and communicate spatially and temporally dependent data."
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,12 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Module 1: RStudio and Tidyverse crash course\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\nContent\n\n\nLab\n\n\nExample\n\n\n\n\n\n\nWeek 1\n\n\n1/21/26\n\n\nOrientation to class\n\n\n\n\n\n\n\n\n\n\n\n\n\n1/23/26\n\n\nData wranglin’\n\n\n\n\n\n\n\n\n\n\n\n\nModule 2: Reviewing foundations in statistics\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\nContent\n\n\nLab\n\n\nExample\n\n\n\n\n\n\nWeek 2\n\n\n1/28/26\n\n\nSampling & probability\n\n\n\n\n\n\n\n\n\n\n\n\n\n1/30/26\n\n\nRandom variables and probability distributions\n\n\n\n\n\n\n\n\n\n\nWeek 3\n\n\n2/4/26\n\n\nTransformations\n\n\n\n\n\n\n\n\n\n\n\n\n\n2/6/26\n\n\nHypotheses and one-sample t-tests\n\n\n\n\n\n\n\n\n\n\nWeek 4\n\n\n2/11/26\n\n\nDependent and independent two-sample t-tests\n\n\n\n\n\n\n\n\n\n\n\n\n\n2/13/26\n\n\nAnalysis of variance (ANOVA)\n\n\n\n\n\n\n\n\n\n\nWeek 5\n\n\n2/18/26\n\n\nEvaluating assumptions, linear models, correlation\n\n\n\n\n\n\n\n\n\n\n\n\n\n2/20/26\n\n\nSimple linear regression\n\n\n\n\n\n\n\n\n\n\nWeek 6\n\n\n2/25/26\n\n\nMultiple regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n2/27/26\n\n\nMultiple regression\n\n\n\n\n\n\n\n\n\n\nWeek 7\n\n\n3/4/26\n\n\nModel selection\n\n\n\n\n\n\n\n\n\n\n\n\n\n3/6/26\n\n\nMidterm\n\n\n\n\n\n\n\n\n\n\n\n\nModule 3: Integrating time into our models\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\nContent\n\n\nLab\n\n\nExample\n\n\n\n\n\n\nWeek 9\n\n\n3/18/26\n\n\nMidterm review\n\n\n\n\n\n\n\n\n\n\n\n\n\n3/20/26\n\n\nIntro to space and time\n\n\n\n\n\n\n\n\n\n\nWeek 10\n\n\n3/25/26\n\n\nMixed effects models\n\n\n\n\n\n\n\n\n\n\n\n\n\n3/27/26\n\n\nInformation critera\n\n\n\n\n\n\n\n\n\n\n\n\nModule 4: Integrating space into our models\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\nContent\n\n\nLab\n\n\nExample\n\n\n\n\n\n\nWeek 11\n\n\n4/1/26\n\n\nSpatial point processes: Ripley’s K\n\n\n\n\n\n\n\n\n\n\n\n\n\n4/3/26\n\n\nGeneralized linear models\n\n\n\n\n\n\n\n\n\n\nWeek 12\n\n\n4/8/26\n\n\nGLMs and analogies to point process models\n\n\n\n\n\n\n\n\n\n\n\n\n\n4/10/26\n\n\nSpatial point processes: models\n\n\n\n\n\n\n\n\n\n\nWeek 13\n\n\n4/15/26\n\n\nLattice data: MW test, Geary’s C, Moran’s I\n\n\n\n\n\n\n\n\n\n\n\n\n\n4/17/26\n\n\nLattice data: SAR and CAR models\n\n\n\n\n\n\n\n\n\n\nWeek 14\n\n\n4/22/26\n\n\nGeostatistics\n\n\n\n\n\n\n\n\n\n\n\n\n\n4/24/26\n\n\nGeostatistics\n\n\n\n\n\n\n\n\n\n\nWeek 15\n\n\n4/29/26\n\n\nCurrent topics: species distribution models\n\n\n\n\n\n\n\n\n\n\n\n\n\n5/1/26\n\n\nCourse wrap-up\n\n\n\n\n\n\n\n\n\n\nWeek 16\n\n\n5/6/26\n\n\nFinal exam"
   }
 ]

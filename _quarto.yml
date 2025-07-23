@@ -3,18 +3,52 @@ project:
   output-dir: docs
 
 website:
-  title: "entomology-5126"
+  # google-analytics: "G-9QW2N0QB7G"
+  title: "Entomology 5126"
+  favicon: media/web-favicon.png
   navbar:
+    logo: media/5216-sticker.png
+    title: false
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: syllabus.qmd
+        text: Syllabus
+      - href: schedule.qmd
+        text: Schedule
+      - href: lectures.qmd
+        text: Lectures
+      - href: labs.qmd
+        text: Labs
+      - href: resources.qmd
+        text: Resources
+    right:
+      - href: media/ent5126-syllabus_sp2026.pdf # providing a relative file path to a pdf will open up a browser-based pdf viewer when clicked
+        text: Course Syllabus
+        icon: file-pdf
+        target: _blank # opens link (or page) in a new browser tab
+      - icon: github # add icons as navbar buttons
+        href: https://github.com/jhemberger/entomology-5126
+        target: _blank
+      - icon: envelope
+        href: mailto:jhemberg@umn.edu
+  page-footer:
+    background: light # or `dark`
+    left: Copyright 2025, Jeremy Hemberger
+    # center: |
+    #   Background image: Large milkweed bug nymph aggregation (<i>Oncopeltus fasciatus</i>), 2017
+    right: Built with [{{< fa brands r-project title="R Project" >}}](https://www.r-project.org/about.html){target=_blank} and [Quarto](https://quarto.org/){target=_blank}
+
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: 
+      - litera
+      - styles.scss
+    # css: styles.scss
     toc: true
+    mainfont: Reddit Mono
+    page-layout: full
 
 editor: visual
 
