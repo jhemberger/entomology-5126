@@ -12,16 +12,13 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: syllabus.qmd
-        text: Syllabus
-      - href: schedule.qmd
-        text: Schedule
-      - href: lectures.qmd
-        text: Lectures
-      - href: labs.qmd
+      - syllabus.qmd
+      - schedule.qmd
+      - href: content/index.qmd
+        text: Content
+      - href: lab/index.qmd
         text: Labs
-      - href: resources.qmd
-        text: Resources
+      - resources.qmd
     right:
       - href: media/ent5126-syllabus_sp2026.pdf # providing a relative file path to a pdf will open up a browser-based pdf viewer when clicked
         text: Course Syllabus
