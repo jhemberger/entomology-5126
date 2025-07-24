@@ -7,7 +7,7 @@ website:
   title: "Entomology 5126"
   favicon: media/web-favicon.png
   navbar:
-    logo: media/5216-sticker.png
+    logo: media/5126-sticker.png
     title: false
     left:
       - href: index.qmd
