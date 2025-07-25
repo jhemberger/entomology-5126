@@ -4,14 +4,14 @@ sidebar: false
 toc: false
 page-layout: full
 ---
+
 Below, you'll find the schedule to all of the topics and material that we'll cover this semester. A few notes on the important links (`Content`, `Lab`, and `Example`) are included below. Each week only contains a single link for each category: this is intentional! The material is all organized/compiled by week, rather than by day, even if we cover multiple topics over the course of a week.
 
-- **[Content](/content/)** ({{< fa chalkboard-user >}}): Here you'll find the readings, lecture slides, and all other material that supports the lecture components of the course. 
-- **[Lab](/lab/)** ({{< fa laptop-code >}}): This page contains the instructions, data, and other material for the 13 labs where we'll explore examples of topics using real data.
-- **[Example](/example/)** ({{< fa file-code >}}): This page will contain worked-examples of the various topics that we'll cover over the course of the semester.
+-   [**Content**](/content/) ({{< fa chalkboard-user >}}): Here you'll find the readings, lecture slides, and all other material that supports the lecture components of the course.
+-   [**Lab**](/lab/) ({{< fa laptop-code >}}): This page contains the instructions, data, and other material for the 13 labs where we'll explore examples of topics using real data.
+-   [**Example**](/example/) ({{< fa file-code >}}): This page will contain worked-examples of the various topics that we'll cover over the course of the semester.
 
----
-
+------------------------------------------------------------------------
 
 ```{r build-table, echo=FALSE, include = FALSE, output = 'asis'}
 library(tidyverse)
