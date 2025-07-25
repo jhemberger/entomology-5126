@@ -7,16 +7,11 @@ date-format: long
 format: html
 ---
 
----
-
+------------------------------------------------------------------------
 
 # Introduction
 
-Today we will focus on spatial linear models, commonly used with
-*lattice* or *areal* data. The goals are similar to previous linear
-models: explain some response $y$ by some covariates or factors (the
-$x$'s). With spatial data, however, the autocorrelation - especially
-among the errors - may present problems.
+Today we will focus on spatial linear models, commonly used with *lattice* or *areal* data. The goals are similar to previous linear models: explain some response $y$ by some covariates or factors (the $x$'s). With spatial data, however, the autocorrelation - especially among the errors - may present problems.
 
 # Spatial Linear Models
 
@@ -28,21 +23,16 @@ There are four steps to fitting spatial linear models:
 
 3.  Fit and select your model(s) of choice
 
-4.  Check the residuals for \[normality and homoscedasticity and\]
-    spatial autocorrelation
+4.  Check the residuals for \[normality and homoscedasticity and\] spatial autocorrelation
 
 That's all there is to it!\
-In the notes I have provided some rudimentary information about a
-variety of spatial linear models such as SAR and CAR models. There are
-more, like MA and IAR and STCAR models, but we will not cover them.\
-We'll work with a SAR model today. The general form for a first-order
-SAR model:
+In the notes I have provided some rudimentary information about a variety of spatial linear models such as SAR and CAR models. There are more, like MA and IAR and STCAR models, but we will not cover them.\
+We'll work with a SAR model today. The general form for a first-order SAR model:
 
 $$\begin{aligned}
 Y_i &=& b_0+b_1 x_i+e_i,\\
 e_i &=& \rho \sum_{j=1}^n s_{ij} e_j + u_i,
-\end{aligned}$$ where $u_i\sim {\rm ind} N(0,\sigma^2 v_i)$ and
-$$\begin{aligned}
+\end{aligned}$$ where $u_i\sim {\rm ind} N(0,\sigma^2 v_i)$ and $$\begin{aligned}
 s_{ij} &=& \left\{\begin{array}{l@{\quad;\quad}l}
 1 & i\neq j,~{\rm and} ~i~{\rm and}~j~{\rm are~neighbors},\\
 0 & i=j,~{\rm or} ~i~{\rm and}~j~{\rm are~not~neighbors}.
@@ -51,125 +41,65 @@ s_{ij} &=& \left\{\begin{array}{l@{\quad;\quad}l}
 
 Recall that\
 
-- The weights $s_{ij}$ represents the dependence of $i$ on the neighbor
-  $j$.
+-   The weights $s_{ij}$ represents the dependence of $i$ on the neighbor $j$.
 
-- Different neighborhood structures can be selected (beyond
-  first-order), offering very different $s_{ij}$'s.
+-   Different neighborhood structures can be selected (beyond first-order), offering very different $s_{ij}$'s.
 
-- Likewise, we can choose different weights if we'd like.
+-   Likewise, we can choose different weights if we'd like.
 
 endframe
 
 # Today's Assignment
 
-The data set `Lab12.xls` contains the number of tornadoes recorded in
-select counties in Wisconsin from 1950 to 1984. The included counties
-focus on the East-Central area of the state. The general goal of this
-assignment is to determine whether there is a spatial pattern to the
-numbers of tornadoes.\
-(As an aside, this is a real data set that originated in an advanced
-spatial statistics course at the University of Wisconsin-Madison.
-Actually, however, I never got around to doing the assignment when I
-took the course in 2005. I am glad that you behave better than I did.
-After all, you may be asked to teach this material someday!)\
+The data set `Lab12.xls` contains the number of tornadoes recorded in select counties in Wisconsin from 1950 to 1984. The included counties focus on the East-Central area of the state. The general goal of this assignment is to determine whether there is a spatial pattern to the numbers of tornadoes.\
+(As an aside, this is a real data set that originated in an advanced spatial statistics course at the University of Wisconsin-Madison. Actually, however, I never got around to doing the assignment when I took the course in 2005. I am glad that you behave better than I did. After all, you may be asked to teach this material someday!)\
 
 ::: center
-  Variable    Description
+Variable Description
 
------------ ---------------------------------------------------
+------------------------------------------------------------------------
 
-  id          Row identifier
-  county      County in the state of Wisconsin
-  tornadoes   Number of tornadoes spotted between 1950 and 1984
-  area        Land area of county in square miles
-  pop90       Population in 1990
-  Nlat        Latitude
-  Wlong       Longitude
-  UTMEast     Easting coordinate ($x$ position) in km
-  UTMNorth    Northing coordingate ($y$ position) in km
+id Row identifier county County in the state of Wisconsin tornadoes Number of tornadoes spotted between 1950 and 1984 area Land area of county in square miles pop90 Population in 1990 Nlat Latitude Wlong Longitude UTMEast Easting coordinate ($x$ position) in km UTMNorth Northing coordingate ($y$ position) in km
 :::
 
 ## `R` packages for today
 
-The most powerful and flexible package for spatial linear models is the
-`spatialreg` package. There are others, especially useful for
-non-normally distributed responses. Load and use the `spatialreg` and
-`spdep` packages today. The `spdep` package is used to specify spatial
-neighborhooods and contains functions to test for spatial
-autocorrelation. Both packages are written and maintained by Roger
-Bivand, a true pioneer in the field of lattice data analysis. He is an
-economic geographer at the Norwegian School of Economics in Bergen,
-Norway.
+The most powerful and flexible package for spatial linear models is the `spatialreg` package. There are others, especially useful for non-normally distributed responses. Load and use the `spatialreg` and `spdep` packages today. The `spdep` package is used to specify spatial neighborhooods and contains functions to test for spatial autocorrelation. Both packages are written and maintained by Roger Bivand, a true pioneer in the field of lattice data analysis. He is an economic geographer at the Norwegian School of Economics in Bergen, Norway.
 
-If you would like to explore mapping as well (below, optional), load the
-`maps`, `maptools`, and `ggplot2` packages as well.
+If you would like to explore mapping as well (below, optional), load the `maps`, `maptools`, and `ggplot2` packages as well.
 
 ## We could use a map!
 
-On the course website, I've included a PDF of a map of the counties
-included in this analysis. The map is for reference only. The numbers on
-the bottom panel indicate the number of tornadoes. Alternatively, you
-can learn how to create a similar map in `R` below. Again, this is
-optional.
+On the course website, I've included a PDF of a map of the counties included in this analysis. The map is for reference only. The numbers on the bottom panel indicate the number of tornadoes. Alternatively, you can learn how to create a similar map in `R` below. Again, this is optional.
 
 ## Producing maps in `R` (courtesy of Jake)
 
-If you want to learn more about how to produce maps of states and
-counties in `R`, this section is for you! This is not a requirement to
-complete the assignment, however, so you may jump to section 3.4 and
-begin the assignment if you wish.
+If you want to learn more about how to produce maps of states and counties in `R`, this section is for you! This is not a requirement to complete the assignment, however, so you may jump to section 3.4 and begin the assignment if you wish.
 
-As with most tasks performed in R, there are many ways to produce maps.
-The `maps` package is useful for quickly producing basic maps of
-different countries, US states, or US states with counties. Try loading
-the `maps` and `mapdata` packages and typing the following commands into
-R:\
+As with most tasks performed in R, there are many ways to produce maps. The `maps` package is useful for quickly producing basic maps of different countries, US states, or US states with counties. Try loading the `maps` and `mapdata` packages and typing the following commands into R:\
 `> map("usa") # Map the continental US`\
 `> map("state") # Map the continental US with state boundaries`\
 `> map("county") # Map the continental US with county boundaries`\
 `> map(regions = "thailand") # Map of Thailand`\
-The `maps` package also provides other functions to add layers on top of
-a "base" map\
+The `maps` package also provides other functions to add layers on top of a "base" map\
 `> map("county", regions = "Wisconsin") # A map of Wisconsin with county boundaries`\
 `> map.text("county", regions = "Wisconsin") # Add county names to the map`\
-To have more control over the maps produced and to make fancier maps,
-you will need to branch out into other packages. The following examples
-make use of the package `ggplot2`. The `map_data()` function from
-`ggplot2` provides us with a way to access the data used in the `maps`
-package and provide more customization.\
+To have more control over the maps produced and to make fancier maps, you will need to branch out into other packages. The following examples make use of the package `ggplot2`. The `map_data()` function from `ggplot2` provides us with a way to access the data used in the `maps` package and provide more customization.\
 `> wi <- map_data(map = "county", region = "Wisconsin") # Create a dataframe of our WI polygons`\
 `> head(wi)`\
-Each row of the data in this dataframe corresponds to a "corner" or
-vertex of the county polygons you mapped previously. The polygons are
-organized into groups, which tells ggplot which corners should be
-connected by lines. We can plot this dataframe with the code below. The
-first function (`ggplot()`) tells ggplot what data to use and what
-variables are mapped to the *x* and *y* axes. The second function is
-connected to the first with a `+`, which is unique to ggplot code. You
-can link many ggplot functions together with + symbols to create graphs.
-The second function `geom_polygon()` tells ggplot that the data it is
-plotting should be represented as polygons with no fill color and black
-lines.\
+Each row of the data in this dataframe corresponds to a "corner" or vertex of the county polygons you mapped previously. The polygons are organized into groups, which tells ggplot which corners should be connected by lines. We can plot this dataframe with the code below. The first function (`ggplot()`) tells ggplot what data to use and what variables are mapped to the *x* and *y* axes. The second function is connected to the first with a `+`, which is unique to ggplot code. You can link many ggplot functions together with + symbols to create graphs. The second function `geom_polygon()` tells ggplot that the data it is plotting should be represented as polygons with no fill color and black lines.\
 `> ggplot(data = wi, aes(x = long, y = lat)) +`\
 `geom_polygon(fill = NA, color = "black")`\
-Oops! We forgot to tell the ggplot function which points need to be
-connected by lines and which don't. Let's include the group variable
-this time. We'll also add a few more lines to make the map look better.\
+Oops! We forgot to tell the ggplot function which points need to be connected by lines and which don't. Let's include the group variable this time. We'll also add a few more lines to make the map look better.\
 `> ggplot(data = wi, aes(x = long, y = lat, group = group)) +`\
 `geom_polygon(fill = NA, color = "black") +`\
 `coord_fixed(1.3) + # Adjusts the aspect ratio`\
 `theme_void() # Adds a theme to make the graphic clearer`\
-If you are unfamiliar with the `ggplot2` package, you can find more
-information by googling `ggplot`.\
-If you want to just plot the counties that exist in the dataset we'll be
-working with today, you'll need to take a few extra steps. First, we
-need to filter our map data so it only contains information for the
-counties we want to plot\
+If you are unfamiliar with the `ggplot2` package, you can find more information by googling `ggplot`.\
+If you want to just plot the counties that exist in the dataset we'll be working with today, you'll need to take a few extra steps. First, we need to filter our map data so it only contains information for the counties we want to plot\
 `> mydata$county <- tolower(mydata$county) # convert counties to lower case to match our wi data`\
-`> wi_counties_subset <- wi[wi$subregion %in% mydata$county, ] # This returns only the rows from the wi map data frame that have a county name that is also in the mydata data frame `\
-Now we can plot a map that includes just the subset of counties we're
-working with.\
+`> wi_counties_subset <- wi[wi$subregion %in% mydata$county, ] # This returns only the rows from the wi map data frame that have a county name that is also in the mydata data frame`\
+Now we can plot a map that includes just the subset of counties we're working with.\
 `> ggplot(data = wi_counties_subset, aes(x = long, y = lat, group = group)) +`\
 `geom_polygon(fill = NA, color = "black") +`\
 `coord_fixed(1.3) +`\
@@ -177,160 +107,70 @@ working with.\
 
 ## Assignment
 
-Read in the data. When you plot the data in a scatterplot matrix, you
-may see that one point suggests an unusually high number of tornadoes.
-Remove the row with Dodge County from the dataset. I would **not**
-ordinarily suggest this step *a priori*, but I want you to focus on
-fitting spatial models and not testing for outliers today.
-Unfortunately, given the short duration of this course, we have not been
-able to devote very much time to statistical tests for outliers.
+Read in the data. When you plot the data in a scatterplot matrix, you may see that one point suggests an unusually high number of tornadoes. Remove the row with Dodge County from the dataset. I would **not** ordinarily suggest this step *a priori*, but I want you to focus on fitting spatial models and not testing for outliers today. Unfortunately, given the short duration of this course, we have not been able to devote very much time to statistical tests for outliers.
 
-1. The first thing you have to do in spatial data analysis with areal
-   models is to identify the coordinates of your spatial units (i.e.,
-   what is your $x$ column, and what is your $y$ column?). For our
-   dataset, we will use the *centroids* of each county. You could
-   specify the coordinates from the dataframe in each command that you
-   use, or you can simply stick them together into an object as I
-   suggest:\
-   `> mycoords <- cbind(data$UTMEast, data$UTMNorth)`\
-   Note that I've used the included UTM coordinates instead of latitude
-   and longitude. There are arguments you can use to specify the
-   latter, but I strongly prefer working with continuous $x$ and $y$
-   data. That makes it easier to specify neighborhood structures by
-   distance (e.g., everyone within 50 km, rather than 0.5 $\deg$
-   longitude or latitude!).\
-   After specifying your spatial coordinates, you need to construct a
-   neighborhood structure. There are many different methods for this.
-   I've listed three of the most popular here, with example syntax.
-   (*Don't* run any code here; keep reading until instructed).
+1.  The first thing you have to do in spatial data analysis with areal models is to identify the coordinates of your spatial units (i.e., what is your $x$ column, and what is your $y$ column?). For our dataset, we will use the *centroids* of each county. You could specify the coordinates from the dataframe in each command that you use, or you can simply stick them together into an object as I suggest:\
+    `> mycoords <- cbind(data$UTMEast, data$UTMNorth)`\
+    Note that I've used the included UTM coordinates instead of latitude and longitude. There are arguments you can use to specify the latter, but I strongly prefer working with continuous $x$ and $y$ data. That makes it easier to specify neighborhood structures by distance (e.g., everyone within 50 km, rather than 0.5 $\deg$ longitude or latitude!).\
+    After specifying your spatial coordinates, you need to construct a neighborhood structure. There are many different methods for this. I've listed three of the most popular here, with example syntax. (*Don't* run any code here; keep reading until instructed).
 
-   1.  Distance-based; i.e., $d$ nearest neighbors. Syntax:\
-       `> myneighbors <- dnearneigh(mycoords, d1, d2)`\
-       For example, for all neighbors between 0 and 75 km away, you
-       would specify `d1=0, d2=75`.
+    1.  Distance-based; i.e., $d$ nearest neighbors. Syntax:\
+        `> myneighbors <- dnearneigh(mycoords, d1, d2)`\
+        For example, for all neighbors between 0 and 75 km away, you would specify `d1=0, d2=75`.
 
-   2.  Number-based; i.e., $k$ nearest neighbors. Syntax:\
-       `> myneighbors <- knn2nb(knearneigh(mycoords, k=1, longlat=NULL))`\
-       For example, to specify the closest 2 neighbors, specify `k=2`.
+    2.  Number-based; i.e., $k$ nearest neighbors. Syntax:\
+        `> myneighbors <- knn2nb(knearneigh(mycoords, k=1, longlat=NULL))`\
+        For example, to specify the closest 2 neighbors, specify `k=2`.
 
-   3.  Generate neighborhood definitions from a regular grid or lattice
-       (not the case with today's data). Syntax:\
-       `> myneighbors <- cell2nb(nrow, ncol, type="rook", torus=F)`
-       (And, you now know what the torus argument does!)
+    3.  Generate neighborhood definitions from a regular grid or lattice (not the case with today's data). Syntax:\
+        `> myneighbors <- cell2nb(nrow, ncol, type="rook", torus=F)` (And, you now know what the torus argument does!)
 
-   There are other methods and neighborhood structures, such as reading
-   a shapefile and defining neighbors as those that share common
-   borders, but I do not include that syntax here.
+    There are other methods and neighborhood structures, such as reading a shapefile and defining neighbors as those that share common borders, but I do not include that syntax here.
 
-   So, there you have a few different techniques. We'll focus on
-   distance- ($d$) and number- ($k$) based methods for this
-   county-level data.\
-   Please construct two different neighborhood structures for the
-   tornado data:
+    So, there you have a few different techniques. We'll focus on distance- ($d$) and number- ($k$) based methods for this county-level data.\
+    Please construct two different neighborhood structures for the tornado data:
 
-   1.  All neighbors within 50 km
+    1.  All neighbors within 50 km
 
-   2.  Three nearest neighbors
+    2.  Three nearest neighbors
 
-   For the `summary()` and `plot()` functions, you do have to specify
-   the coordinates:\
-   `> summary(myneighbors, mycoords)`\
-   `> plot(myneighbors, mycoords)`\
-   Examine both neighborhood structures visually. Comment on their
-   differences. Which one do you think makes the most sense for a
-   tornado analysis?
+    For the `summary()` and `plot()` functions, you do have to specify the coordinates:\
+    `> summary(myneighbors, mycoords)`\
+    `> plot(myneighbors, mycoords)`\
+    Examine both neighborhood structures visually. Comment on their differences. Which one do you think makes the most sense for a tornado analysis?
 
-2. Now that you have a neighborhood structure (or two of them, rather),
-   construct weighting schemes for each. The most basic is the binary
-   coding scheme, in which cells are either defined as being neighbors
-   (i.e., 1) or not (i.e., 0).\
-   `myweights <- nb2listw(myneighbors, style="B")`\
-   You can get more specialized with inverse distance weights, etc.
-   This code is FYI only:\
-   `> dn <- dnearneigh(mycoords, 0, 100)`\
-   `> plot(dn, mycoords)`\
-   `> dlist <- nbdists(dn, mycoords)`\
-   `> dlist <- lapply(dlist, function(x) 1/x)`\
-   `> myweights <- nb2listw(dn, style=‘‘B’’, glist=dlist)`\
-   The above code will create neighbors of any counties that are within
-   100 km of each other, and define a weight that is the reciprocal of
-   the distance between counties, scaled by the minimum distance. (But
-   **note a limitation** in this approach: the distances are measured
-   by traversing the "links" between the centroids of each county,
-   rather than traveling in a straight line. Programming the latter is
-   a little more complicated$\ldots$).\
-   **Note** that the neighbor list and the weighting scheme are
-   technically two different things! *However,* in R, when you create
-   the weighting scheme, R remembers and incorporates the neighborhood
-   structure. So, when we specify models, all we have to do is provide
-   the weights!\
-   Let's fit a model with a SAR error structure to account for spatial
-   dependence. Here's the syntax to fit a SAR model:\
-   `fm1 <- errorsarlm(response `$\sim$` covariate(s), data=data, listw=myweights)`\
-   Fit four separate models, examining the effect of each of four
-   covariates on the number of tornadoes. Focus on `Nlat`, `Wlong`,
-   `log(pop90)`, and `sqrt(area)` for covariates. You will notice that
-   I have transformed two of the covariates. To date, we have focused
-   on transforming only the response variable when necessary to fulfill
-   model assumptions for linear models. I found when doing this
-   assignment that the big city of Madison in Dane County created some
-   large skew in the population variable that sometimes made it
-   difficult to solve parameter estimates for associated model
-   coefficients. Hence, I encourage you to also use this simple fix,
-   even if `R` does not encourage you to rescale the explanatory
-   variable). For each of the four models, use the distance-based
-   structure with a binary weighting scheme that you have already
-   defined.\
-   Take a look at your four models, each one containing one covariate.
-   If you were using forward selection to construct a model explaining
-   the number of tornadoes at a county level in Wisconsin, are there
-   any variable(s) you would summarily exclude? Why?\
-   (**Note:** You may see things in the output that we have not covered
-   in class, like $\lambda$ estimates. Don't worry about those, as they
-   relate to parameterizing the SAR error terms.)\
+2.  Now that you have a neighborhood structure (or two of them, rather), construct weighting schemes for each. The most basic is the binary coding scheme, in which cells are either defined as being neighbors (i.e., 1) or not (i.e., 0).\
+    `myweights <- nb2listw(myneighbors, style="B")`\
+    You can get more specialized with inverse distance weights, etc. This code is FYI only:\
+    `> dn <- dnearneigh(mycoords, 0, 100)`\
+    `> plot(dn, mycoords)`\
+    `> dlist <- nbdists(dn, mycoords)`\
+    `> dlist <- lapply(dlist, function(x) 1/x)`\
+    `> myweights <- nb2listw(dn, style=‘‘B’’, glist=dlist)`\
+    The above code will create neighbors of any counties that are within 100 km of each other, and define a weight that is the reciprocal of the distance between counties, scaled by the minimum distance. (But **note a limitation** in this approach: the distances are measured by traversing the "links" between the centroids of each county, rather than traveling in a straight line. Programming the latter is a little more complicated$\ldots$).\
+    **Note** that the neighbor list and the weighting scheme are technically two different things! *However,* in R, when you create the weighting scheme, R remembers and incorporates the neighborhood structure. So, when we specify models, all we have to do is provide the weights!\
+    Let's fit a model with a SAR error structure to account for spatial dependence. Here's the syntax to fit a SAR model:\
+    `fm1 <- errorsarlm(response`$\sim$`covariate(s), data=data, listw=myweights)`\
+    Fit four separate models, examining the effect of each of four covariates on the number of tornadoes. Focus on `Nlat`, `Wlong`, `log(pop90)`, and `sqrt(area)` for covariates. You will notice that I have transformed two of the covariates. To date, we have focused on transforming only the response variable when necessary to fulfill model assumptions for linear models. I found when doing this assignment that the big city of Madison in Dane County created some large skew in the population variable that sometimes made it difficult to solve parameter estimates for associated model coefficients. Hence, I encourage you to also use this simple fix, even if `R` does not encourage you to rescale the explanatory variable). For each of the four models, use the distance-based structure with a binary weighting scheme that you have already defined.\
+    Take a look at your four models, each one containing one covariate. If you were using forward selection to construct a model explaining the number of tornadoes at a county level in Wisconsin, are there any variable(s) you would summarily exclude? Why?\
+    (**Note:** You may see things in the output that we have not covered in class, like $\lambda$ estimates. Don't worry about those, as they relate to parameterizing the SAR error terms.)\
 
-3. Build and report a good model out of the remaining variables. Retain
-   the same distance-based neighborhood structure throughout to keep
-   things simple. As you might expect, judge your model(s) by the AIC
-   values and statistical signficance of the remaining variables.\
-   Remember to examine the residuals of your final model:
+3.  Build and report a good model out of the remaining variables. Retain the same distance-based neighborhood structure throughout to keep things simple. As you might expect, judge your model(s) by the AIC values and statistical signficance of the remaining variables.\
+    Remember to examine the residuals of your final model:
 
-   1.  We assume that the model has satisfactorily accounted for
-       spatial dependence. We can utilize Moran's test on the residuals
-       to check the independence assumption (Assumption 2). We have a
-       neighborhood structure and weights predefined, so we type:\
-       `> mycheck <- moran.test(fm1$resid, myweights, alternative="two.sided")`\
-       `> mycheck`\
-       If the $p$-value is $>0.05$, Moran's I statistic is not
-       significantly different from zero, providing no evidence that
-       there is spatial autocorrelation remaining in the residuals.
+    1.  We assume that the model has satisfactorily accounted for spatial dependence. We can utilize Moran's test on the residuals to check the independence assumption (Assumption 2). We have a neighborhood structure and weights predefined, so we type:\
+        `> mycheck <- moran.test(fm1$resid, myweights, alternative="two.sided")`\
+        `> mycheck`\
+        If the $p$-value is $>0.05$, Moran's I statistic is not significantly different from zero, providing no evidence that there is spatial autocorrelation remaining in the residuals.
 
-   2.  Further, we still assume that any residual error left over, even
-       after accounting for spatial variation, is homoscedastic and
-       normally distributed (Assumptions 3 and 4 of linear models).
-       Hence, we examine the residual plot:\
-       `> plot(fm1$residuals `$\sim$` fm1$fitted.values)`\
+    2.  Further, we still assume that any residual error left over, even after accounting for spatial variation, is homoscedastic and normally distributed (Assumptions 3 and 4 of linear models). Hence, we examine the residual plot:\
+        `> plot(fm1$residuals`$\sim$`fm1$fitted.values)`\
 
-4. After you have found a satisfactory model, change the weighting
-   scheme.
+4.  After you have found a satisfactory model, change the weighting scheme.
 
-   Fit the same final model using the nearest neighbor weights, rather
-   than the distance weights. Rather than focusing on the exact numbers
-   of the slopes of each covariate, looks at the trends and relative
-   magnitudes. Did the sign and significance of your model coefficients
-   change? How about the spatial dependence, distribution, and
-   homoscedasticity in the residuals? Is this model substantially
-   similar to the previous one?\
+    Fit the same final model using the nearest neighbor weights, rather than the distance weights. Rather than focusing on the exact numbers of the slopes of each covariate, looks at the trends and relative magnitudes. Did the sign and significance of your model coefficients change? How about the spatial dependence, distribution, and homoscedasticity in the residuals? Is this model substantially similar to the previous one?\
 
-5. Finally, fit the same final model, this time ignoring any spatial
-   error structure using our old friend the `lm()` command. Are the
-   results substantially similar? (i.e., slopes, significance, residual
-   plots, etc.). While examining $R^2$ values are the most conventional
-   methods of examining regular linear regressions, you *can* extract
-   an AIC value using\
-   `> AIC(mymodel)`\
-   so you can compare it to the previous spatial fits using likelihood
-   methods. Do a Moran test on the residuals of this model, using
-   either the distance-based or nearest neighbor weights, looking for
-   evidence of spatial dependence.\
-   Examine your results. Hmmm. Which model would you choose? Why?\
+5.  Finally, fit the same final model, this time ignoring any spatial error structure using our old friend the `lm()` command. Are the results substantially similar? (i.e., slopes, significance, residual plots, etc.). While examining $R^2$ values are the most conventional methods of examining regular linear regressions, you *can* extract an AIC value using\
+    `> AIC(mymodel)`\
+    so you can compare it to the previous spatial fits using likelihood methods. Do a Moran test on the residuals of this model, using either the distance-based or nearest neighbor weights, looking for evidence of spatial dependence.\
+    Examine your results. Hmmm. Which model would you choose? Why?\

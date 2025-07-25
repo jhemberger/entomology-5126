@@ -7,6 +7,7 @@ date-format: long
 format: html
 ---
 
+---
 # Introduction
 
 After three weeks, you are getting pretty good at reading data into R and obtaining summary statistics. Remember the initial steps in data analysis: annotating metadata, preparing the data for export into a statistical package, reading it in, performing a summary or two, converting all necessary variables to factors, and rechecking the summary.

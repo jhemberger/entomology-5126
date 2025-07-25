@@ -7,382 +7,156 @@ date-format: long
 format: html
 ---
 
----
+------------------------------------------------------------------------
 
 # Spatial point process models
 
-The intensity, $\lambda$, of events over a surface are typically
-considered to be Poisson distributed. When examining the arrangement of
-points with Ripley's K functions, we assume three things:
+The intensity, $\lambda$, of events over a surface are typically considered to be Poisson distributed. When examining the arrangement of points with Ripley's K functions, we assume three things:
 
 1.  Events generally occur as single events
 
-2.  The expected number of events is the same in all possible subregions
-    of the same size
+2.  The expected number of events is the same in all possible subregions of the same size
 
-3.  The occurrence of an event in one subregion is independent of the
-    occurrence of an event in another non-overlapping subregion
+3.  The occurrence of an event in one subregion is independent of the occurrence of an event in another non-overlapping subregion
 
-Unfortunately, all three of these assumptions are rarely met. Hence, in
-recent years, spatial statisticians have turned their focus to
-**inhomogenous** spatial point processes, where the intensity is modeled
-across the spatial surface. In fact, recent theoretical work has
-demonstrated that patterns that *appear* clustered (for example, using
-Ripley's K) may in fact simply be random patterns with a higher
-intensity in those areas!\
-This sounds very straightforward, but is actually mathematically quite
-complex. However, there are formal similarities between the Poisson
-log-likelihood of these spatial models and that of a loglinear Poisson
-regression in a generalized linear model. Hence, some of the
-computational aspects are similar.\
-**In the next section, I've included further background on generalized
-linear models (GLMs) as FYI only**. While the computational
-underpinnings between spatial point process models and Poisson GLMs are
-similar, the wrapper syntax in `R` is a little different. However, many
-of you may want to analyze (potentially non-spatial) data with a GLM at
-some point in your career (e.g., toxicity trials with live/dead
-responses, counts of birdsongs that are Poisson-distributed that you
-don't feel like transforming with a square-root transformation to induce
-normality of errors, etc.). If you have no interest in these things for
-the moment, skip straight to the assignment.
+Unfortunately, all three of these assumptions are rarely met. Hence, in recent years, spatial statisticians have turned their focus to **inhomogenous** spatial point processes, where the intensity is modeled across the spatial surface. In fact, recent theoretical work has demonstrated that patterns that *appear* clustered (for example, using Ripley's K) may in fact simply be random patterns with a higher intensity in those areas!\
+This sounds very straightforward, but is actually mathematically quite complex. However, there are formal similarities between the Poisson log-likelihood of these spatial models and that of a loglinear Poisson regression in a generalized linear model. Hence, some of the computational aspects are similar.\
+**In the next section, I've included further background on generalized linear models (GLMs) as FYI only**. While the computational underpinnings between spatial point process models and Poisson GLMs are similar, the wrapper syntax in `R` is a little different. However, many of you may want to analyze (potentially non-spatial) data with a GLM at some point in your career (e.g., toxicity trials with live/dead responses, counts of birdsongs that are Poisson-distributed that you don't feel like transforming with a square-root transformation to induce normality of errors, etc.). If you have no interest in these things for the moment, skip straight to the assignment.
 
 # Generalized linear models
 
-Generalized linear models (GLMs) are widely used in statistics. GLMs can
-be used when the response is *not* normally distributed. Until now, I
-have taught you "classic" time-honoured techniques like data
-transformations used when assumptions of normality of errors are
-violated (like log($y$+1), $\sqrt{y}$, etc.). However, I think you will
-agree that it can seem a little "artificial" at times to transform your
-data.\
-Moreover, sometimes you just *can't* find a good transformation. If the
-data are really skewed, some people might switch to non-parametric
-techniques where you use the *rankings* of the data values rather than
-data itself. Despite the occasional prevalence in ecology, such
-techniques are used rather infrequently in the statistics world; if
-classic transformations are "artificial," how do you feel about
-replacing your data altogether? Hence, most statisticians simply use
-GLMs if not using classic transformations within a normal framework.\
-Generalized linear models use a transformation of the entire model,
-rather than the response variable. This is known as a "link" function to
-model the "mean" of the data. Once your model is fit, you have to
-back-transform the link to return to the original data scale. It seems
-complicated, but it is not that bad.
+Generalized linear models (GLMs) are widely used in statistics. GLMs can be used when the response is *not* normally distributed. Until now, I have taught you "classic" time-honoured techniques like data transformations used when assumptions of normality of errors are violated (like log($y$+1), $\sqrt{y}$, etc.). However, I think you will agree that it can seem a little "artificial" at times to transform your data.\
+Moreover, sometimes you just *can't* find a good transformation. If the data are really skewed, some people might switch to non-parametric techniques where you use the *rankings* of the data values rather than data itself. Despite the occasional prevalence in ecology, such techniques are used rather infrequently in the statistics world; if classic transformations are "artificial," how do you feel about replacing your data altogether? Hence, most statisticians simply use GLMs if not using classic transformations within a normal framework.\
+Generalized linear models use a transformation of the entire model, rather than the response variable. This is known as a "link" function to model the "mean" of the data. Once your model is fit, you have to back-transform the link to return to the original data scale. It seems complicated, but it is not that bad.
 
 ## Logistic models
 
-Models that use the **binomial family** (i.e., 0/1 data) are known as
-logistic models. These are quite common; e.g., presence/absence data.
-Note that we are talking about the response, **not** the predictor
-variables. For logistic models, the *canonical link function* is known
-as the "logit". Using simple linear regression (but you could use ANOVA
-or ANCOVA of course):
-$$\log \left(\frac{p(Y)}{1-p(Y)}\right)=\beta_0 + \beta_1 x$$
-Back-transforming link functions can be a little more complex. To get
-the probability of the reponse occurence from a logistic model, use:
-$$p(Y) = \frac{\exp(\beta_0 + \beta_1 x)}{1 + \exp(\beta_0 + \beta_1 x)}$$
+Models that use the **binomial family** (i.e., 0/1 data) are known as logistic models. These are quite common; e.g., presence/absence data. Note that we are talking about the response, **not** the predictor variables. For logistic models, the *canonical link function* is known as the "logit". Using simple linear regression (but you could use ANOVA or ANCOVA of course): $$\log \left(\frac{p(Y)}{1-p(Y)}\right)=\beta_0 + \beta_1 x$$ Back-transforming link functions can be a little more complex. To get the probability of the reponse occurence from a logistic model, use: $$p(Y) = \frac{\exp(\beta_0 + \beta_1 x)}{1 + \exp(\beta_0 + \beta_1 x)}$$
 
 ## Poisson models
 
-Poisson models utilize the natural log: $$\log(y)=\beta_0 + \beta_1 x$$
-Back-transforming the link function: $$y = \exp(\beta_0 + \beta_1 x)$$
+Poisson models utilize the natural log: $$\log(y)=\beta_0 + \beta_1 x$$ Back-transforming the link function: $$y = \exp(\beta_0 + \beta_1 x)$$
 
 ## Fitting generalized linear models
 
-We use the generalized linear models command, `glm()`. Hey, it contains
-that `lm` part!
+We use the generalized linear models command, `glm()`. Hey, it contains that `lm` part!
 
 1.  Decide what to call your model. E.g.,\
-    `> fm1 <- `
+    `> fm1 <-`
 
-2.  Specify the `glm()` command, and determine what `y` variable you are
-    analyzing. Remember, for logistic regression, it must be binomial,
-    like a list of 0/1s.\
-    `> fm1 <- glm(y `$\sim$` `
+2.  Specify the `glm()` command, and determine what `y` variable you are analyzing. Remember, for logistic regression, it must be binomial, like a list of 0/1s.\
+    `> fm1 <- glm(y`$\sim$
 
-3.  List the variable(s) that you are analyzing for purposes of the
-    experiment. For example, if you examining the effect of water
-    (either as a factor or continuous variable) on a response variable
-    $y$ (perhaps 0/1 germination), you might write\
-    `> fm1 <- glm(y `$\sim$` water`
+3.  List the variable(s) that you are analyzing for purposes of the experiment. For example, if you examining the effect of water (either as a factor or continuous variable) on a response variable $y$ (perhaps 0/1 germination), you might write\
+    `> fm1 <- glm(y`$\sim$`water`
 
 4.  Specify the dataset you are using.\
-    `> fm1 <- glm(y `$\sim$` water, data=mylabdata)`
+    `> fm1 <- glm(y`$\sim$`water, data=mylabdata)`
 
-5.  Now specify the generalized linear model family. There are a bunch
-    to choose from (see `?glm` if you are curious).\
-    `> fm1 <- glm(y `$\sim$` water, data=mylabdata, family="binomial")`
+5.  Now specify the generalized linear model family. There are a bunch to choose from (see `?glm` if you are curious).\
+    `> fm1 <- glm(y`$\sim$`water, data=mylabdata, family="binomial")`
 
-The `anova()` command looks at the sequential effects of the different
-terms in the model. The test statistic when working with deviance is
-$\chi^2$ distributed. We have to specify this, so the command becomes\
+The `anova()` command looks at the sequential effects of the different terms in the model. The test statistic when working with deviance is $\chi^2$ distributed. We have to specify this, so the command becomes\
 `> anova(fm1, test="Chisq")`\
-The `summary()` command will give you the coefficients of your
-regression or ANOVA or ANCOVA line. The tests to see if each coefficient
-is different from zero is done with a Wald test, rather than a $t$ test,
-but is completely analagous. It results in a $p$ value, so the output
-will look pretty familiar. The summary will also contain an AIC value
-for that particular model.\
-If you ever need to do generalized linear models in a mixed effects
-framework, you need the generalized linear mixed models command,
-`glmmPQL()`, which you can access after loading `library(MASS)`. The
-`PQL` part refers to the model fitting algorithm, which uses something
-called "penalized quasi-likelihood" (just in case you were wondering.)
-Newer methods, including "adaptive Gaussian quadrature" and "2nd order
-Laplace approximations" can be found in `library(lme4)` and the
-associated `lmer()` command. The syntax for fitting random effects is a
-little different in the latter, so you may need to check the help files
-there.\
+The `summary()` command will give you the coefficients of your regression or ANOVA or ANCOVA line. The tests to see if each coefficient is different from zero is done with a Wald test, rather than a $t$ test, but is completely analagous. It results in a $p$ value, so the output will look pretty familiar. The summary will also contain an AIC value for that particular model.\
+If you ever need to do generalized linear models in a mixed effects framework, you need the generalized linear mixed models command, `glmmPQL()`, which you can access after loading `library(MASS)`. The `PQL` part refers to the model fitting algorithm, which uses something called "penalized quasi-likelihood" (just in case you were wondering.) Newer methods, including "adaptive Gaussian quadrature" and "2nd order Laplace approximations" can be found in `library(lme4)` and the associated `lmer()` command. The syntax for fitting random effects is a little different in the latter, so you may need to check the help files there.\
 
 # Today's data
 
-Today's data, in `Lab11data.xls`, should look strangely familiar, since
-you used it last week. It is the dataset from Dr. W.A. Aherne in the
-Department of Pathology, University of Newcastle-upon-tyne, UK. It is a
-spatial point process dataset, where the events are the positions of the
-centres of nuclei of certain cells in a histological section of tissue
-from a laboratory-induced metastasising lymphoma in the kidney of a
-hamster. Again, the nuclei events are marked with one of two types of
-marks: "pyknotic" (i.e., dying) and "dividing" (i.e., living) cells. The
-background white space is occupied by unrecorded, interphase cells that
-are not recorded. Similar to last week, the background space is
-considered of no consequence to the present analysis.\
-The sampling window is a unit square, originally about 250 $\mu$m
-$\times$ 250 $\mu$m, and there are three columns:
+Today's data, in `Lab11data.xls`, should look strangely familiar, since you used it last week. It is the dataset from Dr. W.A. Aherne in the Department of Pathology, University of Newcastle-upon-tyne, UK. It is a spatial point process dataset, where the events are the positions of the centres of nuclei of certain cells in a histological section of tissue from a laboratory-induced metastasising lymphoma in the kidney of a hamster. Again, the nuclei events are marked with one of two types of marks: "pyknotic" (i.e., dying) and "dividing" (i.e., living) cells. The background white space is occupied by unrecorded, interphase cells that are not recorded. Similar to last week, the background space is considered of no consequence to the present analysis.\
+The sampling window is a unit square, originally about 250 $\mu$m $\times$ 250 $\mu$m, and there are three columns:
 
 ::: center
-  Variable   Description
+Variable Description
 
----------- -----------------------------------------------------
+------------------------------------------------------------------------
 
-  x          $x$ position
-  y          $y$ position
-  type       marks; factor with two levels: pyknotic or dividing
+x $x$ position y $y$ position type marks; factor with two levels: pyknotic or dividing
 :::
 
 # Today's Assignment
 
-1. Load the `spatstat` package from Adrian Baddeley and Rolf Turner,
-   the premier package for working with spatial point process data.
-   Load the data and define three point processes as last week: the
-   full data set with marks, and the two individual univariate point
-   processes of pyknotic and dividing cells. Remember, for the latter
-   two, because they are no longer marked, but rather univariate, you
-   do not need to specify a `marks` argument within the `ppp()`
-   command. Definining separate univariate point proceses is useful
-   because each potential covariate needs to be its own surface when
-   working with models of marked point processes.\
-   Again, let's first work with the dying, pyknotic cells. Plot and
-   conduct a summary of the point process. What is the overall
-   intensity, $\lambda$, of the point process? (For this question,
-   avoid converting back to the original scale, and just work with 'per
-   unit square'). (And yes, I hope that $\lambda_{pyknotic}$ has not
-   changed from last week).
+1.  Load the `spatstat` package from Adrian Baddeley and Rolf Turner, the premier package for working with spatial point process data. Load the data and define three point processes as last week: the full data set with marks, and the two individual univariate point processes of pyknotic and dividing cells. Remember, for the latter two, because they are no longer marked, but rather univariate, you do not need to specify a `marks` argument within the `ppp()` command. Definining separate univariate point proceses is useful because each potential covariate needs to be its own surface when working with models of marked point processes.\
+    Again, let's first work with the dying, pyknotic cells. Plot and conduct a summary of the point process. What is the overall intensity, $\lambda$, of the point process? (For this question, avoid converting back to the original scale, and just work with 'per unit square'). (And yes, I hope that $\lambda_{pyknotic}$ has not changed from last week).
 
-2. Let's construct a point process model by fitting an intercept to the
-   rate of dying cells. That is, fit a *homogenous* spatial point
-   process model. The formula for specifying an intercept should be
-   moderately familiar from specifying random effects in mixed-effects
-   models. Here is the syntax:
+2.  Let's construct a point process model by fitting an intercept to the rate of dying cells. That is, fit a *homogenous* spatial point process model. The formula for specifying an intercept should be moderately familiar from specifying random effects in mixed-effects models. Here is the syntax:
 
-   `> fm1 <- ppm(my.ppp.pyknotic, `$\sim$` 1)`
+    `> fm1 <- ppm(my.ppp.pyknotic,`$\sim$`1)`
 
-   A `summary()` on the model will display a whole bunch of
-   information. Be not scared! First, you will see information on your
-   edge correction. Technically, we did use a default border
-   correction, but we did not specify the argument of how much edge to
-   buffer, so our border correction was zero. Ignore the quadrature
-   scheme and weights, as that has to do with computational
-   implementation. You will see then the intensity, and underneath this
-   the "gory details." (With all due respect to Baddeley and Turner,
-   who said math geeks don't have a sense of humour?)
+    A `summary()` on the model will display a whole bunch of information. Be not scared! First, you will see information on your edge correction. Technically, we did use a default border correction, but we did not specify the argument of how much edge to buffer, so our border correction was zero. Ignore the quadrature scheme and weights, as that has to do with computational implementation. You will see then the intensity, and underneath this the "gory details." (With all due respect to Baddeley and Turner, who said math geeks don't have a sense of humour?)
 
-   The model can be written: $$\log{(\lambda)} = \theta_0$$ or, from
-   the output, $$\log{(\lambda)} = 4.343805$$ Note that we use the
-   natural log, and I have changed the model coefficients from
-   $\beta_i$ to $\theta_i$. The latter nomenclature is simply a
-   different convention in spatial statistics.
+    The model can be written: $$\log{(\lambda)} = \theta_0$$ or, from the output, $$\log{(\lambda)} = 4.343805$$ Note that we use the natural log, and I have changed the model coefficients from $\beta_i$ to $\theta_i$. The latter nomenclature is simply a different convention in spatial statistics.
 
-   Back transform this equation to get the estimated intensity of dying
-   cells, $\hat{\lambda}_{pyknotic}$. Does your answer agree with the
-   summary from the first question?
+    Back transform this equation to get the estimated intensity of dying cells, $\hat{\lambda}_{pyknotic}$. Does your answer agree with the summary from the first question?
 
-3. Of course, from our knowledge of regression frameworks, we are often
-   interested in whether the estimate of the intercept or slope(s) is
-   significantly different from zero. Scan your model summary and you
-   will see in the "gory details" a line that contains an estimate,
-   standard error, $Z$ statistic (instead of a $t$-statistic), and
-   hi/lo 95% confidence interval boundaries about the estimate of the
-   intercept.\
-   We are used to seeing $t$-tests to this point in the course, but a
-   $Z$-test works on the same premise: an estimate, divided by a
-   standard error, gives a statistical test of whether that estimate is
-   significantly different from zero. In any generalized linear model,
-   however, we need to think about the canonical link and how to
-   interpret that "zero" test.\
-   For this homogenous Poisson process model, describe what the
-   inferential test associated with the intercept is testing (hint:
-   think of the previous question).\
-   As an aside, interpretation of this test may or may not have
-   ecological utility. For that reason, the creators of `spatstat` have
-   disabled the automatic calculation of a $Z$-score at times as they
-   expect the practitioner to calculate it only if it's necessary.
+3.  Of course, from our knowledge of regression frameworks, we are often interested in whether the estimate of the intercept or slope(s) is significantly different from zero. Scan your model summary and you will see in the "gory details" a line that contains an estimate, standard error, $Z$ statistic (instead of a $t$-statistic), and hi/lo 95% confidence interval boundaries about the estimate of the intercept.\
+    We are used to seeing $t$-tests to this point in the course, but a $Z$-test works on the same premise: an estimate, divided by a standard error, gives a statistical test of whether that estimate is significantly different from zero. In any generalized linear model, however, we need to think about the canonical link and how to interpret that "zero" test.\
+    For this homogenous Poisson process model, describe what the inferential test associated with the intercept is testing (hint: think of the previous question).\
+    As an aside, interpretation of this test may or may not have ecological utility. For that reason, the creators of `spatstat` have disabled the automatic calculation of a $Z$-score at times as they expect the practitioner to calculate it only if it's necessary.
 
-4. A related parameter testing method is to construct a confidence
-   interval and examine if it overlaps zero (more on this when we
-   discuss Bayesian methods\...). Here, it is probably more informative
-   to examine over what range the average intensity of the process
-   (i.e., the intercept, $theta_0$) might be expected to lie.\
-   As such, back transform the confidence interval boundaries to obtain
-   a 95% confidence interval of the estimate of the true intensity of
-   the dying cells per unit square. On my output, the untransformed
-   estimates of that intercept parameter were listed as `CI95.lo` and
-   `CI95.hi`. What is 95% confidence interval for the estimate of the
-   intensity? Why is the final interval not symmetric about the mean?
+4.  A related parameter testing method is to construct a confidence interval and examine if it overlaps zero (more on this when we discuss Bayesian methods...). Here, it is probably more informative to examine over what range the average intensity of the process (i.e., the intercept, $theta_0$) might be expected to lie.\
+    As such, back transform the confidence interval boundaries to obtain a 95% confidence interval of the estimate of the true intensity of the dying cells per unit square. On my output, the untransformed estimates of that intercept parameter were listed as `CI95.lo` and `CI95.hi`. What is 95% confidence interval for the estimate of the intensity? Why is the final interval not symmetric about the mean?
 
-5. Let's start thinking about how an intensity varies spatially. From a
-   visual examination of the plot of the pyknotic point process, do you
-   spot any trends in the intensity in the $x$ or $y$ directions?
+5.  Let's start thinking about how an intensity varies spatially. From a visual examination of the plot of the pyknotic point process, do you spot any trends in the intensity in the $x$ or $y$ directions?
 
-6. Let's test to see if the intensity of dying cells varies in an
-   east-west ($x$) direction:
-   $$\log{(\lambda)} = \theta_0 + \theta_1 x$$
+6.  Let's test to see if the intensity of dying cells varies in an east-west ($x$) direction: $$\log{(\lambda)} = \theta_0 + \theta_1 x$$
 
-   That model can be fit by specifying:\
-   `> fm2 <- ppm(my.ppp.pyknotic, `$\sim$` 1 + x)`
+    That model can be fit by specifying:\
+    `> fm2 <- ppm(my.ppp.pyknotic,`$\sim$`1 + x)`
 
-   Examine the `summary()` of this model, and especially the table of
-   estimates and standard errors and confidence intervals. Without
-   thinking about signficance for now, examine the sign of the estimate
-   of the slope associated with covariate $x$. Does this sign indicate
-   that intensity might be increasing from left to right, or right to
-   left?
+    Examine the `summary()` of this model, and especially the table of estimates and standard errors and confidence intervals. Without thinking about signficance for now, examine the sign of the estimate of the slope associated with covariate $x$. Does this sign indicate that intensity might be increasing from left to right, or right to left?
 
-7. Does the confidence interval of the estimate of the slope associated
-   with the $x$ coefficient overlap zero? As such, is there or is there
-   not a significant east-west trend in spatial intensity?
+7.  Does the confidence interval of the estimate of the slope associated with the $x$ coefficient overlap zero? As such, is there or is there not a significant east-west trend in spatial intensity?
 
-8. I want to explore whether or not that slope coefficient is
-   significant in two more ways, to (hopefully!) connect some dots of
-   how analyses can work.\
+8.  I want to explore whether or not that slope coefficient is significant in two more ways, to (hopefully!) connect some dots of how analyses can work.\
 
-   1. First, let's examine the $Z$-score with that slope estimate. You
-      do, of course, remember from early statistics classes that the
-      approximate value of the 97.5 percentile points of a standard
-      normal are $\pm 1.96$. Hence, from the $Z$-scores, do the
-      estimates of the intercept and slope appear to be significantly
-      different from zero? In my version of R, these were printed as
-      `Zval`. Does this agree with the confidence interval
-      calculations?\
+    1.  First, let's examine the $Z$-score with that slope estimate. You do, of course, remember from early statistics classes that the approximate value of the 97.5 percentile points of a standard normal are $\pm 1.96$. Hence, from the $Z$-scores, do the estimates of the intercept and slope appear to be significantly different from zero? In my version of R, these were printed as `Zval`. Does this agree with the confidence interval calculations?\
 
-   2. Second, we can compare two *nested* models. The first model with
-      just an intercept is *nested* within the second with an
-      intercept and a covariate to account for spatial variation along
-      an $x$ gradient. While these models do not have Sums of Squares
-      that we can compare with $F$-tests, they do have *deviance*
-      measures, the change of which we compare against a $\chi^2$
-      distribution. This is analagous to the Additional Sum of Squares
-      principle we have discussed in class. Think of it like this:
+    2.  Second, we can compare two *nested* models. The first model with just an intercept is *nested* within the second with an intercept and a covariate to account for spatial variation along an $x$ gradient. While these models do not have Sums of Squares that we can compare with $F$-tests, they do have *deviance* measures, the change of which we compare against a $\chi^2$ distribution. This is analagous to the Additional Sum of Squares principle we have discussed in class. Think of it like this:
 
-      1.  I constructed a model.
+        1.  I constructed a model.
 
-      2.  I constructed another model, and added one (or two, or...)
-          additional coefficients. Each additional coefficient took up
-          1 degree of freedom.
+        2.  I constructed another model, and added one (or two, or...) additional coefficients. Each additional coefficient took up 1 degree of freedom.
 
-      3.  This new covariate(s) explained additional variation in my
-          response.
+        3.  This new covariate(s) explained additional variation in my response.
 
-      4.  I can measure this additional explanatory power by the
-          change in deviance from my first model to my second one.
+        4.  I can measure this additional explanatory power by the change in deviance from my first model to my second one.
 
-      5.  I can compare this change in deviance against a $\chi^2$
-          distribution on one (or two, or...) degrees of freedom.
+        5.  I can compare this change in deviance against a $\chi^2$ distribution on one (or two, or...) degrees of freedom.
 
-      6.  This allows me to answer the question whether the new
-          information added to the more basic model adds any
-          statically significant information. In other words, is the
-          'bigger' model better?
+        6.  This allows me to answer the question whether the new information added to the more basic model adds any statically significant information. In other words, is the 'bigger' model better?
 
-      So, compare the original homogenous Poisson process model to the
-      one containing an $x$ covariate using this command:\
-      `>anova(fm1, fm2, test="Chisq")`\
-      You should see the change in deviance listed, with a $p$-value.
-      You would report this as $\chi^2_1=0.72, P=0.40$.\
-      Does the addition of the $x$ covariate explain additional
-      significant variation in the spatial intensity of the dying
-      cells?
+        So, compare the original homogenous Poisson process model to the one containing an $x$ covariate using this command:\
+        `>anova(fm1, fm2, test="Chisq")`\
+        You should see the change in deviance listed, with a $p$-value. You would report this as $\chi^2_1=0.72, P=0.40$.\
+        Does the addition of the $x$ covariate explain additional significant variation in the spatial intensity of the dying cells?
 
-9. Now that you know how to work with $x$, explore whether there are
-   any spatial trends in intensity in the $x$ and/or $y$ directions.
-   Working with the confidence intervals may be the easiest in judging
-   significance. Examine the plot, never rule out exploring edge
-   effects with quadratic terms, and let intuition be your guide.\
-   Do you find that this point process of the pyknotic cells is a
-   homogenous or inhomogenous spatial point process?
+9.  Now that you know how to work with $x$, explore whether there are any spatial trends in intensity in the $x$ and/or $y$ directions. Working with the confidence intervals may be the easiest in judging significance. Examine the plot, never rule out exploring edge effects with quadratic terms, and let intuition be your guide.\
+    Do you find that this point process of the pyknotic cells is a homogenous or inhomogenous spatial point process?
 
-10. Finally, let's explore how other covariates might affect the
-    intensity of a given point process - as this is typically relates to
-    the sorts of questions in which a researcher might be the most
-    interested. Let's examine whether dying cells are spatially
-    associated with dividing cells. Plot the entire **marked** point
-    process and examine the locations of the pyknotic and dividing
-    cells.
+10. Finally, let's explore how other covariates might affect the intensity of a given point process - as this is typically relates to the sorts of questions in which a researcher might be the most interested. Let's examine whether dying cells are spatially associated with dividing cells. Plot the entire **marked** point process and examine the locations of the pyknotic and dividing cells.
 
-    From visual examination, do the pyknotic cells appear to be located
-    closely adjacent to, far away from, or in no relation to the
-    dividing cells?
+    From visual examination, do the pyknotic cells appear to be located closely adjacent to, far away from, or in no relation to the dividing cells?
 
-11. As discussed, every covariate added to a model must be *spatially
-    explicit*; i.e., it must have *spatial information at all surface
-    locations*. Variables such as $x$ and $y$ are, by definition,
-    spatially explicit. For other variables, we might only have
-    information at a few locations. In such cases, we need to
-    *interpolate* the rest of the surface before we can introduce the
-    variable to the model.\
-    Let's explore some interpolations of the dividing cells, which occur
-    at 226 locations in our square. Plot the planar point process with
-    just the dividing cells.\
+11. As discussed, every covariate added to a model must be *spatially explicit*; i.e., it must have *spatial information at all surface locations*. Variables such as $x$ and $y$ are, by definition, spatially explicit. For other variables, we might only have information at a few locations. In such cases, we need to *interpolate* the rest of the surface before we can introduce the variable to the model.\
+    Let's explore some interpolations of the dividing cells, which occur at 226 locations in our square. Plot the planar point process with just the dividing cells.\
     `> plot(my.ppp.dividing)`\
-    Let's interpolate the surface so that we see visually where the
-    highest intensities of dividing cells might be. For this, I'll use a
-    *kernel density smoother*. There are, of course, many different
-    methods for spatial interpolation, and we'll talk about
-    geostatistical methods in two weeks. Another common method includes
-    *spline interpolations*, which can be found in the `akima` package,
-    but I will not cover that.\
+    Let's interpolate the surface so that we see visually where the highest intensities of dividing cells might be. For this, I'll use a *kernel density smoother*. There are, of course, many different methods for spatial interpolation, and we'll talk about geostatistical methods in two weeks. Another common method includes *spline interpolations*, which can be found in the `akima` package, but I will not cover that.\
     `> my.density.dividing <- density(my.ppp.dividing)`\
     Here are a few ways to graphically examine this surface:\
     `> plot(my.density.dividing)`\
     `> contour(my.density.dividing)`\
     `> persp(my.density.dividing)`\
-    Wow! Some of these figures can look really good taped above your
-    desk. They can fool your office mates and graduate advisor into
-    thinking you are doing some *really* complex analyses!\
-    Once you have an interpolated surface, you can add the covariate to
-    a regression model. For example, to test whether the intensity of
-    pyknotic cells varies with the locations of dividing cells, we can
-    construct this model: $$\log{\lambda} = \theta_0 + \theta_1 w$$
-    where $w$ is the spatially interpolated ($x,y$) locations of the
-    intensity of dividing cells. You would specify this as follows:
+    Wow! Some of these figures can look really good taped above your desk. They can fool your office mates and graduate advisor into thinking you are doing some *really* complex analyses!\
+    Once you have an interpolated surface, you can add the covariate to a regression model. For example, to test whether the intensity of pyknotic cells varies with the locations of dividing cells, we can construct this model: $$\log{\lambda} = \theta_0 + \theta_1 w$$ where $w$ is the spatially interpolated ($x,y$) locations of the intensity of dividing cells. You would specify this as follows:
 
-        > fm3 <- ppm(my.ppp.pyknotic, ~ 1 + dividedensity,
-            covariates = list(dividedensity=density(my.ppp.dividing)))
+    ```         
+    > fm3 <- ppm(my.ppp.pyknotic, ~ 1 + dividedensity,
+        covariates = list(dividedensity=density(my.ppp.dividing)))
+    ```
 
-    If dead cells were spatially inhibited by dividing cells, what would
-    you expect the a) sign and b) significance of the estimate of the
-    $w$ covariate to be? How about for an attractive process? Random
-    arrangement (i.e., no association)?
+    If dead cells were spatially inhibited by dividing cells, what would you expect the a) sign and b) significance of the estimate of the $w$ covariate to be? How about for an attractive process? Random arrangement (i.e., no association)?
 
-12. Examine the change in deviance between a homogenous Poisson model
-    and this model. What, if any, is the relationship between dead and
-    dividing cells?
+12. Examine the change in deviance between a homogenous Poisson model and this model. What, if any, is the relationship between dead and dividing cells?
 
-13. Finally, create a model such that the intensity of pyknotic cells
-    varies in the $y$ direction and with the intensity of dividing
-    cells. For this question, I am not so much concerned about the
-    significance of the model coefficients as ensuring that you
-    understand the resulting equation. Provide, from your equation, the
-    expected intensity of dying cells, $\hat{\lambda}_{pyknotic}$, at a
-    point somewhere along $y=0.75$ where the intensity of dividing cells
-    might be 200 cells / unit square. 
+13. Finally, create a model such that the intensity of pyknotic cells varies in the $y$ direction and with the intensity of dividing cells. For this question, I am not so much concerned about the significance of the model coefficients as ensuring that you understand the resulting equation. Provide, from your equation, the expected intensity of dying cells, $\hat{\lambda}_{pyknotic}$, at a point somewhere along $y=0.75$ where the intensity of dividing cells might be 200 cells / unit square.

@@ -243,7 +243,7 @@ window.Quarto = {
 </ol>
 <section id="repeated-measures" class="level2">
 <h2 class="anchored" data-anchor-id="repeated-measures">Repeated measures</h2>
-<p>There are <em>many</em> different types of temporal analyses, covering an entire semeseter’s worth (and beyond) of material. One area of time series analysis includes “repeated measures” analyses. As you might expect, it involves taking repeated measures on an experimental subject (whether that be a plant, animal, human, etc...). For example, you might take repeated measurements on a person to examine how fast a particular drug is cleared from the body. In statistics, such studies are commonly called “longitudinal studies” but should not be confused with any spatial analyses.<br>
+<p>There are <em>many</em> different types of temporal analyses, covering an entire semeseter’s worth (and beyond) of material. One area of time series analysis includes “repeated measures” analyses. As you might expect, it involves taking repeated measures on an experimental subject (whether that be a plant, animal, human, etc…). For example, you might take repeated measurements on a person to examine how fast a particular drug is cleared from the body. In statistics, such studies are commonly called “longitudinal studies” but should not be confused with any spatial analyses.<br>
 Mixed effects models are useful for repeated measures studies because they can accommodate the temporal dependence of multiple observations on each experimental subject.</p>
 </section>
 </section>
@@ -261,7 +261,7 @@ Mixed effects models are useful for repeated measures studies because they can a
 <li><p>Decide what to call your model. E.g.,<br>
 <code>&gt; fm1 &lt;-</code></p></li>
 <li><p>Specify the <code>lme()</code> command, and determine what <code>y</code> variable you are analyzing. It should be something that is, or can be transformed to be, normally distributed.<br>
-<code>&gt; fm1 &lt;- lme(y</code><span class="math inline">\(\sim\)</span><code></code></p></li>
+<code>&gt; fm1 &lt;- lme(y</code><span class="math inline">\(\sim\)</span></p></li>
 <li><p>List the variable(s) that you are analyzing and the dataset. For example, <code>&gt; fm1 &lt;- lme(y</code><span class="math inline">\(\sim\)</span><code>time, data=mydata</code></p></li>
 <li><p>Specify the random effects. These are usually byproducts of how you designed your experiment. Today, we will use a random intercept for each experimental subject chosen at random.<br>
 <code>&gt; fm1 &lt;- lme(y</code><span class="math inline">\(\sim\)</span><code>time, data=mydata, random =</code><span class="math inline">\(\sim\)</span><code>1</code><span class="math inline">\(\mid\)</span><code>person)</code></p></li>

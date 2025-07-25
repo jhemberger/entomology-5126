@@ -7,226 +7,91 @@ date-format: long
 format: html
 ---
 
----
+------------------------------------------------------------------------
 
 # Introduction
 
-Today we will work with Ripley's K functions, which can tell us whether
-a spatial point process is random, regular, or clumped. As we discussed
-in class, the intensity, $\lambda$, of events over a surface is
-typically considered to be Poisson distributed. A Poisson point process
-assumes three things:
+Today we will work with Ripley's K functions, which can tell us whether a spatial point process is random, regular, or clumped. As we discussed in class, the intensity, $\lambda$, of events over a surface is typically considered to be Poisson distributed. A Poisson point process assumes three things:
 
 1.  Events occur singly
 
-2.  Expected number of events is the same in all possible subregions of
-    the same size
+2.  Expected number of events is the same in all possible subregions of the same size
 
-3.  The occurrence of an event in one subregion is independent of the
-    occurrence of an event in another non-overlapping subregion
+3.  The occurrence of an event in one subregion is independent of the occurrence of an event in another non-overlapping subregion
 
-Ripley's K functions can be *univariate*, where you are only examining
-one point pattern (e.g., spatial patterns of dandilions in a field), or
-*bivariate*, where you examine how two point patterns interact (e.g., do
-dandilions have no spatial relationship with bunny rabbits in a field,
-or are they clustered together (aggregation), or are dandilions found
-wherever rabbits are not (inhibition?)). Bivariate K functions are
-sometimes known as *K-cross* functions because you are examining how two
-point patterns interact.
+Ripley's K functions can be *univariate*, where you are only examining one point pattern (e.g., spatial patterns of dandilions in a field), or *bivariate*, where you examine how two point patterns interact (e.g., do dandilions have no spatial relationship with bunny rabbits in a field, or are they clustered together (aggregation), or are dandilions found wherever rabbits are not (inhibition?)). Bivariate K functions are sometimes known as *K-cross* functions because you are examining how two point patterns interact.
 
 # Today's data
 
-Today's data, in `Lab10data.xls`, are from Dr. W.A. Aherne in the
-Department of Pathology, University of Newcastle-upon-tyne, UK. This is
-a spatial point process dataset, where the events are the positions of
-the centres of nuclei of certain cells in a histological section of
-tissue from a laboratory-induced metastasising lymphoma in the kidney of
-a hamster.\
-A point process typically only contains information on the $x$ and $y$
-locations. These data comprise a super-special type of point process, a
-*marked* spatial point process. *Marks* are data that characterize
-events in the spatial point process beyond their $x,y$ locations. For
-example, a data set of trees may not only have two columns for $x$ and
-$y$ positions, but also a column for diameters. In this data set, the
-cells are marked: they are classified into two types: "pyknotic" (i.e.,
-dying) and "dividing" (i.e., living). The background white space is
-occupied by unrecorded, interphase cells that are not recorded and
-considered to be of no consequence to the present analysis.\
-The sampling window is a square, 250 $\mu$m $\times$ 250 $\mu$m. In this
-data set, it has been rescaled to the unit square (i.e., between 0 and
-1). There are three columns:
+Today's data, in `Lab10data.xls`, are from Dr. W.A. Aherne in the Department of Pathology, University of Newcastle-upon-tyne, UK. This is a spatial point process dataset, where the events are the positions of the centres of nuclei of certain cells in a histological section of tissue from a laboratory-induced metastasising lymphoma in the kidney of a hamster.\
+A point process typically only contains information on the $x$ and $y$ locations. These data comprise a super-special type of point process, a *marked* spatial point process. *Marks* are data that characterize events in the spatial point process beyond their $x,y$ locations. For example, a data set of trees may not only have two columns for $x$ and $y$ positions, but also a column for diameters. In this data set, the cells are marked: they are classified into two types: "pyknotic" (i.e., dying) and "dividing" (i.e., living). The background white space is occupied by unrecorded, interphase cells that are not recorded and considered to be of no consequence to the present analysis.\
+The sampling window is a square, 250 $\mu$m $\times$ 250 $\mu$m. In this data set, it has been rescaled to the unit square (i.e., between 0 and 1). There are three columns:
 
 ::: center
-  Variable   Description
+Variable Description
 
----------- -----------------------------------------
+------------------------------------------------------------------------
 
-  x          $x$ position
-  y          $y$ position
-  type       marks; two levels: pyknotic or dividing
+x $x$ position y $y$ position type marks; two levels: pyknotic or dividing
 :::
 
 # Today's Assignment
 
 ## Ripley's K
 
-Load the `spatstat` package today. This package was originally written
-by Adrian Baddeley (Curtin University), Ege Rubak (Aalborg University),
-and Rolf Turner (now retired, formerly of University of New Brunswick).
-This package is the premier package for working with spatial point
-process data. The two senior authors Baddeley and Turner instituted a
-bold change from historic classroom terminology that I like very much.
-For distance metrics in the K function, they use $r$ for radius, which
-is still a type of distance, rather than $t$.
+Load the `spatstat` package today. This package was originally written by Adrian Baddeley (Curtin University), Ege Rubak (Aalborg University), and Rolf Turner (now retired, formerly of University of New Brunswick). This package is the premier package for working with spatial point process data. The two senior authors Baddeley and Turner instituted a bold change from historic classroom terminology that I like very much. For distance metrics in the K function, they use $r$ for radius, which is still a type of distance, rather than $t$.
 
-1. After loading the `spatstat` package, load the data. As usual, do a
-   `summary()` to ensure the data were loaded properly. In today's data
-   set, the marks are a factor with two levels, so be sure to convert
-   the *type* column to a factor as necessary. Again, as good practice,
-   use the `summary()` command on your data set to check that your
-   variable types are properly defined both before and after an
-   operation.
+1.  After loading the `spatstat` package, load the data. As usual, do a `summary()` to ensure the data were loaded properly. In today's data set, the marks are a factor with two levels, so be sure to convert the *type* column to a factor as necessary. Again, as good practice, use the `summary()` command on your data set to check that your variable types are properly defined both before and after an operation.
 
-2. Now, use subsetting or row selection techniques to create two more
-   dataframes containing *only* the dividing cells, and *only* the
-   pyknotic cells. You should now have **three** data sets.\
+2.  Now, use subsetting or row selection techniques to create two more dataframes containing *only* the dividing cells, and *only* the pyknotic cells. You should now have **three** data sets.\
 
-3. To this point in the course, when we have read in data, the
-   resulting object has been a *dataframe* that we can then examine
-   with a `summary()`, explore with a scatterplot matrix, etc. Today,
-   we are going to work with a slightly different object, a *planar
-   point process*, abbreviated `ppp`.\
-   Convert each dataframe to a planar point process. Here's the
-   relevant syntax, with explanation following:\
-   `> my.ppp.marked <- ppp(x=mydata$x, y=mydata$y, window=square(1), marks=mydata$type)`\
-   The first two arguments in the `ppp()` command specify where to find
-   the spatial locations. The `window` specifies what the sample area
-   looks like. I have used the simplest specification, a square with
-   sides of length=1. The `window` argument is actually very flexible;
-   you can provide coordinates from shapefiles, polygons with holes,
-   rectangles, and more. (See a full description in the help file using
-   `?window` if you would like to investigate further with your own
-   data).\
-   The final argument, `marks`, specifies where to find the marks in
-   your dataframe (here, in the `type` column). *Note*: If you are
-   working with a *univariate* dataset that only contains one type of
-   mark (e.g., only dividing cells or only maple trees, so you only
-   have two columns with *x*'s and *y*'s to denote the events
-   locations), then you do *not* need to include the `marks` argument.\
-   You should now have three `ppp` objects, one for the full dataset
-   with marks, and one for each of your univariate subsets for dividing
-   and pyknotic cells (without marks). Be sure to name them something
-   meaningful.\
+3.  To this point in the course, when we have read in data, the resulting object has been a *dataframe* that we can then examine with a `summary()`, explore with a scatterplot matrix, etc. Today, we are going to work with a slightly different object, a *planar point process*, abbreviated `ppp`.\
+    Convert each dataframe to a planar point process. Here's the relevant syntax, with explanation following:\
+    `> my.ppp.marked <- ppp(x=mydata$x, y=mydata$y, window=square(1), marks=mydata$type)`\
+    The first two arguments in the `ppp()` command specify where to find the spatial locations. The `window` specifies what the sample area looks like. I have used the simplest specification, a square with sides of length=1. The `window` argument is actually very flexible; you can provide coordinates from shapefiles, polygons with holes, rectangles, and more. (See a full description in the help file using `?window` if you would like to investigate further with your own data).\
+    The final argument, `marks`, specifies where to find the marks in your dataframe (here, in the `type` column). *Note*: If you are working with a *univariate* dataset that only contains one type of mark (e.g., only dividing cells or only maple trees, so you only have two columns with *x*'s and *y*'s to denote the events locations), then you do *not* need to include the `marks` argument.\
+    You should now have three `ppp` objects, one for the full dataset with marks, and one for each of your univariate subsets for dividing and pyknotic cells (without marks). Be sure to name them something meaningful.\
 
-4. Next, do a `summary()` on the resulting object from the `ppp()` from
-   the full dataset with marks. You should see a helpful table of the
-   total number of cells that are dividing vs. dying, their relative
-   proportions, and the expected intensity, $\lambda$, per unit area.
+4.  Next, do a `summary()` on the resulting object from the `ppp()` from the full dataset with marks. You should see a helpful table of the total number of cells that are dividing vs. dying, their relative proportions, and the expected intensity, $\lambda$, per unit area.
 
-   First assignment question: given that the unit square in our data
-   set is actually 250 $\mu$m long, what is the intensity of *dividing*
-   cells on a per mm$^2$ basis?
+    First assignment question: given that the unit square in our data set is actually 250 $\mu$m long, what is the intensity of *dividing* cells on a per mm$^2$ basis?
 
-5. Let's work now with the dying, pyknotic cells. As you saw in the
-   previous question, a `summary()` of the point process returns the
-   intensity and details of the window in a point process without
-   marks. Plot the point process for the pyknotic cells (I think you
-   can guess the syntax). The pyknotic cells will show up as circles,
-   since there is only one type of mark.
+5.  Let's work now with the dying, pyknotic cells. As you saw in the previous question, a `summary()` of the point process returns the intensity and details of the window in a point process without marks. Plot the point process for the pyknotic cells (I think you can guess the syntax). The pyknotic cells will show up as circles, since there is only one type of mark.
 
-   From a strictly visual examination, do you think the dying cells
-   appear to be clustered, random, or regularly spaced?
+    From a strictly visual examination, do you think the dying cells appear to be clustered, random, or regularly spaced?
 
-6. The human eye is actually trained to look for patterns. As such,
-   **we are by nature terrible at visually examining and diagnosing
-   complete spatial randomness**. Hence, Ripley's K is a useful
-   quantitative technique. Continue working with the point process
-   restricted to these **pyknotic** cells.
+6.  The human eye is actually trained to look for patterns. As such, **we are by nature terrible at visually examining and diagnosing complete spatial randomness**. Hence, Ripley's K is a useful quantitative technique. Continue working with the point process restricted to these **pyknotic** cells.
 
-   The syntax for Ripley's K is fairly simple. We use the estimation
-   function, `Kest()`:\
-   `> myRipleysK.pyknotic <- Kest(my.ppp.pyknotic, correction="best")`\
-   The first argument specifies the univariate planar point process
-   (i.e., no marks - you are only looking at one type of cell). The
-   second argument to the function specifies the border correction.\
-   The `Kest()` command has many different border correction options
-   that have different statistical properties (e.g., efficiency/speed
-   of calculation, robustness to smaller data sets, shapes of windows,
-   etc.). One of the most useful for square or rectangular geometries
-   is Ripley's *isotropic* correction. The technique I simply recommend
-   is to specify the option `correction="best"`. Believe it or not, the
-   creators of the package have developed a number of rules to
-   calculate the best method based on your data set!\
-   Now, `plot()` the resulting K function. You should see a
-   **theoretical $K$** line (might be blue), with a squiggly
-   **empirical $\hat{K}$** line. What border correction did the program
-   choose for you?
+    The syntax for Ripley's K is fairly simple. We use the estimation function, `Kest()`:\
+    `> myRipleysK.pyknotic <- Kest(my.ppp.pyknotic, correction="best")`\
+    The first argument specifies the univariate planar point process (i.e., no marks - you are only looking at one type of cell). The second argument to the function specifies the border correction.\
+    The `Kest()` command has many different border correction options that have different statistical properties (e.g., efficiency/speed of calculation, robustness to smaller data sets, shapes of windows, etc.). One of the most useful for square or rectangular geometries is Ripley's *isotropic* correction. The technique I simply recommend is to specify the option `correction="best"`. Believe it or not, the creators of the package have developed a number of rules to calculate the best method based on your data set!\
+    Now, `plot()` the resulting K function. You should see a **theoretical** $K$ line (might be blue), with a squiggly **empirical** $\hat{K}$ line. What border correction did the program choose for you?
 
-7. If you were to try different border corrections, you would likely
-   find that they all look somewhat similar. Just for fun, calculate
-   Ripleys' K without the `correction` argument and then plot the
-   result. The resulting graph will plot the various empirical
-   $\hat{K}$ lines denoting differing types of border corrections.\
-   Any one of these empirical $\hat{K}$ line(s), while helpful, are not
-   terribly informative, since they do not tell us how far above or
-   below the theoretical line one needs to be to be considered
-   "significant."\
-   Instruct your computer to construct a simulation envelope. With the
-   simulation envelope, the computer randomizes the point pattern 1,000
-   times, calculates the empirical K function, and then takes off a
-   specified percentile of top and bottom runs to construct a
-   simulation or confidence envelope. Be patient; it may take a few
-   minutes depending on the speed of your machine!\
-   `> my.env.pyknotic <- envelope(my.ppp.pyknotic, Kest, nsim=999, nrank=25)`\
-   Plot the envelope using `plot(my.env.pyknotic)`. You should see a
-   nice shaded region with somewhat-symmetric upper and lower
-   confidence lines now.
+7.  If you were to try different border corrections, you would likely find that they all look somewhat similar. Just for fun, calculate Ripleys' K without the `correction` argument and then plot the result. The resulting graph will plot the various empirical $\hat{K}$ lines denoting differing types of border corrections.\
+    Any one of these empirical $\hat{K}$ line(s), while helpful, are not terribly informative, since they do not tell us how far above or below the theoretical line one needs to be to be considered "significant."\
+    Instruct your computer to construct a simulation envelope. With the simulation envelope, the computer randomizes the point pattern 1,000 times, calculates the empirical K function, and then takes off a specified percentile of top and bottom runs to construct a simulation or confidence envelope. Be patient; it may take a few minutes depending on the speed of your machine!\
+    `> my.env.pyknotic <- envelope(my.ppp.pyknotic, Kest, nsim=999, nrank=25)`\
+    Plot the envelope using `plot(my.env.pyknotic)`. You should see a nice shaded region with somewhat-symmetric upper and lower confidence lines now.
 
-   1.  What size of confidence interval is constructed by doing 999
-       simulations (in addition to the 1 real data set) and taking away
-       the maximum and minimum 25 runs?
+    1.  What size of confidence interval is constructed by doing 999 simulations (in addition to the 1 real data set) and taking away the maximum and minimum 25 runs?
 
-   2.  How would you change the arguments if you wanted a 99%
-       confidence interval?
+    2.  How would you change the arguments if you wanted a 99% confidence interval?
 
-8. It can be difficult to see where the empirical line crosses a
-   theoretical boundary line on a quadratic scale, so plot one of these
-   transformations instead:\
-   `> plot(myenv, sqrt(./pi) `$\sim$` r)`\
-   `> plot(myenv, (sqrt(./pi)-r) `$\sim$` r)`\
-   What is the name of the function that you have just plotted?
+8.  It can be difficult to see where the empirical line crosses a theoretical boundary line on a quadratic scale, so plot one of these transformations instead:\
+    `> plot(myenv, sqrt(./pi)`$\sim$`r)`\
+    `> plot(myenv, (sqrt(./pi)-r)`$\sim$`r)`\
+    What is the name of the function that you have just plotted?
 
-9. Looking at your Ripley's K function with confidence intervals, do
-   you see evidence of clustering or regular spacing in the pyknotic
-   cells? Does this agree with your initial guess at what the pattern
-   would look like from visual inspection?\
+9.  Looking at your Ripley's K function with confidence intervals, do you see evidence of clustering or regular spacing in the pyknotic cells? Does this agree with your initial guess at what the pattern would look like from visual inspection?\
 
-10. Let's do some work with Ripley's *bivariate* K, sometimes known as
-    K-cross functions. First, let's check the summary of the entire
-    marked point process (i.e., whole data set). You may need to go back
-    to question 1 to remember where you left it.
+10. Let's do some work with Ripley's *bivariate* K, sometimes known as K-cross functions. First, let's check the summary of the entire marked point process (i.e., whole data set). You may need to go back to question 1 to remember where you left it.
 
     `> summary(my.ppp.marked)`\
     And graph the process:\
     `> plot(my.ppp.marked, cols=c("black", "red"))`\
-    You can see I've added some colour to the graph for visual
-    distinction. From visual inspection, do you think that the dividing
-    cells are found next to or far away from the dying, pyknotic cells?
-    Or is there no relation (i.e., complete spatial randomness)?
+    You can see I've added some colour to the graph for visual distinction. From visual inspection, do you think that the dividing cells are found next to or far away from the dying, pyknotic cells? Or is there no relation (i.e., complete spatial randomness)?
 
-11. Construct and plot Ripley's bivariate K function for the interaction
-    between the dividing and pyknotic cells (i.e., using the marked
-    point process). The syntax is identical to what you have worked with
-    in previous questions, except that you now must (1) use `Kcross()`
-    instead of `Kest()` to estimate the K-function (again, use the
-    `correction="best"` argument within `Kcross()`) and (2) specify the
-    marked point process where you previously specified the univariate
-    planar point process for pyknotic cells. Simulation envelopes are
-    constructed as before, with a reminder that construction may take a
-    few minutes because the computer is now randomizing *two* point
-    processes multiple times.
+11. Construct and plot Ripley's bivariate K function for the interaction between the dividing and pyknotic cells (i.e., using the marked point process). The syntax is identical to what you have worked with in previous questions, except that you now must (1) use `Kcross()` instead of `Kest()` to estimate the K-function (again, use the `correction="best"` argument within `Kcross()`) and (2) specify the marked point process where you previously specified the univariate planar point process for pyknotic cells. Simulation envelopes are constructed as before, with a reminder that construction may take a few minutes because the computer is now randomizing *two* point processes multiple times.
 
-    Do dying cells tend to be clustered, far away from, or completely
-    independent (i.e., random) from dividing cells? If you see a
-    significant pattern, at what spatial scale(s) does it occur?
-    (Remember that these data have been rescaled).
+    Do dying cells tend to be clustered, far away from, or completely independent (i.e., random) from dividing cells? If you see a significant pattern, at what spatial scale(s) does it occur? (Remember that these data have been rescaled).
