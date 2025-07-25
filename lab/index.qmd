@@ -1,5 +1,14 @@
 ---
-title: "index"
-format: html
+title: "Lab Sessions"
+sidebar: true
+toc: true
+page-layout: full
 ---
 
+---
+
+Here, you'll find the virtual companion to all of our hands-on labs for the semester. These will be the same as your physical hand-outs, but I know many folks prefer to have them up on their screens as they work through the activities. 
+
+The purpose of these labs is to practice applying the topics that we discuss in lecture using real-world examples and data. The associated data files for each lab are linked in the `Frontmatter` section atop each page (all the files are also located [here](link here)). Over the semester, we'll explore some of the frustrations and challenges of working with bio/ecological data (of which there are many!), but together we'll conquer them, setting y'all up for success in analyzing, interpreting, and sharing your own data.
+
+As a reminder, each of the 13 labs will have an assignment/report that will be evaluated. The first three periods will be devoted to a primer of using R/RStudio for managing, wrangling, and interpreting data, and the reports associated with these will receive feedback but will not be included in the course grade. The remaining 10 lab assignments/reports will be graded and count toward 40% of total course grade (4% per report). There will also be a lab final worth 15% of the total course grade. In this, students will be given a real data set to analyze and develop a report for during the last lab period.
