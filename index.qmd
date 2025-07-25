@@ -20,7 +20,7 @@ about:
 :::: {layout="[ 60, 5, 35 ]"}
 
 ::: {#first-column}
-<p class="landing-text" style="text-align:justify;">Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to *analyze*, *interpret*, and *communicate* spatially and temporally dependent data.</p>
+<p class="landing-text" style="text-align:justify;">Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to ***analyze***, ***interpret***, and ***communicate*** spatially and temporally dependent data.</p>
 :::
 
 ::: {#second-column}

@@ -1,5 +1,5 @@
 ---
-title: "Lab 11: Lattice data: Spatial linear models"
+title: "Lab 12: Lattice data: Spatial linear models"
 subtitle: Entomology 5126 - Spring 2026
 author: Jeremy Hemberger and Brian Aukema
 date: last-modified

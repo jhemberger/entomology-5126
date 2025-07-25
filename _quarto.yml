@@ -48,3 +48,46 @@ format:
 
 editor: visual
 
+  sidebar:
+    - title: "Labs"
+      style: "docked"
+      search: false
+      background: light
+      contents:
+        - section: "Overview"
+          contents:
+            - lab/index.qmd
+        - section: "Module 1: RStudio nad Tidyverse crash course"
+          contents:
+            - text: "Lab 1: An introduction to R"
+              file: lab/w1-lab.qmd
+            - text: "Lab 2: Data wrangling and plotting"
+              file: lab/w2-lab.qmd
+            - text: "Lab 3: Summarizing data"
+              file: lab/w3-lab.qmd
+        - section: "Module 2: Reviewing foundations in statistics"
+          contents:
+            - text: "Lab 4: Independent two-sample t-tests and ANOVA"
+              file: lab/w4-lab.qmd
+            - text: "Lab 5: Simple linear regression"
+              file: lab/w5-lab.qmd
+            - text: "Lab 6: Multiple linear regression and ANCOVA"
+              file: lab/w6-lab.qmd
+            - text: "Lab 7: Curvy data"
+              file: lab/w7-lab.qmd
+        - section: "Module 3: Integrating time into our models"
+          contents:
+            - text: "Lab 8: Time series: Autoregressive models"
+              file: lab/w8-lab.qmd
+            - text: "Lab 9: Mixed-effects models for time series"
+              file: lab/w9-lab.qmd
+        - section: "Module 4: Integrating space into our models"
+          contents:
+            - text: "Lab 10: Spatial point processes: Ripley’s K"
+              file: lab/w10-lab.qmd
+            - text: "Lab 11: Spatial point process models"
+              file: lab/w11-lab.qmd
+            - text: "Lab 12: Lattice data: Spatial linear models"
+              file: lab/w12-lab.qmd
+            - text: "Lab 13: Geostatistics"
+              file: lab/w13-lab.qmd

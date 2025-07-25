@@ -1,5 +1,5 @@
 ---
-title: "Lab 8: Mixed-effects models for time series"
+title: "Lab 9: Mixed-effects models for time series"
 subtitle: Entomology 5126 - Spring 2026
 author: Jeremy Hemberger and Brian Aukema
 date: last-modified
