@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
+
+<title>Lab 6: Multiple linear regression and ANCOVA – Entomology 5126</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.qmd"> 
+<span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lab/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+</i> 
+<span class="menu-text">Course Syllabus</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhemberger/entomology-5126" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jhemberg@umn.edu"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#factors-vs.-continuous-or-discrete-variables" id="toc-factors-vs.-continuous-or-discrete-variables" class="nav-link" data-scroll-target="#factors-vs.-continuous-or-discrete-variables">Factors vs.&nbsp;continuous or discrete variables</a></li>
+  </ul></li>
+  <li><a href="#multiple-regression" id="toc-multiple-regression" class="nav-link" data-scroll-target="#multiple-regression">Multiple Regression</a></li>
+  <li><a href="#ancova" id="toc-ancova" class="nav-link" data-scroll-target="#ancova">ANCOVA</a></li>
+  <li><a href="#useful-commands-for-fitting-ancova-models" id="toc-useful-commands-for-fitting-ancova-models" class="nav-link" data-scroll-target="#useful-commands-for-fitting-ancova-models">Useful commands for fitting ANCOVA models</a></li>
+  <li><a href="#sequential-vs.-marginal-fitting" id="toc-sequential-vs.-marginal-fitting" class="nav-link" data-scroll-target="#sequential-vs.-marginal-fitting">Sequential vs.&nbsp;Marginal fitting</a></li>
+  <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
+  <li><a href="#todays-assignment" id="toc-todays-assignment" class="nav-link" data-scroll-target="#todays-assignment">Today’s Assignment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 6: Multiple linear regression and ANCOVA</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Last week, we refreshed our memory of simple linear regression. This week, we will do multiple regression, i.e., examining the effect of multiple continuous variables on some response. Actually, in today’s data set, there is a factor included as well. Such analyses are known as Analysis of Covariance, or ANCOVA. ANCOVA is simply a hybrid of regression and ANOVA.<br>
+</p>
+<section id="factors-vs.-continuous-or-discrete-variables" class="level2">
+<h2 class="anchored" data-anchor-id="factors-vs.-continuous-or-discrete-variables">Factors vs.&nbsp;continuous or discrete variables</h2>
+<p>As a reminder, if you have a numeric variable (like trials 1 and 2) and you would like to convert it to a factor, use the <code>as.factor()</code> command:<br>
+<code>&gt; myniftydata$trial &lt;- as.factor(myniftydata$trial)</code><br>
+If you ever need to turn an appropriate categorical variable (such as above) into a numeric variable, use this command:<br>
+<code>&gt; myniftydata$trial &lt;- as.numeric(as.character(myniftydata$trial))</code></p>
+</section>
+</section>
+<section id="multiple-regression" class="level1">
+<h1>Multiple Regression</h1>
+<p>The basic formula for a multiple regression model is: <span class="math display">\[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \ldots + \beta_k x_{ki} + \epsilon_i\]</span> The <span class="math inline">\(\beta_0\)</span> is the intercept, or where the line crosses the <span class="math inline">\(y\)</span>-axis. The <span class="math inline">\(\beta_1\)</span> is the slope of the first covariate, or the increase in <span class="math inline">\(y\)</span> per unit change in <span class="math inline">\(x_1\)</span> <em>holding all other covariates constant</em>. The <span class="math inline">\(\beta_2\)</span> is the slope of the second covariate, or the expected increase in <span class="math inline">\(y\)</span> per unit change of <span class="math inline">\(x_2\)</span> <em>holding all other covariates constant</em>. The <span class="math inline">\(\epsilon_i\)</span> refers to the “errors” about the line. Of course, if the model was perfect (never the case), there would be no errors and your data would lie along a perfectly straight line.<br>
+There are four assumptions for a multiple linear regression model:</p>
+<ol type="1">
+<li><p>The model is correct</p></li>
+<li><p>The observations are independent</p></li>
+<li><p>The variances are equal</p></li>
+<li><p>The errors are normally distributed</p></li>
+</ol>
+<p>As you might expect, you can check the assumptions of equal variances and normally distributed errors in your residual plot. As I mentioned in lecture, you can also detect curvature in the data (first noted when you plotted the data) that might require a special techniques beyond a straight-line fit. I’ll introduce some of those techniques next week.</p>
+</section>
+<section id="ancova" class="level1">
+<h1>ANCOVA</h1>
+<p>ANCOVA mixes factors (i.e., categories) with covariates (i.e., continuous variables). The basic formula for an ANCOVA model is: <span class="math display">\[y_{ij} = \beta_0 +\alpha_i + \ldots + \beta_1 x_{1ij} + \ldots + \epsilon_{ij}\]</span> As you can see, the model has an intercept, or where the line crosses the <span class="math inline">\(y\)</span>-axis. For levels of a factor, there are <span class="math inline">\(\alpha_i\)</span> values that adjust the intercept level up or down. Then, the response is adjusted by the different slopes of covariates. The <span class="math inline">\(\epsilon_i\)</span> refers to the “errors” about the line. If the model was perfect (never the case), there would be no errors and your data would lie along a perfectly straight line.<br>
+Again, there are four assumptions:</p>
+<ol type="1">
+<li><p>The model is correct</p></li>
+<li><p>The observations are independent</p></li>
+<li><p>The variances are equal</p></li>
+<li><p>The errors are normally distributed</p></li>
+</ol>
+<p>You have seen this before, yes? And you know how to judge these assumptions, yes?</p>
+</section>
+<section id="useful-commands-for-fitting-ancova-models" class="level1">
+<h1>Useful commands for fitting ANCOVA models</h1>
+<ul>
+<li><p>The linear model command, <code>lm()</code>, as we have used the past two weeks. Specify the response variable, and then the covariates or factors. A <span class="math inline">\(+\)</span> sign is used to specify multiple independent variables. <em>If</em> you were examining the interaction terms between your covariates (or factors), a <span class="math inline">\(:\)</span> can be used to fit an interaction between two variables. If you want to fit two variables of interest and their interaction, use an asterisk <span class="math inline">\(*\)</span> as shorthand.</p>
+<p>I will note that interactions are typically left to ANOVA designs. It is not conventional to fit or study interaction terms in multiple regression models, although I suppose you could if you had some really good reasons.</p></li>
+<li><p>The anova command, <code>anova()</code>. This is not commonly examined in multiple regression since the effect of each variable can be examined as easily using <code>summary()</code> (since each slope estimate uses one degree of freedom). The <code>anova()</code> command is often used to examine the overall effect of factors in ANOVA and/or ANCOVA (a group with more than 2 levels will need more than one degree of freedom, so the significance test for the variable as a whole cannot simply be recovered from one line in the <code>summary()</code> table).</p></li>
+<li><p>The summary command, <code>summary()</code>. Examine the <span class="math inline">\(F\)</span>-statistic of the overall model, which you can find at the bottom of the summary. This tells you whether there is/are <em>any</em> signficant relationships between your response variable and your predictor(s). If the <span class="math inline">\(p\)</span>-value is greater than 0.05, then there is nothing signficant.</p></li>
+<li><p>Remember, while the <span class="math inline">\(p\)</span>-value from the overall model is good to examine, you should also simultaneously examine how well the model fits and if a transformation might be necessary!</p></li>
+</ul>
+</section>
+<section id="sequential-vs.-marginal-fitting" class="level1">
+<h1>Sequential vs.&nbsp;Marginal fitting</h1>
+<p>We have covered in class the differences between sequential and marginal fits in a model; the inferential tests for the variables being examined can be quite different. We’ll tease apart some of these details in lab today. One key thing to keep in mind: <code>summary()</code> uses marginal fitting, while <code>anova()</code> uses sequential.</p>
+</section>
+<section id="todays-data" class="level1">
+<h1>Today’s data</h1>
+<p>Today’s data set, in <code>Lab6data.xls</code>, is a dataset from D.G. Altman (1991) <em>Practical Statistics for Medical Research</em>, Table 12.11, Chapman &amp; Hall. It is a data set of lung function for cystic fibrosis patients between 7-23 years old. There are 25 patients and 10 columns:</p>
+<div class="center">
+<p>Variable Description</p>
+<hr>
+<p>age age in years sex 0: male, 1: female height height in cm weight weight in kg bmp body mass (percent of normal) fev1 forced expiratory volume rv residual volume frc functional residual capacity tlc total lung capacity pemax maximum expiratory pressure</p>
+</div>
+</section>
+<section id="todays-assignment" class="level1">
+<h1>Today’s Assignment</h1>
+<ol type="1">
+<li><p>Load the data, convert all necessary variables to factors, and examine a scatterplot matrix. The latter step is especially important when doing multiple regression. Make a mental note (not for graded assignment) of which variables are highly correlated with each other, and also which variables might be linearly (or curvily) related to the response variable of interest.</p></li>
+<li><p><span class="math inline">\(T\)</span>-tests in <em>all</em> regression models return a test using a technique known as <em>marginal fitting</em>. Marginal fitting examines the effect of each variable as if it was fit into the model <em>last</em>, as if all other variables specified were already in the model and accounted for.<br>
+Frequently, a variable associated with a high <span class="math inline">\(p\)</span>-value from a <span class="math inline">\(t\)</span>-test in a multiple regression may exhibit a high (i.e., non-significant) <span class="math inline">\(p\)</span>-value because it is highly correlated with something else already in the analysis. In other words, if you have a included a variable in your analysis that looks an awful lot like another one, chances are it will be non-significant: who needs two copies of the same thing?<br>
+In contrast, <span class="math inline">\(F\)</span>-tests in the <code>anova()</code> command return a test using a technique known as <em>sequential fitting</em>. The <span class="math inline">\(p\)</span>-value associated with a term examines the effect of the term as fit <em>in the order specified in the model</em>. The first term listed in the ANOVA table displays the <span class="math inline">\(p\)</span>-value for just that term, with nothing else in the model. The second term listed takes into account the variation already explained by the first term, and so on.<br>
+Fit a multiple regression model of <code>pemax</code> on <code>height</code> and <code>weight</code> and examine the summary. Why do you get different <span class="math inline">\(p\)</span>-values for one of the terms between the <code>summary()</code> and the <code>anova()</code> outputs? What is happening?<br>
+</p></li>
+<li><p>There is one variable, <code>sex</code>, in today’s dataset that is a factor with two levels. Binary variables are often coded 0/1, which can be advantageous in model fitting. How many degrees of freedom are used in estimating a coefficient for a factor with two levels? How many degrees of freedom are used in estimating a slope for a continuous variable? (If you see where this is going, yell <em>eureka</em> now …).<br>
+</p>
+<ul>
+<li><p>We have covered how factors are treated in the <code>summary()</code> output before: one level becomes incorporated into the intercept, the other(s) are differences from that (with associated <span class="math inline">\(t\)</span>-tests). Fit a model of forced expiratory volume as a function of gender and examine the summary. What does the <span class="math inline">\(t\)</span>-test test? Do boys vs. girls blow more hot air? Report the levels for each.<br>
+</p></li>
+<li><p>Now, convert the <code>sex</code> variable to a continuous variable and refit the model. Examine the <code>summary()</code> output. Now what does the associated <span class="math inline">\(t\)</span>-test test? Report the <span class="math inline">\(y\)</span> values of the regression line for values of <span class="math inline">\(x=0\)</span> and then <span class="math inline">\(x=1\)</span>. Where have you seen these values?<br>
+</p></li>
+</ul></li>
+<li><p>It is most intuitive to examine <em>marginal effects</em> when selecting candidate variables for models. (Think: does this variable explain significant variation, after I have taken into account the effects of everything else specified?) Remember, in <code>anova()</code>, factor tests are <em>sequential</em> and not necessarily as informative (although statisticians can fight holy wars over the virtues of sequential vs. marginal fitting).<br>
+<strong>There is a small challenge</strong> when using factors with more than two levels: the output of <code>summary()</code> provides an estimate for each of the different levels from the baseline/intercept (all of the <span class="math inline">\(\alpha_i\)</span>). Of course, we can’t just eliminate one level of a factor; we have to either keep or retain the entire variable! To get the overall effect of the factor in question, we of course have to use the <code>anova()</code> command, which yields a sequential test.<br>
+There are ways to coerce statistics programs to provide automatic marginal fits for factors (sometimes called Type III SS). But let’s say all we had is the two commands <code>anova()</code> and <code>summary()</code>. What is an easy way to find the marginal fit for a specific factor using <code>anova()</code>?</p></li>
+<li><p>Back to our data set. Let’s build a good model to explain maximum expiratory pressure, or <code>pemax</code>.<br>
+In general, the simplest model is the best. We should try to select models with covariates that contribute significant information to the model (by convention, we always leave the intercept in), and remove extraneous variables. If a variable is not significant after having everything else in the model, we might as well remove it.<br>
+One popular method of model building is known as “backward elimination.” Start with a plausible “full model”, examine the summary, and remove the variable with the highest non-significant <span class="math inline">\(p\)</span>-value. Fit the slimmer model and repeat. Continue until all variables left in the model are significant (using <span class="math inline">\(\alpha=0.05\)</span>).<br>
+Now, it is important to realize that (1) <em>you are the boss</em> and (2) <em>you do not always have to remove the variable with the highest non-significant <span class="math inline">\(p\)</span>-value</em>. In practice, there may be good <em>ecological</em> reasons to leave a particular explanatory variable in. Let’s say we were examining the effect of multiple variables on a response <span class="math inline">\(y\)</span>, plant growth. If faced with a choice between eliminating either</p>
+<ol type="1">
+<li><p>the price of tea on successive Tuesdays <span class="math inline">\((p=0.6216)\)</span>, or</p></li>
+<li><p>precipitation <span class="math inline">\((p=0.6826)\)</span>,</p></li>
+</ol>
+<p>we may chose to retain the latter for an elimination round or two even if it does have the highest <span class="math inline">\(p\)</span>-value. Such decisions are part of the art of doing statistics.<br>
+In practice, we often check model diagnotistics through residual plots, transformations, etc. at the beginning and end of our work, as it would be highly tedious to check every step of model building (e.g., pretend we had 20 or 200 candidate variables).<br>
+If we did have 30 candidate predictor variables, could we include them in a first model all at the same time for this data set? Why or why not? (Hint: think of the ANOVA table).</p></li>
+<li><p>Our goal is to predict the maximum expiratory pressure of a child with cystic fibrosis based on biological indicators. Using backward selection procedures, find a model of <code>pemax</code> on any or all of <code>sex</code>, <code>fev1</code>, <code>age</code>, <code>height</code>, <code>weight</code>, <code>bmp</code>, <code>frc</code>, and <code>tlc</code>. <strong>Do <em>not</em> simply turn in 10 pages of printout.</strong> Instead, for each variable elimination step, report which variable you removed (or retained) and why. Also, for each step, report both the multiple and adjusted R-squared values. What do you notice about the trend in the <em>difference</em> between these two values as you proceed?<br>
+Present your results of a sensible regression model in a brief paragraph. Provide the final model equation, with <em>F</em> and <em>P</em> values for the overall model. (Note: there may be a variety of acceptable models). Be sure to explain any necessary transformations and the range of data over which your model might be tractable.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Jeremy Hemberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://www.r-project.org/about.html" target="_blank"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></a> and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

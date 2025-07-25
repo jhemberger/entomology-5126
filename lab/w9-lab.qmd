@@ -1,0 +1,369 @@
+---
+title: "Lab 8: Mixed-effects models for time series"
+subtitle: Entomology 5126 - Spring 2026
+author: Jeremy Hemberger and Brian Aukema
+date: last-modified
+date-format: long
+format: html
+---
+
+---
+
+# Mixed effects models
+
+Today we will focus on mixed effects models with their associated
+"fixed" and "random" effects. "Fixed effects" are the terms in the model
+in which you are most interested. They are included in the mean term,
+and reflect why you designed the experiment in the first place. "Random
+effects" frequently reflect artifacts of your experimental design (e.g.,
+the randomly selected sites or regions as you set up the field
+experiment, the randomly selected dog from which you drew repeated blood
+samples, etc.). Random effects are placed in the error term. Mixed
+effects models have three very nice advantages:
+
+1.  They conserve degrees of freedom for hypothesis testing of fixed
+    effects, compared to non-mixed effects models.
+
+2.  Experimental inference extends to all regions, sites, plots, dogs,
+    etc. and *not* the just the ones you selected and sampled.
+
+3.  They can accomodate complicated dependence structures. This is
+    especially useful for temporal and spatial and spatiotemporal
+    analyses.
+
+## Repeated measures
+
+There are *many* different types of temporal analyses, covering an
+entire semeseter's worth (and beyond) of material. One area of time
+series analysis includes "repeated measures" analyses. As you might
+expect, it involves taking repeated measures on an experimental subject
+(whether that be a plant, animal, human, etc\...). For example, you
+might take repeated measurements on a person to examine how fast a
+particular drug is cleared from the body. In statistics, such studies
+are commonly called "longitudinal studies" but should not be confused
+with any spatial analyses.\
+Mixed effects models are useful for repeated measures studies because
+they can accommodate the temporal dependence of multiple observations on
+each experimental subject.
+
+# Syntax for fitting and evaluating linear mixed effects models
+
+## library(`nlme`)
+
+Recall at the beginning of the course I had mentioned that `R` has many
+flexible extensions that can be added on to the base package. You can
+load a package with the commands that you will need using the
+`library()` command. Do be aware that if you are installing `R` on your
+own computer, you may need to intall the package first (get it from the
+internet onto your disk drive; one time only) and *then* load it with
+the `library()` command (get it from the disk into the computer memory;
+each session).
+
+There are a variety of ways to fit and evaluate linear mixed effects
+models. Today we will use commands in package `nlme`, written by Douglas
+Bates and Jose Pinheiro. The computational underpinnings are rock solid.
+There is also an updated package `lme4` that I use frequently
+(especially the `lmer()` model fitting command), but we will not use
+that today.
+
+## The model fit
+
+In the `nlme` package, linear mixed effects models are fit with the
+`lme()`. Not surprisingly, it looks very similar to something we have
+seen before. This is how to fit a model with mixed effects:
+
+1.  Decide what to call your model. E.g.,\
+    `> fm1 <- `
+
+2.  Specify the `lme()` command, and determine what `y` variable you are
+    analyzing. It should be something that is, or can be transformed to
+    be, normally distributed.\
+    `> fm1 <- lme(y `$\sim$` `
+
+3.  List the variable(s) that you are analyzing and the dataset. For
+    example, `> fm1 <- lme(y `$\sim$` time, data=mydata`
+
+4.  Specify the random effects. These are usually byproducts of how you
+    designed your experiment. Today, we will use a random intercept for
+    each experimental subject chosen at random.\
+    `> fm1 <- lme(y `$\sim$` time, data=mydata, random = `$\sim$` 1 `$\mid$` person)`
+
+As an aside, *if* you were using the package, the equivalent command
+would be specified\
+`> fm1 <- lmer(y `$\sim$` time + (1 `$\mid$` person), data=mydata)`
+
+## Evaluating models
+
+You will still be able to evaluate $F$ tests and intercept and slope
+coefficients for the model as before. However, the method in which
+coefficient estimates are obtained has changed. Now, we use maximum
+likelihood methods, not ordinary least squares. Just a different
+mathematical technique, that's all.\
+Without ordinary least squares, we have lost our ability to calculate
+$R^2$ values. They simply do not exist. Instead we have something known
+as *information criteria*: other measures of fit of a statistical
+model.\
+The most common information criterion is Akaike's Information Criterion,
+originally proposed by Hirotugu Akaike, defined as
+
+$$AIC = -2\ln(L)+2k$$
+
+where $2k$ is twice the number of parameters (i.e., a penalty for adding
+more variables to improve the model fit, analagous to $R^2_{adj}$) and
+$L$ is the maximized value of the likelihood function for the estimated
+model. We will not cover this in detail. Similarly, we will not cover
+other types of information criteria (AICc, BIC, DIC, etc.) but they are
+all variations on the theme.\
+Here are some things you should remember about AIC values and model
+selection:
+
+1.  AIC values do not give you a test of the model in terms of
+    hypothesis testing. Rather, information criteria are just a *tool*
+    for model selection (comparing between models).
+
+2.  AIC values vary. They are not bounded between 0 and 1 like an $R^2$
+    value.
+
+3.  The lower the number, the better the model fit, **but** you can only
+    compare models with the **same** response variable and the **same**
+    data set. For example, you can compare $y \sim x$ vs. $y \sim w$ but
+    you **cannot** compare $y \sim x$ vs. $sqrt(y) \sim x$
+
+4.  If your model has random effects, you can only compare models with
+    different *nested* random effects if each model has the **same**
+    fixed effects structure. See below for more details.
+
+## Nesting random effects
+
+Some experimental designs incorporate *nesting*. In the social sciences,
+you may see the term 'multilevel models.'' We know that a good rule for
+experimental analysis is to *always analyze an experiment consistent
+with the manner in which it was designed.*\
+Pretend that you select three regions, and then four plots *within* each
+of those regions, before you sample the height ($y$) and diameter ($x$)
+of 10 trees each. Your analysis should reflect the regional and
+plot-within-region variation. Nesting random effects is done with the
+forward slash in R:\
+
+    > fm1 <- lme(y ~ diameter, data=mydata, random = ~ 1 | region/plot)
+
+We are now presented with some philosophical choices. You could just
+leave the analysis at that. Another prevalent school of thought
+encourages statistical models to be as simple as possible. For example,
+if the plot-to-plot variation in a site is not significant, perhaps we
+can just set that aside. Hence, we frequently test to see if we can
+remove the *lowest* level of nesting. We may start by analysing the
+experiment consistent with the manner in which it was designed, but then
+see if we can make it simpler.\
+To test whether we can remove the lowest level of nesting, we fit both
+models and compare them using a *likelihood ratio test*. (This is
+analagous to the additional sums of squares tests that I showed in
+class).
+
+    > fm1 <- lme(y ~ diameter, data=mydata, random = ~ 1 | region)
+    > fm2 <- lme(y ~ diameter, data=mydata, random = ~ 1 | region/plot)
+    > anova(fm1, fm2)
+
+Note that both models have the **same** response variable and the
+**same** fixed effects structure. The output from the `anova()` command
+specifying *both* models separted by a comma will produce a likelihood
+ratio test with an associated $p$-value. If the $p$-value is less than
+0.05, one model is statistically better than the other. In that case,
+choose the model with the lowest AIC value.
+
+It is not terribly common to have nesting in time series data, but it
+can happen (e.g., taking repeated height ($y$) measurements through time
+($x$) for the trees that are nested in different sites, as above). We do
+not have nesting in today's lab.
+
+## The last word
+
+It can be a little confusing to remember what can be compared with what
+(similar fixed effects models with changed nested random effects,
+different fixed effects models without random effects, etc.) because the
+likelihood world has all sorts of little nuances. I keep the above
+sections as simple as possible without going into detail about the
+different likelihood computations behind these models (maximum
+likelihood, restricted maximum likelihood, penalized quasi-likelihood,
+etc.).\
+Bottom line: **model selection is a bit of an art**. What I might do is
+start with the most consistent model with my experimental design, find
+the best fixed-effects structure, and then simplify the random effects.
+Other times, I might start with a model without any random effects at
+all, find an OK model, and then put the random effects back in to see if
+things still work. There is no recipe book, unfortunately.
+
+## Reading the output
+
+The `anova()` and `summary()` commands work as before. Once you have a
+good model, to get detailed information on model coefficients, use the
+`summary()` command.\
+The summary will appear similar to tables that you have seen before,
+with a few twists. First, you will see summary statistics for AIC, BIC,
+and the log likelihood.\
+Next, you will see a listing of random effects. Random effects are often
+reported when you specify a model, but **not** in the resulting equation
+of the line (see last question today).\
+Let's say you were working with blood pressure readings on different
+people, perhaps in different treatment groups. You might see this output
+from a model $y \sim time + trt$ with a random effect for person:
+
+    Random effects:
+     Formula: ~1 | person
+            (Intercept) Residual
+    StdDev:    8.917896 5.032072
+
+This would specify that the resulting expected blood pressure value
+$\hat{y}$ (for a given timepoint and treatment group) could be adjusted
+at random up or down by a standard deviation of 8.9 to account for
+variability among people. *Then*, on top of that, there is another
+random adjustment of $\pm$`<!-- -->`{=html}5.03 standard deviations for
+all noise left over (so, if blood pressure reading is the experimental
+unit, variation among readings within each person).\
+Finally, you will see a fixed effects table - essentially your model
+summary. (Ignore the table of intraclass correlations below that during
+today's lab). You will also see information on the distribution of
+residuals, which can be used (along with a graphical residual plot!) to
+determine if the assumptions of your model are being met.\
+
+## Check your residuals!
+
+`> plot(residuals(fm1) `$\sim$` fitted.values(fm1))`\
+`> plot(fm1) # Finally, a shortcut!`
+
+# Today's data
+
+Today's data set, in `Lab8data.txt` is a classic data set from Pothoff,
+R.F., and Roy, S.N. (1964) A generalized mulivariate analysis of
+variance model useful especially for growth curve functions *Biometrika*
+51: 313-326. Investigators at the University of North Carolina Dental
+School followed the growth of 27 children (16 males, 11 females) from
+age 8 until 14. Every two years, they measured the distance between the
+pituitary and the pterygomaxillary fissure. The two points can be
+readily identified by examining x-rays of the side of the head. Here are
+the relevant variables:
+
+::: center
+  Variable   Description
+
+---------- --------------------------------------------------------------------------------
+
+  obs        observation number
+  distance   distance from the center of the pituitary to the pterygomaxillary fissure (mm)
+  age        age of the child (years) when measurement was taken
+  subject    identifier of the person
+  sex        a factor indicating if the person is male or female
+:::
+
+# Today's Assignment
+
+1.  Read in the data, blah blah blah. Now that you have converted any
+    necessary variables to factors, you now know the next step too. A
+    scatterplot matrix can be a little tricky for time series data
+    because you often want to view your data grouped by the experimental
+    units upon which you collected the data.\
+    Load the `lattice` package, which is a masterpiece for viewing large
+    amounts of data by groups. (You may have to go back to the first lab
+    to figure out how to load a package). You can plot the data with
+    this command:\
+    `> xyplot(distance `$\sim$` age | subject, data=mylabdata)`\
+    Not bad, eh?
+
+2.  Before fitting anything, what kind of a trend do you anticipate in
+    pituitary-pterygomaxilarry fissure growth?
+
+3.  Fit a model of distance as a function of age. Include a random
+    effect for person-to-person variation. If you did not include this
+    random effect, how far would your experimental inference extend?
+
+4.  Examine the summary of the line. What is the expected distance
+    measured for newborns? How much does the distance increase per year
+    for children as they grow older?
+
+5.  What is the $R^2$ value of your model?
+
+6.  Fit a second model examining the effects of age and sex on distance.
+    (Just fit these variables additively, no interactions please). Does
+    the distance vary with sex?\
+    You of course recognize that this is an ANCOVA, because you have
+    factors and covariates. When dealing with an ANCOVA, you actually
+    have equations of multiple lines depending on the level of each
+    factor. Each additive shift from the baseline group is essentially a
+    constant, so can be added (or subtracted) from the intercept.\
+    Provide the equation of the growth line for girls, then for boys.
+    Demonstrate how you derive them from your summary output. Finally,
+    sketch these lines on a **hand-sketched** plot on your assignment.
+    (Perhaps take a photo and copy it into your assignment). We simply
+    want to see that you can connect what goes into the model with what
+    comes out.\
+
+7.  Which model fits better, the one with only age, or the one that also
+    accounts for sex? Why?
+
+8.  Up to this point, we have focused most of our attention on doing
+    analyses and very little on how to write up statistical methods.
+    Unfortunately, I do not have a 3-page guide to provide you with all
+    the answers. And, if you consult the "professionals" (e.g., read a
+    sample of 6 scientific papers), you will probably see as many
+    examples of how *not* to write statistical methods and results as
+    how to write them!\
+    **A good rule is as follows: anything you write should be clear and
+    repeatable. You should be able to give your analytical description
+    to the person sitting beside you, and, if they have the data set,
+    they should be able to generate *exactly* the same analysis.**\
+    Here is an example of how I might write a description of an analysis
+    of variance:\
+    **Methods.** We examined the effect of \[fill in categorical
+    predictor variable name here\] on \[response variable\] using ANOVA.
+    We used a \[fill in blank\] transformation on our response variable
+    to satisfy assumptions of the model, namely homogeneity of variances
+    and normal distribution of residuals. Analytical assumptions were
+    examined by graphical inspection of residual plots. Where
+    significant differences between treatments existed, means
+    comparisons were performed using \[my advisor's favourite means
+    comparison procedure, such as Bonferronni, protected-$t$, Tukey,
+    etc.\].\
+    **Results.** There was a signficant effect of \[predictor\] on
+    \[response\] ($F_{ndf, ddf}=3.41, p=0.0013)$. The mean score
+    ($\pm$SE)for the control group was \[fill in blank\]. The \[next\]
+    group scored slightly better \[score\], but this effect was not
+    statistically significant ($t_{ddf}=1.20, p=0.0783)$. The highest
+    group was \[fill in blank\], with a mean score ($\pm$SE) of
+    \[score\]. This group was stastically different than the controls
+    ($t_{ddf}=2.64, p<0.0001)$.\
+    Here is an example of how I might write up a regression model in a
+    mixed effects framework:\
+    **Methods.** Ten trees were scored for disease severity in each of
+    ten randomly chosen plots, selected as representative samples of
+    susceptible lodgepole pine. We used a linear mixed effects model to
+    examine the effect of elevation on disease severity. Fixed effects
+    included elevation, fitted as a continuous variable, while plot was
+    modeled as a random effect. We used a \[log(y+1) or other\]
+    transformation on our response variable to satisfy assumptions of
+    the model, namely homogeneity of variances and normal distribution
+    of residuals. Analytical assumptions were examined by graphical
+    inspection of residual plots.\
+    **Results.** Disease severity increased with elevation, which could
+    be modeled by the regression equation $y = 1.23 + 5.13 x$, where $x$
+    is the elevation in metres. \[Maybe add a few more comments based on
+    the plot(s), but regressions are pretty straight forward\].\
+    **Note** that we typically do *not* report the random effects in the
+    regression line equation, like
+    $y = 1.23 + 5.13 x \pm 8.01 \pm 5.13$. Random effects are generally
+    *only* reported in the methods when we specify how we fit the model.
+    (If we were *really* interested in that variation, we would likely
+    fit it as a fixed effect!).\
+    Also, always include the intercept, even if it is not significant.
+    If this was a "regular" regression model (i.e., without mixed
+    effects), you might also report the $F$, $p$, and $R^2$ value when
+    you report the regression line. For a "mixed effects" model, one
+    might report an AIC value, but typically this is *only done if you
+    are reporting two models and commenting on which one fits better*.
+    Even in such a case, you might only present the change in AIC value
+    between the lowest and next best model ($\Delta$AIC). An AIC value
+    varies tremendously, and has little utility on its own (unlike an
+    $R^2$).\
+    Given the above examples, pretend your are writing a scientific
+    report. Write two paragraphs, one for Methods and one for Results,
+    from the best model of the two that you tried for this data set. (Do
+    **not** get carried away; I do not need references and the like!)\

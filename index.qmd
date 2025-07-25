@@ -20,16 +20,16 @@ about:
 :::: {layout="[ 60, 5, 35 ]"}
 
 ::: {#first-column}
-<p class="landing-text">Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to *analyze*, *interpret*, and *communicate* spatially and temporally dependent data.</p>
+<p class="landing-text" style="text-align:justify;">Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to *analyze*, *interpret*, and *communicate* spatially and temporally dependent data.</p>
 :::
 
 ::: {#second-column}
 :::
 
 ::: {#third-column}
-<p class="landing-text">**Entomology 5126 | Spring 2026**</p>
-<p class="landing-text">College of Food, Agricultural, and Natural Resources Sciences</p>
-<p class="landing-text">University of Minnesota</p>
+<p class="landing-text">**Entomology 5126 | Spring 2026**</br>
+College of Food, Agricultural, and Natural Resources Sciences</br>
+University of Minnesota</p>
 :::
 
 ::::
@@ -39,24 +39,30 @@ about:
 :::: {layout="[ 33, 33, 33 ]"}
 ::: {#first-column}
 ### Instructor
-<p class="landing-text" style="text-align:center;">{{< fa person-chalkboard >}}  [Dr. Jeremy Hemberger](https://entomology.umn.edu/people/jeremy-hemberger)</p>
-<p class="landing-text" style="text-align:center;">{{< fa building >}}  408 Hodson Hall</p>
-<p class="landing-text" style="text-align:center;">{{< fa envelope >}}  [jhemberg@umn.edu](mailto:jhemberg@umn.edu)</p>
+<p class="landing-text" style="text-align:center;">
+{{< fa person-chalkboard >}}  [Dr. Jeremy Hemberger](https://entomology.umn.edu/people/jeremy-hemberger)</br>
+{{< fa building >}}  408 Hodson Hall</br>
+{{< fa envelope >}}  [jhemberg@umn.edu](mailto:jhemberg@umn.edu)
+</p>
 :::
 
 ::: {#second-column}
 ### Lecture details
-<p class="landing-text" style="text-align:center;">{{< fa calendar >}}  Wednesday and Friday</p>
-<p class="landing-text" style="text-align:center;">{{< fa clock >}}  9:30-10:20am</p>
-<p class="landing-text" style="text-align:center;">{{< fa location-dot >}}  408 Hodson Hall</p>
+<p class="landing-text" style="text-align:center;">
+{{< fa calendar >}}  Wednesday and Friday</br>
+{{< fa clock >}}  9:30-10:20am</br>
+{{< fa location-dot >}}  408 Hodson Hall
+</p>
 
 :::
 
 ::: {#third-column}
 ### Lab details
-<p class="landing-text" style="text-align:center;">{{< fa calendar >}}  Friday</p>
-<p class="landing-text" style="text-align:center;">{{< fa clock >}}  10:30-12:30pm</p>
-<p class="landing-text" style="text-align:center;">{{< fa location-dot >}}  408 Hodson Hall</p>
+<p class="landing-text" style="text-align:center;">
+{{< fa calendar >}}  Friday</br>
+{{< fa clock >}}  10:30-12:30pm</br>
+{{< fa location-dot >}}  408 Hodson Hall
+</p>
 :::
 
 ::::

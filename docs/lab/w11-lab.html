@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
+
+<title>Lab 11: Spatial point process models – Entomology 5126</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.qmd"> 
+<span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lab/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+</i> 
+<span class="menu-text">Course Syllabus</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhemberger/entomology-5126" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jhemberg@umn.edu"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#spatial-point-process-models" id="toc-spatial-point-process-models" class="nav-link active" data-scroll-target="#spatial-point-process-models">Spatial point process models</a></li>
+  <li><a href="#generalized-linear-models" id="toc-generalized-linear-models" class="nav-link" data-scroll-target="#generalized-linear-models">Generalized linear models</a>
+  <ul class="collapse">
+  <li><a href="#logistic-models" id="toc-logistic-models" class="nav-link" data-scroll-target="#logistic-models">Logistic models</a></li>
+  <li><a href="#poisson-models" id="toc-poisson-models" class="nav-link" data-scroll-target="#poisson-models">Poisson models</a></li>
+  <li><a href="#fitting-generalized-linear-models" id="toc-fitting-generalized-linear-models" class="nav-link" data-scroll-target="#fitting-generalized-linear-models">Fitting generalized linear models</a></li>
+  </ul></li>
+  <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
+  <li><a href="#todays-assignment" id="toc-todays-assignment" class="nav-link" data-scroll-target="#todays-assignment">Today’s Assignment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 11: Spatial point process models</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="spatial-point-process-models" class="level1">
+<h1>Spatial point process models</h1>
+<p>The intensity, <span class="math inline">\(\lambda\)</span>, of events over a surface are typically considered to be Poisson distributed. When examining the arrangement of points with Ripley’s K functions, we assume three things:</p>
+<ol type="1">
+<li><p>Events generally occur as single events</p></li>
+<li><p>The expected number of events is the same in all possible subregions of the same size</p></li>
+<li><p>The occurrence of an event in one subregion is independent of the occurrence of an event in another non-overlapping subregion</p></li>
+</ol>
+<p>Unfortunately, all three of these assumptions are rarely met. Hence, in recent years, spatial statisticians have turned their focus to <strong>inhomogenous</strong> spatial point processes, where the intensity is modeled across the spatial surface. In fact, recent theoretical work has demonstrated that patterns that <em>appear</em> clustered (for example, using Ripley’s K) may in fact simply be random patterns with a higher intensity in those areas!<br>
+This sounds very straightforward, but is actually mathematically quite complex. However, there are formal similarities between the Poisson log-likelihood of these spatial models and that of a loglinear Poisson regression in a generalized linear model. Hence, some of the computational aspects are similar.<br>
+<strong>In the next section, I’ve included further background on generalized linear models (GLMs) as FYI only</strong>. While the computational underpinnings between spatial point process models and Poisson GLMs are similar, the wrapper syntax in <code>R</code> is a little different. However, many of you may want to analyze (potentially non-spatial) data with a GLM at some point in your career (e.g., toxicity trials with live/dead responses, counts of birdsongs that are Poisson-distributed that you don’t feel like transforming with a square-root transformation to induce normality of errors, etc.). If you have no interest in these things for the moment, skip straight to the assignment.</p>
+</section>
+<section id="generalized-linear-models" class="level1">
+<h1>Generalized linear models</h1>
+<p>Generalized linear models (GLMs) are widely used in statistics. GLMs can be used when the response is <em>not</em> normally distributed. Until now, I have taught you “classic” time-honoured techniques like data transformations used when assumptions of normality of errors are violated (like log(<span class="math inline">\(y\)</span>+1), <span class="math inline">\(\sqrt{y}\)</span>, etc.). However, I think you will agree that it can seem a little “artificial” at times to transform your data.<br>
+Moreover, sometimes you just <em>can’t</em> find a good transformation. If the data are really skewed, some people might switch to non-parametric techniques where you use the <em>rankings</em> of the data values rather than data itself. Despite the occasional prevalence in ecology, such techniques are used rather infrequently in the statistics world; if classic transformations are “artificial,” how do you feel about replacing your data altogether? Hence, most statisticians simply use GLMs if not using classic transformations within a normal framework.<br>
+Generalized linear models use a transformation of the entire model, rather than the response variable. This is known as a “link” function to model the “mean” of the data. Once your model is fit, you have to back-transform the link to return to the original data scale. It seems complicated, but it is not that bad.</p>
+<section id="logistic-models" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-models">Logistic models</h2>
+<p>Models that use the <strong>binomial family</strong> (i.e., 0/1 data) are known as logistic models. These are quite common; e.g., presence/absence data. Note that we are talking about the response, <strong>not</strong> the predictor variables. For logistic models, the <em>canonical link function</em> is known as the “logit”. Using simple linear regression (but you could use ANOVA or ANCOVA of course): <span class="math display">\[\log \left(\frac{p(Y)}{1-p(Y)}\right)=\beta_0 + \beta_1 x\]</span> Back-transforming link functions can be a little more complex. To get the probability of the reponse occurence from a logistic model, use: <span class="math display">\[p(Y) = \frac{\exp(\beta_0 + \beta_1 x)}{1 + \exp(\beta_0 + \beta_1 x)}\]</span></p>
+</section>
+<section id="poisson-models" class="level2">
+<h2 class="anchored" data-anchor-id="poisson-models">Poisson models</h2>
+<p>Poisson models utilize the natural log: <span class="math display">\[\log(y)=\beta_0 + \beta_1 x\]</span> Back-transforming the link function: <span class="math display">\[y = \exp(\beta_0 + \beta_1 x)\]</span></p>
+</section>
+<section id="fitting-generalized-linear-models" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-generalized-linear-models">Fitting generalized linear models</h2>
+<p>We use the generalized linear models command, <code>glm()</code>. Hey, it contains that <code>lm</code> part!</p>
+<ol type="1">
+<li><p>Decide what to call your model. E.g.,<br>
+<code>&gt; fm1 &lt;-</code></p></li>
+<li><p>Specify the <code>glm()</code> command, and determine what <code>y</code> variable you are analyzing. Remember, for logistic regression, it must be binomial, like a list of 0/1s.<br>
+<code>&gt; fm1 &lt;- glm(y</code><span class="math inline">\(\sim\)</span><code></code></p></li>
+<li><p>List the variable(s) that you are analyzing for purposes of the experiment. For example, if you examining the effect of water (either as a factor or continuous variable) on a response variable <span class="math inline">\(y\)</span> (perhaps 0/1 germination), you might write<br>
+<code>&gt; fm1 &lt;- glm(y</code><span class="math inline">\(\sim\)</span><code>water</code></p></li>
+<li><p>Specify the dataset you are using.<br>
+<code>&gt; fm1 &lt;- glm(y</code><span class="math inline">\(\sim\)</span><code>water, data=mylabdata)</code></p></li>
+<li><p>Now specify the generalized linear model family. There are a bunch to choose from (see <code>?glm</code> if you are curious).<br>
+<code>&gt; fm1 &lt;- glm(y</code><span class="math inline">\(\sim\)</span><code>water, data=mylabdata, family="binomial")</code></p></li>
+</ol>
+<p>The <code>anova()</code> command looks at the sequential effects of the different terms in the model. The test statistic when working with deviance is <span class="math inline">\(\chi^2\)</span> distributed. We have to specify this, so the command becomes<br>
+<code>&gt; anova(fm1, test="Chisq")</code><br>
+The <code>summary()</code> command will give you the coefficients of your regression or ANOVA or ANCOVA line. The tests to see if each coefficient is different from zero is done with a Wald test, rather than a <span class="math inline">\(t\)</span> test, but is completely analagous. It results in a <span class="math inline">\(p\)</span> value, so the output will look pretty familiar. The summary will also contain an AIC value for that particular model.<br>
+If you ever need to do generalized linear models in a mixed effects framework, you need the generalized linear mixed models command, <code>glmmPQL()</code>, which you can access after loading <code>library(MASS)</code>. The <code>PQL</code> part refers to the model fitting algorithm, which uses something called “penalized quasi-likelihood” (just in case you were wondering.) Newer methods, including “adaptive Gaussian quadrature” and “2nd order Laplace approximations” can be found in <code>library(lme4)</code> and the associated <code>lmer()</code> command. The syntax for fitting random effects is a little different in the latter, so you may need to check the help files there.<br>
+</p>
+</section>
+</section>
+<section id="todays-data" class="level1">
+<h1>Today’s data</h1>
+<p>Today’s data, in <code>Lab11data.xls</code>, should look strangely familiar, since you used it last week. It is the dataset from Dr.&nbsp;W.A. Aherne in the Department of Pathology, University of Newcastle-upon-tyne, UK. It is a spatial point process dataset, where the events are the positions of the centres of nuclei of certain cells in a histological section of tissue from a laboratory-induced metastasising lymphoma in the kidney of a hamster. Again, the nuclei events are marked with one of two types of marks: “pyknotic” (i.e., dying) and “dividing” (i.e., living) cells. The background white space is occupied by unrecorded, interphase cells that are not recorded. Similar to last week, the background space is considered of no consequence to the present analysis.<br>
+The sampling window is a unit square, originally about 250 <span class="math inline">\(\mu\)</span>m <span class="math inline">\(\times\)</span> 250 <span class="math inline">\(\mu\)</span>m, and there are three columns:</p>
+<div class="center">
+<p>Variable Description</p>
+<hr>
+<p>x <span class="math inline">\(x\)</span> position y <span class="math inline">\(y\)</span> position type marks; factor with two levels: pyknotic or dividing</p>
+</div>
+</section>
+<section id="todays-assignment" class="level1">
+<h1>Today’s Assignment</h1>
+<ol type="1">
+<li><p>Load the <code>spatstat</code> package from Adrian Baddeley and Rolf Turner, the premier package for working with spatial point process data. Load the data and define three point processes as last week: the full data set with marks, and the two individual univariate point processes of pyknotic and dividing cells. Remember, for the latter two, because they are no longer marked, but rather univariate, you do not need to specify a <code>marks</code> argument within the <code>ppp()</code> command. Definining separate univariate point proceses is useful because each potential covariate needs to be its own surface when working with models of marked point processes.<br>
+Again, let’s first work with the dying, pyknotic cells. Plot and conduct a summary of the point process. What is the overall intensity, <span class="math inline">\(\lambda\)</span>, of the point process? (For this question, avoid converting back to the original scale, and just work with ‘per unit square’). (And yes, I hope that <span class="math inline">\(\lambda_{pyknotic}\)</span> has not changed from last week).</p></li>
+<li><p>Let’s construct a point process model by fitting an intercept to the rate of dying cells. That is, fit a <em>homogenous</em> spatial point process model. The formula for specifying an intercept should be moderately familiar from specifying random effects in mixed-effects models. Here is the syntax:</p>
+<p><code>&gt; fm1 &lt;- ppm(my.ppp.pyknotic,</code><span class="math inline">\(\sim\)</span><code>1)</code></p>
+<p>A <code>summary()</code> on the model will display a whole bunch of information. Be not scared! First, you will see information on your edge correction. Technically, we did use a default border correction, but we did not specify the argument of how much edge to buffer, so our border correction was zero. Ignore the quadrature scheme and weights, as that has to do with computational implementation. You will see then the intensity, and underneath this the “gory details.” (With all due respect to Baddeley and Turner, who said math geeks don’t have a sense of humour?)</p>
+<p>The model can be written: <span class="math display">\[\log{(\lambda)} = \theta_0\]</span> or, from the output, <span class="math display">\[\log{(\lambda)} = 4.343805\]</span> Note that we use the natural log, and I have changed the model coefficients from <span class="math inline">\(\beta_i\)</span> to <span class="math inline">\(\theta_i\)</span>. The latter nomenclature is simply a different convention in spatial statistics.</p>
+<p>Back transform this equation to get the estimated intensity of dying cells, <span class="math inline">\(\hat{\lambda}_{pyknotic}\)</span>. Does your answer agree with the summary from the first question?</p></li>
+<li><p>Of course, from our knowledge of regression frameworks, we are often interested in whether the estimate of the intercept or slope(s) is significantly different from zero. Scan your model summary and you will see in the “gory details” a line that contains an estimate, standard error, <span class="math inline">\(Z\)</span> statistic (instead of a <span class="math inline">\(t\)</span>-statistic), and hi/lo 95% confidence interval boundaries about the estimate of the intercept.<br>
+We are used to seeing <span class="math inline">\(t\)</span>-tests to this point in the course, but a <span class="math inline">\(Z\)</span>-test works on the same premise: an estimate, divided by a standard error, gives a statistical test of whether that estimate is significantly different from zero. In any generalized linear model, however, we need to think about the canonical link and how to interpret that “zero” test.<br>
+For this homogenous Poisson process model, describe what the inferential test associated with the intercept is testing (hint: think of the previous question).<br>
+As an aside, interpretation of this test may or may not have ecological utility. For that reason, the creators of <code>spatstat</code> have disabled the automatic calculation of a <span class="math inline">\(Z\)</span>-score at times as they expect the practitioner to calculate it only if it’s necessary.</p></li>
+<li><p>A related parameter testing method is to construct a confidence interval and examine if it overlaps zero (more on this when we discuss Bayesian methods...). Here, it is probably more informative to examine over what range the average intensity of the process (i.e., the intercept, <span class="math inline">\(theta_0\)</span>) might be expected to lie.<br>
+As such, back transform the confidence interval boundaries to obtain a 95% confidence interval of the estimate of the true intensity of the dying cells per unit square. On my output, the untransformed estimates of that intercept parameter were listed as <code>CI95.lo</code> and <code>CI95.hi</code>. What is 95% confidence interval for the estimate of the intensity? Why is the final interval not symmetric about the mean?</p></li>
+<li><p>Let’s start thinking about how an intensity varies spatially. From a visual examination of the plot of the pyknotic point process, do you spot any trends in the intensity in the <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> directions?</p></li>
+<li><p>Let’s test to see if the intensity of dying cells varies in an east-west (<span class="math inline">\(x\)</span>) direction: <span class="math display">\[\log{(\lambda)} = \theta_0 + \theta_1 x\]</span></p>
+<p>That model can be fit by specifying:<br>
+<code>&gt; fm2 &lt;- ppm(my.ppp.pyknotic,</code><span class="math inline">\(\sim\)</span><code>1 + x)</code></p>
+<p>Examine the <code>summary()</code> of this model, and especially the table of estimates and standard errors and confidence intervals. Without thinking about signficance for now, examine the sign of the estimate of the slope associated with covariate <span class="math inline">\(x\)</span>. Does this sign indicate that intensity might be increasing from left to right, or right to left?</p></li>
+<li><p>Does the confidence interval of the estimate of the slope associated with the <span class="math inline">\(x\)</span> coefficient overlap zero? As such, is there or is there not a significant east-west trend in spatial intensity?</p></li>
+<li><p>I want to explore whether or not that slope coefficient is significant in two more ways, to (hopefully!) connect some dots of how analyses can work.<br>
+</p>
+<ol type="1">
+<li><p>First, let’s examine the <span class="math inline">\(Z\)</span>-score with that slope estimate. You do, of course, remember from early statistics classes that the approximate value of the 97.5 percentile points of a standard normal are <span class="math inline">\(\pm 1.96\)</span>. Hence, from the <span class="math inline">\(Z\)</span>-scores, do the estimates of the intercept and slope appear to be significantly different from zero? In my version of R, these were printed as <code>Zval</code>. Does this agree with the confidence interval calculations?<br>
+</p></li>
+<li><p>Second, we can compare two <em>nested</em> models. The first model with just an intercept is <em>nested</em> within the second with an intercept and a covariate to account for spatial variation along an <span class="math inline">\(x\)</span> gradient. While these models do not have Sums of Squares that we can compare with <span class="math inline">\(F\)</span>-tests, they do have <em>deviance</em> measures, the change of which we compare against a <span class="math inline">\(\chi^2\)</span> distribution. This is analagous to the Additional Sum of Squares principle we have discussed in class. Think of it like this:</p>
+<ol type="1">
+<li><p>I constructed a model.</p></li>
+<li><p>I constructed another model, and added one (or two, or…) additional coefficients. Each additional coefficient took up 1 degree of freedom.</p></li>
+<li><p>This new covariate(s) explained additional variation in my response.</p></li>
+<li><p>I can measure this additional explanatory power by the change in deviance from my first model to my second one.</p></li>
+<li><p>I can compare this change in deviance against a <span class="math inline">\(\chi^2\)</span> distribution on one (or two, or…) degrees of freedom.</p></li>
+<li><p>This allows me to answer the question whether the new information added to the more basic model adds any statically significant information. In other words, is the ‘bigger’ model better?</p></li>
+</ol>
+<p>So, compare the original homogenous Poisson process model to the one containing an <span class="math inline">\(x\)</span> covariate using this command:<br>
+<code>&gt;anova(fm1, fm2, test="Chisq")</code><br>
+You should see the change in deviance listed, with a <span class="math inline">\(p\)</span>-value. You would report this as <span class="math inline">\(\chi^2_1=0.72, P=0.40\)</span>.<br>
+Does the addition of the <span class="math inline">\(x\)</span> covariate explain additional significant variation in the spatial intensity of the dying cells?</p></li>
+</ol></li>
+<li><p>Now that you know how to work with <span class="math inline">\(x\)</span>, explore whether there are any spatial trends in intensity in the <span class="math inline">\(x\)</span> and/or <span class="math inline">\(y\)</span> directions. Working with the confidence intervals may be the easiest in judging significance. Examine the plot, never rule out exploring edge effects with quadratic terms, and let intuition be your guide.<br>
+Do you find that this point process of the pyknotic cells is a homogenous or inhomogenous spatial point process?</p></li>
+<li><p>Finally, let’s explore how other covariates might affect the intensity of a given point process - as this is typically relates to the sorts of questions in which a researcher might be the most interested. Let’s examine whether dying cells are spatially associated with dividing cells. Plot the entire <strong>marked</strong> point process and examine the locations of the pyknotic and dividing cells.</p>
+<p>From visual examination, do the pyknotic cells appear to be located closely adjacent to, far away from, or in no relation to the dividing cells?</p></li>
+<li><p>As discussed, every covariate added to a model must be <em>spatially explicit</em>; i.e., it must have <em>spatial information at all surface locations</em>. Variables such as <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are, by definition, spatially explicit. For other variables, we might only have information at a few locations. In such cases, we need to <em>interpolate</em> the rest of the surface before we can introduce the variable to the model.<br>
+Let’s explore some interpolations of the dividing cells, which occur at 226 locations in our square. Plot the planar point process with just the dividing cells.<br>
+<code>&gt; plot(my.ppp.dividing)</code><br>
+Let’s interpolate the surface so that we see visually where the highest intensities of dividing cells might be. For this, I’ll use a <em>kernel density smoother</em>. There are, of course, many different methods for spatial interpolation, and we’ll talk about geostatistical methods in two weeks. Another common method includes <em>spline interpolations</em>, which can be found in the <code>akima</code> package, but I will not cover that.<br>
+<code>&gt; my.density.dividing &lt;- density(my.ppp.dividing)</code><br>
+Here are a few ways to graphically examine this surface:<br>
+<code>&gt; plot(my.density.dividing)</code><br>
+<code>&gt; contour(my.density.dividing)</code><br>
+<code>&gt; persp(my.density.dividing)</code><br>
+Wow! Some of these figures can look really good taped above your desk. They can fool your office mates and graduate advisor into thinking you are doing some <em>really</em> complex analyses!<br>
+Once you have an interpolated surface, you can add the covariate to a regression model. For example, to test whether the intensity of pyknotic cells varies with the locations of dividing cells, we can construct this model: <span class="math display">\[\log{\lambda} = \theta_0 + \theta_1 w\]</span> where <span class="math inline">\(w\)</span> is the spatially interpolated (<span class="math inline">\(x,y\)</span>) locations of the intensity of dividing cells. You would specify this as follows:</p>
+<pre><code>&gt; fm3 &lt;- ppm(my.ppp.pyknotic, ~ 1 + dividedensity,
+    covariates = list(dividedensity=density(my.ppp.dividing)))</code></pre>
+<p>If dead cells were spatially inhibited by dividing cells, what would you expect the a) sign and b) significance of the estimate of the <span class="math inline">\(w\)</span> covariate to be? How about for an attractive process? Random arrangement (i.e., no association)?</p></li>
+<li><p>Examine the change in deviance between a homogenous Poisson model and this model. What, if any, is the relationship between dead and dividing cells?</p></li>
+<li><p>Finally, create a model such that the intensity of pyknotic cells varies in the <span class="math inline">\(y\)</span> direction and with the intensity of dividing cells. For this question, I am not so much concerned about the significance of the model coefficients as ensuring that you understand the resulting equation. Provide, from your equation, the expected intensity of dying cells, <span class="math inline">\(\hat{\lambda}_{pyknotic}\)</span>, at a point somewhere along <span class="math inline">\(y=0.75\)</span> where the intensity of dividing cells might be 200 cells / unit square.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Jeremy Hemberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://www.r-project.org/about.html" target="_blank"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></a> and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

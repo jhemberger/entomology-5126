@@ -1,0 +1,305 @@
+---
+title: "Lab 8: Time series: Autoregressive models"
+subtitle: Entomology 5126 - Spring 2026
+author: Jeremy Hemberger and Brian Aukema
+date: last-modified
+date-format: long
+format: html
+---
+
+---
+
+# Time Series
+
+Analysis of time series is typically taught as a one-semester course,
+providing exposure to autocorrelation functions, partial autocorrelation
+functions, detrending data, spectral approaches, moving average (MA),
+autoregressive moving average (ARMA), autoregressive integrated moving
+average (ARIMA), and more. Today we will play with autoregressive (AR)
+models. This is where most time series courses begin.
+
+# Autoregressive models
+
+To this point in the course, we have been doing variations on a theme of
+explaining some continuous response variable $y$ by some response
+variable $x$. $$y \sim x$$ We have learned that $x$ can be continuous
+(i.e., regression) or a factor (i.e., ANOVA). We can even add more
+continuous variables (i.e., multiple regression) and mix continuous
+variables and factors (i.e., ANCOVA).\
+Now we're going to put in a twist. *Auto* of course means *self*, so
+autoregression is regressing a variable on itself. $$y \sim y$$ Huh?\
+Well, yeah, something like that. Actually, the covariate is the variable
+shifted backwards in time (*lags*, denoted as $k$). The general form of
+an AR($k$) model can be written:
+
+$$y_t = \beta_0 + \beta_1y_{t-1} + \beta_2y_{t-2} + \ldots + \beta_ky_{t-k} + \epsilon_i$$
+
+where $y$ is the variable of interest, $t$ denotes time, $k$ the time
+lags (i.e., what happened today depended on what happened yesterday, and
+perhaps two days ago, and$\ldots$), and we assume the remaining errors
+$\epsilon_i$\~$N(0,\sigma^2)$.
+
+Now, there are alternate ways to parameterize an autoregressive model.
+Although we will deal with modeling the temporal dependence in the mean
+term in today's lab, another common parameterization includes modeling
+the temporal autocorrelation in the error term. Below, I have written a
+"first-order autoregressive model", or AR(1), where the principal
+dependence structure is related to a single-step time lag. For now, this
+is FYI only, although we will return to this concept as we work with
+lattice and areal data in spatial statistics in a few weeks.
+
+$$y = \beta_0 + \beta_1x + e_i$$ where
+
+$$\begin{aligned}
+e_i &=& \rho e_{i-1} + u_i,\quad i=1,2,\cdots,n,\\
+e_0 &\sim& N\left(0, \frac{\sigma^2}{1-\rho^2}\right),
+\end{aligned}$$
+
+and we assume $u_i\sim {\rm iid} N(0,\sigma^2)$ and $0<\rho<1$. For
+example, $e_{10} = \rho e_{9} + u_{10}$.\
+A property of an AR(1) model is that $$cor(e_i, e_j) = \rho^{|i-j|},$$
+where $0<\rho<1$.\
+Two things to note from the above structure:
+
+- If $\rho$ is close to 0, the temporal correlation is small.
+
+- If two time points $i$ and $j$ are far apart, the temporal correlation
+  is small.
+
+If you have a hard time understanding such notation for now, that's OK;
+it will become more clear by Lab 12. In this lab, we'll focus on
+modeling the temporal autocorrelation in the mean term.
+
+# Today's Data
+
+Today's data is stored in `Lab8data2024.txt`. It is a tab-delimited text
+file with appropriate headers. The data are the daily temperatures at
+the Minneapolis St. Paul airport (weather station KMSP) from 01 January
+through 13 March 2024. They were obtained from the National Oceanic and
+Atmospheric Administration `https://www.weather.gov/mpx/mspclimate` on
+March 14, 2024. There are five columns: Month, Day, Julian Day, Max, and
+Min (in degrees Farenheit). The goal of today's lab is to describe the
+daily temperatures with an appropriate model.
+
+# Assignment
+
+1. Load the data, check a summary, and, of course, graph it. Let's work
+   with the maximum daily temperature. Plot maximum daily temperature
+   vs. Julian day.
+
+   `> plot(Max `$\sim$` Julian, data=mydata)`
+
+   This graph indicates to me that spring is coming! It appears that
+   the daily maximum temperature increases with the passage of time
+   since January the 1st, as we might expect. It looks like a rising
+   trend, so fit a straight line to the data:
+
+   `> fm1 <- lm(Max `$\sim$` Julian, data)`\
+   `> summary(fm1)`
+
+   You can plot the fitted line on top of the original plot like this:
+
+   `> lines(fitted.values(fm1))`\
+   Hmm. The straight line trend looks like it fits pretty well, but I
+   should of course take a look at the residual plot.
+
+   `> plot(residuals(fm1) `$\sim$` fitted.values(fm1))`\
+   The spread around zero is beautiful, with roughly equal variance
+   across the plot from residuals less than 20 vs. greater than 20. I
+   do not think I need a transformation of the response variable. (*If
+   you want to push yourself (not for homework)*: If you were working
+   with *minimum* temperature data and wanted to use a transformation,
+   could you use a square root transformation on these data? Why or why
+   not? How might you proceed?).\
+   Since this is a lab focused primarily on assumption $\#2$ of linear
+   models (i.e., errors are independent!), we'll just pretend the
+   assumption of equal variance is good enough for now.
+
+2. Now let's explore the thorny issue of autocorrelation. Have I
+   mentioned that these are real data?
+
+   The current model examines daily maximum temperature as a function
+   of time. Time is placed in the 'mean' part of the model. Sometimes,
+   simply specifying the temporal variable in the mean part of the
+   model will explain away all temporal autocorrelation. Our goal, when
+   working with temporal data, is to end up with uncorrelated errors
+   (model assumption #2: errors are independent!).
+
+   We will use a **Durbin-Watson test** to check model residuals for
+   temporal autocorrelation. It's very simple.
+
+   Load the `car` package written by John Fox, a Professor Emeritus in
+   the Department of Sociology at McMaster University. Prof. Fox had
+   along and fruitful career developing regression methods in
+   statistics. His package ("Companion to Applied Regression") contains
+   the necessary function.
+
+   `> durbinWatsonTest(fm1)`
+
+   This function tests the residuals of a model (in this case, `fm1`).
+   In the output, you will see four things: a lag term (1 indicates the
+   previous time step), an autocorrelation value, a D-W statistic
+   testing whether that autocorrelation estimate is significantly
+   different from zero (i.e., uncorrelated!), and a $P$-value. A
+   significant $P$-value indicates that there IS significant
+   autocorrelation remaining in the residuals of the model.
+
+   Test the residuals for autocorrelation. What is the outcome? (*Don't
+   read the next sentence while you answer this question*).
+
+3. Bummer. (Hey! I told you not to read this sentence!) Well, I thought
+   the graph and the model looked ok, even if the $R^2$ wasn't very
+   high ($F_{1,71}=39.54; P<0.0001; R^2=0.358$). But now we know that
+   modeling time (as Julian date) in the mean term did not quite take
+   care of the autocorrelation in the data. (Literature terminology:
+   when you place a variable in the mean term that successfully
+   explains the autocorrelation, this is sometimes known as *whitening*
+   the trend).
+
+   Let's change approaches to see if we can come up with a good
+   explanation of daily maximum temperature, and still come up with
+   uncorrelated errors. We will try an *autoregressive* model. With
+   this model, we only deal with the $y$ variable and derivations of
+   itself (although you could add other variables, I suppose).
+
+   In constructing an autoregressive model, we first check the
+   autocorrelation function:
+
+   `> acf(data$Max)`
+
+   The autocorrelation function measures the correlation of the series
+   with itself lagged $k$ time steps. You will see a correlation scale
+   on the $y$ axis ranging between $+1$ and $-1$. On the $x$ axis, you
+   will note integers for increasing previous time steps, or *lags*.
+   So, for example, if you were to see a vertical line corresponding to
+   $+0.5$ at $k=3$, that would indicate that the time series at time
+   $t$ (often denoted $y_t$) appears to be positively correlated with a
+   copy of itself at $y_{t-3}$ (three steps previous). This
+   implementation of the function even includes some nifty blue dotted
+   lines that shows statistical significance of the correlation
+   (anything within the blue lines is statistically indistinguishable
+   from zero).
+
+   Why does the autocorrelation at lag $k=0$ equal one?
+
+4. The `acf()` function shows us the autocorrelation through time.
+   There are, of course, many different ways that autocorrelation can
+   propogate through time. For instance, if everything looks relatively
+   similar to the *last* previously observed time, we might expect that
+   the correlation would "stick around" for $2,3,4\ldots$ time steps
+   until it decays and disappears. This behaviour characterizes a very
+   popular class of autoregressive models termed AR(1), or *first order
+   autoregressive*. (Please note: This is also what some SAS software
+   users call 'repeated measures.' But you can see that 'repeated
+   measures' is something measured repeatedly, and the temporal
+   dependence in the data is a *separate issue*! The autocorrelation
+   structure need not be first order, even though it is a very frequent
+   phenomenon. Do not confound measuring something repeatedly with
+   specifying one type of autocorrelation).\
+   For first-order autoregressive models, the autocorrelation $\rho$
+   decays exponentially $\rho^k$ at the $k^{th}$ lag. So, if the
+   autocorrelation at lag 1 is 0.4, we might expect that it would decay
+   to $0.4^2=0.16$ and $0.4^3=0.064$ at time lags 2 and 3 (and so on).
+   If you plot the autocorrelation function and see a gentle positive
+   decay through several time lags, you are probably staring at first
+   order autocorrelation.\
+   We have all heard arguments about how unreliable weather forecasts
+   are. From looking at your `acf()` graph, in a general sense, from
+   only having a two and a half month list of daily temperatures, what
+   is the farthest out in time that you could make a statistically
+   relevant guesstimate of that day's maximum temperature?
+
+5. Of course, there are many different orders of autocorrelation. Many
+   time series of organisms that display oscillating population
+   dynamics show second order autocorrelation, for example.\
+   While the `acf()` function provides some strong diagnostic hints for
+   determining order, a helpful way to diagnose order is to examine the
+   *partial autocorrlelation function*, `pacf()`. A partial
+   autocorrelation function displays the correlation left at time lag
+   $k$ *after* removing autocorrelation with an AR($k-1$) model. So,
+   for example, if you have an AR(1) model, you would expect the
+   autocorrelation at $k=2$ to be non-significant once you account for
+   "what happened yesterday" ($k=1$).
+
+   Some students find it difficult to grasp the difference between the
+   `acf()` and `pacf()` functions. To review, you can think of the
+   above `acf()` and `pacf()`functions as a two step process that works
+   in tandem. First, is there autocorrelation? What does it look like?
+   (Does it decay slowly like something contagious passed down from day
+   to day, does it bounce back and forth so an immediate time step
+   looks diametrically opposite the previous one, etc.) Second, what is
+   the order of the autocorrelation? How far back does the time series
+   look like itself? (These questions are rhetorical - do not answer
+   them for the homework). Put another way, the `acf()` can describe
+   the pattern. The `pacf()` can tell you what is *causing* that
+   pattern.
+
+   Plot the partial autocorrelation function:
+
+   `> pacf(data$Max)`
+
+   The dashed blue lines indicate significance values. Whoa! If you are
+   looking at the same chart I was, I didn't expect to see that. It's
+   always tempting as an instructor to change a few points and "fix"
+   the assignment - but then you wouldn't really be getting an
+   education, would you? There are a couple of curiosities in this
+   graph.
+
+   Describe for me exactly what this chart is telling you about trends
+   in the data, and, in a general sense, what you think of that
+   information.
+
+6. Once we know the order, we can lag the data and regress $y_t$ on
+   $y_{t-k}$. Create two new columns with the maximum temperature
+   lagged one day and then two days. **Be careful** when doing this!
+   It's easy to lag the data in the wrong direction. You can either do
+   this in a spreadsheet, or in R:
+
+   `> data$MaxLag1 <- c(NA, data[1:(nrow(data)-1), "Max"])`\
+   `> data$MaxLag2 <- c(NA, NA, data[1:(nrow(data)-2), "Max"])`\
+   `> data[1:5,] # Check the first five rows`
+
+   Notice that the first $k$ observations are always lost, so when
+   doing this type of time series analysis, there is a limit to how
+   many lags you can reasonably study, *especially* with a very short
+   data series. While there might be statistical rationale from the
+   `pacf()` graph to explore a time lag more than five or seven days
+   out, I would not do that here.
+
+   Plot the `Max` temperature against its lag variable of $k=1$. By
+   eye, describe what the correlation looks like (if any).
+
+7. Regress the maximum temperature on it's $k=1$ lag (in other words,
+   maximum temperature as a function of the temperature the day
+   before). If you left the missing value for the first observation's
+   lag in the data set, you will see a new message that appears on a
+   line between the `Residual standard error` and the
+   `Multiple R-squared` lines in the `summary()` command.\
+   Comment on the $R^2$ and the apparent overall significance of the
+   model. Remember, the inference from some of the test statistics
+   might be slightly off if there is significant autocorrelation, so
+   view the stats with some caution. Examine the residual plot, and
+   $\ldots$
+
+   Check the D-W statistic. Is there any temporal autocorrelation left
+   after accounting for $y_{t-1}$? Is an AR1 time series model for
+   maximum temperature necessary?
+
+8. If you want to see your work graphed, with the $\hat{y}_t$:\
+   `> plot(Max `$\sim$` Julian, data)`\
+   `> lines(fitted.values(yourAR1model))`
+
+   *Do* note that the equation predicting the daily maximum temperature
+   is not the same as the plot function, which is just graphing two
+   variables for you; i.e., your final model is *not*
+
+   $$temperature = \beta_0 + \beta_1day$$
+
+   It can be kind of confusing when you are graphing a model that uses
+   a variable not on the $x$-axis *per se*.
+
+9. Now, find and report a good model (time series or not) for minimum
+   daily temperature. When reporting a model, be sure to report the
+   equation of the line and define the variables and their units. For
+   an example of how to report model summary statistics, see question
+   #3. Have fun!

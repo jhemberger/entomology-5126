@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
 
-<title>w1-lab – Entomology 5126</title>
+<title>Lab 1: an introduction to R – Entomology 5126</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -36,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c11904ebb4c195ecafb9b259591aa494.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -81,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../media/5216-sticker.png" alt="" class="navbar-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -95,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.qmd"> 
+    <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
@@ -103,15 +105,15 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../lectures.qmd"> 
-<span class="menu-text">Lectures</span></a>
+    <a class="nav-link" href="../content/index.qmd"> 
+<span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../labs.qmd"> 
+    <a class="nav-link" href="../lab/index.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resources.qmd"> 
+    <a class="nav-link" href="../resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
@@ -142,22 +144,63 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r">R</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a></li>
+  <li><a href="#making-mistakes" id="toc-making-mistakes" class="nav-link" data-scroll-target="#making-mistakes">Making mistakes</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a>
+  <ul class="collapse">
+  <li><a href="#pro-tip-keep-notes" id="toc-pro-tip-keep-notes" class="nav-link" data-scroll-target="#pro-tip-keep-notes">Pro tip: Keep notes!</a></li>
+  </ul></li>
+  <li><a href="#working-with-batch-files-r-scripts" id="toc-working-with-batch-files-r-scripts" class="nav-link" data-scroll-target="#working-with-batch-files-r-scripts">Working with batch files (“R scripts”)</a></li>
+  <li><a href="#sending-code-to-r" id="toc-sending-code-to-r" class="nav-link" data-scroll-target="#sending-code-to-r">Sending code to R</a></li>
+  <li><a href="#annotating-code" id="toc-annotating-code" class="nav-link" data-scroll-target="#annotating-code">Annotating code</a></li>
+  <li><a href="#object-oriented-programming" id="toc-object-oriented-programming" class="nav-link" data-scroll-target="#object-oriented-programming">Object-oriented programming</a></li>
+  <li><a href="#commands-in-r" id="toc-commands-in-r" class="nav-link" data-scroll-target="#commands-in-r">Commands in <code>R</code></a></li>
+  <li><a href="#entering-data-by-hand" id="toc-entering-data-by-hand" class="nav-link" data-scroll-target="#entering-data-by-hand">Entering data by hand</a></li>
+  <li><a href="#entering-data-into-r" id="toc-entering-data-into-r" class="nav-link" data-scroll-target="#entering-data-into-r">Entering data into <code>R</code></a>
+  <ul class="collapse">
+  <li><a href="#loading-excel-files-directly-into-r" id="toc-loading-excel-files-directly-into-r" class="nav-link" data-scroll-target="#loading-excel-files-directly-into-r">Loading Excel files directly into <code>R</code></a></li>
+  <li><a href="#loading-plain-text-files-directly-into-r" id="toc-loading-plain-text-files-directly-into-r" class="nav-link" data-scroll-target="#loading-plain-text-files-directly-into-r">Loading plain text files directly into <code>R</code></a></li>
+  </ul></li>
+  <li><a href="#checking-data" id="toc-checking-data" class="nav-link" data-scroll-target="#checking-data">Checking data</a></li>
+  <li><a href="#sub-setting-data" id="toc-sub-setting-data" class="nav-link" data-scroll-target="#sub-setting-data">Sub-setting data</a></li>
+  <li><a href="#objects-in-memory" id="toc-objects-in-memory" class="nav-link" data-scroll-target="#objects-in-memory">Objects in memory</a></li>
+  <li><a href="#data-sets-for-assignments" id="toc-data-sets-for-assignments" class="nav-link" data-scroll-target="#data-sets-for-assignments">Data sets for assignments</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">w1-lab</h1>
+<h1 class="title">Lab 1: an introduction to R</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -167,8 +210,163 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
+<section id="r" class="level1">
+<h1>R</h1>
+<p><code>R</code> is a software environment for statistical computing and graphics. It’s also a word that pirates say, but that’s not important right now. <code>R</code> is the best statistical software available, is free, and runs on Windows, Macintosh, and Linux platforms. <code>R</code> may be downloaded for personal use from <code>http://www.r-project.org</code>. <code>R</code> is open-source, which means that many people work on it around the world and are constantly improving it. Updated versions are released on the website every 2 months or so. If there is an advancement in statistics, it is incorporated rapidly.</p>
+</section>
+<section id="installing-packages" class="level1">
+<h1>Installing packages</h1>
+<p>Like ecology, there are many subdisciplines of statistics. <code>R</code> comes as a ‘base’ package. Depending on what you want to do, this may be sufficient. Often, however, you will need to install a contributed addition to do more specialized tasks, like spatial or temporal analyses. These additions are called “packages.” Think of statistics as creating a recipe to analyze your data, where <code>R</code> is an oven to bake your creation. Packages, then, are extra features you can add to the oven (e.g., air fryer, stainless steel griddle, extra burner, etc.) if your recipe needs it. You can either use the “Load package” command from the “Packages” menu, or you can simply type</p>
+<pre><code>library(whateverpackageyouneed)</code></pre>
+<p>In today’s lab, you will not need any extra packages.</p>
+</section>
+<section id="making-mistakes" class="level1">
+<h1>Making mistakes</h1>
+<p><code>R</code> is very powerful, and is not always very friendly to beginners. But if you start slow, and master a few skills early on, you will find that it is not overly burdensome (and you may even find yourself enjoying it).</p>
+<p>When <code>R</code> executes a command, you will either see a new command prompt on the next line, or the output of what you requested. If you make a syntax error (i.e., ask <code>R</code> to do something it does not understand), you will get an error. Simply retype the command, correcting your mistake (did you miss a comma, quote, or parenthesis?).</p>
+</section>
+<section id="getting-help" class="level1">
+<h1>Getting help</h1>
+<p>Fortunately, <code>R</code> has LOTS of help. Here are some good ways to obtain help if you are really stuck:</p>
+<ul>
+<li><p>Look hard at your screen. Is the mistake obvious (see cartoon below)?</p></li>
+<li><p>Consult a classmate.</p></li>
+<li><p>Ask the instructor.</p></li>
+<li><p>Consult a help manual or book.</p></li>
+<li><p>Ask the internet. (That said, I do get a little squeamish with quality control issues on the internet. Be aware that any fool can post anything, right or wrong).</p></li>
+<li><p>Type in a question mark before the command you are trying to use. For example, <code>?summary</code> provides help on the “summary” command. This is a good way to find all of the arguments that may be used with a command, for example. Unfortunately, you may find that the help files are most useful if you are already experienced with <code>R</code>.</p></li>
+<li><p>Ask the R-help mailing list (the email address can be found through the R website, <code>www.r-project.org</code>). You will generally get a response in an hour or less, at any time day or night, because there are millions of useRs around the world. Often, however, the answers are provided by experienced R users, who <em>may</em> speak more Math than English and may have maladapted social skills.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://allisonhorst.com/everything-else"><img src="../media/images/coding-error-spelling.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Pro tip: 95.6% of the time, this is the reason behind your code is not working"></a></p>
+</figure>
+</div>
+<figcaption>Pro tip: 95.6% of the time, this is the reason behind your code is not working</figcaption>
+</figure>
+</div>
+<section id="pro-tip-keep-notes" class="level2">
+<h2 class="anchored" data-anchor-id="pro-tip-keep-notes">Pro tip: Keep notes!</h2>
+<p>It is a good idea to keep a Word document open while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future.</p>
+</section>
+</section>
+<section id="working-with-batch-files-r-scripts" class="level1">
+<h1>Working with batch files (“R scripts”)</h1>
+<p>A common method of statistical analysis uses “batch files.” This is a rather old, but effective, way of conducting analyses. Essentially, one writes the programming code and sends it to the statistical software, either line by line or in large chunks. The computer runs the code, and then gives the output. That could include error messages (hopefully not!), or the answer to your analysis. The really nice thing about a batch file is that you can save it for later, and always rerun the analysis later. Think of it like writing a recipe (batch file) before putting your creation into the oven (<code>R</code>).\ The most common batch file interface in <code>R</code> is <code>RStudio</code> available from <code>http://www.rstudio.com</code>. <code>RStudio</code> is a free and open source integrated development environment (IDE) for <code>R</code>. You can run it on your desktop (Windows, Mac, or Linux) or even over the web using RStudio Server.\ With <code>RStudio</code>, you can write your batch code on one window, and then send directly to <code>R</code> that is running in another window (Ctrl-Enter to send a single line). You can easily save and reload your analyses later by saving the batch file with a “.R” file extension. <code>RStudio</code> also has the advantage of syntactic highlighting. That is, when you mouse over a parenthesis, quotes, etc., the program will highlight its partner. It is an easy way to keep track of missing punctuation that can drive a computer program (and the user!) crazy.\ Open R studio and create a new R script (File/New File/R script…). First, save it somewhere so that you can find it back later (File/Save As…). The file will have a <code>.R</code> file extension that designates it as an R coding script file. You should now have a blank file named <code>iLOVElearning.R</code> or similar. Now close it (File/Close…).</p>
+</section>
+<section id="sending-code-to-r" class="level1">
+<h1>Sending code to R</h1>
+<p>Open your blank file again (File/Open…). See how easy it is to pick up where you left off? In the top of the blank file, write:</p>
+<pre><code>2+2</code></pre>
+<p>While your cursor is on the <code>2 + 2</code> line, hold down <code>Ctrl</code> and then press <code>Enter</code> to send the code from the script to <code>R</code> below. In the <code>R</code> console, you should see</p>
+<pre><code>&gt; 2+2
+[1] 4</code></pre>
+<p>Change your code to a different instruction, such as <code>2 + 3</code>, and send that to the R console. Easy, eh? Save your script file, then close it.</p>
+</section>
+<section id="annotating-code" class="level1">
+<h1>Annotating code</h1>
+<p>When writing code, it is helpful to include comments to yourself so that you can remember what you were doing, why, when, and so on. In <code>R</code>, you can comment anything by first using a # sign. Anything after the # sign is not executed. So, if you were to type in:</p>
+<pre><code>3 + 3</code></pre>
+<p>R would spit out</p>
+<pre><code>&gt; 6</code></pre>
+<p>And, if you were to type in</p>
+<pre><code>3 + 3 &nbsp; # My first attempt at R, January 19, 2024</code></pre>
+<p>you would also simply get</p>
+<pre><code>&gt; 6</code></pre>
+<p>Open the file that you just closed. Write as follows:</p>
+<pre><code>#####################
+## I am learning R
+## This is lab one
+## My name
+## January 19, 2024
+#####################
+​
+## My first code starts here ##
+2+2</code></pre>
+<p>This is good practice when analyzing <em>any</em> data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you!</p>
+</section>
+<section id="object-oriented-programming" class="level1">
+<h1>Object-oriented programming</h1>
+<p>R uses something called “object-oriented” programming. This means that you assign names to various pieces of your data and analyses. You can name things whatever you want to help you keep track. Analyses are performed on these objects, one command at a time through something called a “command line interface.” It’s like a batch file in slow motion: if there is an error, you will see it instantly.\ To assign names to various pieces of your data or analyses, simply use an arrow (<code>&lt;-</code>), or an equal sign if you prefer. This will become clear below.</p>
+</section>
+<section id="commands-in-r" class="level1">
+<h1>Commands in <code>R</code></h1>
+<p>Most commands in <code>R</code> use parentheses to specify the arguments (arguments are like options). If there are no arugments, the parentheses are still necessary. A common syntax error is forgetting the right parenthesis. One command you will might use to close <code>R</code> at the end of the session (if you don’t want to use the file menu) might be <code>quit()</code>, for example.</p>
+</section>
+<section id="entering-data-by-hand" class="level1">
+<h1>Entering data by hand</h1>
+<p><code>R</code> is like an overgrown calculator, really. Simple calculations are straightforward, and you can sometimes guess at any commands or operators you need (like <code>sqrt()</code>). You can stick numbers together using a technique called “concatenation.” To stick the numbers together in a “vector” (list of numbers, like a spreadsheet column), name the vector, and use the concatenate command:</p>
+<pre><code>myniftyvector &lt;- c(1,2,3,4,5)</code></pre>
+<p>Send that to the <code>R</code> console with <code>Ctrl+Enter</code>. Then if you type and send</p>
+<pre><code>myniftyvector</code></pre>
+<p>you will get</p>
+<pre><code>[1] 1 2 3 4 5</code></pre>
+<p>You have just created your first object!</p>
+</section>
+<section id="entering-data-into-r" class="level1">
+<h1>Entering data into <code>R</code></h1>
+<p>Ok, seriously, if you have lots of data, you are not going to enter it like that. An easy way is to transfer it from a spreadsheet. When R reads a spreadsheet into memory, it goes into what is called a “dataframe.” Dataframes are essentially a collection of “vectors” or lists of numbers. So, each variable and its column is a vector, and all of them side-by-side in the spreadsheet make a dataframe.\</p>
+<section id="loading-excel-files-directly-into-r" class="level2">
+<h2 class="anchored" data-anchor-id="loading-excel-files-directly-into-r">Loading Excel files directly into <code>R</code></h2>
+<p>Disclaimer; I do not use or recommend this method because there are a few “point and click” steps that are difficult to reproduce if you forget a step. I include it because many people use this method and is simple for small datasets.\ <code>R Studio</code> has a tab labeled “Import Dataset” from which one can choose importation from an Excel spreadsheet. Once the file is identified, the data will be shown in a Data Preview screen. You can make adjustments (identifying rows or columns to exclude, for example), by editing options or clicking buttons at the bottom of the screen under Import Options. Notice that as you change options (e.g., excluding the first row as column names), the code that imports the data (bottom right pane) changes.\ In the interest of <em>reproducible results</em>, I start with a simple text file and write the accompanying code to load that data set directly. Then I never have to worry about changes to the recipe. That method is shown below.\</p>
+</section>
+<section id="loading-plain-text-files-directly-into-r" class="level2">
+<h2 class="anchored" data-anchor-id="loading-plain-text-files-directly-into-r">Loading plain text files directly into <code>R</code></h2>
+<p>At the bottom of every Excel spreadsheet are tabs. I keep three tabs in every Excel spreadsheet.\ In the <em>first</em> tab, I keep all <strong>metadata</strong> or records of what the variables mean, how the data were collected, and so on. The <em>second</em> tab might contain the raw data as collected, and might be a little messy, perhaps with a final column of notes. The <em>third</em> tab is a cleaned version of my data in logical or rectangular record format, with proper column headers (just text, no special characters). To avoid problems, keep column titles to one word each. Make sure each one is different. <strong>Pay attention to capitalization vs.&nbsp;small case: if your spreadsheet column is named “Year,” then R will not understand if you later ask for the column named “year.”</strong> Also, avoid special characters in your column titles.\ When preparing to import data, I first save my spreadsheet as as a regular Excel file so that Excel saves all of the tabs. I then go to the final tab where I have my cleaned data, ready for import and analysis. For this tab, I save it as a plain, tab-delimited text file (File/Save As… then choose file type as <code>Text (tab delimited) (*.txt)</code>.\ To load data into R, I use the <code>read.table()</code> command, for example:</p>
+<pre><code>myniftydata &lt;- read.table("D:/path/data.txt", header=T, sep="\t", na.strings=".")</code></pre>
+<p>By using object-oriented programming, your data set can be referred to simply as <code>myniftydata</code> from now on. The <code>read.table()</code> command reads data files. Inside the parentheses, you provide the <em>arguments</em> separated by commas.\</p>
+<ul>
+<li><p>The first argument is the path to the data file. Enclose the path in quotes. You can make this whatever you’d like; R can read data off a network drive (H:/), your USB memory stick, or even the internet (instead of a file name, use <code>http://www.whateverpath.com/file.txt</code>).\</p></li>
+<li><p>The <code>header</code> argument is a logical True or False that indicates whether your data set contains column titles. You may abbreviate the answer to simply <code>T</code> or <code>F</code>.</p></li>
+<li><p>The <code>sep</code> command specifies the delimiter between columns. You can change this as needed, of course. Space delimited files (sometimes called *.dat files) are <code>sep=" "</code> while comma separated files (often named *.csv files in Microsoft Excel) are <code>sep=","</code>. Because there is no “tab” character on the keyboard (like a space or comma), tab-delimited files are specified in a special way: <code>sep="\``t"</code>.</p></li>
+<li><p>The <code>na.strings="."</code> argument tells <code>R</code> what denotes your missing data. A period is a good symbol to use, although sometimes asterisks or special numbers are used. In climatological data, -9 or some similar identifier is frequently used. <code>R</code> will take these values and change them to NA.</p></li>
+</ul>
+</section>
+</section>
+<section id="checking-data" class="level1">
+<h1>Checking data</h1>
+<p>Once you get the data read into <code>R</code>, it is a good idea to check the data. There are several commands you could use, including:\</p>
+<ul>
+<li><p><code>dim(myniftydata)</code> returns the number of rows and columns in the dataframe.</p></li>
+<li><p><code>nrow(myniftydata)</code> returns the number of rows.</p></li>
+<li><p><code>ncol(myniftydata)</code> returns the number of columns.</p></li>
+<li><p><code>head(myniftydata)</code> returns the first five rows.</p></li>
+<li><p><code>tail(myniftydata)</code> returns the last five rows.</p></li>
+</ul>
+<p>Perhaps the most useful command is</p>
+<pre><code>summary(myniftydata)</code></pre>
+<p>This command summarizes the dataset you have just input (or whatever object happens to be specified - it is a very versatile command). For a dataset, <code>R</code> will list all the different variables, along with brief summary statistics for each. This is the best command to spot problems. All <strong>numerical columns</strong> will appear with summary statistics min, max, mean, etc. All columns with text, that are often indicative of <strong>categorical</strong> variables (next week’s lab), will appear with the number of observations and type of variable (i.e., character). (Value added: if you or one of your classmates knows how to convert a character column to a categorical factor variable right now, note how the <code>summary()</code> output changes!). If you input numerical data and see a frequency list from a summary command, there is a good chance that there is a nonnumber somewhere in the column. Check the original data, correct the mistake, and try again.\</p>
+</section>
+<section id="sub-setting-data" class="level1">
+<h1>Sub-setting data</h1>
+<p>Quite often, we want to perform an operation or analysis on only one portion of the data. <code>R</code> uses indexing to select variables, in a scheme like this:</p>
+<pre><code>myniftydata[rowsIwant, columnsIwant]</code></pre>
+<p>It’s relatively simple to select various rows or columns. You can either name them, or use the indexing position. A comma separates the row from the column arguments.\ <code>&gt; myniftydata[1:5,2]</code> selects the first 5 rows in the 2nd column.\ <code>&gt; myniftydata[-3,2]</code> selects all rows EXCEPT the 3rd, in the 2nd column.\ <code>&gt; myniftydata[,2:6]</code> selects all rows and columns 2 through 6.\ <code>&gt; myniftydata[3:5,]</code> selects rows 3 to 5 of all columns.\ <code>&gt; myniftydata[1:5, c("year","trial")]</code> selects the first 5 rows of two columns named “year” and “trial.”\ The commands above use base <code>R</code>. Packages such as <code>tidyR</code> have exploded in popularity in the last decade and use a slightly different syntax. Our TA, Audrey, is a <em>great</em> resource for questions about the Tidyverse!\</p>
+</section>
+<section id="objects-in-memory" class="level1">
+<h1>Objects in memory</h1>
+<p>You can always view objects in memory using the <code>ls()</code> command. To delete a specific object from memory, such as <code>mydata</code>, type <code>remove(mydata)</code>. Generally, you should not need to do this unless you are working with multiple copies of HUGE datasets and <code>R</code> tells you it has run out of computer memory. To remove all objects from memory, type <code>remove(list=ls())</code>.\</p>
+</section>
+<section id="data-sets-for-assignments" class="level1">
+<h1>Data sets for assignments</h1>
+<p>The datasets for each class may be found on Canvas. Download the file to your workspace (e.g., USB drive, network space, laptop, etc). You may want to create a folder for this class named <code>ENT5126</code> or <code>iLOVEstats</code> or something similar and putting all data files there (including your R scripts). Then you can use this file path:\ <code>"D:/ENT5126/whateverdatafile.txt"</code> (change the drive, depending on where your data resides). Note that when specifying data pathways in the <code>read.table()</code> command, the slashes must be <em>forward</em>!</p>
+</section>
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<p>Data for a rodent toxicology study are stored in a spreadsheet named <code>Lab1data.xls</code>. The assignment is simple (?): open the data, clean it up, and import it into <code>R</code>.\ Please\</p>
+<ol type="1">
+<li><p>List all of the errors that you have found in the data.</p></li>
+<li><p>Provide a copy of a printout of the spreadsheet containing the metadata.</p></li>
+<li><p>Provide a copy of a printout of the data in rectangular record format, ready for export to <code>R</code>.</p></li>
+<li><p>Provide a printout of the <code>summary()</code> command for the data from <code>R</code>, once you have read it in.</p></li>
+<li><p>Pretend that were working with European data where the decimals in the pulse column were not periods but rather commas. How would you adapt the <code>read.table()</code> command?</p></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -253,6 +451,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -363,6 +563,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

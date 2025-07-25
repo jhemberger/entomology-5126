@@ -1,0 +1,159 @@
+---
+title: "Lab 4: Independent two-sample *t*-tests and ANOVA"
+subtitle: Entomology 5126 - Spring 2026
+author: Jeremy Hemberger and Brian Aukema
+date: last-modified
+date-format: long
+format: html
+---
+
+# Introduction
+
+After three weeks, you are getting pretty good at reading data into R and obtaining summary statistics. Remember the initial steps in data analysis: annotating metadata, preparing the data for export into a statistical package, reading it in, performing a summary or two, converting all necessary variables to factors, and rechecking the summary.
+
+Today we will focus on comparing two groups, first using two sample independent $t$-tests, and second using Analysis of Variance (ANOVA). We are quickly working toward realistic examples that you may be analysing as part of your thesis or dissertation work. The latter tests form the cornerstones of many ecological analyses.\
+
+# Reminders
+
+## Keeping notes
+
+At this point, you will find it necessary to refer periodically to previous labs and/or your own Word or text file of your favourite commands - things that you know worked!
+
+## Examining objects
+
+Some of you have found your own commands like `show()`, `print()`, etc. to display objects. I am glad that you are using such commands, but often you do not have to. If you simply type in the name of the object, it will display on its own. That is, hitting the `Enter` key after `mydata` will do the same as hitting the `Enter` key after `show(mydata)`. Also, remember that certain objects are already summaries, such as the output from an `aggregate()` command (i.e., you are asking for a data summary by one or more factors). So, if you ask for a summary of that object, you will get a summary of a summary, which might not be informative. The only time I invoke the `summary()` command is when I want a summary on raw data, such as a dataframe or a column, or the results of a fitted model (which we have not yet covered).
+
+## Commands from previous weeks
+
+If you have had a hard time getting used to R so far, you can take solace in the fact that (a) you are not alone and (b) we are done with the nuts and bolts of data entry and manipulation. As we start using these pieces every week, they will soon become less challenging. The key areas with which you should be starting to feel comfortable include reading data into R, selecting specific rows and columns, and performing both graphical and numerical summaries. The latter summaries include not only dataframe summaries but also conditional summaries (by specific categories) using something like the `aggregate()` command. You now have all the tools you need to start discovering neat things about *your* data.
+
+# Two-sample independent $t$-test
+
+Two-sample *independent* $t$-tests are used to compare two different groups. The variables are not paired in any way. The formula is: $$T=\frac{\bar Y_1-\bar Y_2-\mu_{\bar Y_1-\bar Y_2}}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$ which is tested on $n_1 + n_2 - 2$ degrees of freedom, and where $s_p$ is a pooled estimate of the standard deviation from each sample. The assumptions of the test are that the experimental units are independent, the variances are equal, and the responses are normally distributed.\
+
+## Useful commands
+
+Intuitively, you can use the `t.test()` command. For an independent $t$-test, you can use:\
+`> t.test(group1, group2, mu=0, var.equal=T)`\
+
+# ANOVA
+
+An alternative to a two-sample independent $t$-test is an Analysis of Variance, or ANOVA. ANOVAs are used to test for differences between multiple (i.e., 2 or more) groups. It is an extension of the $t$-test. An ANOVA uses an $F$-statistic.\
+Many ecological analyses are ANOVAs, where you have some response variable that may vary between multiple groups. In class, we have talked about an example of whether rats gain more weight on diet A, B, or C? The concept is similar to $t$-tests:
+
+1.  State your null and alternative hypotheses. In a two-sample independent $t$-test, we assumed that the means of both groups were equal. In an ANOVA, we assume that the means of *all* groups are equal. As you can see, you can do an ANOVA if you only have two groups, and the null hypotheses are exactly the same.
+
+2.  Calculate your test statistic. For an ANOVA, we calculate an $F$-statistic, which is the MSTreatment divided by MSError.
+
+3.  Compare to your chosen $\alpha$ level (usually 0.05). An $F$-statistic, unlike a $t$-statistic, has two (2) parameters (based on the numerator and denominator degrees of freedom) associated with it. Compare the $F$-statistic to an $F$-distribution to get a $p$-value. The $p$-value for an $F$-test is never multiplied by two, even if the test is two sided.
+
+4.  Accept or reject your null hypothesis. Same as before!
+
+Here are the assumptions for an $F$-test (they may look somewhat familiar):
+
+1.  The model is correct
+
+2.  The observations are independent
+
+3.  The variances are equal
+
+4.  The errors are normally distributed
+
+We'll deal with checking these in the assignment.
+
+## Fitting an ANOVA model
+
+In performing an ANOVA, we fit a linear model to the data. Here is how the linear model command, `lm()`, works:
+
+1.  Decide what to call your model. E.g.,\
+    `> fm1 <-`
+
+2.  Specify the `lm()` command, and determine what `y` variable you are analyzing. Is it vegetation growth? Weight gain? Test scores? Other? It should be something that is, or can be transformed to be, normally distributed.\
+    `> fm1 <- lm(y`$\sim$
+
+3.  List the factor(s) that you are analyzing. Does your response variable vary with Site? Sex? Group? Treatment? Other? Remember, for an ANOVA, the variable in this column *must be a factor!*\
+    `> fm1 <- lm(y`$\sim$`sex`
+
+4.  Specify the dataset you are using.\
+    `> fm1 <- lm(y`$\sim$`sex, data=mylabdata)`\
+
+## Working with the model
+
+-   To examine the significance of the factor(s) in the overall model:\
+    `> anova(fm1)`
+
+-   To get detailed information on model coefficients (i.e., $Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$), use:\
+    `> summary(fm1)`
+
+-   To examine how well the model fits:\
+    `> plot(residuals(fm1)`$\sim$`fitted.values(fm1))`\
+    Remember, a residual plot should show roughly equal variance around the horizonal zero line for each group. If the errors are heteroscedastic, you may need to apply a transformation.\
+
+-   To apply a transformation to your response variable:\
+    `> fm1 <- lm(sqrt(y)`$\sim$`sex, data=mylabdata)`\
+
+-   To specify more than one factor in a model (e.g., `sex` and `diet`), list the factors separated by the '+' sign\
+    `> fm1 <- lm(y`$\sim$`sex + diet, data=mylabdata)`\
+
+-   To specify interactions between factors, use a colon. Better yet (unless you well versed in special situations where you might fit an interaction term without corresponding main effects), use the asterisk sign. This automatically fits both factors and their interaction.\
+    `> fm1 <- lm(y`$\sim$`sex + diet + sex:diet, data=mylabdata) # Same as below`\
+    `> fm1 <- lm(y`$\sim$`sex*diet, data=mylabdata) # Tidy`
+
+-   (This is an advanced topic that I only include FYI.) To fit a "cell means model" (the estimated mean for each group), i.e., $Y_{ij}=\mu_i + \epsilon_{ij}$, put a -1 behind the factor\
+    `> fm1 <- lm(y`$\sim$`sex-1, data=mylabdata)`\
+    Remember, the -1 is just convention and has nothing to do with subtracting 1 from any quantity.
+
+## Dire Warning
+
+A **critical** part of fitting an ANOVA model is that your factor variable is actually a factor! An extremely common mistake is failure to convert the proper variables to factors (such as if the types of diet are labelled 1, 2, and 3 and the statistics program treats them numerically). **You cannot do an ANOVA on a variable that is not a factor**.
+
+# Today's data and assignment
+
+Today we'll work with the `vitcap` dataset from the `ISwR` package. This dataset contains measurements of the vital capacity (a measurement of lung volume) for workers in the cadmium industry. Cadmium is an element that is frequently found with zinc, and is used extensively in the battery industry. The data set, saved in in `Lab4data.xls`, has three columns. The first contains a group code. `1` indicates exposure to cadmium dust for more than 10 years. `2` indicates exposure for less than 10 years. You have been provided a subset of this data, as I have not included group `2`. Group `3` indicates no exposure. The second column, `age`, indicates the age of the worker in years. The third column, `capacity`, is the response variable. There should be measurements on 24 workers, and no missing data. For more information, see P. Armitage and G. Berry (1987), *Statistical Methods in Medical Research*, 2nd ed., Blackwell, p.286.
+
+1.  Load the dataset, convert any necessary columns to factors, perform a summary, etc. You should be developing a good feel for this routine by now. You do not need to worry about transformations for the first few questions: I want you to first understand the mechanics of fitting an ANOVA and understand how to examine the output.
+
+2.  First, perform a $t$-test. Because the workers are not paired in any way, this is an independent two-sample $t$-test. We simply need to specify the two groups, the null hympothesis, and our expectation that the variances are equal between groups in the `t.test()` command. However, currently the grouping factor is in one column (as it should be for proper data setup), and for a $t$-test, we need to split it into two columns. I know you can do this, but you are beginning to feel semester fatigue. So here are some useful commands:
+
+    ```         
+    > group1 <- mydata[1:12, 3] # Create a new vector with first 12 rows and
+                                     3rd column of old dataset (mydata)
+    > group3 <- mydata[13:24, 3] # Create a new vector with responses of group 3
+                                                  from bottom 12 observations of 3rd column of old dataset
+    ```
+
+    The appropriate `t.test()` command can be found in section 3. State your $H_0$ and $H_A$ hypotheses and perform a $t$-test. Are the vital capacities for the two groups different?
+
+3.  Now, let's perform an ANOVA. Fit a linear model that examines whether vital capacity differs between the two groups. For an ANOVA, you want the response variable in one single column, and the variable that identifies the different groups in another, just like the data you originally imported. This is how *most* data is set up, and what you were taught at the beginning of the course. State the $H_0$ and $H_A$ hypotheses. What is the $p$-value from the ANOVA (i.e., `anova()` command)? Is your conclusion about the null hypothesis the same as using the $t$-test in the previous question (use $\alpha$=0.05)?
+
+4.  Examine the $F$-value from the `anova()` command. There is actually a pretty simple mathematical relationship between the $t$-value and the $F$-value (but *only* when there are two groups, so the $F$-value has 1 degree of freedom in the numerator). Many things in statistics are related, actually. What is the mathematical relationship between your $t$-value from the $t$-test and this $F$-value?
+
+5.  Now perform a `summary()` of your model. The summary is a little more detailed, because it lists the individual parameters of the model fit $Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$. In practice, it is standard to first look at the `anova()` output *first*, because if the overall effect of the factor is not significant, then it makes little sense to continue examining the intracies of the model itself.
+
+    Using the `summary()` command, you will first see a **call**, which is the model that you fit. Next, you will see a summary of your **residuals**. These are the errors of the model: the distance between each data point and the mean for each group. If the model fit perfectly (never the case), all the data points would be right on top of the mean (i.e., *everyone* in group 1 might have a vital capacity of 2.78, and *everyone* in group 3 might have a capacity of 4.61). However, *every* model has errors, especially in ecology. It is good to scan this summary and just make sure that the residuals are roughly distributed around zero.\
+    Below the residual summary in the printout, you will see the **coefficients** of the model. The **intercept** is the estimate of the "baseline." Many statistics programs set one particular group to the "baseline" or "reference level" (i.e., the $\mu$ in our written model $Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$) and compare all other groups to that one in the `summary()` output. In R, levels are sorted alphanumerically, so the first level is the reference level. In SAS, the last level is chosen as baseline. *Always know which level your statistics package is using as the intercept for an ANOVA*. Here, the intercept refers to the mean for Group 1, since "1" comes before "3".\
+    The estimate of the intercept has an associated standard error. If you divide the estimate by the standard error, the result gives a $t$-value and $p$-value. What does this $t$-test test?\
+    It is always good to know what you are testing and think about the ecological consequences. Hmmm, biologically, what would this mean if the $p$-value was $>0.05$?\
+
+6.  The next line of the `summary()` output, associated with group 3, gives an estimate of the *difference between the intercept or baseline* (i.e., the mean for the first group) *and the mean of the third group*. This difference may be either positive or negative, depending on means of the groups. (If you had more groups, each line would test the difference between that group and the intercept. These are the $\alpha_i$ from the model equation). Reading across that line, you can estimate a standard error of the estimate of that difference, and generate a $t$- and $p$-value to test whether the estimate is different than zero. What is this $t$-value and $p$-value? Where have you seen this before?
+
+7.  Ok, now I want to know whether you understand what you are looking at in the `summary()` table after having done the previous two questions. What is the average estimated vital capacity for a person in group 3?
+
+8.  The bottom of the `summary()` output for an ANOVA model provides more information. The **residual standard error** is the square root of the Mean Squared Error. Different statistics programs will call this different things (RSE, rMSE, etc.) but it is simply an estimate of the pooled standard deviation (which you also know is used in a $t$-test).\
+    The multiple and adjusted **R-squared** (do not worry about the difference between the two for right now) provides an estimate of how much variation is explained by the experimental factor. In our case, there is something about the differences between the two categories (1 and 2) that explains about 25% of the variation in vital capacity. The other 75% is unexplained noise. If we examined other variables at the same time in our analysis, we might be able to improve our model.\
+    Without knowing anything else about the data set, what other variable do you think might be important in examining vital capacity?\
+
+9.  To this point in the assignment, I have had you focus on understanding the output, and not checking the assumptions. In practice, of course, *before* examining any test statistics or associated $p$-values, **you would check how well the model fit first**.\
+    There are 4 assumptions. The first, that our model is correct, depends in part on how you imported and set up your data. The second, that the data are independent, is best addressed in the experimental design stage. We have no reason to believe that this assumption is violated for this dataset. The second and third assumptions, that the variances are equal and the errors are normally distributed, are easily checked with a **residual plot**.\
+    A residual plot is a plot of the model's errors (difference between each data point and the group mean) vs. predicted values (group means). One nice thing about R is that you can take apart pieces of your analysis, if you so desire. (*Advanced useRs, if you are curious:* The `attributes()` command allows you to list pieces of any object that you can grab). Other commands are built-in that take pieces for you, like `residuals()` and `fitted.values()`. You can plot a residual plot for a model named `mymodel` as follows:\
+    `> plot(residuals(mymodel)`$\sim$`fitted.values(mymodel))`\
+    You should see two vertical lines of dots, one line for each fitted group mean. The vertical dots are the scatter about this mean. For example, if the vital capacity for group 1 is on average 3.95, some values might be below 3.95 and some might be above 3.95. A residual plot shows how far above and below the group mean these values are. A residual plot is always centered horizonally around zero.\
+    When examining a residual plot for a model, you want to look for two things:
+
+    1.  Given the assumption that the variances are equal across groups, the spread of the data points for each group should be approximately equal.
+
+    2.  Given the assumption that the errors are normally distributed, you want to inspect that roughly half of your data falls above and below the horizontal zero line.
+
+    For our purposes, I will tell you that the residual plot for this data looks ok. Not great, but it's ok. Go back to your ANOVA model and try a data transformation of the response variable (vital capacity) that you think might make sense. Provide a copy of that residual plot, along with the original. Tell me which one you think looks better, if any, and why. This is simply for practice; if you do happen to find a fantastic improvement, you do *not* need to redo the entire assignment with a data transformation.\
+
+10. Based on these results, would you want to work in a cadmium mine?

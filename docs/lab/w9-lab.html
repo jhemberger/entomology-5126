@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
+
+<title>Lab 8: Mixed-effects models for time series – Entomology 5126</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.qmd"> 
+<span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lab/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+</i> 
+<span class="menu-text">Course Syllabus</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhemberger/entomology-5126" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jhemberg@umn.edu"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mixed-effects-models" id="toc-mixed-effects-models" class="nav-link active" data-scroll-target="#mixed-effects-models">Mixed effects models</a>
+  <ul class="collapse">
+  <li><a href="#repeated-measures" id="toc-repeated-measures" class="nav-link" data-scroll-target="#repeated-measures">Repeated measures</a></li>
+  </ul></li>
+  <li><a href="#syntax-for-fitting-and-evaluating-linear-mixed-effects-models" id="toc-syntax-for-fitting-and-evaluating-linear-mixed-effects-models" class="nav-link" data-scroll-target="#syntax-for-fitting-and-evaluating-linear-mixed-effects-models">Syntax for fitting and evaluating linear mixed effects models</a>
+  <ul class="collapse">
+  <li><a href="#librarynlme" id="toc-librarynlme" class="nav-link" data-scroll-target="#librarynlme">library(<code>nlme</code>)</a></li>
+  <li><a href="#the-model-fit" id="toc-the-model-fit" class="nav-link" data-scroll-target="#the-model-fit">The model fit</a></li>
+  <li><a href="#evaluating-models" id="toc-evaluating-models" class="nav-link" data-scroll-target="#evaluating-models">Evaluating models</a></li>
+  <li><a href="#nesting-random-effects" id="toc-nesting-random-effects" class="nav-link" data-scroll-target="#nesting-random-effects">Nesting random effects</a></li>
+  <li><a href="#the-last-word" id="toc-the-last-word" class="nav-link" data-scroll-target="#the-last-word">The last word</a></li>
+  <li><a href="#reading-the-output" id="toc-reading-the-output" class="nav-link" data-scroll-target="#reading-the-output">Reading the output</a></li>
+  <li><a href="#check-your-residuals" id="toc-check-your-residuals" class="nav-link" data-scroll-target="#check-your-residuals">Check your residuals!</a></li>
+  </ul></li>
+  <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
+  <li><a href="#todays-assignment" id="toc-todays-assignment" class="nav-link" data-scroll-target="#todays-assignment">Today’s Assignment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 8: Mixed-effects models for time series</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="mixed-effects-models" class="level1">
+<h1>Mixed effects models</h1>
+<p>Today we will focus on mixed effects models with their associated “fixed” and “random” effects. “Fixed effects” are the terms in the model in which you are most interested. They are included in the mean term, and reflect why you designed the experiment in the first place. “Random effects” frequently reflect artifacts of your experimental design (e.g., the randomly selected sites or regions as you set up the field experiment, the randomly selected dog from which you drew repeated blood samples, etc.). Random effects are placed in the error term. Mixed effects models have three very nice advantages:</p>
+<ol type="1">
+<li><p>They conserve degrees of freedom for hypothesis testing of fixed effects, compared to non-mixed effects models.</p></li>
+<li><p>Experimental inference extends to all regions, sites, plots, dogs, etc. and <em>not</em> the just the ones you selected and sampled.</p></li>
+<li><p>They can accomodate complicated dependence structures. This is especially useful for temporal and spatial and spatiotemporal analyses.</p></li>
+</ol>
+<section id="repeated-measures" class="level2">
+<h2 class="anchored" data-anchor-id="repeated-measures">Repeated measures</h2>
+<p>There are <em>many</em> different types of temporal analyses, covering an entire semeseter’s worth (and beyond) of material. One area of time series analysis includes “repeated measures” analyses. As you might expect, it involves taking repeated measures on an experimental subject (whether that be a plant, animal, human, etc...). For example, you might take repeated measurements on a person to examine how fast a particular drug is cleared from the body. In statistics, such studies are commonly called “longitudinal studies” but should not be confused with any spatial analyses.<br>
+Mixed effects models are useful for repeated measures studies because they can accommodate the temporal dependence of multiple observations on each experimental subject.</p>
+</section>
+</section>
+<section id="syntax-for-fitting-and-evaluating-linear-mixed-effects-models" class="level1">
+<h1>Syntax for fitting and evaluating linear mixed effects models</h1>
+<section id="librarynlme" class="level2">
+<h2 class="anchored" data-anchor-id="librarynlme">library(<code>nlme</code>)</h2>
+<p>Recall at the beginning of the course I had mentioned that <code>R</code> has many flexible extensions that can be added on to the base package. You can load a package with the commands that you will need using the <code>library()</code> command. Do be aware that if you are installing <code>R</code> on your own computer, you may need to intall the package first (get it from the internet onto your disk drive; one time only) and <em>then</em> load it with the <code>library()</code> command (get it from the disk into the computer memory; each session).</p>
+<p>There are a variety of ways to fit and evaluate linear mixed effects models. Today we will use commands in package <code>nlme</code>, written by Douglas Bates and Jose Pinheiro. The computational underpinnings are rock solid. There is also an updated package <code>lme4</code> that I use frequently (especially the <code>lmer()</code> model fitting command), but we will not use that today.</p>
+</section>
+<section id="the-model-fit" class="level2">
+<h2 class="anchored" data-anchor-id="the-model-fit">The model fit</h2>
+<p>In the <code>nlme</code> package, linear mixed effects models are fit with the <code>lme()</code>. Not surprisingly, it looks very similar to something we have seen before. This is how to fit a model with mixed effects:</p>
+<ol type="1">
+<li><p>Decide what to call your model. E.g.,<br>
+<code>&gt; fm1 &lt;-</code></p></li>
+<li><p>Specify the <code>lme()</code> command, and determine what <code>y</code> variable you are analyzing. It should be something that is, or can be transformed to be, normally distributed.<br>
+<code>&gt; fm1 &lt;- lme(y</code><span class="math inline">\(\sim\)</span><code></code></p></li>
+<li><p>List the variable(s) that you are analyzing and the dataset. For example, <code>&gt; fm1 &lt;- lme(y</code><span class="math inline">\(\sim\)</span><code>time, data=mydata</code></p></li>
+<li><p>Specify the random effects. These are usually byproducts of how you designed your experiment. Today, we will use a random intercept for each experimental subject chosen at random.<br>
+<code>&gt; fm1 &lt;- lme(y</code><span class="math inline">\(\sim\)</span><code>time, data=mydata, random =</code><span class="math inline">\(\sim\)</span><code>1</code><span class="math inline">\(\mid\)</span><code>person)</code></p></li>
+</ol>
+<p>As an aside, <em>if</em> you were using the package, the equivalent command would be specified<br>
+<code>&gt; fm1 &lt;- lmer(y</code><span class="math inline">\(\sim\)</span><code>time + (1</code><span class="math inline">\(\mid\)</span><code>person), data=mydata)</code></p>
+</section>
+<section id="evaluating-models" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-models">Evaluating models</h2>
+<p>You will still be able to evaluate <span class="math inline">\(F\)</span> tests and intercept and slope coefficients for the model as before. However, the method in which coefficient estimates are obtained has changed. Now, we use maximum likelihood methods, not ordinary least squares. Just a different mathematical technique, that’s all.<br>
+Without ordinary least squares, we have lost our ability to calculate <span class="math inline">\(R^2\)</span> values. They simply do not exist. Instead we have something known as <em>information criteria</em>: other measures of fit of a statistical model.<br>
+The most common information criterion is Akaike’s Information Criterion, originally proposed by Hirotugu Akaike, defined as</p>
+<p><span class="math display">\[AIC = -2\ln(L)+2k\]</span></p>
+<p>where <span class="math inline">\(2k\)</span> is twice the number of parameters (i.e., a penalty for adding more variables to improve the model fit, analagous to <span class="math inline">\(R^2_{adj}\)</span>) and <span class="math inline">\(L\)</span> is the maximized value of the likelihood function for the estimated model. We will not cover this in detail. Similarly, we will not cover other types of information criteria (AICc, BIC, DIC, etc.) but they are all variations on the theme.<br>
+Here are some things you should remember about AIC values and model selection:</p>
+<ol type="1">
+<li><p>AIC values do not give you a test of the model in terms of hypothesis testing. Rather, information criteria are just a <em>tool</em> for model selection (comparing between models).</p></li>
+<li><p>AIC values vary. They are not bounded between 0 and 1 like an <span class="math inline">\(R^2\)</span> value.</p></li>
+<li><p>The lower the number, the better the model fit, <strong>but</strong> you can only compare models with the <strong>same</strong> response variable and the <strong>same</strong> data set. For example, you can compare <span class="math inline">\(y \sim x\)</span> vs.&nbsp;<span class="math inline">\(y \sim w\)</span> but you <strong>cannot</strong> compare <span class="math inline">\(y \sim x\)</span> vs.&nbsp;<span class="math inline">\(sqrt(y) \sim x\)</span></p></li>
+<li><p>If your model has random effects, you can only compare models with different <em>nested</em> random effects if each model has the <strong>same</strong> fixed effects structure. See below for more details.</p></li>
+</ol>
+</section>
+<section id="nesting-random-effects" class="level2">
+<h2 class="anchored" data-anchor-id="nesting-random-effects">Nesting random effects</h2>
+<p>Some experimental designs incorporate <em>nesting</em>. In the social sciences, you may see the term ‘multilevel models.’’ We know that a good rule for experimental analysis is to <em>always analyze an experiment consistent with the manner in which it was designed.</em><br>
+Pretend that you select three regions, and then four plots <em>within</em> each of those regions, before you sample the height (<span class="math inline">\(y\)</span>) and diameter (<span class="math inline">\(x\)</span>) of 10 trees each. Your analysis should reflect the regional and plot-within-region variation. Nesting random effects is done with the forward slash in R:<br>
+</p>
+<pre><code>&gt; fm1 &lt;- lme(y ~ diameter, data=mydata, random = ~ 1 | region/plot)</code></pre>
+<p>We are now presented with some philosophical choices. You could just leave the analysis at that. Another prevalent school of thought encourages statistical models to be as simple as possible. For example, if the plot-to-plot variation in a site is not significant, perhaps we can just set that aside. Hence, we frequently test to see if we can remove the <em>lowest</em> level of nesting. We may start by analysing the experiment consistent with the manner in which it was designed, but then see if we can make it simpler.<br>
+To test whether we can remove the lowest level of nesting, we fit both models and compare them using a <em>likelihood ratio test</em>. (This is analagous to the additional sums of squares tests that I showed in class).</p>
+<pre><code>&gt; fm1 &lt;- lme(y ~ diameter, data=mydata, random = ~ 1 | region)
+&gt; fm2 &lt;- lme(y ~ diameter, data=mydata, random = ~ 1 | region/plot)
+&gt; anova(fm1, fm2)</code></pre>
+<p>Note that both models have the <strong>same</strong> response variable and the <strong>same</strong> fixed effects structure. The output from the <code>anova()</code> command specifying <em>both</em> models separted by a comma will produce a likelihood ratio test with an associated <span class="math inline">\(p\)</span>-value. If the <span class="math inline">\(p\)</span>-value is less than 0.05, one model is statistically better than the other. In that case, choose the model with the lowest AIC value.</p>
+<p>It is not terribly common to have nesting in time series data, but it can happen (e.g., taking repeated height (<span class="math inline">\(y\)</span>) measurements through time (<span class="math inline">\(x\)</span>) for the trees that are nested in different sites, as above). We do not have nesting in today’s lab.</p>
+</section>
+<section id="the-last-word" class="level2">
+<h2 class="anchored" data-anchor-id="the-last-word">The last word</h2>
+<p>It can be a little confusing to remember what can be compared with what (similar fixed effects models with changed nested random effects, different fixed effects models without random effects, etc.) because the likelihood world has all sorts of little nuances. I keep the above sections as simple as possible without going into detail about the different likelihood computations behind these models (maximum likelihood, restricted maximum likelihood, penalized quasi-likelihood, etc.).<br>
+Bottom line: <strong>model selection is a bit of an art</strong>. What I might do is start with the most consistent model with my experimental design, find the best fixed-effects structure, and then simplify the random effects. Other times, I might start with a model without any random effects at all, find an OK model, and then put the random effects back in to see if things still work. There is no recipe book, unfortunately.</p>
+</section>
+<section id="reading-the-output" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-output">Reading the output</h2>
+<p>The <code>anova()</code> and <code>summary()</code> commands work as before. Once you have a good model, to get detailed information on model coefficients, use the <code>summary()</code> command.<br>
+The summary will appear similar to tables that you have seen before, with a few twists. First, you will see summary statistics for AIC, BIC, and the log likelihood.<br>
+Next, you will see a listing of random effects. Random effects are often reported when you specify a model, but <strong>not</strong> in the resulting equation of the line (see last question today).<br>
+Let’s say you were working with blood pressure readings on different people, perhaps in different treatment groups. You might see this output from a model <span class="math inline">\(y \sim time + trt\)</span> with a random effect for person:</p>
+<pre><code>Random effects:
+ Formula: ~1 | person
+        (Intercept) Residual
+StdDev:    8.917896 5.032072</code></pre>
+<p>This would specify that the resulting expected blood pressure value <span class="math inline">\(\hat{y}\)</span> (for a given timepoint and treatment group) could be adjusted at random up or down by a standard deviation of 8.9 to account for variability among people. <em>Then</em>, on top of that, there is another random adjustment of <span class="math inline">\(\pm\)</span><!-- -->5.03 standard deviations for all noise left over (so, if blood pressure reading is the experimental unit, variation among readings within each person).<br>
+Finally, you will see a fixed effects table - essentially your model summary. (Ignore the table of intraclass correlations below that during today’s lab). You will also see information on the distribution of residuals, which can be used (along with a graphical residual plot!) to determine if the assumptions of your model are being met.<br>
+</p>
+</section>
+<section id="check-your-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-residuals">Check your residuals!</h2>
+<p><code>&gt; plot(residuals(fm1)</code><span class="math inline">\(\sim\)</span><code>fitted.values(fm1))</code><br>
+<code>&gt; plot(fm1) # Finally, a shortcut!</code></p>
+</section>
+</section>
+<section id="todays-data" class="level1">
+<h1>Today’s data</h1>
+<p>Today’s data set, in <code>Lab8data.txt</code> is a classic data set from Pothoff, R.F., and Roy, S.N. (1964) A generalized mulivariate analysis of variance model useful especially for growth curve functions <em>Biometrika</em> 51: 313-326. Investigators at the University of North Carolina Dental School followed the growth of 27 children (16 males, 11 females) from age 8 until 14. Every two years, they measured the distance between the pituitary and the pterygomaxillary fissure. The two points can be readily identified by examining x-rays of the side of the head. Here are the relevant variables:</p>
+<div class="center">
+<p>Variable Description</p>
+<hr>
+<p>obs observation number distance distance from the center of the pituitary to the pterygomaxillary fissure (mm) age age of the child (years) when measurement was taken subject identifier of the person sex a factor indicating if the person is male or female</p>
+</div>
+</section>
+<section id="todays-assignment" class="level1">
+<h1>Today’s Assignment</h1>
+<ol type="1">
+<li><p>Read in the data, blah blah blah. Now that you have converted any necessary variables to factors, you now know the next step too. A scatterplot matrix can be a little tricky for time series data because you often want to view your data grouped by the experimental units upon which you collected the data.<br>
+Load the <code>lattice</code> package, which is a masterpiece for viewing large amounts of data by groups. (You may have to go back to the first lab to figure out how to load a package). You can plot the data with this command:<br>
+<code>&gt; xyplot(distance</code><span class="math inline">\(\sim\)</span><code>age | subject, data=mylabdata)</code><br>
+Not bad, eh?</p></li>
+<li><p>Before fitting anything, what kind of a trend do you anticipate in pituitary-pterygomaxilarry fissure growth?</p></li>
+<li><p>Fit a model of distance as a function of age. Include a random effect for person-to-person variation. If you did not include this random effect, how far would your experimental inference extend?</p></li>
+<li><p>Examine the summary of the line. What is the expected distance measured for newborns? How much does the distance increase per year for children as they grow older?</p></li>
+<li><p>What is the <span class="math inline">\(R^2\)</span> value of your model?</p></li>
+<li><p>Fit a second model examining the effects of age and sex on distance. (Just fit these variables additively, no interactions please). Does the distance vary with sex?<br>
+You of course recognize that this is an ANCOVA, because you have factors and covariates. When dealing with an ANCOVA, you actually have equations of multiple lines depending on the level of each factor. Each additive shift from the baseline group is essentially a constant, so can be added (or subtracted) from the intercept.<br>
+Provide the equation of the growth line for girls, then for boys. Demonstrate how you derive them from your summary output. Finally, sketch these lines on a <strong>hand-sketched</strong> plot on your assignment. (Perhaps take a photo and copy it into your assignment). We simply want to see that you can connect what goes into the model with what comes out.<br>
+</p></li>
+<li><p>Which model fits better, the one with only age, or the one that also accounts for sex? Why?</p></li>
+<li><p>Up to this point, we have focused most of our attention on doing analyses and very little on how to write up statistical methods. Unfortunately, I do not have a 3-page guide to provide you with all the answers. And, if you consult the “professionals” (e.g., read a sample of 6 scientific papers), you will probably see as many examples of how <em>not</em> to write statistical methods and results as how to write them!<br>
+<strong>A good rule is as follows: anything you write should be clear and repeatable. You should be able to give your analytical description to the person sitting beside you, and, if they have the data set, they should be able to generate <em>exactly</em> the same analysis.</strong><br>
+Here is an example of how I might write a description of an analysis of variance:<br>
+<strong>Methods.</strong> We examined the effect of [fill in categorical predictor variable name here] on [response variable] using ANOVA. We used a [fill in blank] transformation on our response variable to satisfy assumptions of the model, namely homogeneity of variances and normal distribution of residuals. Analytical assumptions were examined by graphical inspection of residual plots. Where significant differences between treatments existed, means comparisons were performed using [my advisor’s favourite means comparison procedure, such as Bonferronni, protected-<span class="math inline">\(t\)</span>, Tukey, etc.].<br>
+<strong>Results.</strong> There was a signficant effect of [predictor] on [response] (<span class="math inline">\(F_{ndf, ddf}=3.41, p=0.0013)\)</span>. The mean score (<span class="math inline">\(\pm\)</span>SE)for the control group was [fill in blank]. The [next] group scored slightly better [score], but this effect was not statistically significant (<span class="math inline">\(t_{ddf}=1.20, p=0.0783)\)</span>. The highest group was [fill in blank], with a mean score (<span class="math inline">\(\pm\)</span>SE) of [score]. This group was stastically different than the controls (<span class="math inline">\(t_{ddf}=2.64, p&lt;0.0001)\)</span>.<br>
+Here is an example of how I might write up a regression model in a mixed effects framework:<br>
+<strong>Methods.</strong> Ten trees were scored for disease severity in each of ten randomly chosen plots, selected as representative samples of susceptible lodgepole pine. We used a linear mixed effects model to examine the effect of elevation on disease severity. Fixed effects included elevation, fitted as a continuous variable, while plot was modeled as a random effect. We used a [log(y+1) or other] transformation on our response variable to satisfy assumptions of the model, namely homogeneity of variances and normal distribution of residuals. Analytical assumptions were examined by graphical inspection of residual plots.<br>
+<strong>Results.</strong> Disease severity increased with elevation, which could be modeled by the regression equation <span class="math inline">\(y = 1.23 + 5.13 x\)</span>, where <span class="math inline">\(x\)</span> is the elevation in metres. [Maybe add a few more comments based on the plot(s), but regressions are pretty straight forward].<br>
+<strong>Note</strong> that we typically do <em>not</em> report the random effects in the regression line equation, like <span class="math inline">\(y = 1.23 + 5.13 x \pm 8.01 \pm 5.13\)</span>. Random effects are generally <em>only</em> reported in the methods when we specify how we fit the model. (If we were <em>really</em> interested in that variation, we would likely fit it as a fixed effect!).<br>
+Also, always include the intercept, even if it is not significant. If this was a “regular” regression model (i.e., without mixed effects), you might also report the <span class="math inline">\(F\)</span>, <span class="math inline">\(p\)</span>, and <span class="math inline">\(R^2\)</span> value when you report the regression line. For a “mixed effects” model, one might report an AIC value, but typically this is <em>only done if you are reporting two models and commenting on which one fits better</em>. Even in such a case, you might only present the change in AIC value between the lowest and next best model (<span class="math inline">\(\Delta\)</span>AIC). An AIC value varies tremendously, and has little utility on its own (unlike an <span class="math inline">\(R^2\)</span>).<br>
+Given the above examples, pretend your are writing a scientific report. Write two paragraphs, one for Methods and one for Results, from the best model of the two that you tried for this data set. (Do <strong>not</strong> get carried away; I do not need references and the like!)<br>
+</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Jeremy Hemberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://www.r-project.org/about.html" target="_blank"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></a> and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

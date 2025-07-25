@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
+
+<title>Lab 4: Independent two-sample t-tests and ANOVA – Entomology 5126</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.qmd"> 
+<span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lab/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+</i> 
+<span class="menu-text">Course Syllabus</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhemberger/entomology-5126" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jhemberg@umn.edu"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#reminders" id="toc-reminders" class="nav-link" data-scroll-target="#reminders">Reminders</a>
+  <ul class="collapse">
+  <li><a href="#keeping-notes" id="toc-keeping-notes" class="nav-link" data-scroll-target="#keeping-notes">Keeping notes</a></li>
+  <li><a href="#examining-objects" id="toc-examining-objects" class="nav-link" data-scroll-target="#examining-objects">Examining objects</a></li>
+  <li><a href="#commands-from-previous-weeks" id="toc-commands-from-previous-weeks" class="nav-link" data-scroll-target="#commands-from-previous-weeks">Commands from previous weeks</a></li>
+  </ul></li>
+  <li><a href="#two-sample-independent-t-test" id="toc-two-sample-independent-t-test" class="nav-link" data-scroll-target="#two-sample-independent-t-test">Two-sample independent <span class="math inline">\(t\)</span>-test</a>
+  <ul class="collapse">
+  <li><a href="#useful-commands" id="toc-useful-commands" class="nav-link" data-scroll-target="#useful-commands">Useful commands</a></li>
+  </ul></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova">ANOVA</a>
+  <ul class="collapse">
+  <li><a href="#fitting-an-anova-model" id="toc-fitting-an-anova-model" class="nav-link" data-scroll-target="#fitting-an-anova-model">Fitting an ANOVA model</a></li>
+  <li><a href="#working-with-the-model" id="toc-working-with-the-model" class="nav-link" data-scroll-target="#working-with-the-model">Working with the model</a></li>
+  <li><a href="#dire-warning" id="toc-dire-warning" class="nav-link" data-scroll-target="#dire-warning">Dire Warning</a></li>
+  </ul></li>
+  <li><a href="#todays-data-and-assignment" id="toc-todays-data-and-assignment" class="nav-link" data-scroll-target="#todays-data-and-assignment">Today’s data and assignment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 4: Independent two-sample <em>t</em>-tests and ANOVA</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>After three weeks, you are getting pretty good at reading data into R and obtaining summary statistics. Remember the initial steps in data analysis: annotating metadata, preparing the data for export into a statistical package, reading it in, performing a summary or two, converting all necessary variables to factors, and rechecking the summary.</p>
+<p>Today we will focus on comparing two groups, first using two sample independent <span class="math inline">\(t\)</span>-tests, and second using Analysis of Variance (ANOVA). We are quickly working toward realistic examples that you may be analysing as part of your thesis or dissertation work. The latter tests form the cornerstones of many ecological analyses.<br>
+</p>
+</section>
+<section id="reminders" class="level1">
+<h1>Reminders</h1>
+<section id="keeping-notes" class="level2">
+<h2 class="anchored" data-anchor-id="keeping-notes">Keeping notes</h2>
+<p>At this point, you will find it necessary to refer periodically to previous labs and/or your own Word or text file of your favourite commands - things that you know worked!</p>
+</section>
+<section id="examining-objects" class="level2">
+<h2 class="anchored" data-anchor-id="examining-objects">Examining objects</h2>
+<p>Some of you have found your own commands like <code>show()</code>, <code>print()</code>, etc. to display objects. I am glad that you are using such commands, but often you do not have to. If you simply type in the name of the object, it will display on its own. That is, hitting the <code>Enter</code> key after <code>mydata</code> will do the same as hitting the <code>Enter</code> key after <code>show(mydata)</code>. Also, remember that certain objects are already summaries, such as the output from an <code>aggregate()</code> command (i.e., you are asking for a data summary by one or more factors). So, if you ask for a summary of that object, you will get a summary of a summary, which might not be informative. The only time I invoke the <code>summary()</code> command is when I want a summary on raw data, such as a dataframe or a column, or the results of a fitted model (which we have not yet covered).</p>
+</section>
+<section id="commands-from-previous-weeks" class="level2">
+<h2 class="anchored" data-anchor-id="commands-from-previous-weeks">Commands from previous weeks</h2>
+<p>If you have had a hard time getting used to R so far, you can take solace in the fact that (a) you are not alone and (b) we are done with the nuts and bolts of data entry and manipulation. As we start using these pieces every week, they will soon become less challenging. The key areas with which you should be starting to feel comfortable include reading data into R, selecting specific rows and columns, and performing both graphical and numerical summaries. The latter summaries include not only dataframe summaries but also conditional summaries (by specific categories) using something like the <code>aggregate()</code> command. You now have all the tools you need to start discovering neat things about <em>your</em> data.</p>
+</section>
+</section>
+<section id="two-sample-independent-t-test" class="level1">
+<h1>Two-sample independent <span class="math inline">\(t\)</span>-test</h1>
+<p>Two-sample <em>independent</em> <span class="math inline">\(t\)</span>-tests are used to compare two different groups. The variables are not paired in any way. The formula is: <span class="math display">\[T=\frac{\bar Y_1-\bar Y_2-\mu_{\bar Y_1-\bar Y_2}}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\]</span> which is tested on <span class="math inline">\(n_1 + n_2 - 2\)</span> degrees of freedom, and where <span class="math inline">\(s_p\)</span> is a pooled estimate of the standard deviation from each sample. The assumptions of the test are that the experimental units are independent, the variances are equal, and the responses are normally distributed.<br>
+</p>
+<section id="useful-commands" class="level2">
+<h2 class="anchored" data-anchor-id="useful-commands">Useful commands</h2>
+<p>Intuitively, you can use the <code>t.test()</code> command. For an independent <span class="math inline">\(t\)</span>-test, you can use:<br>
+<code>&gt; t.test(group1, group2, mu=0, var.equal=T)</code><br>
+</p>
+</section>
+</section>
+<section id="anova" class="level1">
+<h1>ANOVA</h1>
+<p>An alternative to a two-sample independent <span class="math inline">\(t\)</span>-test is an Analysis of Variance, or ANOVA. ANOVAs are used to test for differences between multiple (i.e., 2 or more) groups. It is an extension of the <span class="math inline">\(t\)</span>-test. An ANOVA uses an <span class="math inline">\(F\)</span>-statistic.<br>
+Many ecological analyses are ANOVAs, where you have some response variable that may vary between multiple groups. In class, we have talked about an example of whether rats gain more weight on diet A, B, or C? The concept is similar to <span class="math inline">\(t\)</span>-tests:</p>
+<ol type="1">
+<li><p>State your null and alternative hypotheses. In a two-sample independent <span class="math inline">\(t\)</span>-test, we assumed that the means of both groups were equal. In an ANOVA, we assume that the means of <em>all</em> groups are equal. As you can see, you can do an ANOVA if you only have two groups, and the null hypotheses are exactly the same.</p></li>
+<li><p>Calculate your test statistic. For an ANOVA, we calculate an <span class="math inline">\(F\)</span>-statistic, which is the MSTreatment divided by MSError.</p></li>
+<li><p>Compare to your chosen <span class="math inline">\(\alpha\)</span> level (usually 0.05). An <span class="math inline">\(F\)</span>-statistic, unlike a <span class="math inline">\(t\)</span>-statistic, has two (2) parameters (based on the numerator and denominator degrees of freedom) associated with it. Compare the <span class="math inline">\(F\)</span>-statistic to an <span class="math inline">\(F\)</span>-distribution to get a <span class="math inline">\(p\)</span>-value. The <span class="math inline">\(p\)</span>-value for an <span class="math inline">\(F\)</span>-test is never multiplied by two, even if the test is two sided.</p></li>
+<li><p>Accept or reject your null hypothesis. Same as before!</p></li>
+</ol>
+<p>Here are the assumptions for an <span class="math inline">\(F\)</span>-test (they may look somewhat familiar):</p>
+<ol type="1">
+<li><p>The model is correct</p></li>
+<li><p>The observations are independent</p></li>
+<li><p>The variances are equal</p></li>
+<li><p>The errors are normally distributed</p></li>
+</ol>
+<p>We’ll deal with checking these in the assignment.</p>
+<section id="fitting-an-anova-model" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-an-anova-model">Fitting an ANOVA model</h2>
+<p>In performing an ANOVA, we fit a linear model to the data. Here is how the linear model command, <code>lm()</code>, works:</p>
+<ol type="1">
+<li><p>Decide what to call your model. E.g.,<br>
+<code>&gt; fm1 &lt;-</code></p></li>
+<li><p>Specify the <code>lm()</code> command, and determine what <code>y</code> variable you are analyzing. Is it vegetation growth? Weight gain? Test scores? Other? It should be something that is, or can be transformed to be, normally distributed.<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span></p></li>
+<li><p>List the factor(s) that you are analyzing. Does your response variable vary with Site? Sex? Group? Treatment? Other? Remember, for an ANOVA, the variable in this column <em>must be a factor!</em><br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>sex</code></p></li>
+<li><p>Specify the dataset you are using.<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>sex, data=mylabdata)</code><br>
+</p></li>
+</ol>
+</section>
+<section id="working-with-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-the-model">Working with the model</h2>
+<ul>
+<li><p>To examine the significance of the factor(s) in the overall model:<br>
+<code>&gt; anova(fm1)</code></p></li>
+<li><p>To get detailed information on model coefficients (i.e., <span class="math inline">\(Y_{ij} = \mu + \alpha_i + \epsilon_{ij}\)</span>), use:<br>
+<code>&gt; summary(fm1)</code></p></li>
+<li><p>To examine how well the model fits:<br>
+<code>&gt; plot(residuals(fm1)</code><span class="math inline">\(\sim\)</span><code>fitted.values(fm1))</code><br>
+Remember, a residual plot should show roughly equal variance around the horizonal zero line for each group. If the errors are heteroscedastic, you may need to apply a transformation.<br>
+</p></li>
+<li><p>To apply a transformation to your response variable:<br>
+<code>&gt; fm1 &lt;- lm(sqrt(y)</code><span class="math inline">\(\sim\)</span><code>sex, data=mylabdata)</code><br>
+</p></li>
+<li><p>To specify more than one factor in a model (e.g., <code>sex</code> and <code>diet</code>), list the factors separated by the ‘+’ sign<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>sex + diet, data=mylabdata)</code><br>
+</p></li>
+<li><p>To specify interactions between factors, use a colon. Better yet (unless you well versed in special situations where you might fit an interaction term without corresponding main effects), use the asterisk sign. This automatically fits both factors and their interaction.<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>sex + diet + sex:diet, data=mylabdata) # Same as below</code><br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>sex*diet, data=mylabdata) # Tidy</code></p></li>
+<li><p>(This is an advanced topic that I only include FYI.) To fit a “cell means model” (the estimated mean for each group), i.e., <span class="math inline">\(Y_{ij}=\mu_i + \epsilon_{ij}\)</span>, put a -1 behind the factor<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>sex-1, data=mylabdata)</code><br>
+Remember, the -1 is just convention and has nothing to do with subtracting 1 from any quantity.</p></li>
+</ul>
+</section>
+<section id="dire-warning" class="level2">
+<h2 class="anchored" data-anchor-id="dire-warning">Dire Warning</h2>
+<p>A <strong>critical</strong> part of fitting an ANOVA model is that your factor variable is actually a factor! An extremely common mistake is failure to convert the proper variables to factors (such as if the types of diet are labelled 1, 2, and 3 and the statistics program treats them numerically). <strong>You cannot do an ANOVA on a variable that is not a factor</strong>.</p>
+</section>
+</section>
+<section id="todays-data-and-assignment" class="level1">
+<h1>Today’s data and assignment</h1>
+<p>Today we’ll work with the <code>vitcap</code> dataset from the <code>ISwR</code> package. This dataset contains measurements of the vital capacity (a measurement of lung volume) for workers in the cadmium industry. Cadmium is an element that is frequently found with zinc, and is used extensively in the battery industry. The data set, saved in in <code>Lab4data.xls</code>, has three columns. The first contains a group code. <code>1</code> indicates exposure to cadmium dust for more than 10 years. <code>2</code> indicates exposure for less than 10 years. You have been provided a subset of this data, as I have not included group <code>2</code>. Group <code>3</code> indicates no exposure. The second column, <code>age</code>, indicates the age of the worker in years. The third column, <code>capacity</code>, is the response variable. There should be measurements on 24 workers, and no missing data. For more information, see P. Armitage and G. Berry (1987), <em>Statistical Methods in Medical Research</em>, 2nd ed., Blackwell, p.286.</p>
+<ol type="1">
+<li><p>Load the dataset, convert any necessary columns to factors, perform a summary, etc. You should be developing a good feel for this routine by now. You do not need to worry about transformations for the first few questions: I want you to first understand the mechanics of fitting an ANOVA and understand how to examine the output.</p></li>
+<li><p>First, perform a <span class="math inline">\(t\)</span>-test. Because the workers are not paired in any way, this is an independent two-sample <span class="math inline">\(t\)</span>-test. We simply need to specify the two groups, the null hympothesis, and our expectation that the variances are equal between groups in the <code>t.test()</code> command. However, currently the grouping factor is in one column (as it should be for proper data setup), and for a <span class="math inline">\(t\)</span>-test, we need to split it into two columns. I know you can do this, but you are beginning to feel semester fatigue. So here are some useful commands:</p>
+<pre><code>&gt; group1 &lt;- mydata[1:12, 3] # Create a new vector with first 12 rows and
+                                 3rd column of old dataset (mydata)
+&gt; group3 &lt;- mydata[13:24, 3] # Create a new vector with responses of group 3
+                                              from bottom 12 observations of 3rd column of old dataset</code></pre>
+<p>The appropriate <code>t.test()</code> command can be found in section 3. State your <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> hypotheses and perform a <span class="math inline">\(t\)</span>-test. Are the vital capacities for the two groups different?</p></li>
+<li><p>Now, let’s perform an ANOVA. Fit a linear model that examines whether vital capacity differs between the two groups. For an ANOVA, you want the response variable in one single column, and the variable that identifies the different groups in another, just like the data you originally imported. This is how <em>most</em> data is set up, and what you were taught at the beginning of the course. State the <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> hypotheses. What is the <span class="math inline">\(p\)</span>-value from the ANOVA (i.e., <code>anova()</code> command)? Is your conclusion about the null hypothesis the same as using the <span class="math inline">\(t\)</span>-test in the previous question (use <span class="math inline">\(\alpha\)</span>=0.05)?</p></li>
+<li><p>Examine the <span class="math inline">\(F\)</span>-value from the <code>anova()</code> command. There is actually a pretty simple mathematical relationship between the <span class="math inline">\(t\)</span>-value and the <span class="math inline">\(F\)</span>-value (but <em>only</em> when there are two groups, so the <span class="math inline">\(F\)</span>-value has 1 degree of freedom in the numerator). Many things in statistics are related, actually. What is the mathematical relationship between your <span class="math inline">\(t\)</span>-value from the <span class="math inline">\(t\)</span>-test and this <span class="math inline">\(F\)</span>-value?</p></li>
+<li><p>Now perform a <code>summary()</code> of your model. The summary is a little more detailed, because it lists the individual parameters of the model fit <span class="math inline">\(Y_{ij} = \mu + \alpha_i + \epsilon_{ij}\)</span>. In practice, it is standard to first look at the <code>anova()</code> output <em>first</em>, because if the overall effect of the factor is not significant, then it makes little sense to continue examining the intracies of the model itself.</p>
+<p>Using the <code>summary()</code> command, you will first see a <strong>call</strong>, which is the model that you fit. Next, you will see a summary of your <strong>residuals</strong>. These are the errors of the model: the distance between each data point and the mean for each group. If the model fit perfectly (never the case), all the data points would be right on top of the mean (i.e., <em>everyone</em> in group 1 might have a vital capacity of 2.78, and <em>everyone</em> in group 3 might have a capacity of 4.61). However, <em>every</em> model has errors, especially in ecology. It is good to scan this summary and just make sure that the residuals are roughly distributed around zero.<br>
+Below the residual summary in the printout, you will see the <strong>coefficients</strong> of the model. The <strong>intercept</strong> is the estimate of the “baseline.” Many statistics programs set one particular group to the “baseline” or “reference level” (i.e., the <span class="math inline">\(\mu\)</span> in our written model <span class="math inline">\(Y_{ij} = \mu + \alpha_i + \epsilon_{ij}\)</span>) and compare all other groups to that one in the <code>summary()</code> output. In R, levels are sorted alphanumerically, so the first level is the reference level. In SAS, the last level is chosen as baseline. <em>Always know which level your statistics package is using as the intercept for an ANOVA</em>. Here, the intercept refers to the mean for Group 1, since “1” comes before “3”.<br>
+The estimate of the intercept has an associated standard error. If you divide the estimate by the standard error, the result gives a <span class="math inline">\(t\)</span>-value and <span class="math inline">\(p\)</span>-value. What does this <span class="math inline">\(t\)</span>-test test?<br>
+It is always good to know what you are testing and think about the ecological consequences. Hmmm, biologically, what would this mean if the <span class="math inline">\(p\)</span>-value was <span class="math inline">\(&gt;0.05\)</span>?<br>
+</p></li>
+<li><p>The next line of the <code>summary()</code> output, associated with group 3, gives an estimate of the <em>difference between the intercept or baseline</em> (i.e., the mean for the first group) <em>and the mean of the third group</em>. This difference may be either positive or negative, depending on means of the groups. (If you had more groups, each line would test the difference between that group and the intercept. These are the <span class="math inline">\(\alpha_i\)</span> from the model equation). Reading across that line, you can estimate a standard error of the estimate of that difference, and generate a <span class="math inline">\(t\)</span>- and <span class="math inline">\(p\)</span>-value to test whether the estimate is different than zero. What is this <span class="math inline">\(t\)</span>-value and <span class="math inline">\(p\)</span>-value? Where have you seen this before?</p></li>
+<li><p>Ok, now I want to know whether you understand what you are looking at in the <code>summary()</code> table after having done the previous two questions. What is the average estimated vital capacity for a person in group 3?</p></li>
+<li><p>The bottom of the <code>summary()</code> output for an ANOVA model provides more information. The <strong>residual standard error</strong> is the square root of the Mean Squared Error. Different statistics programs will call this different things (RSE, rMSE, etc.) but it is simply an estimate of the pooled standard deviation (which you also know is used in a <span class="math inline">\(t\)</span>-test).<br>
+The multiple and adjusted <strong>R-squared</strong> (do not worry about the difference between the two for right now) provides an estimate of how much variation is explained by the experimental factor. In our case, there is something about the differences between the two categories (1 and 2) that explains about 25% of the variation in vital capacity. The other 75% is unexplained noise. If we examined other variables at the same time in our analysis, we might be able to improve our model.<br>
+Without knowing anything else about the data set, what other variable do you think might be important in examining vital capacity?<br>
+</p></li>
+<li><p>To this point in the assignment, I have had you focus on understanding the output, and not checking the assumptions. In practice, of course, <em>before</em> examining any test statistics or associated <span class="math inline">\(p\)</span>-values, <strong>you would check how well the model fit first</strong>.<br>
+There are 4 assumptions. The first, that our model is correct, depends in part on how you imported and set up your data. The second, that the data are independent, is best addressed in the experimental design stage. We have no reason to believe that this assumption is violated for this dataset. The second and third assumptions, that the variances are equal and the errors are normally distributed, are easily checked with a <strong>residual plot</strong>.<br>
+A residual plot is a plot of the model’s errors (difference between each data point and the group mean) vs.&nbsp;predicted values (group means). One nice thing about R is that you can take apart pieces of your analysis, if you so desire. (<em>Advanced useRs, if you are curious:</em> The <code>attributes()</code> command allows you to list pieces of any object that you can grab). Other commands are built-in that take pieces for you, like <code>residuals()</code> and <code>fitted.values()</code>. You can plot a residual plot for a model named <code>mymodel</code> as follows:<br>
+<code>&gt; plot(residuals(mymodel)</code><span class="math inline">\(\sim\)</span><code>fitted.values(mymodel))</code><br>
+You should see two vertical lines of dots, one line for each fitted group mean. The vertical dots are the scatter about this mean. For example, if the vital capacity for group 1 is on average 3.95, some values might be below 3.95 and some might be above 3.95. A residual plot shows how far above and below the group mean these values are. A residual plot is always centered horizonally around zero.<br>
+When examining a residual plot for a model, you want to look for two things:</p>
+<ol type="1">
+<li><p>Given the assumption that the variances are equal across groups, the spread of the data points for each group should be approximately equal.</p></li>
+<li><p>Given the assumption that the errors are normally distributed, you want to inspect that roughly half of your data falls above and below the horizontal zero line.</p></li>
+</ol>
+<p>For our purposes, I will tell you that the residual plot for this data looks ok. Not great, but it’s ok. Go back to your ANOVA model and try a data transformation of the response variable (vital capacity) that you think might make sense. Provide a copy of that residual plot, along with the original. Tell me which one you think looks better, if any, and why. This is simply for practice; if you do happen to find a fantastic improvement, you do <em>not</em> need to redo the entire assignment with a data transformation.<br>
+</p></li>
+<li><p>Based on these results, would you want to work in a cadmium mine?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Jeremy Hemberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://www.r-project.org/about.html" target="_blank"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></a> and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

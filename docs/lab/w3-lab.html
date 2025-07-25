@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
+
+<title>Lab 3: summarizing data – Entomology 5126</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.qmd"> 
+<span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lab/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+</i> 
+<span class="menu-text">Course Syllabus</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhemberger/entomology-5126" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jhemberg@umn.edu"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#reminder" id="toc-reminder" class="nav-link" data-scroll-target="#reminder">Reminder</a></li>
+  </ul></li>
+  <li><a href="#manipulating-data" id="toc-manipulating-data" class="nav-link" data-scroll-target="#manipulating-data">Manipulating data</a>
+  <ul class="collapse">
+  <li><a href="#the-sign" id="toc-the-sign" class="nav-link" data-scroll-target="#the-sign">The + sign</a></li>
+  <li><a href="#selecting-specific-rows-or-columns" id="toc-selecting-specific-rows-or-columns" class="nav-link" data-scroll-target="#selecting-specific-rows-or-columns">Selecting specific rows or columns</a></li>
+  <li><a href="#getting-rid-of-missing-data" id="toc-getting-rid-of-missing-data" class="nav-link" data-scroll-target="#getting-rid-of-missing-data">Getting rid of missing data</a></li>
+  <li><a href="#deriving-a-new-colum-based-on-a-condition" id="toc-deriving-a-new-colum-based-on-a-condition" class="nav-link" data-scroll-target="#deriving-a-new-colum-based-on-a-condition">Deriving a new colum based on a condition</a></li>
+  </ul></li>
+  <li><a href="#summary-functions" id="toc-summary-functions" class="nav-link" data-scroll-target="#summary-functions">Summary Functions</a></li>
+  <li><a href="#examining-your-data-by-groups" id="toc-examining-your-data-by-groups" class="nav-link" data-scroll-target="#examining-your-data-by-groups">Examining your data by groups</a>
+  <ul class="collapse">
+  <li><a href="#the-aggregate-command" id="toc-the-aggregate-command" class="nav-link" data-scroll-target="#the-aggregate-command">The <code>aggregate</code> command</a></li>
+  <li><a href="#the-xtabs-command" id="toc-the-xtabs-command" class="nav-link" data-scroll-target="#the-xtabs-command">The <code>xtabs</code> command</a></li>
+  </ul></li>
+  <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 3: summarizing data</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>By now I hope that you are becoming comfortable with the initial steps in data analysis: annotating metadata, preparing the data for export from a spreadsheet, reading it into a statistics package, performing a summary or two both graphically and numerically, converting all necessary variables to factors, and rechecking. You have probably run into some typical problems (e.g., not spelling a column name correctly, forward vs.&nbsp;backwards slashes, etc.) but are getting better at spotting such stumbles and correcting them.<br>
+Today, we’ll focus less on selecting specific elements in a dataframe (last week’s exercise) and more on <em>doing things</em> with those particular elements.<br>
+</p>
+<section id="reminder" class="level2">
+<h2 class="anchored" data-anchor-id="reminder">Reminder</h2>
+<p>Please <em>do</em> keep a separate Word or text file of your favourite commands - things that you know worked! It may become invaluable later on in the semester, in other courses, or even when you are doing your own analyses after you graduate. Remember, because R can be run with simple commands, you can always copy and paste from the clipboard in Windows straight to R.</p>
+</section>
+</section>
+<section id="manipulating-data" class="level1">
+<h1>Manipulating data</h1>
+<section id="the-sign" class="level2">
+<h2 class="anchored" data-anchor-id="the-sign">The + sign</h2>
+<p>We may now get into commands that flow across your screen and onto the next line. That’s fine - just type the command until it is complete and hit <code>Enter</code>. If you hit <code>Enter</code> before the command is complete, R may detect this (e.g., perhaps the last parenthesis is not included) and display a + sign instead of the command prompt. Just finish typing the command and hit <code>Enter</code>.</p>
+</section>
+<section id="selecting-specific-rows-or-columns" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-specific-rows-or-columns">Selecting specific rows or columns</h2>
+<p>A quick review: suppose the second column is named <code>"Site"</code>. To select this column in a dataframe of 8 columns, these commands would all be the same:</p>
+<pre><code>&gt; mydata$Site        # Probably the easiest when selecting entire column
+&gt; mydata[,2]         # This works too, if you remember it is the second column!
+&gt; mydata[,c("Site")] # Use this when working with dataframes.  If you need multiple columns,
+                         separate quoted titles by commas</code></pre>
+<p>To select the 5th through 10th rows of this column, these commands would all be the same:</p>
+<pre><code>&gt; mydata$Site[5:10]      # Works, but confusing because brackets are only for rows
+&gt; mydata[5:10,2]         # This works too, if you remember it is the second column!
+&gt; mydata[5:10,c("Site")] # Use this when working with dataframes.  Probably the easiest
+                                when selecting rows</code></pre>
+<p>Last week I also included commands for conditional selection (selecting all rows where a value equals a certain value).</p>
+</section>
+<section id="getting-rid-of-missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="getting-rid-of-missing-data">Getting rid of missing data</h2>
+<p>We now know how to select certain rows, and tell R what missing data looks like when we read in the spreadsheet. R codes missing observations then as green NA values. We should note, however, that when we get into analyses, R usually includes missing data unless told otherwise. Most software packages do not give you this option (although Microsoft Excel had well-publicized problems with incorrectly calculating the degrees of freedom for <span class="math inline">\(t\)</span>-tests with missing values a number of years ago). Frequently, we <em>do</em> want to get rid of these values.<br>
+If you know <em>a priori</em> that you do not need the missing data (often the case), I go ahead and delete it immediately. For example, let’s pretend that I know I am going to be working with a variable named <code>Intensity</code>. To delete all rows that have a missing value in the <code>Intensity</code> column, I use this syntax taking advantage of the <code>is.na()</code> command:</p>
+<pre><code>&gt; mydata &lt;- mydata[!is.na(mydata$Intensity),]</code></pre>
+<p>Can you decipher what this command does? (Hint: use the concatenate command <code>c()</code>to string together the numbers <code>1,2,3,NA,5</code> into a vector called <code>x</code>. Then try the <code>is.na()</code> command on <code>x</code>).</p>
+</section>
+<section id="deriving-a-new-colum-based-on-a-condition" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-a-new-colum-based-on-a-condition">Deriving a new colum based on a condition</h2>
+<p>Last week you figured out how to do simple numeric operations on a column, such as:</p>
+<pre><code>&gt; mydata$z &lt;- mydata$x * 10
+&gt; mydata$z &lt;- mydata$x / mydata$y</code></pre>
+<p>Someone asked last week if you can do <em>conditional</em> operations. For example, let’s say you have a column in a dataset full of zeros and various positive integers:</p>
+<pre><code>&gt; mydata &lt;- data.frame(x=c(0,5,0,0,4,9))
+&gt; mydata
+  x
+1 4
+2 0
+3 0
+4 6
+5 0
+6 9</code></pre>
+<p>Now, let’s say you want to recode the column so that all positive numbers become <code>1</code> while the rest become <code>0</code>.</p>
+<pre><code>&gt; mydata$z &lt;- ifelse(mydata$x&gt;0, 1, 0)
+&gt; mydata
+  x z
+1 4 1
+2 0 0
+3 0 0
+4 6 1
+5 0 0
+6 9 1</code></pre>
+<p>The <code>ifelse()</code> command uses 3 arguments: first, a logical test, second, the value if true, and third, the value to record if false.</p>
+<p>There are other, more complicated operations possible, such as programming loops and the like. That is beyond the scope of this course, although I use them frequently in more complex analyses.</p>
+</section>
+</section>
+<section id="summary-functions" class="level1">
+<h1>Summary Functions</h1>
+<p>We have already used a few functions, such as <code>read.table()</code> and <code>summary()</code>. Here are a few more that summarize specific aspects of your data:<br>
+</p>
+<pre><code>&gt; sum(mydata$height)           # Adds the values in the column
+&gt; mean(mydata$height, na.rm=T) # The second argument is a T/F logical to remove missing values
+                                  before computing the mean (defaults to False if not included)
+&gt; min(mydata$height)           # Minimum of column (you can also add the na.rm=T argument to
+                                   exclude missing data if you haven't removed it already!)
+&gt; sd(mydata$height)            # Standard deviation
+&gt; length(mydata$height)        # Counts the number of observations</code></pre>
+</section>
+<section id="examining-your-data-by-groups" class="level1">
+<h1>Examining your data by groups</h1>
+<section id="the-aggregate-command" class="level2">
+<h2 class="anchored" data-anchor-id="the-aggregate-command">The <code>aggregate</code> command</h2>
+<p>We often want to see how things break down in groups. R has a number of built in functions for this (<code>tapply()</code>, <code>gapply()</code>, <code>table()</code>, etc). I use these occasionally, but they are all derivatives of the following command: <code>aggregate()</code>.<br>
+In this lab, we will experiment a little with the <code>aggregate()</code> command.</p>
+<p>Sometimes, I think it could be called the “aggravate” command because the syntax can get a little confusing for large datasets. However, it is very powerful, and can give you (almost) anything you want.<br>
+Suppose you have a dataset containing a variety of observations on cats. You want to know the average tail length and whisker length of different breeds, broken down also by sex. Here is the general structure of the command:</p>
+<pre><code>catstats &lt;- aggregate(cats[,c("taillength", "whiskerlength")], by=list(sex=cats$sex,
+              variety=cats$breed), function(x) mean(x, na.rm=T))</code></pre>
+<ul>
+<li><p>The first argument, <code>dataframe[,c("column")]</code> specifies which column variable(s) you want information on. What are you counting, taking the average of, etc.? You need to use that exact syntax: you <em>cannot</em> use dataframe$column.<br>
+</p></li>
+<li><p>The second argument, <code>by=list(group1=dataframe$group1,</code><br>
+<code>group2=dataframe$group2)</code> specifies how to break down the information by groups from the dataframe. Do you want the information broken down by sex? by sex and breed? These are all <em>categorical</em> variables (i.e., factors). You can specify as many categorical variables as you want. You may also rename each group in the new dataframe. In the example, I have renamed the <code>breed</code> variable to <code>variety</code> in the output. Generally, to avoid confusion, I keep the variable names the same.<br>
+</p></li>
+<li><p>The last argument is unusual because there is no comma between the <code>function(x)</code> and the specified function. The function can be whatever you want: <code>length(x)</code> to count the observations, <code>mean(x)</code> to take the average, <code>mean(x)+</code><span class="math inline">\(\pi\)</span> to take the mean and add 3.14 (if you had a bizarre desire to do so), etc.. You can <em>even</em> write your own (very complex) functions within R. We won’t cover how to write functions in R in this course (although it is not hard). (Several years ago, someone wrote a function to order pizzas using R, a valid zip code and street address, and <code>www.papajohnsonline.com</code>. How cool is that?!).<br>
+</p></li>
+</ul>
+<p><br>
+Remember, the <code>aggregate()</code> command produces a summary table (i.e., a variable custom-summarized by specified categories). In the example above, just type in the name of the table (<code>catstats</code>) to display it. A common mistake is overuse of the <code>summary()</code> command. In this instance, it would summarize the already-summarized summary table.</p>
+</section>
+<section id="the-xtabs-command" class="level2">
+<h2 class="anchored" data-anchor-id="the-xtabs-command">The <code>xtabs</code> command</h2>
+<p>The <code>xtabs()</code> command is another useful command. It does a crosstabulation of your data by two or more factors (i.e., it counts the observations). For example, if you typed</p>
+<pre><code>meow &lt;- xtabs(~ colour + breed, data=cats[!is.na(cats$taillength),])</code></pre>
+<p>you would get the number of observations of taillength for each category. Note that I have asked R to delete any missing observations for this variable when doing the crosstabulation (suppose I did not do this earlier after reading in my data). This command is an easy way to see where you are missing observations!</p>
+</section>
+</section>
+<section id="todays-data" class="level1">
+<h1>Today’s data</h1>
+<p>Today I have provided a space delimited *.txt file, not an Excel spreadsheet *.xls file. It’s nice when people who have collected data give you an Excel file, but this does not always happen. GPS or Hobo environmental data, for example, can be written directly to a *.dat or *.csv file that is imported directly to a statistical package, bypassing Excel. Excel is nice because you can easily scan through rows, but sometimes you have to do all of your data examination in R.<br>
+Today’s data set comes from Alaska. It is a pilot study of the number of spores isolated from individual overwintering spruce beetles (<em>Dendroctonus rufipennis</em>) in two types of spruce (spruce and hybrid) at four sites. The beetles were collected then rolled on agar plates. The cultured fungi were quantified for spore load on a scale of 0 to 10. The columns in the data set include: <code>Date</code>, <code>Site</code>, <code>Tree&nbsp;Species</code>, <code>Tree&nbsp;Age</code> in years, <code>Insect&nbsp;ID</code>, and <code>Sporecount</code> on a scale of 1 to 10. Any missing data is coded as a period.</p>
+</section>
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<p>I would like written answers to the last 7 questions.</p>
+<ol type="1">
+<li><p>Load the data.</p></li>
+<li><p>Like last week, perform a summary and convert any necessary variables to factors. If you’d like a challenge, convert the first column to a date format for R using the <code>as.Date(dataset$column, format=’...’)</code> command. Helpful parameters within the <code>format</code> argument: <code>%y</code> is a two digit year code, <code>%Y</code> four digits; month abbreviation is <code>%b</code> while <code>%B</code> represents data containing full names of months, <code>%m</code> is month as decimal number between 1-12, and <code>%d</code> is day as decimal number between 1-31. If there are any other characters in the date column such as commas or dashes separating the elements of your chosen date format, you will need to incorporate those between the date parameters in the <code>format</code> argument. If you do it correctly, the <code>Date</code> column will appear as a numeric variable in your <code>summary()</code> output.</p></li>
+<li><p>Perform a scatterplot matrix. The graphs between <code>Tree_Species</code> and <code>Site</code> should have eight dots. Let’s pretend that you executed a <span class="math inline">\(2 \times 2\)</span> factorial experiment, where you were collecting observations on four treatments: two experimental factors crossed by two other experimental factors (e.g., counting seed yield on four treatments: high/low nitrogren crossed by high/low irrigation). If you only saw three dots in a scatterplot matrix crossing the two factors, what would this signify?</p></li>
+<li><p>Plot a histogram of tree age. Does it look normally distributed?</p></li>
+<li><p>You will be working with the Sporecount variable today. Create a new dataset that has removed all rows with missing observations for this variable.</p></li>
+<li><p>How many observations are there by Site and Tree species? Assuming it was a balanced experimental design, where is the missing data?</p></li>
+<li><p>Using the <code>aggregate()</code> command, find the highest individual spore count for each combination of site and tree species.</p></li>
+<li><p>Using the <code>aggregate()</code> command, find the average spore count for each combination of site and tree species.</p></li>
+<li><p>Because at least one site has fewer observations than the others, we should probably use standard error to report variance in the observations rather than standard deviation. Using the <code>aggregate()</code> command, write a function that will calculate the standard error for each combination of site and tree species.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Jeremy Hemberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://www.r-project.org/about.html" target="_blank"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></a> and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

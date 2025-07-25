@@ -1,0 +1,175 @@
+---
+title: "Lab 3: summarizing data"
+subtitle: Entomology 5126 - Spring 2026
+author: Jeremy Hemberger and Brian Aukema
+date: last-modified
+date-format: long
+format: html
+---
+
+------------------------------------------------------------------------
+
+# Introduction
+
+By now I hope that you are becoming comfortable with the initial steps in data analysis: annotating metadata, preparing the data for export from a spreadsheet, reading it into a statistics package, performing a summary or two both graphically and numerically, converting all necessary variables to factors, and rechecking. You have probably run into some typical problems (e.g., not spelling a column name correctly, forward vs. backwards slashes, etc.) but are getting better at spotting such stumbles and correcting them.\
+Today, we'll focus less on selecting specific elements in a dataframe (last week's exercise) and more on *doing things* with those particular elements.\
+
+## Reminder
+
+Please *do* keep a separate Word or text file of your favourite commands - things that you know worked! It may become invaluable later on in the semester, in other courses, or even when you are doing your own analyses after you graduate. Remember, because R can be run with simple commands, you can always copy and paste from the clipboard in Windows straight to R.
+
+# Manipulating data
+
+## The + sign
+
+We may now get into commands that flow across your screen and onto the next line. That's fine - just type the command until it is complete and hit `Enter`. If you hit `Enter` before the command is complete, R may detect this (e.g., perhaps the last parenthesis is not included) and display a + sign instead of the command prompt. Just finish typing the command and hit `Enter`.
+
+## Selecting specific rows or columns
+
+A quick review: suppose the second column is named `"Site"`. To select this column in a dataframe of 8 columns, these commands would all be the same:
+
+```         
+> mydata$Site        # Probably the easiest when selecting entire column
+> mydata[,2]         # This works too, if you remember it is the second column!
+> mydata[,c("Site")] # Use this when working with dataframes.  If you need multiple columns,
+                         separate quoted titles by commas
+```
+
+To select the 5th through 10th rows of this column, these commands would all be the same:
+
+```         
+> mydata$Site[5:10]      # Works, but confusing because brackets are only for rows
+> mydata[5:10,2]         # This works too, if you remember it is the second column!
+> mydata[5:10,c("Site")] # Use this when working with dataframes.  Probably the easiest
+                                when selecting rows
+```
+
+Last week I also included commands for conditional selection (selecting all rows where a value equals a certain value).
+
+## Getting rid of missing data
+
+We now know how to select certain rows, and tell R what missing data looks like when we read in the spreadsheet. R codes missing observations then as green NA values. We should note, however, that when we get into analyses, R usually includes missing data unless told otherwise. Most software packages do not give you this option (although Microsoft Excel had well-publicized problems with incorrectly calculating the degrees of freedom for $t$-tests with missing values a number of years ago). Frequently, we *do* want to get rid of these values.\
+If you know *a priori* that you do not need the missing data (often the case), I go ahead and delete it immediately. For example, let's pretend that I know I am going to be working with a variable named `Intensity`. To delete all rows that have a missing value in the `Intensity` column, I use this syntax taking advantage of the `is.na()` command:
+
+```         
+> mydata <- mydata[!is.na(mydata$Intensity),]
+```
+
+Can you decipher what this command does? (Hint: use the concatenate command `c()`to string together the numbers `1,2,3,NA,5` into a vector called `x`. Then try the `is.na()` command on `x`).
+
+## Deriving a new colum based on a condition
+
+Last week you figured out how to do simple numeric operations on a column, such as:
+
+```         
+> mydata$z <- mydata$x * 10
+> mydata$z <- mydata$x / mydata$y
+```
+
+Someone asked last week if you can do *conditional* operations. For example, let's say you have a column in a dataset full of zeros and various positive integers:
+
+```         
+> mydata <- data.frame(x=c(0,5,0,0,4,9))
+> mydata
+  x
+1 4
+2 0
+3 0
+4 6
+5 0
+6 9
+```
+
+Now, let's say you want to recode the column so that all positive numbers become `1` while the rest become `0`.
+
+```         
+> mydata$z <- ifelse(mydata$x>0, 1, 0)
+> mydata
+  x z
+1 4 1
+2 0 0
+3 0 0
+4 6 1
+5 0 0
+6 9 1
+```
+
+The `ifelse()` command uses 3 arguments: first, a logical test, second, the value if true, and third, the value to record if false.
+
+There are other, more complicated operations possible, such as programming loops and the like. That is beyond the scope of this course, although I use them frequently in more complex analyses.
+
+# Summary Functions
+
+We have already used a few functions, such as `read.table()` and `summary()`. Here are a few more that summarize specific aspects of your data:\
+
+```         
+> sum(mydata$height)           # Adds the values in the column
+> mean(mydata$height, na.rm=T) # The second argument is a T/F logical to remove missing values
+                                  before computing the mean (defaults to False if not included)
+> min(mydata$height)           # Minimum of column (you can also add the na.rm=T argument to
+                                   exclude missing data if you haven't removed it already!)
+> sd(mydata$height)            # Standard deviation
+> length(mydata$height)        # Counts the number of observations
+```
+
+# Examining your data by groups
+
+## The `aggregate` command
+
+We often want to see how things break down in groups. R has a number of built in functions for this (`tapply()`, `gapply()`, `table()`, etc). I use these occasionally, but they are all derivatives of the following command: `aggregate()`.\
+In this lab, we will experiment a little with the `aggregate()` command.
+
+Sometimes, I think it could be called the "aggravate" command because the syntax can get a little confusing for large datasets. However, it is very powerful, and can give you (almost) anything you want.\
+Suppose you have a dataset containing a variety of observations on cats. You want to know the average tail length and whisker length of different breeds, broken down also by sex. Here is the general structure of the command:
+
+```         
+catstats <- aggregate(cats[,c("taillength", "whiskerlength")], by=list(sex=cats$sex,
+              variety=cats$breed), function(x) mean(x, na.rm=T))
+```
+
+-   The first argument, `dataframe[,c("column")]` specifies which column variable(s) you want information on. What are you counting, taking the average of, etc.? You need to use that exact syntax: you *cannot* use dataframe\$column.\
+
+-   The second argument, `by=list(group1=dataframe$group1,`\
+    `group2=dataframe$group2)` specifies how to break down the information by groups from the dataframe. Do you want the information broken down by sex? by sex and breed? These are all *categorical* variables (i.e., factors). You can specify as many categorical variables as you want. You may also rename each group in the new dataframe. In the example, I have renamed the `breed` variable to `variety` in the output. Generally, to avoid confusion, I keep the variable names the same.\
+
+-   The last argument is unusual because there is no comma between the `function(x)` and the specified function. The function can be whatever you want: `length(x)` to count the observations, `mean(x)` to take the average, `mean(x)+`$\pi$ to take the mean and add 3.14 (if you had a bizarre desire to do so), etc.. You can *even* write your own (very complex) functions within R. We won't cover how to write functions in R in this course (although it is not hard). (Several years ago, someone wrote a function to order pizzas using R, a valid zip code and street address, and `www.papajohnsonline.com`. How cool is that?!).\
+
+\
+Remember, the `aggregate()` command produces a summary table (i.e., a variable custom-summarized by specified categories). In the example above, just type in the name of the table (`catstats`) to display it. A common mistake is overuse of the `summary()` command. In this instance, it would summarize the already-summarized summary table.
+
+## The `xtabs` command
+
+The `xtabs()` command is another useful command. It does a crosstabulation of your data by two or more factors (i.e., it counts the observations). For example, if you typed
+
+```         
+meow <- xtabs(~ colour + breed, data=cats[!is.na(cats$taillength),])
+```
+
+you would get the number of observations of taillength for each category. Note that I have asked R to delete any missing observations for this variable when doing the crosstabulation (suppose I did not do this earlier after reading in my data). This command is an easy way to see where you are missing observations!
+
+# Today's data
+
+Today I have provided a space delimited \*.txt file, not an Excel spreadsheet \*.xls file. It's nice when people who have collected data give you an Excel file, but this does not always happen. GPS or Hobo environmental data, for example, can be written directly to a \*.dat or \*.csv file that is imported directly to a statistical package, bypassing Excel. Excel is nice because you can easily scan through rows, but sometimes you have to do all of your data examination in R.\
+Today's data set comes from Alaska. It is a pilot study of the number of spores isolated from individual overwintering spruce beetles (*Dendroctonus rufipennis*) in two types of spruce (spruce and hybrid) at four sites. The beetles were collected then rolled on agar plates. The cultured fungi were quantified for spore load on a scale of 0 to 10. The columns in the data set include: `Date`, `Site`, `Tree Species`, `Tree Age` in years, `Insect ID`, and `Sporecount` on a scale of 1 to 10. Any missing data is coded as a period.
+
+# Assignment
+
+I would like written answers to the last 7 questions.
+
+1.  Load the data.
+
+2.  Like last week, perform a summary and convert any necessary variables to factors. If you'd like a challenge, convert the first column to a date format for R using the `as.Date(dataset$column, format=’...’)` command. Helpful parameters within the `format` argument: `%y` is a two digit year code, `%Y` four digits; month abbreviation is `%b` while `%B` represents data containing full names of months, `%m` is month as decimal number between 1-12, and `%d` is day as decimal number between 1-31. If there are any other characters in the date column such as commas or dashes separating the elements of your chosen date format, you will need to incorporate those between the date parameters in the `format` argument. If you do it correctly, the `Date` column will appear as a numeric variable in your `summary()` output.
+
+3.  Perform a scatterplot matrix. The graphs between `Tree_Species` and `Site` should have eight dots. Let's pretend that you executed a $2 \times 2$ factorial experiment, where you were collecting observations on four treatments: two experimental factors crossed by two other experimental factors (e.g., counting seed yield on four treatments: high/low nitrogren crossed by high/low irrigation). If you only saw three dots in a scatterplot matrix crossing the two factors, what would this signify?
+
+4.  Plot a histogram of tree age. Does it look normally distributed?
+
+5.  You will be working with the Sporecount variable today. Create a new dataset that has removed all rows with missing observations for this variable.
+
+6.  How many observations are there by Site and Tree species? Assuming it was a balanced experimental design, where is the missing data?
+
+7.  Using the `aggregate()` command, find the highest individual spore count for each combination of site and tree species.
+
+8.  Using the `aggregate()` command, find the average spore count for each combination of site and tree species.
+
+9.  Because at least one site has fewer observations than the others, we should probably use standard error to report variance in the observations rather than standard deviation. Using the `aggregate()` command, write a function that will calculate the standard error for each combination of site and tree species.

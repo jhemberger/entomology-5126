@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
+
+<title>Lab 8: Time series: Autoregressive models – Entomology 5126</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.qmd"> 
+<span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lab/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+</i> 
+<span class="menu-text">Course Syllabus</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhemberger/entomology-5126" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jhemberg@umn.edu"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#time-series" id="toc-time-series" class="nav-link active" data-scroll-target="#time-series">Time Series</a></li>
+  <li><a href="#autoregressive-models" id="toc-autoregressive-models" class="nav-link" data-scroll-target="#autoregressive-models">Autoregressive models</a></li>
+  <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s Data</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 8: Time series: Autoregressive models</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="time-series" class="level1">
+<h1>Time Series</h1>
+<p>Analysis of time series is typically taught as a one-semester course, providing exposure to autocorrelation functions, partial autocorrelation functions, detrending data, spectral approaches, moving average (MA), autoregressive moving average (ARMA), autoregressive integrated moving average (ARIMA), and more. Today we will play with autoregressive (AR) models. This is where most time series courses begin.</p>
+</section>
+<section id="autoregressive-models" class="level1">
+<h1>Autoregressive models</h1>
+<p>To this point in the course, we have been doing variations on a theme of explaining some continuous response variable <span class="math inline">\(y\)</span> by some response variable <span class="math inline">\(x\)</span>. <span class="math display">\[y \sim x\]</span> We have learned that <span class="math inline">\(x\)</span> can be continuous (i.e., regression) or a factor (i.e., ANOVA). We can even add more continuous variables (i.e., multiple regression) and mix continuous variables and factors (i.e., ANCOVA).<br>
+Now we’re going to put in a twist. <em>Auto</em> of course means <em>self</em>, so autoregression is regressing a variable on itself. <span class="math display">\[y \sim y\]</span> Huh?<br>
+Well, yeah, something like that. Actually, the covariate is the variable shifted backwards in time (<em>lags</em>, denoted as <span class="math inline">\(k\)</span>). The general form of an AR(<span class="math inline">\(k\)</span>) model can be written:</p>
+<p><span class="math display">\[y_t = \beta_0 + \beta_1y_{t-1} + \beta_2y_{t-2} + \ldots + \beta_ky_{t-k} + \epsilon_i\]</span></p>
+<p>where <span class="math inline">\(y\)</span> is the variable of interest, <span class="math inline">\(t\)</span> denotes time, <span class="math inline">\(k\)</span> the time lags (i.e., what happened today depended on what happened yesterday, and perhaps two days ago, and<span class="math inline">\(\ldots\)</span>), and we assume the remaining errors <span class="math inline">\(\epsilon_i\)</span>~<span class="math inline">\(N(0,\sigma^2)\)</span>.</p>
+<p>Now, there are alternate ways to parameterize an autoregressive model. Although we will deal with modeling the temporal dependence in the mean term in today’s lab, another common parameterization includes modeling the temporal autocorrelation in the error term. Below, I have written a “first-order autoregressive model”, or AR(1), where the principal dependence structure is related to a single-step time lag. For now, this is FYI only, although we will return to this concept as we work with lattice and areal data in spatial statistics in a few weeks.</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1x + e_i\]</span> where</p>
+<p><span class="math display">\[\begin{aligned}
+e_i &amp;=&amp; \rho e_{i-1} + u_i,\quad i=1,2,\cdots,n,\\
+e_0 &amp;\sim&amp; N\left(0, \frac{\sigma^2}{1-\rho^2}\right),
+\end{aligned}\]</span></p>
+<p>and we assume <span class="math inline">\(u_i\sim {\rm iid} N(0,\sigma^2)\)</span> and <span class="math inline">\(0&lt;\rho&lt;1\)</span>. For example, <span class="math inline">\(e_{10} = \rho e_{9} + u_{10}\)</span>.<br>
+A property of an AR(1) model is that <span class="math display">\[cor(e_i, e_j) = \rho^{|i-j|},\]</span> where <span class="math inline">\(0&lt;\rho&lt;1\)</span>.<br>
+Two things to note from the above structure:</p>
+<ul>
+<li><p>If <span class="math inline">\(\rho\)</span> is close to 0, the temporal correlation is small.</p></li>
+<li><p>If two time points <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are far apart, the temporal correlation is small.</p></li>
+</ul>
+<p>If you have a hard time understanding such notation for now, that’s OK; it will become more clear by Lab 12. In this lab, we’ll focus on modeling the temporal autocorrelation in the mean term.</p>
+</section>
+<section id="todays-data" class="level1">
+<h1>Today’s Data</h1>
+<p>Today’s data is stored in <code>Lab8data2024.txt</code>. It is a tab-delimited text file with appropriate headers. The data are the daily temperatures at the Minneapolis St.&nbsp;Paul airport (weather station KMSP) from 01 January through 13 March 2024. They were obtained from the National Oceanic and Atmospheric Administration <code>https://www.weather.gov/mpx/mspclimate</code> on March 14, 2024. There are five columns: Month, Day, Julian Day, Max, and Min (in degrees Farenheit). The goal of today’s lab is to describe the daily temperatures with an appropriate model.</p>
+</section>
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<ol type="1">
+<li><p>Load the data, check a summary, and, of course, graph it. Let’s work with the maximum daily temperature. Plot maximum daily temperature vs.&nbsp;Julian day.</p>
+<p><code>&gt; plot(Max</code><span class="math inline">\(\sim\)</span><code>Julian, data=mydata)</code></p>
+<p>This graph indicates to me that spring is coming! It appears that the daily maximum temperature increases with the passage of time since January the 1st, as we might expect. It looks like a rising trend, so fit a straight line to the data:</p>
+<p><code>&gt; fm1 &lt;- lm(Max</code><span class="math inline">\(\sim\)</span><code>Julian, data)</code><br>
+<code>&gt; summary(fm1)</code></p>
+<p>You can plot the fitted line on top of the original plot like this:</p>
+<p><code>&gt; lines(fitted.values(fm1))</code><br>
+Hmm. The straight line trend looks like it fits pretty well, but I should of course take a look at the residual plot.</p>
+<p><code>&gt; plot(residuals(fm1)</code><span class="math inline">\(\sim\)</span><code>fitted.values(fm1))</code><br>
+The spread around zero is beautiful, with roughly equal variance across the plot from residuals less than 20 vs.&nbsp;greater than 20. I do not think I need a transformation of the response variable. (<em>If you want to push yourself (not for homework)</em>: If you were working with <em>minimum</em> temperature data and wanted to use a transformation, could you use a square root transformation on these data? Why or why not? How might you proceed?).<br>
+Since this is a lab focused primarily on assumption <span class="math inline">\(\#2\)</span> of linear models (i.e., errors are independent!), we’ll just pretend the assumption of equal variance is good enough for now.</p></li>
+<li><p>Now let’s explore the thorny issue of autocorrelation. Have I mentioned that these are real data?</p>
+<p>The current model examines daily maximum temperature as a function of time. Time is placed in the ‘mean’ part of the model. Sometimes, simply specifying the temporal variable in the mean part of the model will explain away all temporal autocorrelation. Our goal, when working with temporal data, is to end up with uncorrelated errors (model assumption #2: errors are independent!).</p>
+<p>We will use a <strong>Durbin-Watson test</strong> to check model residuals for temporal autocorrelation. It’s very simple.</p>
+<p>Load the <code>car</code> package written by John Fox, a Professor Emeritus in the Department of Sociology at McMaster University. Prof.&nbsp;Fox had along and fruitful career developing regression methods in statistics. His package (“Companion to Applied Regression”) contains the necessary function.</p>
+<p><code>&gt; durbinWatsonTest(fm1)</code></p>
+<p>This function tests the residuals of a model (in this case, <code>fm1</code>). In the output, you will see four things: a lag term (1 indicates the previous time step), an autocorrelation value, a D-W statistic testing whether that autocorrelation estimate is significantly different from zero (i.e., uncorrelated!), and a <span class="math inline">\(P\)</span>-value. A significant <span class="math inline">\(P\)</span>-value indicates that there IS significant autocorrelation remaining in the residuals of the model.</p>
+<p>Test the residuals for autocorrelation. What is the outcome? (<em>Don’t read the next sentence while you answer this question</em>).</p></li>
+<li><p>Bummer. (Hey! I told you not to read this sentence!) Well, I thought the graph and the model looked ok, even if the <span class="math inline">\(R^2\)</span> wasn’t very high (<span class="math inline">\(F_{1,71}=39.54; P&lt;0.0001; R^2=0.358\)</span>). But now we know that modeling time (as Julian date) in the mean term did not quite take care of the autocorrelation in the data. (Literature terminology: when you place a variable in the mean term that successfully explains the autocorrelation, this is sometimes known as <em>whitening</em> the trend).</p>
+<p>Let’s change approaches to see if we can come up with a good explanation of daily maximum temperature, and still come up with uncorrelated errors. We will try an <em>autoregressive</em> model. With this model, we only deal with the <span class="math inline">\(y\)</span> variable and derivations of itself (although you could add other variables, I suppose).</p>
+<p>In constructing an autoregressive model, we first check the autocorrelation function:</p>
+<p><code>&gt; acf(data$Max)</code></p>
+<p>The autocorrelation function measures the correlation of the series with itself lagged <span class="math inline">\(k\)</span> time steps. You will see a correlation scale on the <span class="math inline">\(y\)</span> axis ranging between <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span>. On the <span class="math inline">\(x\)</span> axis, you will note integers for increasing previous time steps, or <em>lags</em>. So, for example, if you were to see a vertical line corresponding to <span class="math inline">\(+0.5\)</span> at <span class="math inline">\(k=3\)</span>, that would indicate that the time series at time <span class="math inline">\(t\)</span> (often denoted <span class="math inline">\(y_t\)</span>) appears to be positively correlated with a copy of itself at <span class="math inline">\(y_{t-3}\)</span> (three steps previous). This implementation of the function even includes some nifty blue dotted lines that shows statistical significance of the correlation (anything within the blue lines is statistically indistinguishable from zero).</p>
+<p>Why does the autocorrelation at lag <span class="math inline">\(k=0\)</span> equal one?</p></li>
+<li><p>The <code>acf()</code> function shows us the autocorrelation through time. There are, of course, many different ways that autocorrelation can propogate through time. For instance, if everything looks relatively similar to the <em>last</em> previously observed time, we might expect that the correlation would “stick around” for <span class="math inline">\(2,3,4\ldots\)</span> time steps until it decays and disappears. This behaviour characterizes a very popular class of autoregressive models termed AR(1), or <em>first order autoregressive</em>. (Please note: This is also what some SAS software users call ‘repeated measures.’ But you can see that ‘repeated measures’ is something measured repeatedly, and the temporal dependence in the data is a <em>separate issue</em>! The autocorrelation structure need not be first order, even though it is a very frequent phenomenon. Do not confound measuring something repeatedly with specifying one type of autocorrelation).<br>
+For first-order autoregressive models, the autocorrelation <span class="math inline">\(\rho\)</span> decays exponentially <span class="math inline">\(\rho^k\)</span> at the <span class="math inline">\(k^{th}\)</span> lag. So, if the autocorrelation at lag 1 is 0.4, we might expect that it would decay to <span class="math inline">\(0.4^2=0.16\)</span> and <span class="math inline">\(0.4^3=0.064\)</span> at time lags 2 and 3 (and so on). If you plot the autocorrelation function and see a gentle positive decay through several time lags, you are probably staring at first order autocorrelation.<br>
+We have all heard arguments about how unreliable weather forecasts are. From looking at your <code>acf()</code> graph, in a general sense, from only having a two and a half month list of daily temperatures, what is the farthest out in time that you could make a statistically relevant guesstimate of that day’s maximum temperature?</p></li>
+<li><p>Of course, there are many different orders of autocorrelation. Many time series of organisms that display oscillating population dynamics show second order autocorrelation, for example.<br>
+While the <code>acf()</code> function provides some strong diagnostic hints for determining order, a helpful way to diagnose order is to examine the <em>partial autocorrlelation function</em>, <code>pacf()</code>. A partial autocorrelation function displays the correlation left at time lag <span class="math inline">\(k\)</span> <em>after</em> removing autocorrelation with an AR(<span class="math inline">\(k-1\)</span>) model. So, for example, if you have an AR(1) model, you would expect the autocorrelation at <span class="math inline">\(k=2\)</span> to be non-significant once you account for “what happened yesterday” (<span class="math inline">\(k=1\)</span>).</p>
+<p>Some students find it difficult to grasp the difference between the <code>acf()</code> and <code>pacf()</code> functions. To review, you can think of the above <code>acf()</code> and <code>pacf()</code>functions as a two step process that works in tandem. First, is there autocorrelation? What does it look like? (Does it decay slowly like something contagious passed down from day to day, does it bounce back and forth so an immediate time step looks diametrically opposite the previous one, etc.) Second, what is the order of the autocorrelation? How far back does the time series look like itself? (These questions are rhetorical - do not answer them for the homework). Put another way, the <code>acf()</code> can describe the pattern. The <code>pacf()</code> can tell you what is <em>causing</em> that pattern.</p>
+<p>Plot the partial autocorrelation function:</p>
+<p><code>&gt; pacf(data$Max)</code></p>
+<p>The dashed blue lines indicate significance values. Whoa! If you are looking at the same chart I was, I didn’t expect to see that. It’s always tempting as an instructor to change a few points and “fix” the assignment - but then you wouldn’t really be getting an education, would you? There are a couple of curiosities in this graph.</p>
+<p>Describe for me exactly what this chart is telling you about trends in the data, and, in a general sense, what you think of that information.</p></li>
+<li><p>Once we know the order, we can lag the data and regress <span class="math inline">\(y_t\)</span> on <span class="math inline">\(y_{t-k}\)</span>. Create two new columns with the maximum temperature lagged one day and then two days. <strong>Be careful</strong> when doing this! It’s easy to lag the data in the wrong direction. You can either do this in a spreadsheet, or in R:</p>
+<p><code>&gt; data$MaxLag1 &lt;- c(NA, data[1:(nrow(data)-1), "Max"])</code><br>
+<code>&gt; data$MaxLag2 &lt;- c(NA, NA, data[1:(nrow(data)-2), "Max"])</code><br>
+<code>&gt; data[1:5,] # Check the first five rows</code></p>
+<p>Notice that the first <span class="math inline">\(k\)</span> observations are always lost, so when doing this type of time series analysis, there is a limit to how many lags you can reasonably study, <em>especially</em> with a very short data series. While there might be statistical rationale from the <code>pacf()</code> graph to explore a time lag more than five or seven days out, I would not do that here.</p>
+<p>Plot the <code>Max</code> temperature against its lag variable of <span class="math inline">\(k=1\)</span>. By eye, describe what the correlation looks like (if any).</p></li>
+<li><p>Regress the maximum temperature on it’s <span class="math inline">\(k=1\)</span> lag (in other words, maximum temperature as a function of the temperature the day before). If you left the missing value for the first observation’s lag in the data set, you will see a new message that appears on a line between the <code>Residual standard error</code> and the <code>Multiple R-squared</code> lines in the <code>summary()</code> command.<br>
+Comment on the <span class="math inline">\(R^2\)</span> and the apparent overall significance of the model. Remember, the inference from some of the test statistics might be slightly off if there is significant autocorrelation, so view the stats with some caution. Examine the residual plot, and <span class="math inline">\(\ldots\)</span></p>
+<p>Check the D-W statistic. Is there any temporal autocorrelation left after accounting for <span class="math inline">\(y_{t-1}\)</span>? Is an AR1 time series model for maximum temperature necessary?</p></li>
+<li><p>If you want to see your work graphed, with the <span class="math inline">\(\hat{y}_t\)</span>:<br>
+<code>&gt; plot(Max</code><span class="math inline">\(\sim\)</span><code>Julian, data)</code><br>
+<code>&gt; lines(fitted.values(yourAR1model))</code></p>
+<p><em>Do</em> note that the equation predicting the daily maximum temperature is not the same as the plot function, which is just graphing two variables for you; i.e., your final model is <em>not</em></p>
+<p><span class="math display">\[temperature = \beta_0 + \beta_1day\]</span></p>
+<p>It can be kind of confusing when you are graphing a model that uses a variable not on the <span class="math inline">\(x\)</span>-axis <em>per se</em>.</p></li>
+<li><p>Now, find and report a good model (time series or not) for minimum daily temperature. When reporting a model, be sure to report the equation of the line and define the variables and their units. For an example of how to report model summary statistics, see question #3. Have fun!</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Jeremy Hemberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://www.r-project.org/about.html" target="_blank"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></a> and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

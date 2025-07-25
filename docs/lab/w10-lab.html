@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
 
-<title>Entomology 5126</title>
+<title>Lab 10: Spatial point processes: Ripley’s K – Entomology 5126</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./media/web-favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -79,8 +111,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./media/5126-sticker.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -90,33 +122,33 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
+    <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./content/index.qmd"> 
+    <a class="nav-link" href="../content/index.qmd"> 
 <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./lab/index.html"> 
+    <a class="nav-link" href="../lab/index.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
+    <a class="nav-link" href="../resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
 </i> 
 <span class="menu-text">Course Syllabus</span></a>
   </li>  
@@ -141,66 +173,132 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
+  <li><a href="#todays-assignment" id="toc-todays-assignment" class="nav-link" data-scroll-target="#todays-assignment">Today’s Assignment</a>
+  <ul class="collapse">
+  <li><a href="#ripleys-k" id="toc-ripleys-k" class="nav-link" data-scroll-target="#ripleys-k">Ripley’s K</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla column-page">
-  <img src="media/5126-header.png" class="about-image
-  rectangle " style="width: 55em;">
- <main class="content column-page" id="quarto-document-content">
-<div>
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 10: Spatial point processes: Ripley’s K</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
 </div>
-<div class="quarto-layout-panel" data-layout="[ 60, 5, 35 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
-<p class="landing-text" style="text-align:justify;">
-Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to <em>analyze</em>, <em>interpret</em>, and <em>communicate</em> spatially and temporally dependent data.
-</p>
-</div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 5.0%;justify-content: flex-start;">
-</div>
-<div id="third-column" class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: flex-start;">
-<p class="landing-text">
-<strong>Entomology 5126 | Spring 2026</strong><br> College of Food, Agricultural, and Natural Resources Sciences<br> University of Minnesota
-</p>
-</div>
-</div>
-</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <hr>
-<div>
-</div>
-<div class="quarto-layout-panel" data-layout="[ 33, 33, 33 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<section id="instructor" class="level3">
-<h3 data-anchor-id="instructor">Instructor</h3>
-<p class="landing-text" style="text-align:center;">
-<i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> <a href="https://entomology.umn.edu/people/jeremy-hemberger">Dr.&nbsp;Jeremy Hemberger</a><br> <i class="fa-solid fa-building" aria-label="building"></i> 408 Hodson Hall<br> <i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:jhemberg@umn.edu">jhemberg@umn.edu</a>
-</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Today we will work with Ripley’s K functions, which can tell us whether a spatial point process is random, regular, or clumped. As we discussed in class, the intensity, <span class="math inline">\(\lambda\)</span>, of events over a surface is typically considered to be Poisson distributed. A Poisson point process assumes three things:</p>
+<ol type="1">
+<li><p>Events occur singly</p></li>
+<li><p>Expected number of events is the same in all possible subregions of the same size</p></li>
+<li><p>The occurrence of an event in one subregion is independent of the occurrence of an event in another non-overlapping subregion</p></li>
+</ol>
+<p>Ripley’s K functions can be <em>univariate</em>, where you are only examining one point pattern (e.g., spatial patterns of dandilions in a field), or <em>bivariate</em>, where you examine how two point patterns interact (e.g., do dandilions have no spatial relationship with bunny rabbits in a field, or are they clustered together (aggregation), or are dandilions found wherever rabbits are not (inhibition?)). Bivariate K functions are sometimes known as <em>K-cross</em> functions because you are examining how two point patterns interact.</p>
 </section>
+<section id="todays-data" class="level1">
+<h1>Today’s data</h1>
+<p>Today’s data, in <code>Lab10data.xls</code>, are from Dr.&nbsp;W.A. Aherne in the Department of Pathology, University of Newcastle-upon-tyne, UK. This is a spatial point process dataset, where the events are the positions of the centres of nuclei of certain cells in a histological section of tissue from a laboratory-induced metastasising lymphoma in the kidney of a hamster.<br>
+A point process typically only contains information on the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> locations. These data comprise a super-special type of point process, a <em>marked</em> spatial point process. <em>Marks</em> are data that characterize events in the spatial point process beyond their <span class="math inline">\(x,y\)</span> locations. For example, a data set of trees may not only have two columns for <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> positions, but also a column for diameters. In this data set, the cells are marked: they are classified into two types: “pyknotic” (i.e., dying) and “dividing” (i.e., living). The background white space is occupied by unrecorded, interphase cells that are not recorded and considered to be of no consequence to the present analysis.<br>
+The sampling window is a square, 250 <span class="math inline">\(\mu\)</span>m <span class="math inline">\(\times\)</span> 250 <span class="math inline">\(\mu\)</span>m. In this data set, it has been rescaled to the unit square (i.e., between 0 and 1). There are three columns:</p>
+<div class="center">
+<p>Variable Description</p>
+<hr>
+<p>x <span class="math inline">\(x\)</span> position y <span class="math inline">\(y\)</span> position type marks; two levels: pyknotic or dividing</p>
 </div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<section id="lecture-details" class="level3">
-<h3 data-anchor-id="lecture-details">Lecture details</h3>
-<p class="landing-text" style="text-align:center;">
-<i class="fa-solid fa-calendar" aria-label="calendar"></i> Wednesday and Friday<br> <i class="fa-solid fa-clock" aria-label="clock"></i> 9:30-10:20am<br> <i class="fa-solid fa-location-dot" aria-label="location-dot"></i> 408 Hodson Hall
-</p>
 </section>
-</div>
-<div id="third-column" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<section id="lab-details" class="level3">
-<h3 data-anchor-id="lab-details">Lab details</h3>
-<p class="landing-text" style="text-align:center;">
-<i class="fa-solid fa-calendar" aria-label="calendar"></i> Friday<br> <i class="fa-solid fa-clock" aria-label="clock"></i> 10:30-12:30pm<br> <i class="fa-solid fa-location-dot" aria-label="location-dot"></i> 408 Hodson Hall
-</p>
-</section>
-</div>
-</div>
-</div>
+<section id="todays-assignment" class="level1">
+<h1>Today’s Assignment</h1>
+<section id="ripleys-k" class="level2">
+<h2 class="anchored" data-anchor-id="ripleys-k">Ripley’s K</h2>
+<p>Load the <code>spatstat</code> package today. This package was originally written by Adrian Baddeley (Curtin University), Ege Rubak (Aalborg University), and Rolf Turner (now retired, formerly of University of New Brunswick). This package is the premier package for working with spatial point process data. The two senior authors Baddeley and Turner instituted a bold change from historic classroom terminology that I like very much. For distance metrics in the K function, they use <span class="math inline">\(r\)</span> for radius, which is still a type of distance, rather than <span class="math inline">\(t\)</span>.</p>
+<ol type="1">
+<li><p>After loading the <code>spatstat</code> package, load the data. As usual, do a <code>summary()</code> to ensure the data were loaded properly. In today’s data set, the marks are a factor with two levels, so be sure to convert the <em>type</em> column to a factor as necessary. Again, as good practice, use the <code>summary()</code> command on your data set to check that your variable types are properly defined both before and after an operation.</p></li>
+<li><p>Now, use subsetting or row selection techniques to create two more dataframes containing <em>only</em> the dividing cells, and <em>only</em> the pyknotic cells. You should now have <strong>three</strong> data sets.<br>
+</p></li>
+<li><p>To this point in the course, when we have read in data, the resulting object has been a <em>dataframe</em> that we can then examine with a <code>summary()</code>, explore with a scatterplot matrix, etc. Today, we are going to work with a slightly different object, a <em>planar point process</em>, abbreviated <code>ppp</code>.<br>
+Convert each dataframe to a planar point process. Here’s the relevant syntax, with explanation following:<br>
+<code>&gt; my.ppp.marked &lt;- ppp(x=mydata$x, y=mydata$y, window=square(1), marks=mydata$type)</code><br>
+The first two arguments in the <code>ppp()</code> command specify where to find the spatial locations. The <code>window</code> specifies what the sample area looks like. I have used the simplest specification, a square with sides of length=1. The <code>window</code> argument is actually very flexible; you can provide coordinates from shapefiles, polygons with holes, rectangles, and more. (See a full description in the help file using <code>?window</code> if you would like to investigate further with your own data).<br>
+The final argument, <code>marks</code>, specifies where to find the marks in your dataframe (here, in the <code>type</code> column). <em>Note</em>: If you are working with a <em>univariate</em> dataset that only contains one type of mark (e.g., only dividing cells or only maple trees, so you only have two columns with <em>x</em>’s and <em>y</em>’s to denote the events locations), then you do <em>not</em> need to include the <code>marks</code> argument.<br>
+You should now have three <code>ppp</code> objects, one for the full dataset with marks, and one for each of your univariate subsets for dividing and pyknotic cells (without marks). Be sure to name them something meaningful.<br>
+</p></li>
+<li><p>Next, do a <code>summary()</code> on the resulting object from the <code>ppp()</code> from the full dataset with marks. You should see a helpful table of the total number of cells that are dividing vs.&nbsp;dying, their relative proportions, and the expected intensity, <span class="math inline">\(\lambda\)</span>, per unit area.</p>
+<p>First assignment question: given that the unit square in our data set is actually 250 <span class="math inline">\(\mu\)</span>m long, what is the intensity of <em>dividing</em> cells on a per mm<span class="math inline">\(^2\)</span> basis?</p></li>
+<li><p>Let’s work now with the dying, pyknotic cells. As you saw in the previous question, a <code>summary()</code> of the point process returns the intensity and details of the window in a point process without marks. Plot the point process for the pyknotic cells (I think you can guess the syntax). The pyknotic cells will show up as circles, since there is only one type of mark.</p>
+<p>From a strictly visual examination, do you think the dying cells appear to be clustered, random, or regularly spaced?</p></li>
+<li><p>The human eye is actually trained to look for patterns. As such, <strong>we are by nature terrible at visually examining and diagnosing complete spatial randomness</strong>. Hence, Ripley’s K is a useful quantitative technique. Continue working with the point process restricted to these <strong>pyknotic</strong> cells.</p>
+<p>The syntax for Ripley’s K is fairly simple. We use the estimation function, <code>Kest()</code>:<br>
+<code>&gt; myRipleysK.pyknotic &lt;- Kest(my.ppp.pyknotic, correction="best")</code><br>
+The first argument specifies the univariate planar point process (i.e., no marks - you are only looking at one type of cell). The second argument to the function specifies the border correction.<br>
+The <code>Kest()</code> command has many different border correction options that have different statistical properties (e.g., efficiency/speed of calculation, robustness to smaller data sets, shapes of windows, etc.). One of the most useful for square or rectangular geometries is Ripley’s <em>isotropic</em> correction. The technique I simply recommend is to specify the option <code>correction="best"</code>. Believe it or not, the creators of the package have developed a number of rules to calculate the best method based on your data set!<br>
+Now, <code>plot()</code> the resulting K function. You should see a <strong>theoretical <span class="math inline">\(K\)</span></strong> line (might be blue), with a squiggly <strong>empirical <span class="math inline">\(\hat{K}\)</span></strong> line. What border correction did the program choose for you?</p></li>
+<li><p>If you were to try different border corrections, you would likely find that they all look somewhat similar. Just for fun, calculate Ripleys’ K without the <code>correction</code> argument and then plot the result. The resulting graph will plot the various empirical <span class="math inline">\(\hat{K}\)</span> lines denoting differing types of border corrections.<br>
+Any one of these empirical <span class="math inline">\(\hat{K}\)</span> line(s), while helpful, are not terribly informative, since they do not tell us how far above or below the theoretical line one needs to be to be considered “significant.”<br>
+Instruct your computer to construct a simulation envelope. With the simulation envelope, the computer randomizes the point pattern 1,000 times, calculates the empirical K function, and then takes off a specified percentile of top and bottom runs to construct a simulation or confidence envelope. Be patient; it may take a few minutes depending on the speed of your machine!<br>
+<code>&gt; my.env.pyknotic &lt;- envelope(my.ppp.pyknotic, Kest, nsim=999, nrank=25)</code><br>
+Plot the envelope using <code>plot(my.env.pyknotic)</code>. You should see a nice shaded region with somewhat-symmetric upper and lower confidence lines now.</p>
+<ol type="1">
+<li><p>What size of confidence interval is constructed by doing 999 simulations (in addition to the 1 real data set) and taking away the maximum and minimum 25 runs?</p></li>
+<li><p>How would you change the arguments if you wanted a 99% confidence interval?</p></li>
+</ol></li>
+<li><p>It can be difficult to see where the empirical line crosses a theoretical boundary line on a quadratic scale, so plot one of these transformations instead:<br>
+<code>&gt; plot(myenv, sqrt(./pi)</code><span class="math inline">\(\sim\)</span><code>r)</code><br>
+<code>&gt; plot(myenv, (sqrt(./pi)-r)</code><span class="math inline">\(\sim\)</span><code>r)</code><br>
+What is the name of the function that you have just plotted?</p></li>
+<li><p>Looking at your Ripley’s K function with confidence intervals, do you see evidence of clustering or regular spacing in the pyknotic cells? Does this agree with your initial guess at what the pattern would look like from visual inspection?<br>
+</p></li>
+<li><p>Let’s do some work with Ripley’s <em>bivariate</em> K, sometimes known as K-cross functions. First, let’s check the summary of the entire marked point process (i.e., whole data set). You may need to go back to question 1 to remember where you left it.</p>
+<p><code>&gt; summary(my.ppp.marked)</code><br>
+And graph the process:<br>
+<code>&gt; plot(my.ppp.marked, cols=c("black", "red"))</code><br>
+You can see I’ve added some colour to the graph for visual distinction. From visual inspection, do you think that the dividing cells are found next to or far away from the dying, pyknotic cells? Or is there no relation (i.e., complete spatial randomness)?</p></li>
+<li><p>Construct and plot Ripley’s bivariate K function for the interaction between the dividing and pyknotic cells (i.e., using the marked point process). The syntax is identical to what you have worked with in previous questions, except that you now must (1) use <code>Kcross()</code> instead of <code>Kest()</code> to estimate the K-function (again, use the <code>correction="best"</code> argument within <code>Kcross()</code>) and (2) specify the marked point process where you previously specified the univariate planar point process for pyknotic cells. Simulation envelopes are constructed as before, with a reminder that construction may take a few minutes because the computer is now randomizing <em>two</em> point processes multiple times.</p>
+<p>Do dying cells tend to be clustered, far away from, or completely independent (i.e., random) from dividing cells? If you see a significant pattern, at what spatial scale(s) does it occur? (Remember that these data have been rescaled).</p></li>
+</ol>
 
 
-</main>  
-</div>
- <!-- /main -->
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -221,6 +319,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

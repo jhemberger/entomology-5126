@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Hemberger and Brian Aukema">
+<meta name="dcterms.date" content="2025-07-25">
 
-<title>Entomology 5126</title>
+<title>Lab 5: Simple linear regression – Entomology 5126</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./media/web-favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../media/web-favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -79,8 +111,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./media/5126-sticker.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../media/5126-sticker.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -90,33 +122,33 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
+    <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./content/index.qmd"> 
+    <a class="nav-link" href="../content/index.qmd"> 
 <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./lab/index.html"> 
+    <a class="nav-link" href="../lab/index.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
+    <a class="nav-link" href="../resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
+    <a class="nav-link" href="../media/ent5126-syllabus_sp2026.pdf" target="_blank"> <i class="bi bi-file-pdf" role="img">
 </i> 
 <span class="menu-text">Course Syllabus</span></a>
   </li>  
@@ -141,66 +173,127 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a>
+  <ul class="collapse">
+  <li><a href="#useful-commands-for-fitting-regression-models" id="toc-useful-commands-for-fitting-regression-models" class="nav-link" data-scroll-target="#useful-commands-for-fitting-regression-models">Useful commands for fitting regression models</a></li>
+  </ul></li>
+  <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
+  <li><a href="#todays-assignment" id="toc-todays-assignment" class="nav-link" data-scroll-target="#todays-assignment">Today’s Assignment</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla column-page">
-  <img src="media/5126-header.png" class="about-image
-  rectangle " style="width: 55em;">
- <main class="content column-page" id="quarto-document-content">
-<div>
-</div>
-<div class="quarto-layout-panel" data-layout="[ 60, 5, 35 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
-<p class="landing-text" style="text-align:justify;">
-Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to <em>analyze</em>, <em>interpret</em>, and <em>communicate</em> spatially and temporally dependent data.
-</p>
-</div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 5.0%;justify-content: flex-start;">
-</div>
-<div id="third-column" class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: flex-start;">
-<p class="landing-text">
-<strong>Entomology 5126 | Spring 2026</strong><br> College of Food, Agricultural, and Natural Resources Sciences<br> University of Minnesota
-</p>
-</div>
-</div>
-</div>
-<hr>
-<div>
-</div>
-<div class="quarto-layout-panel" data-layout="[ 33, 33, 33 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<section id="instructor" class="level3">
-<h3 data-anchor-id="instructor">Instructor</h3>
-<p class="landing-text" style="text-align:center;">
-<i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> <a href="https://entomology.umn.edu/people/jeremy-hemberger">Dr.&nbsp;Jeremy Hemberger</a><br> <i class="fa-solid fa-building" aria-label="building"></i> 408 Hodson Hall<br> <i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:jhemberg@umn.edu">jhemberg@umn.edu</a>
-</p>
-</section>
-</div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<section id="lecture-details" class="level3">
-<h3 data-anchor-id="lecture-details">Lecture details</h3>
-<p class="landing-text" style="text-align:center;">
-<i class="fa-solid fa-calendar" aria-label="calendar"></i> Wednesday and Friday<br> <i class="fa-solid fa-clock" aria-label="clock"></i> 9:30-10:20am<br> <i class="fa-solid fa-location-dot" aria-label="location-dot"></i> 408 Hodson Hall
-</p>
-</section>
-</div>
-<div id="third-column" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<section id="lab-details" class="level3">
-<h3 data-anchor-id="lab-details">Lab details</h3>
-<p class="landing-text" style="text-align:center;">
-<i class="fa-solid fa-calendar" aria-label="calendar"></i> Friday<br> <i class="fa-solid fa-clock" aria-label="clock"></i> 10:30-12:30pm<br> <i class="fa-solid fa-location-dot" aria-label="location-dot"></i> 408 Hodson Hall
-</p>
-</section>
-</div>
-</div>
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 5: Simple linear regression</h1>
+<p class="subtitle lead">Entomology 5126 - Spring 2026</p>
 </div>
 
 
-</main>  
-</div>
- <!-- /main -->
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Hemberger and Brian Aukema </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Today’s lab focuses on simple linear regression. ANOVA is used to examine factors; regression is used for continuous variables. Once you have both techniques in your toolbox, you will be able to do almost anything! This includes combining both factors and continuous variables in the same model (Analysis of Covariance, or ANCOVA), and changing assumptions about the distribution of the data (e.g., generalized linear models). This basic ANOVA and regression framework will serve us well as we move into more advanced topics in spatial and temporal analyses through the month of March.<br>
+</p>
+</section>
+<section id="regression" class="level1">
+<h1>Regression</h1>
+<p>The basic formula for a regression model is: <span class="math display">\[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]</span> The <span class="math inline">\(\beta_0\)</span> is the intercept, or where the line crosses the <span class="math inline">\(y\)</span>-axis. The <span class="math inline">\(\beta_1\)</span> is the slope, or the increase per unit change in <span class="math inline">\(x\)</span>. The <span class="math inline">\(\epsilon_i\)</span> refers to the “errors” about the line. We assume that the errors are normally distributed N(0, <span class="math inline">\(\sigma^2\)</span>). If the model was perfect (never the case), there would be no errors and your data would lie along a perfectly straight line.<br>
+There are four assumptions for a linear regression model:</p>
+<ol type="1">
+<li><p>The model is correct</p></li>
+<li><p>The observations are independent</p></li>
+<li><p>The variances are equal</p></li>
+<li><p>The errors are normally distributed</p></li>
+</ol>
+<p>As you might expect, you can check the assumptions of equal variances and normally distributed errors in your residual plot. Actually, in regression, residual plots can also help detect when your model might not be correct (such as if you need a polynomial model or another technique to fit a curve). Although today’s data is <em>very</em> close to needing curve-fitting techniques, as you will see from the residual plots, the data are actually statistically best fit with a straight line. We will focus on simple linear regression for today’s assignment. The goal for today is to become comfortable with fitting and evaluating simple linear regression models.</p>
+<section id="useful-commands-for-fitting-regression-models" class="level2">
+<h2 class="anchored" data-anchor-id="useful-commands-for-fitting-regression-models">Useful commands for fitting regression models</h2>
+<ul>
+<li><p>The linear model command, <code>lm()</code>. Here are the steps:</p>
+<ol type="1">
+<li><p>Decide what to call your model. E.g.,<br>
+<code>&gt; fm1 &lt;-</code></p></li>
+<li><p>Specify the <code>lm()</code> command, and determine what <code>y</code> variable you are analyzing. It should be something that is, or can be transformed to be, normally distributed.<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code></code></p></li>
+<li><p>List the continuous variable(s) that you are analyzing. For example, if you examining the effect of precipitation on a response variable <code>y</code>, you might write<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>precipitation</code></p></li>
+<li><p>Specify the dataset you are using.<br>
+<code>&gt; fm1 &lt;- lm(y</code><span class="math inline">\(\sim\)</span><code>precipitation, data=mylabdata)</code><br>
+</p></li>
+</ol>
+<p>Hey! This looks very similar to fitting an ANOVA (which is also a linear model)!</p></li>
+<li><p>The <code>summary()</code> function. Examine the <span class="math inline">\(F\)</span>-statistic of the overall model, which you can find at the bottom of the summary. This tells you whether there is <em>any</em> signficant relationship between your response variable and your predictor. (Alternatively, you can also recover the same <span class="math inline">\(F\)</span>-statistic from the <code>anova()</code> command, because even a regression can be analysed using an ANOVA framework. There just aren’t as many replicates in each “group”). If the <span class="math inline">\(p\)</span>-value is greater than 0.05, then there is nothing significant. Go have lunch and design another experiment.</p></li>
+<li><p>Remember, while the <span class="math inline">\(p\)</span>-value from the overall model is good to examine, you should also simultaneously examine how well the model fits and if a transformation might be necessary:<br>
+<code>&gt; plot(residuals(fm1)</code><span class="math inline">\(\sim\)</span><code>fitted.values(fm1))</code></p></li>
+<li><p>Once you have a good model, to get detailed information on model coefficients:<br>
+<code>&gt; summary(fm1)</code></p></li>
+<li><p>Remember, a residual plot should show roughly equal variance around the horizonal zero line across the plot. If the spread is like a fan, for example, you may need to apply a transformation. You can do this right in your model fitting command:<br>
+<code>&gt; fm1 &lt;- lm(sqrt(y)</code><span class="math inline">\(\sim\)</span><code>precipitation, data=mylabdata)</code><br>
+</p></li>
+</ul>
+</section>
+</section>
+<section id="todays-data" class="level1">
+<h1>Today’s data</h1>
+<p>Male crickets chirp by raising their wing covers to 45 degrees and rubbing the front area of one wing cover (scraper) against the rough area on the other wing (file). The faster this stridulation, the higher the chirping pitch that is produced. Also, it is thought that stridulation rate increases with air temperature. You may even remember equations from elementary school providing instruction on how to tell the ambient air temperature on a summer evening from the number of chirps over a one minute period.<br>
+Today’s data set, <code>Lab5data.xls</code>, comes from <em>The Song of Insects</em>, written in 1948 by Harvard physics professor George W. Pierce. It is a very small dataset: 15 observations of striped ground crickets (<em>Allonemobius fasciatus</em>) chirping at different ambient temperatures. There are only two variables. <code>Pitch</code> is the average number of vibrations per second. (I <em>think</em> that there are about 9-10 vibrations in an auditory chirp). <code>Temperature</code> is the ambient air temperature in degrees Farenheit.<br>
+</p>
+</section>
+<section id="todays-assignment" class="level1">
+<h1>Today’s Assignment</h1>
+<ol type="1">
+<li><p>You know what to do for question one. For regression, we want to work with explanatory variables that are <em>not</em> factors.</p></li>
+<li><p>Check the data graphically with a scatterplot matrix (by now, of course, this is second nature). What sort of correlation is displayed (positive or negative)? Although this is not always done, you can determine the linear correlation using the <code>cor()</code> function, specifying the two variables separated by a comma. If you were to fit a regression, would you expect a postive or negative slope?</p></li>
+<li><p>Fit a linear regression of pitch as a function of ambient air temperature. Examine and comment on the residual plot. In residual plots from ANOVAs, there was a vertical line for each group. Why are there no vertical lines for regression models?</p></li>
+<li><p>If you were going to publish this data, would you use a transformation of the <code>y</code> data? Why or why not?</p></li>
+<li><p>For the rest of the assignment, proceed without transforming your data. Examine the <code>summary()</code> of your model. What is the relationship between the correlation above in question 2 and the <code>Multiple R-Squared</code> in the <code>summary()</code> output?</p></li>
+<li><p>Continue examining the <code>summary()</code> of your model. The <code>(Intercept)</code> is just that: where the line crosses the <span class="math inline">\(y\)</span>-axis, or what the <span class="math inline">\(y\)</span>-value would be at <span class="math inline">\(x=0\)</span>. What does the <span class="math inline">\(t\)</span>-test associated with the <code>(Intercept)</code> test? What does the <span class="math inline">\(p\)</span> value tell us in this case (statistically, and ecologically)?</p></li>
+<li><p>The <code>temperature</code> estimate in the <code>summary()</code> output is the slope coefficient. You will also see, of course, an estimate of the standard error and a <span class="math inline">\(t\)</span>-value. What does this <span class="math inline">\(t\)</span>-test test?</p></li>
+<li><p>Of course, we could analyse this entire experiment by partitioning the variation by sums of squares, as we would do in an ANOVA, and derive an <span class="math inline">\(F\)</span>-test that would test whether temperature has any explanatory utility. What is the relationship between the <span class="math inline">\(t\)</span>-value and the overall <span class="math inline">\(F\)</span>-ratio in the <code>summary()</code> output?</p></li>
+<li><p>I found that the term for temperature is significant in explaining the average number of vibrations per second (pitch). For each one degree increase in temperature, the number of vibrations increases 0.21193. Needless to say, this is a bit awkward (e.g., for every 5 degree increase in air temperature, the number of vibrations increases by 1.05965). It might make more sense to round this number to exactly 0.2, so we could say that for every increase of 5 degrees, the number of vibrations increases by 1.<br>
+Test whether the slope is significantly different than 0.2. The numbers from the summary output may be helpful in constructing the test. Another useful command is the <code>pt()</code> function, which generates the probability from a <span class="math inline">\(t\)</span> distribution. The syntax is <code>pt(t-statistic value, df, lower.tail=T)</code>.<br>
+<strong>Note:</strong> The <strong>second</strong> argument in the <code>pt()</code> command is <code>df</code> or degrees of freedom associated with the test. While we learned <em>n-1</em> in class for a one sample <em>t</em>-test, here (and in the future), we need to reduce the degrees of freedom to the amount of information left accounting for any estimated parameters (i.e., one slope uses one degree of freedom). This just means that by convention <em>we use the degrees of freedom of the residual or error term for the hypothesis test</em>. The <strong>third</strong> argument in the <code>pt()</code> command returns either the upper or lower tail of the <em>t</em> distribution. I can never remember whether <code>T</code> (true) or <code>F</code> (false) is the upper or lower tail. But, you should be able to figure that out simply from the probability returned. If you are unsure, scratch a diagram of the critical <em>t</em> statistic distribution on scrap paper.</p></li>
+<li><p>How many vibrations per second would I expect at 86F?</p></li>
+<li><p>Over what temperature range would you feel comfortable using this model?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -221,6 +314,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
