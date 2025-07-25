@@ -1,30 +1,30 @@
 group,week,date,title,content,lab,example
-Module 1: RStudio and Tidyverse crash course,Week 1,1/21/26,Orientation to class,content/w1-content,lab/w1-lab,example/w1-example
-Module 1: RStudio and Tidyverse crash course,Week 1,1/23/26,Data wranglin',,,
-Module 2: Reviewing foundations in statistics,Week 2,1/28/26,Sampling & probability,content/w2-content,lab/w2-lab,example/w2-example
-Module 2: Reviewing foundations in statistics,Week 2,1/30/26,Random variables and probability distributions,,,
-Module 2: Reviewing foundations in statistics,Week 3,2/4/26,Transformations,content/w3-content,lab/w3-lab,example/w3-example
-Module 2: Reviewing foundations in statistics,Week 3,2/6/26,Hypotheses and one-sample t-tests,,,
-Module 2: Reviewing foundations in statistics,Week 4,2/11/26,Dependent and independent two-sample t-tests,content/w4-content,lab/w4-lab,example/w4-example
-Module 2: Reviewing foundations in statistics,Week 4,2/13/26,Analysis of variance (ANOVA),,,
-Module 2: Reviewing foundations in statistics,Week 5,2/18/26,"Evaluating assumptions, linear models, correlation",content/w5-content,lab/w5-lab,example/w5-example
-Module 2: Reviewing foundations in statistics,Week 5,2/20/26,Simple linear regression,,,
-Module 2: Reviewing foundations in statistics,Week 6,2/25/26,Multiple regression,content/w6-content,lab/w6-lab,example/w6-example
-Module 2: Reviewing foundations in statistics,Week 6,2/27/26,Multiple regression,,,
-Module 2: Reviewing foundations in statistics,Week 7,3/4/26,Model selection,content/w7-content,lab/w7-lab,example/w7-example
-Module 2: Reviewing foundations in statistics,Week 7,3/6/26,Midterm,,,
-Module 3: Integrating time into our models,Week 9,3/18/26,Midterm review,content/w9-content,lab/w9-lab,example/w9-example
-Module 3: Integrating time into our models,Week 9,3/20/26,Intro to space and time,,,
-Module 3: Integrating time into our models,Week 10,3/25/26,Mixed effects models,content/w10-content,lab/w10-lab,example/w10-example
-Module 3: Integrating time into our models,Week 10,3/27/26,Information critera,,,
-Module 4: Integrating space into our models,Week 11,4/1/26,Spatial point processes: Ripley's K,content/w11-content,lab/w11-lab,example/w11-example
-Module 4: Integrating space into our models,Week 11,4/3/26,Generalized linear models,,,
-Module 4: Integrating space into our models,Week 12,4/8/26,GLMs and analogies to point process models,content/w12-content,lab/w12-lab,example/w12-example
-Module 4: Integrating space into our models,Week 12,4/10/26,Spatial point processes: models,,,
-Module 4: Integrating space into our models,Week 13,4/15/26,"Lattice data: MW test, Geary's C, Moran's I",content/w13-content,lab/w13-lab,example/w13-example
-Module 4: Integrating space into our models,Week 13,4/17/26,Lattice data: SAR and CAR models,,,
-Module 4: Integrating space into our models,Week 14,4/22/26,Geostatistics,content/w14-content,lab/w14-lab,example/w14-example
-Module 4: Integrating space into our models,Week 14,4/24/26,Geostatistics,,,
-Module 4: Integrating space into our models,Week 15,4/29/26,Current topics: species distribution models,content/w15-content,lab/lab-final,example/w15-example
-Module 4: Integrating space into our models,Week 15,5/1/26,Course wrap-up,,,
+Module 1: RStudio and Tidyverse crash course,Week 1,1/21/26,Orientation to class,content/w1-content,,example/w1-example
+Module 1: RStudio and Tidyverse crash course,Week 1,1/23/26,Data wranglin',,lab/w1-lab,
+Module 2: Reviewing foundations in statistics,Week 2,1/28/26,Sampling & probability,content/w2-content,,example/w2-example
+Module 2: Reviewing foundations in statistics,Week 2,1/30/26,Random variables and probability distributions,,lab/w2-lab,
+Module 2: Reviewing foundations in statistics,Week 3,2/4/26,Transformations,content/w3-content,,example/w3-example
+Module 2: Reviewing foundations in statistics,Week 3,2/6/26,Hypotheses and one-sample t-tests,,lab/w3-lab,
+Module 2: Reviewing foundations in statistics,Week 4,2/11/26,Dependent and independent two-sample t-tests,content/w4-content,,example/w4-example
+Module 2: Reviewing foundations in statistics,Week 4,2/13/26,Analysis of variance (ANOVA),,lab/w4-lab,
+Module 2: Reviewing foundations in statistics,Week 5,2/18/26,"Evaluating assumptions, linear models, correlation",content/w5-content,,example/w5-example
+Module 2: Reviewing foundations in statistics,Week 5,2/20/26,Simple linear regression,,lab/w5-lab,
+Module 2: Reviewing foundations in statistics,Week 6,2/25/26,Multiple regression,content/w6-content,,example/w6-example
+Module 2: Reviewing foundations in statistics,Week 6,2/27/26,Multiple regression,,lab/w6-lab,
+Module 2: Reviewing foundations in statistics,Week 7,3/4/26,Model selection,content/w7-content,,example/w7-example
+Module 2: Reviewing foundations in statistics,Week 7,3/6/26,Midterm,,lab/w7-lab,
+Module 3: Integrating time into our models,Week 9,3/18/26,Midterm review,content/w9-content,,example/w9-example
+Module 3: Integrating time into our models,Week 9,3/20/26,Intro to space and time,,lab/w8-lab,
+Module 3: Integrating time into our models,Week 10,3/25/26,Mixed effects models,content/w10-content,,example/w10-example
+Module 3: Integrating time into our models,Week 10,3/27/26,Information critera,,lab/w9-lab,
+Module 4: Integrating space into our models,Week 11,4/1/26,Spatial point processes: Ripley's K,content/w11-content,,example/w11-example
+Module 4: Integrating space into our models,Week 11,4/3/26,Generalized linear models,,lab/w10-lab,
+Module 4: Integrating space into our models,Week 12,4/8/26,GLMs and analogies to point process models,content/w12-content,,example/w12-example
+Module 4: Integrating space into our models,Week 12,4/10/26,Spatial point processes: models,,lab/w11-lab,
+Module 4: Integrating space into our models,Week 13,4/15/26,"Lattice data: MW test, Geary's C, Moran's I",content/w13-content,,example/w13-example
+Module 4: Integrating space into our models,Week 13,4/17/26,Lattice data: SAR and CAR models,,lab/w12-lab,
+Module 4: Integrating space into our models,Week 14,4/22/26,Geostatistics,content/w14-content,,example/w14-example
+Module 4: Integrating space into our models,Week 14,4/24/26,Geostatistics,,lab/w13-lab,
+Module 4: Integrating space into our models,Week 15,4/29/26,Current topics: species distribution models,content/w15-content,,example/w15-example
+Module 4: Integrating space into our models,Week 15,5/1/26,Course wrap-up,,lab/lab-final,
 Module 4: Integrating space into our models,Week 16,5/6/26,Final exam,,,
