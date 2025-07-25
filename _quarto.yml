@@ -5,7 +5,7 @@ project:
 website:
   # google-analytics: "G-9QW2N0QB7G"
   title: "Entomology 5126"
-  # favicon: media/web-favicon.png
+  favicon: media/web-favicon.png
   navbar:
     logo: media/5126-sticker.png
     title: false
