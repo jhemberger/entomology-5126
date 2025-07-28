@@ -5,6 +5,7 @@ author: Jeremy Hemberger and Brian Aukema
 date: last-modified
 date-format: long
 format: html
+highlight-style: ayu
 ---
 
 ------------------------------------------------------------------------

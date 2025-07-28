@@ -130,6 +130,7 @@ format:
     toc: true
     mainfont: Roboto Condensed
     page-layout: full
+    highlight-style: ayu
 
 editor: visual
 
