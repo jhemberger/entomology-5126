@@ -9,6 +9,8 @@ highlight-style: ayu
 ---
 
 ------------------------------------------------------------------------
+# Frontmatter
+<p class="buttons" style="text-align:left;"><span class="btn btn-outline-warning">{{< fa download >}} [Download lab data](/lab/data/lab1.csv)</span></p>
 
 # R
 

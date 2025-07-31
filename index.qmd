@@ -38,8 +38,8 @@ University of Minnesota</p>
 
 :::: {layout="[ 33, 33, 33 ]"}
 ::: {#first-column}
-### Instructor
-<p class="landing-text" style="text-align:center;">
+<h2 style="text-align:left;">Instructor</h2>
+<p class="landing-text" style="text-align:left;">
 {{< fa person-chalkboard >}}  [Dr. Jeremy Hemberger](https://entomology.umn.edu/people/jeremy-hemberger)</br>
 {{< fa building >}}  408 Hodson Hall</br>
 {{< fa envelope >}}  [jhemberg@umn.edu](mailto:jhemberg@umn.edu)
@@ -47,8 +47,8 @@ University of Minnesota</p>
 :::
 
 ::: {#second-column}
-### Lecture details
-<p class="landing-text" style="text-align:center;">
+<h2 style="text-align:left;">Lecture details</h2>
+<p class="landing-text" style="text-align:left;">
 {{< fa calendar >}}  Wednesday and Friday</br>
 {{< fa clock >}}  9:30-10:20am</br>
 {{< fa location-dot >}}  408 Hodson Hall
@@ -57,8 +57,8 @@ University of Minnesota</p>
 :::
 
 ::: {#third-column}
-### Lab details
-<p class="landing-text" style="text-align:center;">
+<h2 style="text-align:left;">Lab details</h2>
+<p class="landing-text" style="text-align:left;">
 {{< fa calendar >}}  Friday</br>
 {{< fa clock >}}  10:30-12:30pm</br>
 {{< fa location-dot >}}  408 Hodson Hall
