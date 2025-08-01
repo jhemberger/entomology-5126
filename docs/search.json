@@ -144,21 +144,36 @@
     "href": "lab/w1-lab.html",
     "title": "Lab 1: an introduction to R",
     "section": "",
-    "text": "R\nR is a software environment for statistical computing and graphics. It’s also a word that pirates say, but that’s not important right now. R is the best statistical software available, is free, and runs on Windows, Macintosh, and Linux platforms. R may be downloaded for personal use from http://www.r-project.org. R is open-source, which means that many people work on it around the world and are constantly improving it. Updated versions are released on the website every 2 months or so. If there is an advancement in statistics, it is incorporated rapidly.\n\n\nInstalling packages\nLike ecology, there are many subdisciplines of statistics. R comes as a ‘base’ package. Depending on what you want to do, this may be sufficient. Often, however, you will need to install a contributed addition to do more specialized tasks, like spatial or temporal analyses. These additions are called “packages.” Think of statistics as creating a recipe to analyze your data, where R is an oven to bake your creation. Packages, then, are extra features you can add to the oven (e.g., air fryer, stainless steel griddle, extra burner, etc.) if your recipe needs it. You can either use the “Load package” command from the “Packages” menu, or you can simply type\nlibrary(whateverpackageyouneed)\nIn today’s lab, you will not need any extra packages.\n\n\nMaking mistakes\nR is very powerful, and is not always very friendly to beginners. But if you start slow, and master a few skills early on, you will find that it is not overly burdensome (and you may even find yourself enjoying it).\nWhen R executes a command, you will either see a new command prompt on the next line, or the output of what you requested. If you make a syntax error (i.e., ask R to do something it does not understand), you will get an error. Simply retype the command, correcting your mistake (did you miss a comma, quote, or parenthesis?).\n\n\nGetting help\nFortunately, R has LOTS of help. Here are some good ways to obtain help if you are really stuck:\n\nLook hard at your screen. Is the mistake obvious (see cartoon below)?\nConsult a classmate.\nAsk the instructor.\nConsult a help manual or book.\nAsk the internet. (That said, I do get a little squeamish with quality control issues on the internet. Be aware that any fool can post anything, right or wrong).\nType in a question mark before the command you are trying to use. For example, ?summary provides help on the “summary” command. This is a good way to find all of the arguments that may be used with a command, for example. Unfortunately, you may find that the help files are most useful if you are already experienced with R.\nAsk the R-help mailing list (the email address can be found through the R website, www.r-project.org). You will generally get a response in an hour or less, at any time day or night, because there are millions of useRs around the world. Often, however, the answers are provided by experienced R users, who may speak more Math than English and may have maladapted social skills.\n\n\n\n\n\n\n\n\nPro tip: 95.6% of the time, this is the reason behind your code is not working\n\n\n\n\nPro tip: Keep notes!\nIt is a good idea to keep a Word document open while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future.\n\n\nWorking with batch files (“R scripts”)\nA common method of statistical analysis uses “batch files.” This is a rather old, but effective, way of conducting analyses. Essentially, one writes the programming code and sends it to the statistical software, either line by line or in large chunks. The computer runs the code, and then gives the output. That could include error messages (hopefully not!), or the answer to your analysis. The really nice thing about a batch file is that you can save it for later, and always rerun the analysis later. Think of it like writing a recipe (batch file) before putting your creation into the oven (R).\\ The most common batch file interface in R is RStudio available from http://www.rstudio.com. RStudio is a free and open source integrated development environment (IDE) for R. You can run it on your desktop (Windows, Mac, or Linux) or even over the web using RStudio Server.\\ With RStudio, you can write your batch code on one window, and then send directly to R that is running in another window (Ctrl-Enter to send a single line). You can easily save and reload your analyses later by saving the batch file with a “.R” file extension. RStudio also has the advantage of syntactic highlighting. That is, when you mouse over a parenthesis, quotes, etc., the program will highlight its partner. It is an easy way to keep track of missing punctuation that can drive a computer program (and the user!) crazy.\\ Open R studio and create a new R script (File/New File/R script…). First, save it somewhere so that you can find it back later (File/Save As…). The file will have a .R file extension that designates it as an R coding script file. You should now have a blank file named iLOVElearning.R or similar. Now close it (File/Close…).\n\n\nSending code to R\nOpen your blank file again (File/Open…). See how easy it is to pick up where you left off? In the top of the blank file, write:\n2+2\nWhile your cursor is on the 2 + 2 line, hold down Ctrl and then press Enter to send the code from the script to R below. In the R console, you should see\n&gt; 2+2\n[1] 4\nChange your code to a different instruction, such as 2 + 3, and send that to the R console. Easy, eh? Save your script file, then close it.\n\n\nAnnotating code\nWhen writing code, it is helpful to include comments to yourself so that you can remember what you were doing, why, when, and so on. In R, you can comment anything by first using a # sign. Anything after the # sign is not executed. So, if you were to type in:\n3 + 3\nR would spit out\n&gt; 6\nAnd, if you were to type in\n3 + 3   # My first attempt at R, January 19, 2024\nyou would also simply get\n&gt; 6\nOpen the file that you just closed. Write as follows:\n#####################\n## I am learning R\n## This is lab one\n## My name\n## January 19, 2024\n#####################\n​\n## My first code starts here ##\n2+2\nThis is good practice when analyzing any data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you!\n\n\nObject-oriented programming\nR uses something called “object-oriented” programming. This means that you assign names to various pieces of your data and analyses. You can name things whatever you want to help you keep track. Analyses are performed on these objects, one command at a time through something called a “command line interface.” It’s like a batch file in slow motion: if there is an error, you will see it instantly.\\ To assign names to various pieces of your data or analyses, simply use an arrow (&lt;-), or an equal sign if you prefer. This will become clear below.\n\n\nCommands in R\nMost commands in R use parentheses to specify the arguments (arguments are like options). If there are no arugments, the parentheses are still necessary. A common syntax error is forgetting the right parenthesis. One command you will might use to close R at the end of the session (if you don’t want to use the file menu) might be quit(), for example.\n\n\nEntering data by hand\nR is like an overgrown calculator, really. Simple calculations are straightforward, and you can sometimes guess at any commands or operators you need (like sqrt()). You can stick numbers together using a technique called “concatenation.” To stick the numbers together in a “vector” (list of numbers, like a spreadsheet column), name the vector, and use the concatenate command:\nmyniftyvector &lt;- c(1,2,3,4,5)\nSend that to the R console with Ctrl+Enter. Then if you type and send\nmyniftyvector\nyou will get\n[1] 1 2 3 4 5\nYou have just created your first object!\n\n\nEntering data into R\nOk, seriously, if you have lots of data, you are not going to enter it like that. An easy way is to transfer it from a spreadsheet. When R reads a spreadsheet into memory, it goes into what is called a “dataframe.” Dataframes are essentially a collection of “vectors” or lists of numbers. So, each variable and its column is a vector, and all of them side-by-side in the spreadsheet make a dataframe.\\\n\n\nLoading Excel files directly into R\nDisclaimer; I do not use or recommend this method because there are a few “point and click” steps that are difficult to reproduce if you forget a step. I include it because many people use this method and is simple for small datasets.\\ R Studio has a tab labeled “Import Dataset” from which one can choose importation from an Excel spreadsheet. Once the file is identified, the data will be shown in a Data Preview screen. You can make adjustments (identifying rows or columns to exclude, for example), by editing options or clicking buttons at the bottom of the screen under Import Options. Notice that as you change options (e.g., excluding the first row as column names), the code that imports the data (bottom right pane) changes.\\ In the interest of reproducible results, I start with a simple text file and write the accompanying code to load that data set directly. Then I never have to worry about changes to the recipe. That method is shown below.\\\n\n\nLoading plain text files directly into R\nAt the bottom of every Excel spreadsheet are tabs. I keep three tabs in every Excel spreadsheet.\\ In the first tab, I keep all metadata or records of what the variables mean, how the data were collected, and so on. The second tab might contain the raw data as collected, and might be a little messy, perhaps with a final column of notes. The third tab is a cleaned version of my data in logical or rectangular record format, with proper column headers (just text, no special characters). To avoid problems, keep column titles to one word each. Make sure each one is different. Pay attention to capitalization vs. small case: if your spreadsheet column is named “Year,” then R will not understand if you later ask for the column named “year.” Also, avoid special characters in your column titles.\\ When preparing to import data, I first save my spreadsheet as as a regular Excel file so that Excel saves all of the tabs. I then go to the final tab where I have my cleaned data, ready for import and analysis. For this tab, I save it as a plain, tab-delimited text file (File/Save As… then choose file type as Text (tab delimited) (*.txt).\\ To load data into R, I use the read.table() command, for example:\nmyniftydata &lt;- read.table(\"D:/path/data.txt\", header=T, sep=\"\\t\", na.strings=\".\")\nBy using object-oriented programming, your data set can be referred to simply as myniftydata from now on. The read.table() command reads data files. Inside the parentheses, you provide the arguments separated by commas.\\\n\nThe first argument is the path to the data file. Enclose the path in quotes. You can make this whatever you’d like; R can read data off a network drive (H:/), your USB memory stick, or even the internet (instead of a file name, use http://www.whateverpath.com/file.txt).\\\nThe header argument is a logical True or False that indicates whether your data set contains column titles. You may abbreviate the answer to simply T or F.\nThe sep command specifies the delimiter between columns. You can change this as needed, of course. Space delimited files (sometimes called *.dat files) are sep=\" \" while comma separated files (often named *.csv files in Microsoft Excel) are sep=\",\". Because there is no “tab” character on the keyboard (like a space or comma), tab-delimited files are specified in a special way: sep=\"\\``t\".\nThe na.strings=\".\" argument tells R what denotes your missing data. A period is a good symbol to use, although sometimes asterisks or special numbers are used. In climatological data, -9 or some similar identifier is frequently used. R will take these values and change them to NA.\n\n\n\nChecking data\nOnce you get the data read into R, it is a good idea to check the data. There are several commands you could use, including:\\\n\ndim(myniftydata) returns the number of rows and columns in the dataframe.\nnrow(myniftydata) returns the number of rows.\nncol(myniftydata) returns the number of columns.\nhead(myniftydata) returns the first five rows.\ntail(myniftydata) returns the last five rows.\n\nPerhaps the most useful command is\nsummary(myniftydata)\nThis command summarizes the dataset you have just input (or whatever object happens to be specified - it is a very versatile command). For a dataset, R will list all the different variables, along with brief summary statistics for each. This is the best command to spot problems. All numerical columns will appear with summary statistics min, max, mean, etc. All columns with text, that are often indicative of categorical variables (next week’s lab), will appear with the number of observations and type of variable (i.e., character). (Value added: if you or one of your classmates knows how to convert a character column to a categorical factor variable right now, note how the summary() output changes!). If you input numerical data and see a frequency list from a summary command, there is a good chance that there is a nonnumber somewhere in the column. Check the original data, correct the mistake, and try again.\\\n\n\nSub-setting data\nQuite often, we want to perform an operation or analysis on only one portion of the data. R uses indexing to select variables, in a scheme like this:\nmyniftydata[rowsIwant, columnsIwant]\nIt’s relatively simple to select various rows or columns. You can either name them, or use the indexing position. A comma separates the row from the column arguments.\\ &gt; myniftydata[1:5,2] selects the first 5 rows in the 2nd column.\\ &gt; myniftydata[-3,2] selects all rows EXCEPT the 3rd, in the 2nd column.\\ &gt; myniftydata[,2:6] selects all rows and columns 2 through 6.\\ &gt; myniftydata[3:5,] selects rows 3 to 5 of all columns.\\ &gt; myniftydata[1:5, c(\"year\",\"trial\")] selects the first 5 rows of two columns named “year” and “trial.”\\ The commands above use base R. Packages such as tidyR have exploded in popularity in the last decade and use a slightly different syntax. Our TA, Audrey, is a great resource for questions about the Tidyverse!\\\n\n\nObjects in memory\nYou can always view objects in memory using the ls() command. To delete a specific object from memory, such as mydata, type remove(mydata). Generally, you should not need to do this unless you are working with multiple copies of HUGE datasets and R tells you it has run out of computer memory. To remove all objects from memory, type remove(list=ls()).\\\n\n\nData sets for assignments\nThe datasets for each class may be found on Canvas. Download the file to your workspace (e.g., USB drive, network space, laptop, etc). You may want to create a folder for this class named ENT5126 or iLOVEstats or something similar and putting all data files there (including your R scripts). Then you can use this file path:\\ \"D:/ENT5126/whateverdatafile.txt\" (change the drive, depending on where your data resides). Note that when specifying data pathways in the read.table() command, the slashes must be forward!\n\n\nAssignment\nData for a rodent toxicology study are stored in a spreadsheet named Lab1data.xls. The assignment is simple (?): open the data, clean it up, and import it into R.\\ Please\\\n\nList all of the errors that you have found in the data.\nProvide a copy of a printout of the spreadsheet containing the metadata.\nProvide a copy of a printout of the data in rectangular record format, ready for export to R.\nProvide a printout of the summary() command for the data from R, once you have read it in.\nPretend that were working with European data where the decimals in the pulse column were not periods but rather commas. How would you adapt the read.table() command?"
+    "text": "Download lab data  Download R project file",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
   },
   {
     "objectID": "lab/w1-lab.html#sending-code-to-r",
     "href": "lab/w1-lab.html#sending-code-to-r",
     "title": "Lab 1: an introduction to R",
     "section": "Sending code to R",
-    "text": "Sending code to R\nOpen your blank file again (File/Open…). See how easy it is to pick up where you left off? In the top of the blank file, write:\n2+2\nWhile your cursor is on the 2 + 2 line, hold down Ctrl and then press Enter to send the code from the script to R below. In the R console, you should see\n&gt; 2+2\n[1] 4\nChange your code to a different instruction, such as 2 + 3, and send that to the R console. Easy, eh? Save your script file, then close it."
+    "text": "Sending code to R\nOpen your blank file again (File/Open…). See how easy it is to pick up where you left off? In the top of the blank file, write:\n2+2\nWhile your cursor is on the 2 + 2 line, hold down Ctrl and then press Enter to send the code from the script to R below. In the R console, you should see\n&gt; 2+2\n[1] 4\nChange your code to a different instruction, such as 2 + 3, and send that to the R console. Easy, eh? Save your script file, then close it.",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
   },
   {
     "objectID": "lab/w1-lab.html#annotating-code",
     "href": "lab/w1-lab.html#annotating-code",
     "title": "Lab 1: an introduction to R",
     "section": "Annotating code",
-    "text": "Annotating code\nWhen writing code, it is helpful to include comments to yourself so that you can remember what you were doing, why, when, and so on. In R, you can comment anything by first using a # sign. Anything after the # sign is not executed. So, if you were to type in:\n3 + 3\nR would spit out\n&gt; 6\nAnd, if you were to type in\n3 + 3   # My first attempt at R, January 19, 2024\nyou would also simply get\n&gt; 6\nOpen the file that you just closed. Write as follows:\n#####################\n## I am learning R\n## This is lab one\n## My name\n## January 19, 2024\n#####################\n​\n## My first code starts here ##\n2+2\nThis is good practice when analyzing any data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you!"
+    "text": "Annotating code\nWhen writing code, it is helpful to include comments to yourself so that you can remember what you were doing, why, when, and so on. In R, you can comment anything by first using a # sign. Anything after the # sign is not executed. So, if you were to type in:\n3 + 3\nR would spit out\n&gt; 6\nAnd, if you were to type in\n3 + 3   # My first attempt at R, January 19, 2024\nyou would also simply get\n&gt; 6\nOpen the file that you just closed. Write as follows:\n#####################\n## I am learning R\n## This is lab one\n## My name\n## January 19, 2024\n#####################\n​\n## My first code starts here ##\n2+2\nThis is good practice when analyzing any data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you!",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
   },
   {
     "objectID": "lab/w1-lab.html#loading-excel-files-directly-into-r",
@@ -542,13 +557,13 @@
   {
     "objectID": "lab/index.html",
     "href": "lab/index.html",
-    "title": "Lab Sessions",
+    "title": "Overview of labs + basic info",
     "section": "",
     "text": "Here, you’ll find the virtual companion to all of our hands-on labs for the semester. These will be the same as your physical hand-outs, but I know many folks prefer to have them up on their screens as they work through the activities.\nThe purpose of these labs is to practice applying the topics that we discuss in lecture using real-world examples and data. The associated data files for each lab are linked in the Frontmatter section atop each page (all the files are also located here). Over the semester, we’ll explore some of the frustrations and challenges of working with bio/ecological data (of which there are many!), but together we’ll conquer them, setting y’all up for success in analyzing, interpreting, and sharing your own data.\nAs a reminder, each of the 13 labs will have an assignment/report that will be evaluated. The first three periods will be devoted to a primer of using R/RStudio for managing, wrangling, and interpreting data, and the reports associated with these will receive feedback but will not be included in the course grade. The remaining 10 lab assignments/reports will be graded and count toward 40% of total course grade (4% per report). There will also be a lab final worth 15% of the total course grade. In this, students will be given a real data set to analyze and develop a report for during the last lab period.",
     "crumbs": [
       "Labs",
-      "Overview",
-      "Lab Sessions"
+      "Getting started",
+      "Overview of labs + basic info"
     ]
   },
   {
@@ -641,5 +656,221 @@
     "title": "Resources",
     "section": "",
     "text": "Test."
+  },
+  {
+    "objectID": "lab/index.html#completing-and-submitting-labs",
+    "href": "lab/index.html#completing-and-submitting-labs",
+    "title": "Overview of labs + basic info",
+    "section": "Completing and submitting labs",
+    "text": "Completing and submitting labs\nIn labs, we’ll be writing code in a couple of different ways, but primarily what I will be recommending is using an R Notebook to write, annotate, and interpret your code. R Notebooks are a type of Markdown file where we can mix formatted text, code chunks, and a whole bunch of other goodies. R Notebooks help to organize your code into sections and subsections, and will let you write about the output directly in the document rather than creating a Word document (shudder…). We’ll go through this a bit more in the first lab, but take a look at the following links to learn a bit more about R Notebooks and R Markdown.\n\nWriting code in R notebooks\nR Notebook (Markdown) cheatsheet",
+    "crumbs": [
+      "Labs",
+      "Getting started",
+      "Overview of labs + basic info"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#r",
+    "href": "lab/w1-lab.html#r",
+    "title": "Lab 1: an introduction to R",
+    "section": "R",
+    "text": "R\nR is a software environment for statistical computing and graphics. It’s also a word that pirates say, but that’s not important right now. R is the best statistical software available, is free, and runs on Windows, Macintosh, and Linux platforms. R may be downloaded for personal use from http://www.r-project.org. R is open-source, which means that many people work on it around the world and are constantly improving it. Updated versions are released on the website every 2 months or so. If there is an advancement in statistics, it is incorporated rapidly.",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#installing-packages",
+    "href": "lab/w1-lab.html#installing-packages",
+    "title": "Lab 1: an introduction to R",
+    "section": "Installing packages",
+    "text": "Installing packages\nLike ecology, there are many subdisciplines of statistics. R comes as a ‘base’ package. Depending on what you want to do, this may be sufficient. Often, however, you will need to install a contributed addition to do more specialized tasks, like spatial or temporal analyses. These additions are called “packages.” Think of statistics as creating a recipe to analyze your data, where R is an oven to bake your creation. Packages, then, are extra features you can add to the oven (e.g., air fryer, stainless steel griddle, extra burner, etc.) if your recipe needs it. You can either use the “Load package” command from the “Packages” menu, or you can simply type\nlibrary(whateverpackageyouneed)\nIn today’s lab, you will not need any extra packages.",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#making-mistakes",
+    "href": "lab/w1-lab.html#making-mistakes",
+    "title": "Lab 1: an introduction to R",
+    "section": "Making mistakes",
+    "text": "Making mistakes\nR is very powerful, and is not always very friendly to beginners. But if you start slow, and master a few skills early on, you will find that it is not overly burdensome (and you may even find yourself enjoying it).\nWhen R executes a command, you will either see a new command prompt on the next line, or the output of what you requested. If you make a syntax error (i.e., ask R to do something it does not understand), you will get an error. Simply retype the command, correcting your mistake (did you miss a comma, quote, or parenthesis?).",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#getting-help",
+    "href": "lab/w1-lab.html#getting-help",
+    "title": "Lab 1: an introduction to R",
+    "section": "Getting help",
+    "text": "Getting help\nFortunately, R has LOTS of help. Here are some good ways to obtain help if you are really stuck:\n\nLook hard at your screen. Is the mistake obvious (see cartoon below)?\nConsult a classmate.\nAsk the instructor.\nConsult a help manual or book.\nAsk the internet. (That said, I do get a little squeamish with quality control issues on the internet. Be aware that any fool can post anything, right or wrong).\nType in a question mark before the command you are trying to use. For example, ?summary provides help on the “summary” command. This is a good way to find all of the arguments that may be used with a command, for example. Unfortunately, you may find that the help files are most useful if you are already experienced with R.\nAsk the R-help mailing list (the email address can be found through the R website, www.r-project.org). You will generally get a response in an hour or less, at any time day or night, because there are millions of useRs around the world. Often, however, the answers are provided by experienced R users, who may speak more Math than English and may have maladapted social skills.\n\n\n\n\n\n\n\n\nPro tip: 95.6% of the time, this is the reason behind your code is not working\n\n\n\nPro tip: Keep notes!\nIt is a good idea to keep a Word document open while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future.",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#working-with-batch-files-r-scripts",
+    "href": "lab/w1-lab.html#working-with-batch-files-r-scripts",
+    "title": "Lab 1: an introduction to R",
+    "section": "Working with batch files (“R scripts”)",
+    "text": "Working with batch files (“R scripts”)\nA common method of statistical analysis uses “batch files.” This is a rather old, but effective, way of conducting analyses. Essentially, one writes the programming code and sends it to the statistical software, either line by line or in large chunks. The computer runs the code, and then gives the output. That could include error messages (hopefully not!), or the answer to your analysis. The really nice thing about a batch file is that you can save it for later, and always rerun the analysis later. Think of it like writing a recipe (batch file) before putting your creation into the oven (R).\\ The most common batch file interface in R is RStudio available from http://www.rstudio.com. RStudio is a free and open source integrated development environment (IDE) for R. You can run it on your desktop (Windows, Mac, or Linux) or even over the web using RStudio Server.\\ With RStudio, you can write your batch code on one window, and then send directly to R that is running in another window (Ctrl-Enter to send a single line). You can easily save and reload your analyses later by saving the batch file with a “.R” file extension. RStudio also has the advantage of syntactic highlighting. That is, when you mouse over a parenthesis, quotes, etc., the program will highlight its partner. It is an easy way to keep track of missing punctuation that can drive a computer program (and the user!) crazy.\\ Open R studio and create a new R script (File/New File/R script…). First, save it somewhere so that you can find it back later (File/Save As…). The file will have a .R file extension that designates it as an R coding script file. You should now have a blank file named iLOVElearning.R or similar. Now close it (File/Close…).",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#object-oriented-programming",
+    "href": "lab/w1-lab.html#object-oriented-programming",
+    "title": "Lab 1: an introduction to R",
+    "section": "Object-oriented programming",
+    "text": "Object-oriented programming\nR uses something called “object-oriented” programming. This means that you assign names to various pieces of your data and analyses. You can name things whatever you want to help you keep track. Analyses are performed on these objects, one command at a time through something called a “command line interface.” It’s like a batch file in slow motion: if there is an error, you will see it instantly.\\ To assign names to various pieces of your data or analyses, simply use an arrow (&lt;-), or an equal sign if you prefer. This will become clear below.",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#commands-in-r",
+    "href": "lab/w1-lab.html#commands-in-r",
+    "title": "Lab 1: an introduction to R",
+    "section": "Commands in R",
+    "text": "Commands in R\nMost commands in R use parentheses to specify the arguments (arguments are like options). If there are no arugments, the parentheses are still necessary. A common syntax error is forgetting the right parenthesis. One command you will might use to close R at the end of the session (if you don’t want to use the file menu) might be quit(), for example.",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#entering-data-by-hand",
+    "href": "lab/w1-lab.html#entering-data-by-hand",
+    "title": "Lab 1: an introduction to R",
+    "section": "Entering data by hand",
+    "text": "Entering data by hand\nR is like an overgrown calculator, really. Simple calculations are straightforward, and you can sometimes guess at any commands or operators you need (like sqrt()). You can stick numbers together using a technique called “concatenation.” To stick the numbers together in a “vector” (list of numbers, like a spreadsheet column), name the vector, and use the concatenate command:\nmyniftyvector &lt;- c(1,2,3,4,5)\nSend that to the R console with Ctrl+Enter. Then if you type and send\nmyniftyvector\nyou will get\n[1] 1 2 3 4 5\nYou have just created your first object!",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#entering-data-into-r",
+    "href": "lab/w1-lab.html#entering-data-into-r",
+    "title": "Lab 1: an introduction to R",
+    "section": "Entering data into R",
+    "text": "Entering data into R\nOk, seriously, if you have lots of data, you are not going to enter it like that. An easy way is to transfer it from a spreadsheet. When R reads a spreadsheet into memory, it goes into what is called a “dataframe.” Dataframes are essentially a collection of “vectors” or lists of numbers. So, each variable and its column is a vector, and all of them side-by-side in the spreadsheet make a dataframe.\\\n\nLoading Excel files directly into R\nDisclaimer; I do not use or recommend this method because there are a few “point and click” steps that are difficult to reproduce if you forget a step. I include it because many people use this method and is simple for small datasets.\\ R Studio has a tab labeled “Import Dataset” from which one can choose importation from an Excel spreadsheet. Once the file is identified, the data will be shown in a Data Preview screen. You can make adjustments (identifying rows or columns to exclude, for example), by editing options or clicking buttons at the bottom of the screen under Import Options. Notice that as you change options (e.g., excluding the first row as column names), the code that imports the data (bottom right pane) changes.\\ In the interest of reproducible results, I start with a simple text file and write the accompanying code to load that data set directly. Then I never have to worry about changes to the recipe. That method is shown below.\\\n\n\nLoading plain text files directly into R\nAt the bottom of every Excel spreadsheet are tabs. I keep three tabs in every Excel spreadsheet.\\ In the first tab, I keep all metadata or records of what the variables mean, how the data were collected, and so on. The second tab might contain the raw data as collected, and might be a little messy, perhaps with a final column of notes. The third tab is a cleaned version of my data in logical or rectangular record format, with proper column headers (just text, no special characters). To avoid problems, keep column titles to one word each. Make sure each one is different. Pay attention to capitalization vs. small case: if your spreadsheet column is named “Year,” then R will not understand if you later ask for the column named “year.” Also, avoid special characters in your column titles.\\ When preparing to import data, I first save my spreadsheet as as a regular Excel file so that Excel saves all of the tabs. I then go to the final tab where I have my cleaned data, ready for import and analysis. For this tab, I save it as a plain, tab-delimited text file (File/Save As… then choose file type as Text (tab delimited) (*.txt).\\ To load data into R, I use the read.table() command, for example:\nmyniftydata &lt;- read.table(\"D:/path/data.txt\", header=T, sep=\"\\t\", na.strings=\".\")\nBy using object-oriented programming, your data set can be referred to simply as myniftydata from now on. The read.table() command reads data files. Inside the parentheses, you provide the arguments separated by commas.\\\n\nThe first argument is the path to the data file. Enclose the path in quotes. You can make this whatever you’d like; R can read data off a network drive (H:/), your USB memory stick, or even the internet (instead of a file name, use http://www.whateverpath.com/file.txt).\\\nThe header argument is a logical True or False that indicates whether your data set contains column titles. You may abbreviate the answer to simply T or F.\nThe sep command specifies the delimiter between columns. You can change this as needed, of course. Space delimited files (sometimes called *.dat files) are sep=\" \" while comma separated files (often named *.csv files in Microsoft Excel) are sep=\",\". Because there is no “tab” character on the keyboard (like a space or comma), tab-delimited files are specified in a special way: sep=\"\\``t\".\nThe na.strings=\".\" argument tells R what denotes your missing data. A period is a good symbol to use, although sometimes asterisks or special numbers are used. In climatological data, -9 or some similar identifier is frequently used. R will take these values and change them to NA.",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#checking-data",
+    "href": "lab/w1-lab.html#checking-data",
+    "title": "Lab 1: an introduction to R",
+    "section": "Checking data",
+    "text": "Checking data\nOnce you get the data read into R, it is a good idea to check the data. There are several commands you could use, including:\\\n\ndim(myniftydata) returns the number of rows and columns in the dataframe.\nnrow(myniftydata) returns the number of rows.\nncol(myniftydata) returns the number of columns.\nhead(myniftydata) returns the first five rows.\ntail(myniftydata) returns the last five rows.\n\nPerhaps the most useful command is\nsummary(myniftydata)\nThis command summarizes the dataset you have just input (or whatever object happens to be specified - it is a very versatile command). For a dataset, R will list all the different variables, along with brief summary statistics for each. This is the best command to spot problems. All numerical columns will appear with summary statistics min, max, mean, etc. All columns with text, that are often indicative of categorical variables (next week’s lab), will appear with the number of observations and type of variable (i.e., character). (Value added: if you or one of your classmates knows how to convert a character column to a categorical factor variable right now, note how the summary() output changes!). If you input numerical data and see a frequency list from a summary command, there is a good chance that there is a nonnumber somewhere in the column. Check the original data, correct the mistake, and try again.\\",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#sub-setting-data",
+    "href": "lab/w1-lab.html#sub-setting-data",
+    "title": "Lab 1: an introduction to R",
+    "section": "Sub-setting data",
+    "text": "Sub-setting data\nQuite often, we want to perform an operation or analysis on only one portion of the data. R uses indexing to select variables, in a scheme like this:\nmyniftydata[rowsIwant, columnsIwant]\nIt’s relatively simple to select various rows or columns. You can either name them, or use the indexing position. A comma separates the row from the column arguments.\\ &gt; myniftydata[1:5,2] selects the first 5 rows in the 2nd column.\\ &gt; myniftydata[-3,2] selects all rows EXCEPT the 3rd, in the 2nd column.\\ &gt; myniftydata[,2:6] selects all rows and columns 2 through 6.\\ &gt; myniftydata[3:5,] selects rows 3 to 5 of all columns.\\ &gt; myniftydata[1:5, c(\"year\",\"trial\")] selects the first 5 rows of two columns named “year” and “trial.”\\ The commands above use base R. Packages such as tidyR have exploded in popularity in the last decade and use a slightly different syntax. Our TA, Audrey, is a great resource for questions about the Tidyverse!\\",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#objects-in-memory",
+    "href": "lab/w1-lab.html#objects-in-memory",
+    "title": "Lab 1: an introduction to R",
+    "section": "Objects in memory",
+    "text": "Objects in memory\nYou can always view objects in memory using the ls() command. To delete a specific object from memory, such as mydata, type remove(mydata). Generally, you should not need to do this unless you are working with multiple copies of HUGE datasets and R tells you it has run out of computer memory. To remove all objects from memory, type remove(list=ls()).\\",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#data-sets-for-assignments",
+    "href": "lab/w1-lab.html#data-sets-for-assignments",
+    "title": "Lab 1: an introduction to R",
+    "section": "Data sets for assignments",
+    "text": "Data sets for assignments\nThe datasets for each class may be found on Canvas. Download the file to your workspace (e.g., USB drive, network space, laptop, etc). You may want to create a folder for this class named ENT5126 or iLOVEstats or something similar and putting all data files there (including your R scripts). Then you can use this file path:\\ \"D:/ENT5126/whateverdatafile.txt\" (change the drive, depending on where your data resides). Note that when specifying data pathways in the read.table() command, the slashes must be forward!",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#assignment",
+    "href": "lab/w1-lab.html#assignment",
+    "title": "Lab 1: an introduction to R",
+    "section": "Assignment",
+    "text": "Assignment\nData for a rodent toxicology study are stored in a spreadsheet named Lab1data.xls. The assignment is simple (?): open the data, clean it up, and import it into R.\\ Please\\\n\nList all of the errors that you have found in the data.\nProvide a copy of a printout of the spreadsheet containing the metadata.\nProvide a copy of a printout of the data in rectangular record format, ready for export to R.\nProvide a printout of the summary() command for the data from R, once you have read it in.\nPretend that were working with European data where the decimals in the pulse column were not periods but rather commas. How would you adapt the read.table() command?",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/w1-lab.html#frontmatter",
+    "href": "lab/w1-lab.html#frontmatter",
+    "title": "Lab 1: an introduction to R",
+    "section": "",
+    "text": "Download lab data  Download R project file",
+    "crumbs": [
+      "Labs",
+      "Module 1: RStudio and Tidyverse crash course",
+      "Lab 1: An introduction to R"
+    ]
+  },
+  {
+    "objectID": "lab/index.html#downloading-and-installing-r-and-rstudio",
+    "href": "lab/index.html#downloading-and-installing-r-and-rstudio",
+    "title": "Lab Sessions",
+    "section": "Downloading and installing R and RStudio",
+    "text": "Downloading and installing R and RStudio\nClick on the buttons below to install both R (the language, or engine that enables our analyses to be performed) and RStudio (the shell, or vessel that the engine of R sits in and gives us the nifty features to manage files, version history, and write pretty and readable code). If you don’t want to mess around with installing software on your computer, you can also use the free Posit Cloud service. I’ve only used this briefly, and can’t guarantee everything we’ll do with work seamlessly. All of the lessons/examples I’ll give are assuming you’re using RStudio, however the interface in Posit Cloud is literally a virtual machine version of RStudio, so it should work… 🤷‍♂️\n\n Download R  Download RStudio  Launch Posit Cloud",
+    "crumbs": [
+      "Labs",
+      "Overview",
+      "Lab Sessions"
+    ]
+  },
+  {
+    "objectID": "lab/index.html#downloading-installing-and-setting-up-r-and-rstudio",
+    "href": "lab/index.html#downloading-installing-and-setting-up-r-and-rstudio",
+    "title": "Overview of labs + basic info",
+    "section": "Downloading, installing, and setting up R and RStudio",
+    "text": "Downloading, installing, and setting up R and RStudio\nClick on the buttons below to install both R (the language, or engine that enables our analyses to be performed) and RStudio (the shell, or vessel that the engine of R sits in and gives us the nifty features to manage files, version history, and write pretty and readable code). If you don’t want to mess around with installing software on your computer, you can also use the free Posit Cloud service. I’ve only used this briefly, and can’t guarantee everything we’ll do with work seamlessly. That said, Posit Cloud is literally a virtual machine version of RStudio, so it should work… 🤷\n\n Download R  Download RStudio  Launch Posit Cloud\n\n\nQuality of life improvements\nRStudio is a highly customizable program that will let you nerd out to your heart’s content. Feel free! A few things that I suggest you customize right away will help you (and me) to debug and read your code.\n\nAfter launching RStudio, go to Tools —&gt; Global options.\nSelect the “Appearance” tab on the side, and select an editor theme that you like best. I highly recommend one where comments (text preceded by a #) are some shade of gray. This helps them be obvious without being obnoxiously bright and distracting.\nNext, select the “Code” tab on the side, and then select the “Display” panel. Enable: Highlight selected line, Allow scroll past end of document, Highlight function calls, and Use rainbow parentheses 🌈. These things will help you better catch syntax errors with missed parentheses, and help you and me quickly see where you’re editing in your R files.",
+    "crumbs": [
+      "Labs",
+      "Getting started",
+      "Overview of labs + basic info"
+    ]
   }
 ]

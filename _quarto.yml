@@ -41,7 +41,7 @@ website:
       search: false
       background: light
       contents: 
-        - section: "Overview"
+        - section: "Getting started"
           contents:
             - lab/index.qmd
         - section: "Module 1: RStudio and Tidyverse crash course"
