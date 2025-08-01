@@ -36,7 +36,7 @@ University of Minnesota</p>
 
 ---
 
-:::: {layout="[ 33, 33, 33 ]"}
+:::: {layout="[ 25, 25, 25, 25 ]"}
 ::: {#first-column}
 <h2 style="text-align:left;">Instructor</h2>
 <p class="landing-text" style="text-align:left;">
@@ -63,6 +63,12 @@ University of Minnesota</p>
 {{< fa clock >}}  10:30-12:30pm</br>
 {{< fa location-dot >}}  408 Hodson Hall
 </p>
+:::
+
+::: {#forth-column}
+<h2 style="text-align:left;">Important links</h2>
+<p class="buttons" style="text-align:left;">[{{< fa user-graduate >}} [Canvas Site](https://canvas.umn.edu//)]{.btn .btn-outline-warning}</p>
+<p class="buttons" style="text-align:left;">[{{< fa brands github >}} [Class Github](https://github.com/jhemberger/entomology-5126)]{.btn .btn-outline-warning}</p>
 :::
 
 ::::
