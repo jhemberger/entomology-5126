@@ -15,11 +15,11 @@ As a reminder, each of the 13 labs will have an assignment/report that will be e
 
 ## Downloading, installing, and setting up R and RStudio
 
-Click on the buttons below to install both R (the language, or engine that enables our analyses to be performed) and RStudio (the shell, or vessel that the engine of R sits in and gives us the nifty features to manage files, version history, and write pretty and readable code). If you don't want to mess around with installing software on your computer, you can also use the free Posit Cloud service. I've only used this briefly, and can't guarantee everything we'll do with work seamlessly. That said, Posit Cloud is literally a virtual machine version of RStudio, so it *should* work... 🤷
+For this course, we'll be using the Posit Cloud service for labs and assignments. It's essentially an online virtual machine to run RStudio in your browser. This will avoid version issues, package incompatibilities, and Mac vs Windows challenges that we might otherwise face. This is a paid service we'll be using for class and it will expire after our semester concludes, so I also encourage you to install R and R Studio on your own machines if you haven't already. Click on the buttons below to install both R (the language, or engine that enables our analyses to be performed) and RStudio (the shell, or vessel that the engine of R sits in and gives us the nifty features to manage files, version history, and write pretty and readable code).
 
 <p class="buttons" style="text-align:left;">
 
-[{{< fa brands r-project title="R Project">}} [Download R](https://cran.r-project.org/)]{.btn .btn-outline-warning} [{{< fa registered >}} [Download RStudio](https://posit.co/download/rstudio-desktop/)]{.btn .btn-outline-warning} [{{< fa cloud >}} [Launch Posit Cloud](https://posit.cloud/)]{.btn .btn-outline-warning}
+[{{< fa cloud >}} [Launch Posit Cloud](https://posit.cloud/)]{.btn .btn-outline-warning} [{{< fa brands r-project title="R Project">}} [Download R](https://cran.r-project.org/)]{.btn .btn-outline-warning} [{{< fa registered >}} [Download RStudio](https://posit.co/download/rstudio-desktop/)]{.btn .btn-outline-warning}
 
 </p>
 

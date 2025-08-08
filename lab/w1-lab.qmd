@@ -9,7 +9,12 @@ highlight-style: ayu
 ---
 
 ## Frontmatter
-<p class="buttons" style="text-align:left;"><span class="btn btn-outline-warning">{{< fa download >}} [Download lab data](/lab/data/lab1.csv)</span>    <span class="btn btn-outline-warning">{{< fa brands r-project title="R Project">}} [Download R project file](/lab/data/lab1.csv)</span></p>
+
+<p class="buttons" style="text-align:left;">
+
+[{{< fa download >}} [Download lab data](/lab/data/lab1.csv)]{.btn .btn-outline-warning} [{{< fa brands r-project title="R Project">}} [Download R project file](/lab/data/lab1.csv)]{.btn .btn-outline-warning}
+
+</p>
 
 ## R
 
@@ -39,21 +44,23 @@ Fortunately, `R` has LOTS of help. Here are some good ways to obtain help if you
 
 -   Consult a classmate.
 
--   Ask the instructor.
+-   Ask me.
 
 -   Consult a help manual or book.
 
--   Ask the internet. (That said, I do get a little squeamish with quality control issues on the internet. Be aware that any fool can post anything, right or wrong).
+-   Ask the internet.
+
+-   Ask ChatGPT. In all seriousness, troubleshooting error codes is an excellent use of GenAI tools as it can quickly aggregate information from a bunch of different sources that you might otherwise find yourself after great effort. The key here is, once you find the error/solution to the issue, internalizing what exactly it is that went wrong and why.
 
 -   Type in a question mark before the command you are trying to use. For example, `?summary` provides help on the "summary" command. This is a good way to find all of the arguments that may be used with a command, for example. Unfortunately, you may find that the help files are most useful if you are already experienced with `R`.
 
 -   Ask the R-help mailing list (the email address can be found through the R website, `www.r-project.org`). You will generally get a response in an hour or less, at any time day or night, because there are millions of useRs around the world. Often, however, the answers are provided by experienced R users, who *may* speak more Math than English and may have maladapted social skills.
 
-[![Pro tip: 95.6% of the time, this is the reason behind your code is not working](/media/images/coding-error-spelling.png){fig-align="center"}](https://allisonhorst.com/everything-else)
+[![Pro tip: 95.6% of the time, a silly spelling or syntax error is the reason behind your code is not working](/media/images/coding-error-spelling.png){fig-align="center"}](https://allisonhorst.com/everything-else)
 
 ### Pro tip: Keep notes!
 
-It is a good idea to keep a Word document open while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future.
+It is a good idea to keep a notes while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future. What I do with every single project I am working on, is create a `project_notes` R Notebook file. I treat this like a digital lab notebook, recording what I do each day, issues I'm running into, ideas for future analyses or figures to make, a checklist of tasks I have yet to accomplish, and as a sandbox to play with analysis ideas/building skeletons of functions. 
 
 ## Working with batch files ("R scripts")
 
@@ -116,7 +123,9 @@ Open the file that you just closed. Write as follows:
 2+2
 ```
 
-This is good practice when analyzing *any* data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you!
+This is good practice when analyzing *any* data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you! 
+
+Keep in mind, comments are meant to clarify your code/objects in your code, not act as an extensive note-taking tool. Start a `project_notes` file for stuff like that! Comments should help either future you, or someone else who has never met you, run your code successfully and understand its purpose.
 
 ## Object-oriented programming
 
