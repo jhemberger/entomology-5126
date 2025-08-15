@@ -1,5 +1,15 @@
 ---
-title: "w1-content"
+title: "Week 1"
+subtitle: "Class orientation and introduction to R and data wrangling"
+date: last-modified
+date-format: long
 format: html
 ---
 
+## Slides
+
+{{< revealjs file="slides/slides-test.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::{.callout-tip}
+**Tip**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
+:::

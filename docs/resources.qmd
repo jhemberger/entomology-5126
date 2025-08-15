@@ -1,5 +1,0 @@
----
-title: "resources"
-format: html
----
-

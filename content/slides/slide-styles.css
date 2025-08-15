@@ -1,0 +1,42 @@
+.box-1-list {
+    margin: 1em 0;
+    border-radius: 15px;
+    padding: 0.25em;
+    background-color: #EDB45870;
+}
+
+.box-2-list {
+    margin: 1em 0;
+    border-radius: 15px;
+    padding: 0.25em;
+    background-color: #F6645170;
+}
+
+.box-3-list {
+    margin: 1em 0;
+    border-radius: 15px;
+    padding: 0.25em;
+    background-color: #33333370;
+}
+
+.box-4-list {
+    margin: 1em 0;
+    border-radius: 15px;
+    padding: 0.25em;
+    background-color: #708B7570;
+}
+
+.box-5-list {
+    margin: 1em 0;
+    border-radius: 15px;
+    padding: 0.25em;
+    background-color: #FAF0CA70;
+}
+
+.box-6-list {
+    margin: 1em 0;
+    border-radius: 15px;
+    padding: 0.25em;
+    background-color: #FFF8F0;
+    border-color: #333333ff;
+}

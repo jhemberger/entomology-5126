@@ -60,7 +60,7 @@ Fortunately, `R` has LOTS of help. Here are some good ways to obtain help if you
 
 ### Pro tip: Keep notes!
 
-It is a good idea to keep a notes while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future. What I do with every single project I am working on, is create a `project_notes` R Notebook file. I treat this like a digital lab notebook, recording what I do each day, issues I'm running into, ideas for future analyses or figures to make, a checklist of tasks I have yet to accomplish, and as a sandbox to play with analysis ideas/building skeletons of functions. 
+It is a good idea to keep a notes while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future. What I do with every single project I am working on, is create a `project_notes` R Notebook file. I treat this like a digital lab notebook, recording what I do each day, issues I'm running into, ideas for future analyses or figures to make, a checklist of tasks I have yet to accomplish, and as a sandbox to play with analysis ideas/building skeletons of functions.
 
 ## Working with batch files ("R scripts")
 
@@ -123,7 +123,7 @@ Open the file that you just closed. Write as follows:
 2+2
 ```
 
-This is good practice when analyzing *any* data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you! 
+This is good practice when analyzing *any* data set. My code is always annotated where I read in data, conduct exploratory data analysis, manipulate variables, and so on. Do the same for your homeworks, and your thesis/dissertation analyses. Your future self will thank you!
 
 Keep in mind, comments are meant to clarify your code/objects in your code, not act as an extensive note-taking tool. Start a `project_notes` file for stuff like that! Comments should help either future you, or someone else who has never met you, run your code successfully and understand its purpose.
 

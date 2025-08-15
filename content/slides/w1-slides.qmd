@@ -1,0 +1,243 @@
+---
+# project:
+    # output-dir: slides
+title: "Week 1"
+subtitle: "Class orientation and introduction to R, RStudio, and data wrangling"
+format:
+  revealjs: 
+    # center-title-slide: false
+    output-file: slides-test.html
+    theme: ["simple", "slide-styles.scss"]
+    navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    transition: fade
+    transition-speed: slow
+    logo: /media/5126-header.png
+    css: ["default", "slide-styles.css", "slide-styles.scss"]
+    # footer: '[https://jhemberger.github.io/entomology-5126/](https://jhemberger.github.io/entomology-5126/)'
+---
+
+# Welcome!
+
+## What we'll cover this week
+
+:::: {.fragment .fade-in}
+::: box-1-list
+Who am I?
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-2-list
+Course logistics and learning objectives
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-3-list
+Data best management practices
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-4-list
+A brief introduction to data wrangling
+:::
+::::
+
+# A bit about me  {.bkrd-color-1}
+## Jeremy Hemberger, PhD 
+***Assistant Professor - Department of Entomology***
+</br>
+</br>
+👨🏻‍🔬 I lead the [Insect Biodiversity under Global Change lab](https://jhemberger.github.io/ibug_lab_website/)</br>
+🐝 Research: global change impacts on insects</br>
+👨🏻‍🏫 Teaching: quantitative methods in ecology</br>
+
+::: columns
+::: {.column width="33%"}
+![](slide_media/w1/research1.jpeg){.absolute width="300" height="200" .rnd-img}
+:::
+
+::: {.column width="33%"}
+![](slide_media/w1/research2.jpeg){.absolute width="300" height="200" .rnd-img}
+:::
+
+::: {.column width="33%"}
+![](slide_media/w1/research3.jpg){.absolute width="300" height="200" .rnd-img}
+:::
+:::
+
+## Jeremy Hemberger, PhD 
+***Assistant Professor - Department of Entomology***
+</br>
+</br>
+🏫 Office location: 408 Hodson </br>
+🕥 Office hours: 8:00-12:00 Mondays (in person)
+
+# Course logistics and learning objectives {.bkrd-color-2}
+## What this course is about
+:::: {.fragment .fade-in}
+::: box-1-list
+This course is an introduction to the application of statistical methods with biological and ecological data that is ***temporally*** or ***spatially*** structured.
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-1-list
+We'll emphasize: working with data, formulating hypotheses, constructing models, testing assumptions, and doing basic statistical inference and reporting.
+:::
+::::
+
+## What this course isn't
+:::: {.fragment .fade-in}
+::: box-2-list
+We're not here to discuss theoretical statistics: we'll be focused on ***applying foundational statistical tools***
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-2-list
+Memorizing equations and hand-calculating t-tests and ANOVAs <p class="tiny-font">*(but, sometimes the latter can be helpful...)*</p>
+:::
+::::
+
+## Some basic expectations
+:::: {.fragment .fade-in}
+::: box-6-list
+I do expect folks have a working understanding of basic calculus and statistics from past classes in high school or undergraduate studies
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-6-list
+It's ok to feel lost or get frustrated. Analyzing data (and working with {{< fa brands r-project title="R Project" >}}) is hard!
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-6-list
+Ask questions! Work together! Treat this not like a class, but like a semester long workshop
+:::
+::::
+
+## Learning objectives for the semester {.smaller .incremental}
+1. Apply the appropriate techniques to characterize spatial and temporal dependence data
+2. Understand how spatial and temporal dependence can affect statistical inference
+3. Identify and choose the appropriate analytical methods to contend with such dependence in widely-used statistical methods like regression and ANOVA
+4. Critically evaluate and understand the strengths and limits of these approaches
+5. Present analytical results in a format befitting a scientific presentation or publication
+
+## Course logistics {.smaller}
+### Meeting times
+#### Lectures
+🕥 Wednesday and Friday from 9:30-10:20am</br>
+📍 Hodson 511</br>
+</br>
+
+#### Labs
+🕥 Friday from 10:30-12:30</br>
+📍 Hodson 511
+
+## Course logistics {.smaller .scrollable}
+### Roadmap for the semester 
+
+```{r build-table, echo=FALSE, include = FALSE, output = 'asis'}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+library(fontawesome)
+options(knitr.kable.NA = '')
+
+schedule.df <- read_csv("../../data/ent5126-schedule.csv") %>%
+  nest(.by = "group")
+
+show_table <- function(group_id) {
+  # Add a heading
+  cat(as.character(paste("\n\n####", schedule.df$group[[group_id]], "\n\n")))
+  
+schedule <- schedule.df$data[[group_id]] %>%
+  select(week, date, title) %>%
+  kbl(col.names = c("Week", "Date", "Topic"),
+      escape = FALSE,
+      format = "html",
+      align = c("lllccc"),
+      booktabs = TRUE, longtable = FALSE) %>%
+  kable_styling(bootstrap_options = c(),
+                full_width = TRUE) %>%
+  column_spec(1, width = "15%", bold = TRUE) %>%
+  column_spec(2, width = "15%") %>%
+  column_spec(3, width = "70%", italic = TRUE) %>%
+  collapse_rows(columns = c(1))
+
+cat(schedule)
+}
+```
+::: custom-small
+```{r show-table, echo = FALSE, output = 'asis'}
+# schedule
+walk(seq(1, nrow(schedule.df)), ~show_table(.x))
+```
+:::
+
+## Grades and assessments {.smaller}
+**Lecture:** 45% of grade including midterm (20%) and comprehensive final (45%)</br>
+**Lab:** 55% of grade incuding 10 lab reports (40%) and a lab final (15%)</br>
+</br>
+
+:::: {.fragment .fade-in}
+::: columns
+::: {.column width="50%"}
+| Assignment            | Points | Percent |
+|-----------------------|--------|---------|
+| Lab reports (10 × 16) | 160    | 40%     |
+| Lab final             | 60     | 15%     |
+| Lecture midterm       | 80     | 20%     |
+| Lecture final         | 100    | 25%     |
+| **Total**                 | **400**    | **100%**    |
+
+: **Point Breakdown**
+:::
+
+::: {.column width="50%"}
+| Grade | Range   | Grade | Range  |
+|-------|---------|-------|--------|
+| A     | 93–100% | C     | 73–76% |
+| A−    | 90–92%  | C−    | 70–72% |
+| B+    | 87–89%  | D+    | 67–69% |
+| B     | 83–86%  | D     | 63–66% |
+| B−    | 80–82%  | D−    | 60–62% |
+| C+    | 77–79%  | F     | < 60%  |
+
+: **Grade Breakdown**
+:::
+:::
+::::
+
+## Attendance {.smaller}
+Syllabus is pretty clear on this, I hope you want to be here!
+
+## AI, LLMs, and Bullshit {.smaller}
+:::: {.fragment .fade-in}
+::: box-1-list
+I **highly** recommend **NOT** using generative AI tools in this course
+:::
+::::
+
+:::: {.fragment .fade-in}
+![](slide_media/w1/llm-insanity.png){width="500" fig-align="center"}
+::::
+
+:::: {.fragment .fade-in}
+::: {.callout-tip}
+There are times when using AI tools are appropriate, but learning to recognize those instances is critical to your learning.
+:::
+::::
+:::: {.fragment .fade-in}
+::: {.callout-warning}
+If you use LLMs in your work, be honest and report how and why you used them
+:::
+::::
