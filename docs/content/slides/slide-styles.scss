@@ -6,7 +6,7 @@
    max-height: 6vh !important;
 }
 // colors
-$theme5126-1: #EDB458ff;
+$theme5126-1: #ffe771ff;
 $theme5126-2: #F66451ff;
 $theme5126-3: #333333ff;
 $theme5126-4: #708B75ff;
@@ -46,11 +46,30 @@ $presentation-heading-color: #333333ff !default;
 }
 
 // font customizations
-.tiny-font {
+.tiny-text {
   font-size: 0.5em;
   font-weight: 300;
+}
+
+.med-text {
+   font-size: 2em
+}
+
+.big-text {
+   font-size: 4em
 }
 
 .custom-small table {
    font-size: .75em
 }
+
+
+.center-x {
+          margin: 0;
+          position: absolute;
+          // top: 50%;
+          left: 50%;
+          -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+        }
+

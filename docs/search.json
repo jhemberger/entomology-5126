@@ -938,7 +938,7 @@
     "href": "index.html",
     "title": "Entomology 5126",
     "section": "",
-    "text": "Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to analyze, interpret, and communicate spatially and temporally dependent data.\n\n\n\n\n\n\nEntomology 5126 | Spring 2026 College of Food, Agricultural, and Natural Resources Sciences University of Minnesota\n\n\n\n\n\n\n\n\n\nInstructor\n\n\n Dr. Jeremy Hemberger  408 Hodson Hall  jhemberg@umn.edu\n\n\n\n\nLecture details\n\n\n Wednesday and Friday  9:30-10:20am  408 Hodson Hall\n\n\n\n\nLab details\n\n\n Friday  10:30-12:30pm  408 Hodson Hall\n\n\n\n\nImportant links\n\n\n Canvas Site\n\n\n Class Github"
+    "text": "Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to analyze, interpret, and communicate spatially and temporally dependent data.\n\n\n\n\n\n\nSpring 2026 Semester College of Food, Agricultural, and Natural Resource Sciences University of Minnesota\n\n\n\n\n\n\n\n\n\nInstructor\n\n\n Dr. Jeremy Hemberger  408 Hodson Hall  jhemberg@umn.edu\n\n\n\n\nLecture details\n\n\n Wednesday and Friday  9:30-10:20am  408 Hodson Hall\n\n\n\n\nLab details\n\n\n Friday  10:30-12:30pm  408 Hodson Hall\n\n\n\n\nImportant links\n\n\n Canvas Site\n\n\n Class Github"
   },
   {
     "objectID": "resources.html",
@@ -1015,7 +1015,7 @@
     "href": "content/slides/slides-test.html#what-this-course-isnt",
     "title": "Week 1",
     "section": "What this course isn’t",
-    "text": "What this course isn’t\n\n\nWe’re not here to discuss theoretical statistics: we’ll be focused on applying foundational statistical tools\n\n\n\n\nMemorizing equations and hand-calculating t-tests and ANOVAs\n\n(but, sometimes the latter can be helpful…)"
+    "text": "What this course isn’t\n\n\nWe’re not here to discuss theoretical statistics: we’ll be focused on applying foundational statistical tools\n\n\n\n\nMemorizing equations and hand-calculating t-tests and ANOVAs (but, sometimes the latter can be helpful…)"
   },
   {
     "objectID": "content/slides/slides-test.html#some-basic-expectations",
@@ -1114,5 +1114,131 @@
     "title": "Week 1",
     "section": "AI, LLMs, and Bullshit",
     "text": "AI, LLMs, and Bullshit\n\n\nI highly recommend NOT using generative AI tools in this course\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThere are times when using AI tools are appropriate, but learning to recognize those instances is critical to your learning.\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nIf you use LLMs in your work, be honest and report how and why you used them"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling",
+    "href": "content/slides/slides-test.html#data-handling",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\n\n\n“Statistics” or data analysis begins long before you launch \n\n\n\n\nTo call in the statistician after the experiment is done may be no more than asking them to perform a post-mortem examination: they may be able to say what the experiment died of. - Ronald Aylmer Fisher"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-1",
+    "href": "content/slides/slides-test.html#data-handling-1",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nBest practices\n\n\nFollow your lab’s data management plan\n\n\n\n\nDon’t have one? Lobby your group to create one!\n\n\n\n\nData management plans should stress: data integrity and reproducible research"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-2",
+    "href": "content/slides/slides-test.html#data-handling-2",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nBest practices\n\nFollowing a rigorous data management plan will help future you to:\n\n\nRemember how and why you performed specific analyses\nQuickly and simply modify analyses and figures long after you have moved on to other projects\nQuickly reconfigure previous coding tasks so you don’t have to reinvent processes\nIndicate rigor, trustworthiness, and transparency to other professionals\nIncrease paper citation rates and allow data and code citation in addition to manuscripts\nMeet journal requirements1\n\nList adapted from Schulte-Moore data management plan"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-3",
+    "href": "content/slides/slides-test.html#data-handling-3",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nBest practices\n\nBacking up your data is of utmost importance. Follow the 3-2-1 rule:\n\n{.absolute-width=“800” .center-x}"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-4",
+    "href": "content/slides/slides-test.html#data-handling-4",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nData considerations\n\nData privacy & sensitive data"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-5",
+    "href": "content/slides/slides-test.html#data-handling-5",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nData entry\n\n\nIn previous courses and statistics textbooks, data are neat and tidy. We’ll be working with biological and ecological data, which are rarely as neatly packaged.\n\n\n\n\n\n\n\n\n\nImportant\n\n\nWhen it comes to analyzing data, 75% or more of your time will be taken up collating, recording, arranging, and tidying your data in preparation for the actual statistical analysis"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-6",
+    "href": "content/slides/slides-test.html#data-handling-6",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nData entry\n\n\nTypically, data are transcribed from paper data sheets (or directly into) spreadsheets before importing it your desired analysis program.\n\n\n\n\nThe most common structure for entering is “rectangular” or “flat”: each line of the data contains all of the variables for a single observation, even if they are blank\n\n\n\n\n\n\n\n\n\nTip\n\n\nUse a column for each variable; don’t create “amalgam” columns\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\nAppropriately setting up and entering data initially will avoid a lot of headaches in the future!"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-7",
+    "href": "content/slides/slides-test.html#data-handling-7",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of a “bad” setup"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-8",
+    "href": "content/slides/slides-test.html#data-handling-8",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of an improved setup\n\n\n\n\n\n\n\n\n\n\n\n\nCaution\n\n\nEach cell value should only contain data, not formulae or any other dependent expression. All of your data manipulations should happen in  where they are repeatable! Raw data should never be manipulated in Excel."
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-9",
+    "href": "content/slides/slides-test.html#data-handling-9",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of an improved setup\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nDon’t put too much work into making your datasheet “pretty”.  won’t care and it will likely interfere with data importing."
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-10",
+    "href": "content/slides/slides-test.html#data-handling-10",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of data that are too pretty\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nTechnically, these data are “flat”, but none of the formatting or special features will be read into \n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nIf data are never going to be used outside of spreadsheet, you can do what you want! If it’s going into , make it machine readable!"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-11",
+    "href": "content/slides/slides-test.html#data-handling-11",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nMetadata\n\nData must be kept along with a codebook or metadata that, at the bare minimum, describes the variables in your flat data file. Ideally, it should contain:\n\n\nDescription of how data were collected including sampling design, protocols, etc.\nVariables contained in the spreadsheet\nThe location, format, and units for each variable within the raw data file\nMeaning/definition of coded values for variable’s observation\nFor surveys, the survey instrument/questionaire used to solicit responses along with the coded values for each question\n\n\n\n\n\n\n\n\nTip\n\n\nI recommend keeping this metadata file as a separate plain-text or Markdown file in the same folder as your flat data file."
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-12",
+    "href": "content/slides/slides-test.html#data-handling-12",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nMetadata: example"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-13",
+    "href": "content/slides/slides-test.html#data-handling-13",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nCommon data import problems\nComputers can have trouble reading and processing data. Some tips to avoid issues when importing into :\n\nDon’t use any spaces in column names or in data entries. Use \"-\" or \"_\". I don’t recommend using \".\"\nDon’t mix characters into columns that are supposed to be numeric, or vice-versa.\nNo special characters (!@#$%^&*&lt;&gt;/\\{}[])"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-14",
+    "href": "content/slides/slides-test.html#data-handling-14",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nGetting ready to import data into \n\n\nOnce your data is entered, do some QA/QC. This can be done by:\n\n\n\n\nSubsetting several sections and examining for errors\nEmploying friend to examine column/variable names and comparing with metadata (and seeing if they think your names make any sense)\nImport it into R and perform some data cleaning (e.g., use the janitor package, build some basic summaries and plots to see if values make sense)"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-15",
+    "href": "content/slides/slides-test.html#data-handling-15",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExporting data\nMany programs, R included, are capable of directly handling propriatary file-types like .xcel files. However, you should save your file as something universally useable by folks who may not have access to excel! These include:\n\n*.txt plain text files\n*.txt tab-delimited plain text\n*dat space-delimited plain text\n*.csv comma separated values\n\n\n\n\n\n\n\nNote\n\n\nMost of us will work primarily with .csv files, and these are most often the files we’ll see in online data repositories for tabular data."
+  },
+  {
+    "objectID": "content/slides/slides-test.html#tldr",
+    "href": "content/slides/slides-test.html#tldr",
+    "title": "Week 1",
+    "section": "TLDR",
+    "text": "TLDR\n\n\n\n\n\n\n\nBlah blah blah"
+  },
+  {
+    "objectID": "content/slides/slides-test.html#data-handling-tldr",
+    "href": "content/slides/slides-test.html#data-handling-tldr",
+    "title": "Week 1",
+    "section": "Data handling: TLDR",
+    "text": "Data handling: TLDR\n\n Develop a complete data management plan\n\n\n Spend time and energy properly entering and managing data.\n\n\n Develop clear documentation and metadata surrounding your data set"
   }
 ]

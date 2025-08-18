@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5e174d68d40120c02014e50428a9c783.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-29efbdeacff1d688a1dacc1bd025f2bf.css">
   <link rel="stylesheet" href="default">
   <link rel="stylesheet" href="slide-styles.css">
   <link rel="stylesheet" href="slide-styles.scss">
@@ -211,33 +211,30 @@
 <section id="what-this-course-isnt" class="slide level2">
 <h2>What this course isn’t</h2>
 <div class="fragment fade-in">
-<div class="box-2-list">
+<div class="box-1-list">
 <p>We’re not here to discuss theoretical statistics: we’ll be focused on <strong><em>applying foundational statistical tools</em></strong></p>
 </div>
 </div>
 <div class="fragment fade-in">
-<div class="box-2-list">
-Memorizing equations and hand-calculating t-tests and ANOVAs
-<p class="tiny-font">
-<em>(but, sometimes the latter can be helpful…)</em>
-</p>
+<div class="box-1-list">
+<p>Memorizing equations and hand-calculating t-tests and ANOVAs <span class="tiny-text"><em>(but, sometimes the latter can be helpful…)</em></span></p>
 </div>
 </div>
 </section>
 <section id="some-basic-expectations" class="slide level2">
 <h2>Some basic expectations</h2>
 <div class="fragment fade-in">
-<div class="box-6-list">
+<div class="box-1-list">
 <p>I do expect folks have a working understanding of basic calculus and statistics from past classes in high school or undergraduate studies</p>
 </div>
 </div>
 <div class="fragment fade-in">
-<div class="box-6-list">
+<div class="box-1-list">
 <p>It’s ok to feel lost or get frustrated. Analyzing data (and working with <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i>) is hard!</p>
 </div>
 </div>
 <div class="fragment fade-in">
-<div class="box-6-list">
+<div class="box-1-list">
 <p>Ask questions! Work together! Treat this not like a class, but like a semester long workshop</p>
 </div>
 </div>
@@ -759,9 +756,341 @@ Final exam
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="data-management-best-practices" class="title-slide slide level1 center">
+<h1>Data Management Best Practices</h1>
+
+</section>
+<section id="data-handling" class="slide level2 smaller">
+<h2>Data handling</h2>
+<div class="fragment fade-in">
+<div class="box-1-list">
+<p>“Statistics” or data analysis begins long before you launch <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></p>
+</div>
+</div>
+<div class="fragment fade-in">
+<blockquote>
+<p><em>To call in the statistician after the experiment is done may be no more than asking them to perform a post-mortem examination: they may be able to say what the experiment died of.</em><br> - Ronald Aylmer Fisher</p>
+</blockquote>
+</div>
+</section>
+<section id="data-handling-1" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="best-practices">Best practices</h3>
+<div class="fragment fade-in">
+<div class="box-1-list">
+<p>Follow your lab’s data management plan</p>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="box-1-list">
+<p>Don’t have one? Lobby your group to create one!</p>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="box-1-list">
+<p>Data management plans should stress: <strong><em>data integrity</em></strong> and <strong><em>reproducible research</em></strong></p>
+</div>
+</div>
+</section>
+<section id="data-handling-2" class="slide level2 smaller incremental">
+<h2>Data handling</h2>
+<h3 id="best-practices-1">Best practices</h3>
+<div class="box-1-list">
+<p>Following a rigorous data management plan will help future you to:</p>
+</div>
+<ol type="1">
+<li>Remember how and why you performed specific analyses</li>
+<li>Quickly and simply modify analyses and figures long after you have moved on to other projects</li>
+<li>Quickly reconfigure previous coding tasks so you don’t have to reinvent processes</li>
+<li>Indicate rigor, trustworthiness, and transparency to other professionals</li>
+<li>Increase paper citation rates and allow data and code citation in addition to manuscripts</li>
+<li>Meet journal requirements<sup>1</sup></li>
+</ol>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>List adapted from <a href="https://faculty.sites.iastate.edu/lschulte/lab-data-and-file-management-sops">Schulte-Moore data management plan</a></p></li></ol></aside></section>
+<section id="data-handling-3" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="best-practices-2">Best practices</h3>
+<div class="box-1-list">
+<p>Backing up your data is of utmost importance. Follow the <code>3-2-1</code> rule:</p>
+</div>
+<p><img data-src="slide_media/w1/321-rule.png">{.absolute-width=“800” .center-x}</p>
+</section>
+<section id="data-handling-4" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="data-considerations">Data considerations</h3>
+<div class="box-1-list">
+<p>Data privacy &amp; sensitive data</p>
+</div>
+</section>
+<section id="data-handling-5" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="data-entry">Data entry</h3>
+<div class="fragment fade-in">
+<ul>
+<li>In previous courses and statistics textbooks, data are neat and tidy. We’ll be working with biological and ecological data, which are rarely as neatly packaged.</li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>When it comes to analyzing data, 75% or more of your time will be taken up collating, recording, arranging, and tidying your data in preparation for the actual statistical analysis</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-handling-6" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="data-entry-1">Data entry</h3>
+<div class="fragment fade-in">
+<ul>
+<li>Typically, data are transcribed from paper data sheets (or directly into) spreadsheets before importing it your desired analysis program.</li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<ul>
+<li>The most common structure for entering is “rectangular” or “flat”: each line of the data contains <strong><em>all</em></strong> of the variables for a single observation, even if they are blank</li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Use a column for each variable; don’t create “amalgam” columns</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Appropriately setting up and entering data <em>initially</em> will avoid a lot of headaches in the future!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-handling-7" class="slide level2 smaller">
+<h2>Data handling</h2>
+<p><strong>Example of a “bad” setup</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slide_media/w1/bad-data.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="data-handling-8" class="slide level2 smaller">
+<h2>Data handling</h2>
+<p><strong>Example of an improved setup</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slide_media/w1/good-data.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+<div class="fragment fade-in">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p>Each cell value should <em>only</em> contain data, not formulae or any other dependent expression. All of your data manipulations should happen in <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i> where they are repeatable! Raw data should <strong><em>never</em></strong> be manipulated in Excel.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-handling-9" class="slide level2 smaller">
+<h2>Data handling</h2>
+<p><strong>Example of an improved setup</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slide_media/w1/good-data.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+<div class="fragment fade-in">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Don’t put too much work into making your datasheet “pretty”. <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i> won’t care and it will likely interfere with data importing.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-handling-10" class="slide level2 smaller">
+<h2>Data handling</h2>
+<p><strong>Example of data that are too pretty</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slide_media/w1/toopretty-data.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+<div class="fragment fade-in">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Technically, these data are “flat”, but none of the formatting or special features will be read into <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>If data are never going to be used outside of spreadsheet, you can do what you want! If it’s going into <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i>, make it machine readable!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-handling-11" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="metadata">Metadata</h3>
+<div class="box-1-list">
+<p>Data <strong><em>must</em></strong> be kept along with a codebook or metadata that, <em>at the bare minimum</em>, describes the variables in your flat data file. Ideally, it should contain:</p>
+</div>
+<ol type="1">
+<li>Description of how data were collected including sampling design, protocols, etc.</li>
+<li>Variables contained in the spreadsheet</li>
+<li>The location, format, and units for each variable within the raw data file</li>
+<li>Meaning/definition of coded values for variable’s observation</li>
+<li>For surveys, the survey instrument/questionaire used to solicit responses along with the coded values for each question</li>
+</ol>
+<div class="fragment fade-in">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>I recommend keeping this metadata file as a separate plain-text or Markdown file in the same folder as your flat data file.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-handling-12" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="metadata-example">Metadata: example</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="data-handling-13" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="common-data-import-problems">Common data import problems</h3>
+<p>Computers can have trouble reading and processing data. Some tips to avoid issues when importing into <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i>:</p>
+<ol type="1">
+<li>Don’t use any spaces in column names or in data entries. Use <code>"-"</code> or <code>"_"</code>. I don’t recommend using <code>"."</code></li>
+<li>Don’t mix characters into columns that are supposed to be numeric, or vice-versa.</li>
+<li>No special characters (<code>!@#$%^&amp;*&lt;&gt;/\{}[]</code>)</li>
+</ol>
+</section>
+<section id="data-handling-14" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="getting-ready-to-import-data-into">Getting ready to import data into <i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></h3>
+<div class="fragment fade-in">
+<div class="box-1-list">
+<p>Once your data is entered, do some QA/QC. This can be done by:</p>
+</div>
+</div>
+<div class="fragment fade-in">
+<ol type="1">
+<li>Subsetting several sections and examining for errors</li>
+<li>Employing friend to examine column/variable names and comparing with metadata (and seeing if they think your names make any sense)</li>
+<li>Import it into R and perform some data cleaning (e.g., use the <code>janitor</code> package, build some basic summaries and plots to see if values make sense)</li>
+</ol>
+</div>
+</section>
+<section id="data-handling-15" class="slide level2 smaller">
+<h2>Data handling</h2>
+<h3 id="exporting-data">Exporting data</h3>
+<p>Many programs, R included, are capable of directly handling propriatary file-types like <code>.xcel</code> files. However, you should save your file as something universally useable by folks who may not have access to excel! These include:</p>
+<ol type="1">
+<li><code>*.txt</code> plain text files</li>
+<li><code>*.txt</code> tab-delimited plain text</li>
+<li><code>*dat</code> space-delimited plain text</li>
+<li><code>*.csv</code> comma separated values</li>
+</ol>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Most of us will work primarily with <code>.csv</code> files, and these are most often the files we’ll see in online data repositories for tabular data.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-handling-tldr" class="slide level2 smaller">
+<h2>Data handling: TLDR</h2>
+<div class="box-1-list">
+<p><span class="med-text"><i class="fa-solid fa-floppy-disk" aria-label="floppy-disk"></i></span> Develop a complete data management plan</p>
+</div>
+<div class="box-1-list">
+<p><span class="med-text"><i class="fa-solid fa-file" aria-label="file"></i></span> Spend time and energy properly entering and managing data.</p>
+</div>
+<div class="box-1-list">
+<p><span class="med-text"><i class="fa-solid fa-code" aria-label="code"></i></span> Develop clear documentation and metadata surrounding your data set</p>
+</div>
 
 
 </section></section>
+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../../media/5126-header.png" class="slide-logo"></p>

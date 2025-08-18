@@ -13,6 +13,7 @@ format:
     chalkboard: 
       buttons: true
     preview-links: auto
+    auto-stretch: false
     transition: fade
     transition-speed: slow
     logo: /media/5126-header.png
@@ -48,38 +49,34 @@ A brief introduction to data wrangling
 :::
 ::::
 
-# A bit about me  {.bkrd-color-1}
-## Jeremy Hemberger, PhD 
-***Assistant Professor - Department of Entomology***
-</br>
-</br>
-👨🏻‍🔬 I lead the [Insect Biodiversity under Global Change lab](https://jhemberger.github.io/ibug_lab_website/)</br>
-🐝 Research: global change impacts on insects</br>
-👨🏻‍🏫 Teaching: quantitative methods in ecology</br>
+# A bit about me {.bkrd-color-1}
 
-::: columns
+## Jeremy Hemberger, PhD
+
+***Assistant Professor - Department of Entomology*** </br> </br> 👨🏻‍🔬 I lead the [Insect Biodiversity under Global Change lab](https://jhemberger.github.io/ibug_lab_website/)</br> 🐝 Research: global change impacts on insects</br> 👨🏻‍🏫 Teaching: quantitative methods in ecology</br>
+
+:::::: columns
 ::: {.column width="33%"}
-![](slide_media/w1/research1.jpeg){.absolute width="300" height="200" .rnd-img}
+![](slide_media/w1/research1.jpeg){.absolute .rnd-img width="300" height="200"}
 :::
 
 ::: {.column width="33%"}
-![](slide_media/w1/research2.jpeg){.absolute width="300" height="200" .rnd-img}
+![](slide_media/w1/research2.jpeg){.absolute .rnd-img width="300" height="200"}
 :::
 
 ::: {.column width="33%"}
-![](slide_media/w1/research3.jpg){.absolute width="300" height="200" .rnd-img}
+![](slide_media/w1/research3.jpg){.absolute .rnd-img width="300" height="200"}
 :::
-:::
+::::::
 
-## Jeremy Hemberger, PhD 
-***Assistant Professor - Department of Entomology***
-</br>
-</br>
-🏫 Office location: 408 Hodson </br>
-🕥 Office hours: 8:00-12:00 Mondays (in person)
+## Jeremy Hemberger, PhD
+
+***Assistant Professor - Department of Entomology*** </br> </br> 🏫 Office location: 408 Hodson </br> 🕥 Office hours: 8:00-12:00 Mondays (in person)
 
 # Course logistics and learning objectives {.bkrd-color-2}
+
 ## What this course is about
+
 :::: {.fragment .fade-in}
 ::: box-1-list
 This course is an introduction to the application of statistical methods with biological and ecological data that is ***temporally*** or ***spatially*** structured.
@@ -93,57 +90,62 @@ We'll emphasize: working with data, formulating hypotheses, constructing models,
 ::::
 
 ## What this course isn't
+
 :::: {.fragment .fade-in}
-::: box-2-list
+::: box-1-list
 We're not here to discuss theoretical statistics: we'll be focused on ***applying foundational statistical tools***
 :::
 ::::
 
 :::: {.fragment .fade-in}
-::: box-2-list
-Memorizing equations and hand-calculating t-tests and ANOVAs <p class="tiny-font">*(but, sometimes the latter can be helpful...)*</p>
+::: box-1-list
+Memorizing equations and hand-calculating t-tests and ANOVAs [*(but, sometimes the latter can be helpful...)*]{.tiny-text}
 :::
 ::::
 
 ## Some basic expectations
+
 :::: {.fragment .fade-in}
-::: box-6-list
+::: box-1-list
 I do expect folks have a working understanding of basic calculus and statistics from past classes in high school or undergraduate studies
 :::
 ::::
 
 :::: {.fragment .fade-in}
-::: box-6-list
+::: box-1-list
 It's ok to feel lost or get frustrated. Analyzing data (and working with {{< fa brands r-project title="R Project" >}}) is hard!
 :::
 ::::
 
 :::: {.fragment .fade-in}
-::: box-6-list
+::: box-1-list
 Ask questions! Work together! Treat this not like a class, but like a semester long workshop
 :::
 ::::
 
 ## Learning objectives for the semester {.smaller .incremental}
-1. Apply the appropriate techniques to characterize spatial and temporal dependence data
-2. Understand how spatial and temporal dependence can affect statistical inference
-3. Identify and choose the appropriate analytical methods to contend with such dependence in widely-used statistical methods like regression and ANOVA
-4. Critically evaluate and understand the strengths and limits of these approaches
-5. Present analytical results in a format befitting a scientific presentation or publication
+
+1.  Apply the appropriate techniques to characterize spatial and temporal dependence data
+2.  Understand how spatial and temporal dependence can affect statistical inference
+3.  Identify and choose the appropriate analytical methods to contend with such dependence in widely-used statistical methods like regression and ANOVA
+4.  Critically evaluate and understand the strengths and limits of these approaches
+5.  Present analytical results in a format befitting a scientific presentation or publication
 
 ## Course logistics {.smaller}
+
 ### Meeting times
+
 #### Lectures
-🕥 Wednesday and Friday from 9:30-10:20am</br>
-📍 Hodson 511</br>
-</br>
+
+🕥 Wednesday and Friday from 9:30-10:20am</br> 📍 Hodson 511</br> </br>
 
 #### Labs
-🕥 Friday from 10:30-12:30</br>
-📍 Hodson 511
+
+🕥 Friday from 10:30-12:30</br> 📍 Hodson 511
 
 ## Course logistics {.smaller .scrollable}
-### Roadmap for the semester 
+
+### Roadmap for the semester
 
 ```{r build-table, echo=FALSE, include = FALSE, output = 'asis'}
 library(tidyverse)
@@ -176,6 +178,7 @@ schedule <- schedule.df$data[[group_id]] %>%
 cat(schedule)
 }
 ```
+
 ::: custom-small
 ```{r show-table, echo = FALSE, output = 'asis'}
 # schedule
@@ -184,20 +187,19 @@ walk(seq(1, nrow(schedule.df)), ~show_table(.x))
 :::
 
 ## Grades and assessments {.smaller}
-**Lecture:** 45% of grade including midterm (20%) and comprehensive final (45%)</br>
-**Lab:** 55% of grade incuding 10 lab reports (40%) and a lab final (15%)</br>
-</br>
 
-:::: {.fragment .fade-in}
-::: columns
+**Lecture:** 45% of grade including midterm (20%) and comprehensive final (45%)</br> **Lab:** 55% of grade incuding 10 lab reports (40%) and a lab final (15%)</br> </br>
+
+:::::: {.fragment .fade-in}
+::::: columns
 ::: {.column width="50%"}
-| Assignment            | Points | Percent |
-|-----------------------|--------|---------|
-| Lab reports (10 × 16) | 160    | 40%     |
-| Lab final             | 60     | 15%     |
-| Lecture midterm       | 80     | 20%     |
-| Lecture final         | 100    | 25%     |
-| **Total**                 | **400**    | **100%**    |
+| Assignment            | Points  | Percent  |
+|-----------------------|---------|----------|
+| Lab reports (10 × 16) | 160     | 40%      |
+| Lab final             | 60      | 15%      |
+| Lecture midterm       | 80      | 20%      |
+| Lecture final         | 100     | 25%      |
+| **Total**             | **400** | **100%** |
 
 : **Point Breakdown**
 :::
@@ -210,34 +212,276 @@ walk(seq(1, nrow(schedule.df)), ~show_table(.x))
 | B+    | 87–89%  | D+    | 67–69% |
 | B     | 83–86%  | D     | 63–66% |
 | B−    | 80–82%  | D−    | 60–62% |
-| C+    | 77–79%  | F     | < 60%  |
+| C+    | 77–79%  | F     | \< 60% |
 
 : **Grade Breakdown**
 :::
-:::
-::::
+:::::
+::::::
 
 ## Attendance {.smaller}
+
 Syllabus is pretty clear on this, I hope you want to be here!
 
 ## AI, LLMs, and Bullshit {.smaller}
+
 :::: {.fragment .fade-in}
 ::: box-1-list
 I **highly** recommend **NOT** using generative AI tools in this course
 :::
 ::::
 
-:::: {.fragment .fade-in}
+::: {.fragment .fade-in}
 ![](slide_media/w1/llm-insanity.png){width="500" fig-align="center"}
-::::
+:::
 
 :::: {.fragment .fade-in}
-::: {.callout-tip}
+::: callout-tip
 There are times when using AI tools are appropriate, but learning to recognize those instances is critical to your learning.
 :::
 ::::
+
 :::: {.fragment .fade-in}
-::: {.callout-warning}
+::: callout-warning
 If you use LLMs in your work, be honest and report how and why you used them
 :::
 ::::
+
+# Data Management Best Practices
+
+## Data handling {.smaller}
+
+:::: {.fragment .fade-in}
+::: box-1-list
+"Statistics" or data analysis begins long before you launch {{< fa brands r-project title="R Project" >}}
+:::
+::::
+
+::: {.fragment .fade-in}
+> *To call in the statistician after the experiment is done may be no more than asking them to perform a post-mortem examination: they may be able to say what the experiment died of.*</br> - Ronald Aylmer Fisher
+:::
+
+## Data handling {.smaller}
+
+### Best practices
+
+:::: {.fragment .fade-in}
+::: box-1-list
+Follow your lab's data management plan
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-1-list
+Don't have one? Lobby your group to create one!
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: box-1-list
+Data management plans should stress: ***data integrity*** and ***reproducible research***
+:::
+::::
+
+## Data handling {.smaller .incremental}
+
+### Best practices
+
+::: box-1-list
+Following a rigorous data management plan will help future you to:
+:::
+
+1.  Remember how and why you performed specific analyses
+2.  Quickly and simply modify analyses and figures long after you have moved on to other projects
+3.  Quickly reconfigure previous coding tasks so you don’t have to reinvent processes
+4.  Indicate rigor, trustworthiness, and transparency to other professionals
+5.  Increase paper citation rates and allow data and code citation in addition to manuscripts
+6.  Meet journal requirements[^1]
+
+[^1]: List adapted from [Schulte-Moore data management plan](https://faculty.sites.iastate.edu/lschulte/lab-data-and-file-management-sops)
+
+## Data handling {.smaller}
+
+### Best practices
+
+::: box-1-list
+Backing up your data is of utmost importance. Follow the `3-2-1` rule:
+:::
+
+![](slide_media/w1/321-rule.png){.absolute-width="800" .center-x}
+
+## Data handling {.smaller}
+
+### Data considerations
+
+::: box-1-list
+Data privacy & sensitive data
+:::
+
+## Data handling {.smaller}
+
+### Data entry
+
+::: {.fragment .fade-in}
+-   In previous courses and statistics textbooks, data are neat and tidy. We'll be working with biological and ecological data, which are rarely as neatly packaged.
+:::
+
+:::: {.fragment .fade-in}
+::: callout-important
+When it comes to analyzing data, 75% or more of your time will be taken up collating, recording, arranging, and tidying your data in preparation for the actual statistical analysis
+:::
+::::
+
+## Data handling {.smaller}
+
+### Data entry
+
+::: {.fragment .fade-in}
+-   Typically, data are transcribed from paper data sheets (or directly into) spreadsheets before importing it your desired analysis program.
+:::
+
+::: {.fragment .fade-in}
+-   The most common structure for entering is "rectangular" or "flat": each line of the data contains ***all*** of the variables for a single observation, even if they are blank
+:::
+
+:::: {.fragment .fade-in}
+::: callout-tip
+Use a column for each variable; don't create "amalgam" columns
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: callout-important
+Appropriately setting up and entering data *initially* will avoid a lot of headaches in the future!
+:::
+::::
+
+## Data handling {.smaller}
+
+**Example of a "bad" setup**
+
+![](slide_media/w1/bad-data.png){width="50%" fig-align="center"}
+
+## Data handling {.smaller}
+
+**Example of an improved setup**
+
+![](slide_media/w1/good-data.png){width="50%" fig-align="center"}
+
+:::: {.fragment .fade-in}
+::: callout-caution
+Each cell value should *only* contain data, not formulae or any other dependent expression. All of your data manipulations should happen in {{< fa brands r-project title="R Project" >}} where they are repeatable! Raw data should ***never*** be manipulated in Excel.
+:::
+::::
+
+## Data handling {.smaller}
+
+**Example of an improved setup**
+
+![](slide_media/w1/good-data.png){width="50%" fig-align="center"}
+
+:::: {.fragment .fade-in}
+::: callout-tip
+Don't put too much work into making your datasheet "pretty". {{< fa brands r-project title="R Project" >}} won't care and it will likely interfere with data importing.
+:::
+::::
+
+## Data handling {.smaller}
+
+**Example of data that are too pretty**
+
+![](slide_media/w1/toopretty-data.png){width="50%" fig-align="center"}
+
+:::: {.fragment .fade-in}
+::: callout-note
+Technically, these data are "flat", but none of the formatting or special features will be read into {{< fa brands r-project title="R Project" >}}
+:::
+::::
+
+:::: {.fragment .fade-in}
+::: callout-tip
+If data are never going to be used outside of spreadsheet, you can do what you want! If it's going into {{< fa brands r-project title="R Project" >}}, make it machine readable!
+:::
+::::
+
+## Data handling {.smaller}
+
+### Metadata
+
+::: box-1-list
+Data ***must*** be kept along with a codebook or metadata that, *at the bare minimum*, describes the variables in your flat data file. Ideally, it should contain:
+:::
+
+1.  Description of how data were collected including sampling design, protocols, etc.
+2.  Variables contained in the spreadsheet
+3.  The location, format, and units for each variable within the raw data file
+4.  Meaning/definition of coded values for variable's observation
+5.  For surveys, the survey instrument/questionaire used to solicit responses along with the coded values for each question
+
+:::: {.fragment .fade-in}
+::: callout-tip
+I recommend keeping this metadata file as a separate plain-text or Markdown file in the same folder as your flat data file.
+:::
+::::
+
+## Data handling {.smaller}
+
+### Metadata: example
+
+![](){width="50%" fig-align="center"}
+
+
+## Data handling {.smaller}
+
+### Common data import problems
+
+Computers can have trouble reading and processing data. Some tips to avoid issues when importing into {{< fa brands r-project title="R Project" >}}:
+
+1. Don't use any spaces in column names or in data entries. Use `"-"` or `"_"`. I don't recommend using `"."`
+2. Don't mix characters into columns that are supposed to be numeric, or vice-versa. 
+3. No special characters (`!@#$%^&*<>/\{}[]`)
+
+## Data handling {.smaller}
+
+### Getting ready to import data into {{< fa brands r-project title="R Project" >}}
+
+:::: {.fragment .fade-in}
+::: box-1-list
+Once your data is entered, do some QA/QC. This can be done by:
+:::
+::::
+
+::: {.fragment .fade-in}
+1. Subsetting several sections and examining for errors
+2. Employing friend to examine column/variable names and comparing with metadata (and seeing if they think your names make any sense)
+3. Import it into R and perform some data cleaning (e.g., use the `janitor` package, build some basic summaries and plots to see if values make sense)
+:::
+
+## Data handling {.smaller}
+
+### Exporting data
+
+Many programs, R included, are capable of directly handling propriatary file-types like `.xcel` files. However, you should save your file as something universally useable by folks who may not have access to excel! These include:
+
+1. `*.txt` plain text files
+2. `*.txt` tab-delimited plain text
+3. `*dat` space-delimited plain text
+4. `*.csv` comma separated values
+
+::: {.callout-note}
+Most of us will work primarily with `.csv` files, and these are most often the files we'll see in online data repositories for tabular data.
+:::
+
+## Data handling: TLDR {.smaller}
+
+::: box-1-list
+[{{< fa floppy-disk >}}]{.med-text} Develop a complete data management plan
+:::
+
+::: box-1-list
+[{{< fa file >}}]{.med-text} Spend time and energy properly entering and managing data.
+:::
+
+::: box-1-list
+[{{< fa code >}}]{.med-text} Develop clear documentation and metadata surrounding your data set
+:::
