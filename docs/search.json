@@ -1225,7 +1225,7 @@
     "href": "content/slides/slides-test.html#data-handling-15",
     "title": "Week 1",
     "section": "Data handling",
-    "text": "Data handling\nExporting data\nMany programs, R included, are capable of directly handling propriatary file-types like .xcel files. However, you should save your file as something universally useable by folks who may not have access to excel! These include:\n\n*.txt plain text files\n*.txt tab-delimited plain text\n*dat space-delimited plain text\n*.csv comma separated values\n\n\n\n\n\n\n\nNote\n\n\nMost of us will work primarily with .csv files, and these are most often the files we’ll see in online data repositories for tabular data."
+    "text": "Data handling\nExporting data\nMany programs, R included, are capable of directly handling propriatary file-types like .xcel files. However, you should save your file as something universally useable by folks who may not have access to Excel! These include:\n\n*.txt plain text files\n*.txt tab-delimited plain text\n*.dat space-delimited plain text\n*.csv comma separated values\n\n\n\n\n\n\n\nNote\n\n\nMost of us will work primarily with .csv files, and these are most often the files we’ll see in online data repositories for tabular data."
   },
   {
     "objectID": "content/slides/slides-test.html#tldr",
@@ -1240,5 +1240,400 @@
     "title": "Week 1",
     "section": "Data handling: TLDR",
     "text": "Data handling: TLDR\n\n Develop a complete data management plan\n\n\n Spend time and energy properly entering and managing data.\n\n\n Develop clear documentation and metadata surrounding your data set"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#what-well-cover-this-week",
+    "href": "content/slides/w1-slides.html#what-well-cover-this-week",
+    "title": "Week 1",
+    "section": "What we’ll cover this week",
+    "text": "What we’ll cover this week\n\n\n Who am I?\n\n\n\n\n Course logistics and learning objectives\n\n\n\n\n Data best management practices\n\n\n\n\n A brief introduction to data wranglin’"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#jeremy-hemberger-phd",
+    "href": "content/slides/w1-slides.html#jeremy-hemberger-phd",
+    "title": "Week 1",
+    "section": "Jeremy Hemberger, PhD",
+    "text": "Jeremy Hemberger, PhD\nAssistant Professor - Department of Entomology   👨🏻‍🔬 I lead the Insect Biodiversity under Global Change lab 🐝 Research: global change impacts on insects 👨🏻‍🏫 Teaching: quantitative methods in ecology"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#jeremy-hemberger-phd-1",
+    "href": "content/slides/w1-slides.html#jeremy-hemberger-phd-1",
+    "title": "Week 1",
+    "section": "Jeremy Hemberger, PhD",
+    "text": "Jeremy Hemberger, PhD\nAssistant Professor - Department of Entomology   🏫 Office location: 408 Hodson  🕥 Office hours: 8:00-12:00 Mondays (in person)"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#what-this-course-is-about",
+    "href": "content/slides/w1-slides.html#what-this-course-is-about",
+    "title": "Week 1",
+    "section": "What this course is about",
+    "text": "What this course is about\n\n\nThis course is an introduction to the application of statistical methods with biological and ecological data that is temporally or spatially structured.\n\n\n\n\nWe’ll emphasize: working with data, formulating hypotheses, constructing models, testing assumptions, and doing basic statistical inference and reporting."
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#what-this-course-isnt",
+    "href": "content/slides/w1-slides.html#what-this-course-isnt",
+    "title": "Week 1",
+    "section": "What this course isn’t",
+    "text": "What this course isn’t\n\n\nWe’re not here to discuss theoretical statistics: we’ll be focused on applying foundational statistical tools\n\n\n\n\nMemorizing equations and hand-calculating t-tests and ANOVAs (but, sometimes the latter can be helpful…)"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#some-basic-expectations",
+    "href": "content/slides/w1-slides.html#some-basic-expectations",
+    "title": "Week 1",
+    "section": "Some basic expectations",
+    "text": "Some basic expectations\n\n\nI do expect folks have a working understanding of basic calculus and statistics from past classes in high school or undergraduate studies\n\n\n\n\nIt’s ok to feel lost or get frustrated. Analyzing data (and working with ) is hard!\n\n\n\n\nAsk questions! Work together! Treat this not like a class, but like a semester long workshop"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#learning-objectives-for-the-semester",
+    "href": "content/slides/w1-slides.html#learning-objectives-for-the-semester",
+    "title": "Week 1",
+    "section": "Learning objectives for the semester",
+    "text": "Learning objectives for the semester\n\nApply the appropriate techniques to characterize spatial and temporal dependence data\nUnderstand how spatial and temporal dependence can affect statistical inference\nIdentify and choose the appropriate analytical methods to contend with such dependence in widely-used statistical methods like regression and ANOVA\nCritically evaluate and understand the strengths and limits of these approaches\nPresent analytical results in a format befitting a scientific presentation or publication"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#course-logistics",
+    "href": "content/slides/w1-slides.html#course-logistics",
+    "title": "Week 1",
+    "section": "Course logistics",
+    "text": "Course logistics\nMeeting times\nLectures\n🕥 Wednesday and Friday from 9:30-10:20am 📍 Hodson 511 \nLabs\n🕥 Friday from 10:30-12:30 📍 Hodson 511"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#course-logistics-1",
+    "href": "content/slides/w1-slides.html#course-logistics-1",
+    "title": "Week 1",
+    "section": "Course logistics",
+    "text": "Course logistics\nRoadmap for the semester\n\nModule 1: RStudio and Tidyverse crash course\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nWeek 1\n\n\n1/21/26\n\n\nOrientation to class\n\n\n\n\n1/23/26\n\n\nData wranglin’\n\n\n\n\nModule 2: Reviewing foundations in statistics\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nWeek 2\n\n\n1/28/26\n\n\nSampling & probability\n\n\n\n\n1/30/26\n\n\nRandom variables and probability distributions\n\n\n\n\nWeek 3\n\n\n2/4/26\n\n\nTransformations\n\n\n\n\n2/6/26\n\n\nHypotheses and one-sample t-tests\n\n\n\n\nWeek 4\n\n\n2/11/26\n\n\nDependent and independent two-sample t-tests\n\n\n\n\n2/13/26\n\n\nAnalysis of variance (ANOVA)\n\n\n\n\nWeek 5\n\n\n2/18/26\n\n\nEvaluating assumptions, linear models, correlation\n\n\n\n\n2/20/26\n\n\nSimple linear regression\n\n\n\n\nWeek 6\n\n\n2/25/26\n\n\nMultiple regression\n\n\n\n\n2/27/26\n\n\nMultiple regression\n\n\n\n\nWeek 7\n\n\n3/4/26\n\n\nModel selection\n\n\n\n\n3/6/26\n\n\nMidterm\n\n\n\n\nModule 3: Integrating time into our models\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nWeek 9\n\n\n3/18/26\n\n\nMidterm review\n\n\n\n\n3/20/26\n\n\nIntro to space and time\n\n\n\n\nWeek 10\n\n\n3/25/26\n\n\nMixed effects models\n\n\n\n\n3/27/26\n\n\nInformation critera\n\n\n\n\nModule 4: Integrating space into our models\n\n\n\n\nWeek\n\n\nDate\n\n\nTopic\n\n\n\n\n\n\nWeek 11\n\n\n4/1/26\n\n\nSpatial point processes: Ripley’s K\n\n\n\n\n4/3/26\n\n\nGeneralized linear models\n\n\n\n\nWeek 12\n\n\n4/8/26\n\n\nGLMs and analogies to point process models\n\n\n\n\n4/10/26\n\n\nSpatial point processes: models\n\n\n\n\nWeek 13\n\n\n4/15/26\n\n\nLattice data: MW test, Geary’s C, Moran’s I\n\n\n\n\n4/17/26\n\n\nLattice data: SAR and CAR models\n\n\n\n\nWeek 14\n\n\n4/22/26\n\n\nGeostatistics\n\n\n\n\n4/24/26\n\n\nGeostatistics\n\n\n\n\nWeek 15\n\n\n4/29/26\n\n\nCurrent topics: species distribution models\n\n\n\n\n5/1/26\n\n\nCourse wrap-up\n\n\n\n\nWeek 16\n\n\n5/6/26\n\n\nFinal exam"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#grades-and-assessments",
+    "href": "content/slides/w1-slides.html#grades-and-assessments",
+    "title": "Week 1",
+    "section": "Grades and assessments",
+    "text": "Grades and assessments\nLecture: 45% of grade including midterm (20%) and comprehensive final (45%) Lab: 55% of grade incuding 10 lab reports (40%) and a lab final (15%) \n\n\n\n\nPoint Breakdown\n\n\nAssignment\nPoints\nPercent\n\n\n\n\nLab reports (10 × 16)\n160\n40%\n\n\nLab final\n60\n15%\n\n\nLecture midterm\n80\n20%\n\n\nLecture final\n100\n25%\n\n\nTotal\n400\n100%\n\n\n\n\n\nGrade Breakdown\n\n\nGrade\nRange\nGrade\nRange\n\n\n\n\nA\n93–100%\nC\n73–76%\n\n\nA−\n90–92%\nC−\n70–72%\n\n\nB+\n87–89%\nD+\n67–69%\n\n\nB\n83–86%\nD\n63–66%\n\n\nB−\n80–82%\nD−\n60–62%\n\n\nC+\n77–79%\nF\n&lt; 60%"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#attendance",
+    "href": "content/slides/w1-slides.html#attendance",
+    "title": "Week 1",
+    "section": "Attendance",
+    "text": "Attendance\nSyllabus is pretty clear on this, I hope you want to be here!"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#ai-llms-and-bullshit",
+    "href": "content/slides/w1-slides.html#ai-llms-and-bullshit",
+    "title": "Week 1",
+    "section": "AI, LLMs, and Bullshit",
+    "text": "AI, LLMs, and Bullshit\n\n\nI highly recommend NOT using generative AI tools in this course\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThere are times when using AI tools are appropriate, but learning to recognize those instances is critical to your learning.\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nIf you use LLMs in your work, be honest and report how and why you used them"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling",
+    "href": "content/slides/w1-slides.html#data-handling",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\n\n\n“Statistics” or data analysis begins long before you launch \n\n\n\n\nTo call in the statistician after the experiment is done may be no more than asking them to perform a post-mortem examination: they may be able to say what the experiment died of. - Ronald Aylmer Fisher"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-1",
+    "href": "content/slides/w1-slides.html#data-handling-1",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nBest practices\n\n\nFollow your lab’s data management plan\n\n\n\n\nDon’t have one? Lobby your group to create one!\n\n\n\n\nData management plans should stress: data integrity and reproducible research"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-2",
+    "href": "content/slides/w1-slides.html#data-handling-2",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nBest practices\n\nFollowing a rigorous data management plan will help future you to:\n\n\nRemember how and why you performed specific analyses\nQuickly and simply modify analyses and figures long after you have moved on to other projects\nQuickly reconfigure previous coding tasks so you don’t have to reinvent processes\nIndicate rigor, trustworthiness, and transparency to other professionals\nIncrease paper citation rates and allow data and code citation in addition to manuscripts\nMeet journal requirements1\n\nList adapted from Schulte-Moore data management plan"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-3",
+    "href": "content/slides/w1-slides.html#data-handling-3",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nBest practices\n\nBacking up your data is of utmost importance. Follow the 3-2-1 rule:\n\n{.absolute-width=“800” .center-x}"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-4",
+    "href": "content/slides/w1-slides.html#data-handling-4",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nData considerations\n\nData privacy & sensitive data"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-5",
+    "href": "content/slides/w1-slides.html#data-handling-5",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nData entry\n\n\nIn previous courses and statistics textbooks, data are neat and tidy. We’ll be working with biological and ecological data, which are rarely as neatly packaged.\n\n\n\n\n\n\n\n\n\nImportant\n\n\nWhen it comes to analyzing data, 75% or more of your time will be taken up collating, recording, arranging, and tidying your data in preparation for the actual statistical analysis"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-6",
+    "href": "content/slides/w1-slides.html#data-handling-6",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nData entry\n\n\nTypically, data are transcribed from paper data sheets (or directly into) spreadsheets before importing it your desired analysis program.\n\n\n\n\nThe most common structure for entering is “rectangular” or “flat”: each line of the data contains all of the variables for a single observation, even if they are blank\n\n\n\n\n\n\n\n\n\nTip\n\n\nUse a column for each variable; don’t create “amalgam” columns\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\nAppropriately setting up and entering data initially will avoid a lot of headaches in the future!"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-7",
+    "href": "content/slides/w1-slides.html#data-handling-7",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of a “bad” setup"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-8",
+    "href": "content/slides/w1-slides.html#data-handling-8",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of an improved setup\n\n\n\n\n\n\n\n\n\n\n\n\nCaution\n\n\nEach cell value should only contain data, not formulae or any other dependent expression. All of your data manipulations should happen in  where they are repeatable! Raw data should never be manipulated in Excel."
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-9",
+    "href": "content/slides/w1-slides.html#data-handling-9",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of an improved setup\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nDon’t put too much work into making your datasheet “pretty”.  won’t care and it will likely interfere with data importing."
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-10",
+    "href": "content/slides/w1-slides.html#data-handling-10",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExample of data that are too pretty\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nTechnically, these data are “flat”, but none of the formatting or special features will be read into \n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nIf data are never going to be used outside of spreadsheet, you can do what you want! If it’s going into , make it machine readable!"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-11",
+    "href": "content/slides/w1-slides.html#data-handling-11",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nMetadata\n\nData must be kept along with a codebook or metadata that, at the bare minimum, describes the variables in your flat data file. Ideally, it should contain:\n\n\nDescription of how data were collected including sampling design, protocols, etc.\nVariables contained in the spreadsheet\nThe location, format, and units for each variable within the raw data file\nMeaning/definition of coded values for variable’s observation\nFor surveys, the survey instrument/questionaire used to solicit responses along with the coded values for each question\n\n\n\n\n\n\n\n\nTip\n\n\nI recommend keeping this metadata file as a separate plain-text or Markdown file in the same folder as your flat data file."
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-12",
+    "href": "content/slides/w1-slides.html#data-handling-12",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nMetadata: example"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-13",
+    "href": "content/slides/w1-slides.html#data-handling-13",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nCommon data import problems\nComputers can have trouble reading and processing data. Some tips to avoid issues when importing into :\n\nDon’t use any spaces in column names or in data entries. Use \"-\" or \"_\". I don’t recommend using \".\"\nDon’t mix characters into columns that are supposed to be numeric, or vice-versa.\nNo special characters (!@#$%^&*&lt;&gt;/\\{}[])"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-14",
+    "href": "content/slides/w1-slides.html#data-handling-14",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nGetting ready to import data into \n\n\nOnce your data is entered, do some QA/QC. This can be done by:\n\n\n\n\nSubsetting several sections and examining for errors\nEmploying friend to examine column/variable names and comparing with metadata (and seeing if they think your names make any sense)\nImport it into R and perform some data cleaning (e.g., use the janitor package, build some basic summaries and plots to see if values make sense)"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-15",
+    "href": "content/slides/w1-slides.html#data-handling-15",
+    "title": "Week 1",
+    "section": "Data handling",
+    "text": "Data handling\nExporting data\nMany programs, R included, are capable of directly handling propriatary file-types like .xcel files. However, you should save your file as something universally useable by folks who may not have access to Excel! These include:\n\n*.txt plain text files\n*.txt tab-delimited plain text\n*.dat space-delimited plain text\n*.csv comma separated values\n\n\n\n\n\n\n\nNote\n\n\nMost of us will work primarily with .csv files, and these are most often the files we’ll see in online data repositories for tabular data."
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-tldr",
+    "href": "content/slides/w1-slides.html#data-handling-tldr",
+    "title": "Week 1",
+    "section": "Data handling: TLDR",
+    "text": "Data handling: TLDR\n\n Develop a complete data management plan\n\n\n Spend time and energy properly entering and managing data.\n\n\n Develop clear documentation and metadata surrounding your data set"
+  },
+  {
+    "objectID": "content/w2-content.html",
+    "href": "content/w2-content.html",
+    "title": "Week 1",
+    "section": "",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "crumbs": [
+      "Content",
+      "Module 2: Reviewing foundations in statistics",
+      "Week 2: Sampling, probability, random variables"
+    ]
+  },
+  {
+    "objectID": "content/w2-content.html#slides",
+    "href": "content/w2-content.html#slides",
+    "title": "Week 1",
+    "section": "",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "crumbs": [
+      "Content",
+      "Module 2: Reviewing foundations in statistics",
+      "Week 2: Sampling, probability, random variables"
+    ]
+  },
+  {
+    "objectID": "content/slides/w2-slides.html",
+    "href": "content/slides/w2-slides.html",
+    "title": "Week 2",
+    "section": "",
+    "text": "Who am I?\n\n\n\n\n\n\n\nWho am I?"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#slide-1.1",
+    "href": "content/slides/w2-slides.html#slide-1.1",
+    "title": "Week 2",
+    "section": "Slide 1.1",
+    "text": "Slide 1.1\n\n\nWho am I?"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#slide-1.2",
+    "href": "content/slides/w2-slides.html#slide-1.2",
+    "title": "Week 2",
+    "section": "Slide 1.2",
+    "text": "Slide 1.2\n\n\nWho am I?"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#slide-2.1",
+    "href": "content/slides/w2-slides.html#slide-2.1",
+    "title": "Week 2",
+    "section": "Slide 2.1",
+    "text": "Slide 2.1\n\n\nWho am I?"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#slide-2.2",
+    "href": "content/slides/w2-slides.html#slide-2.2",
+    "title": "Week 2",
+    "section": "Slide 2.2",
+    "text": "Slide 2.2\n\n\nWho am I?"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#what-well-cover-this-week",
+    "href": "content/slides/w2-slides.html#what-well-cover-this-week",
+    "title": "Week 2",
+    "section": "What we’ll cover this week",
+    "text": "What we’ll cover this week\n\n\n What is statistics?\n\n\n\n\n Sampling\n\n\n\n\n Probability\n\n\n\n\n Random variables"
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#learning-objectives-for-the-semester-.incremental",
+    "href": "content/slides/w1-slides.html#learning-objectives-for-the-semester-.incremental",
+    "title": "Week 1",
+    "section": "Learning objectives for the semester {.incremental}",
+    "text": "Learning objectives for the semester {.incremental}\n\nApply the appropriate techniques to characterize spatial and temporal dependence data\nUnderstand how spatial and temporal dependence can affect statistical inference\nIdentify and choose the appropriate analytical methods to contend with such dependence in widely-used statistical methods like regression and ANOVA\nCritically evaluate and understand the strengths and limits of these approaches\nPresent analytical results in a format befitting a scientific presentation or publication"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#definition",
+    "href": "content/slides/w2-slides.html#definition",
+    "title": "Week 2",
+    "section": "Definition",
+    "text": "Definition\n\n\nStatistics is the art / science of collecting, analyzing, interpreting, and presenting data"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#so-is-it-an-art-or-a-science",
+    "href": "content/slides/w2-slides.html#so-is-it-an-art-or-a-science",
+    "title": "Week 2",
+    "section": "So is it an art or a science?",
+    "text": "So is it an art or a science?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThe art/science of designing and conducting a good experiment or observational study makes the art/science of doing statistics far easier."
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#why-do-we-need-statistics",
+    "href": "content/slides/w2-slides.html#why-do-we-need-statistics",
+    "title": "Week 2",
+    "section": "Why do we need statistics?",
+    "text": "Why do we need statistics?\n\n\nStatistics are an integral component of the scientific process that allow us separate signal from noise in complex biological and ecological systems so that we can understand how systems work and make informed decisions instead of just…\n…going with your gut and “vibes”."
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#population-vs.-sample",
+    "href": "content/slides/w2-slides.html#population-vs.-sample",
+    "title": "Week 2",
+    "section": "Population vs. sample",
+    "text": "Population vs. sample\n\n\nA population is a whole set/group of individuals/objects which we are interested in studying. I.e. the complete set of all possible observation (finite or infinite)\n\n All plants of species X, all lakes in Minnesota\n\n\n\nA sample is a representative subset of the population that we actually observe in order to learn about the population\n\n 100 plants of species X at 25 sites, 50 random lakes in Minnesota"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#population-vs.-sample-1",
+    "href": "content/slides/w2-slides.html#population-vs.-sample-1",
+    "title": "Week 2",
+    "section": "Population vs. sample",
+    "text": "Population vs. sample\nWe use different symbols/notation for the same parameters depending on whether we’re referring to the population or to the sample\n Mean: \\(\\mu\\) (population) vs \\(\\bar{x}\\) (sample)\n Variance: \\(\\sigma^2\\) (population) vs \\(s^2\\) (sample)"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#primary-realms-of-statistics",
+    "href": "content/slides/w2-slides.html#primary-realms-of-statistics",
+    "title": "Week 2",
+    "section": "Primary realms of statistics",
+    "text": "Primary realms of statistics\nDescriptive statistics\nProbability\nInferential statistics"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#the-primary-realms-of-statistics",
+    "href": "content/slides/w2-slides.html#the-primary-realms-of-statistics",
+    "title": "Week 2",
+    "section": "The primary realms of statistics",
+    "text": "The primary realms of statistics\n\n\nDescriptive statistics\n\n\nProbability\n\n\nInferential statistics\n\n\n\nTogether, these elements are used to make inferences about a collection of data and address specific hypotheses"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#realms-of-statistics",
+    "href": "content/slides/w2-slides.html#realms-of-statistics",
+    "title": "Week 2",
+    "section": "Realms of statistics",
+    "text": "Realms of statistics\nDescriptive statistics\n\nDisplaying and summarizing the main features of data in a sample\n\n e.g., mean, median, mode, max, min"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#the-two-primary-realms-of-statistics",
+    "href": "content/slides/w2-slides.html#the-two-primary-realms-of-statistics",
+    "title": "Week 2",
+    "section": "The two primary realms of statistics",
+    "text": "The two primary realms of statistics\n\n\nDescriptive statistics\n\n\nInferential statistics\n\n\n\nTogether, these elements are used to make inferences about a collection of data and address specific hypotheses"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#the-three-primary-realms-of-statistics",
+    "href": "content/slides/w2-slides.html#the-three-primary-realms-of-statistics",
+    "title": "Week 2",
+    "section": "The three primary realms of statistics",
+    "text": "The three primary realms of statistics\n\n\nDescriptive statistics\n\n\nProbability\n\n\nInferential statistics\n\n\n\nTogether, these elements are used to make inferences about a collection of data and address specific hypotheses"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#realms-of-statistics-1",
+    "href": "content/slides/w2-slides.html#realms-of-statistics-1",
+    "title": "Week 2",
+    "section": "Realms of statistics",
+    "text": "Realms of statistics\nProbability: the foundation of statistics\nGiven a population, understand the uncertainty associated with taking a sample taken from the population\nProbability is the mathematics of chance and randomness. Properties of a population are assumed as known and questions about a sample are posed and answered. The approach is deductive (general  specific)"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#realms-of-statistics-2",
+    "href": "content/slides/w2-slides.html#realms-of-statistics-2",
+    "title": "Week 2",
+    "section": "Realms of statistics",
+    "text": "Realms of statistics\nInferential statistics\nGiven a sample, learn methods to draw conclusions aboiut a population while taking into account uncertainties in the sample.\nIn inferential statistics, properties of a sample are available and conclusions about a the population are drawn based on the sample. The approach is inductive (specific  general)"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#discussion-questions",
+    "href": "content/slides/w2-slides.html#discussion-questions",
+    "title": "Week 2",
+    "section": "Discussion questions ",
+    "text": "Discussion questions \nPair up and have a quick chat (2-3 minutes) about the following questions. We’ll then discuss as a larger group.\n\n\n Are statistics always necessary for population-level inferences?\n\n\n\n\n Can you think of situations where sampling is needed for inference?\n\n\n\n\n How can we be sure our sampling schemes are representative of the population?"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#bias",
+    "href": "content/slides/w2-slides.html#bias",
+    "title": "Week 2",
+    "section": "Bias ",
+    "text": "Bias \n\nBias is an extremely important concept in science and statistics: it is a type of systematic error (as opposed to random error) that can impact:\n\n\n Study design (e.g., improper design of experiment)\n Data collection (e.g., sampling from only one side of a field)\n Statistical analyses (e.g., improperly accounting for confounding variables)\n\n\nCollectively, bias impacts our interpretation of our research and threaten the scientific enterprise writ large. It’s super important that we attempt to control or account for as many potential sources of bias as possible.\nIn this course, one of our objectives is to account for the impact of space and time as a source of bias in our data."
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#probability-1",
+    "href": "content/slides/w2-slides.html#probability-1",
+    "title": "Week 2",
+    "section": "Probability",
+    "text": "Probability\nThe foundation of statistics\n\nThe concept of probability is central to all statistical methods & sub-disciplines. Here, we define it as the likely outcome of an event of which we are unsure (e.g., a coin toss)\n\n\n\\[ Probability = \\frac{n\\:outcomes}{n\\:trials} \\]\n\n\n\\[ 0 ≤ P ≤ 1 \\]\n\n\nUncertainty arises because of natural (i.e. random) variation in the world we live in"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#probability-2",
+    "href": "content/slides/w2-slides.html#probability-2",
+    "title": "Week 2",
+    "section": "Probability",
+    "text": "Probability\n\nReminder, probability is defined it as the likely outcome of an event of which we are unsure. To measure probability, we need to consider:\n\n\n Events: a simple process with a well-defined beginning and end\n\n\n Outcomes: the result of an event. Defining ecological outcomes can be tricky\n\n\n Discrete outcomes: outcome assigned a positive integer (e.g., live = 1, dead = 0)\n\n\n Sample space: The set formed from all of the possible outcomes\n\n\n Trials: a single event, from start to finish, ending in an outcome\n\n\n Replicates: a single trial\n\n\n Experiments: a collection of trials"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#random-variables-1",
+    "href": "content/slides/w2-slides.html#random-variables-1",
+    "title": "Week 2",
+    "section": "Random variables",
+    "text": "Random variables\nNeither random, nor variable…🙄\n\nA variable is the actual property measured by individual observations in a trial (e.g., length, pH, fitness)\n\n\n\nA random variable is a variable whose values are not known before a sample is taken - a variable that depends on the outcome of a chance situation.\n\n\n\n\nMathematically, it’s a rule or a function that assigns a numerical value to each possible outcome of an experiment in the sample space."
   }
 ]

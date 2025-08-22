@@ -1,12 +1,10 @@
 ---
-# project:
-    # output-dir: slides
 title: "Week 1"
 subtitle: "Class orientation and introduction to R, RStudio, and data wrangling"
 format:
   revealjs: 
     # center-title-slide: false
-    output-file: slides-test.html
+    output-file: w1-slides.html
     theme: ["simple", "slide-styles.scss"]
     navigation-mode: vertical
     slide-number: c/t
@@ -23,35 +21,34 @@ format:
 
 # Welcome!
 
-## What we'll cover this week
+## What we'll cover this week {.smaller}
+. . .
 
-:::: {.fragment .fade-in}
 ::: box-1-list
-Who am I?
+[{{< fa user >}}]{.margin-1} Who am I?
 :::
-::::
 
-:::: {.fragment .fade-in}
-::: box-2-list
-Course logistics and learning objectives
-:::
-::::
+. . . 
 
-:::: {.fragment .fade-in}
-::: box-3-list
-Data best management practices
+::: box-1-list
+[{{< fa clipboard-list >}}]{.margin-1} Course logistics and learning objectives
 :::
-::::
 
-:::: {.fragment .fade-in}
-::: box-4-list
-A brief introduction to data wrangling
+. . . 
+
+::: box-1-list
+[{{< fa floppy-disk >}}]{.margin-1} Data best management practices
 :::
-::::
+
+. . . 
+
+::: box-1-list
+[{{< fa hat-cowboy >}}]{.margin-1} A brief introduction to data wranglin'
+:::
 
 # A bit about me {.bkrd-color-1}
 
-## Jeremy Hemberger, PhD
+## Jeremy Hemberger, PhD {.smaller}
 
 ***Assistant Professor - Department of Entomology*** </br> </br> 👨🏻‍🔬 I lead the [Insect Biodiversity under Global Change lab](https://jhemberger.github.io/ibug_lab_website/)</br> 🐝 Research: global change impacts on insects</br> 👨🏻‍🏫 Teaching: quantitative methods in ecology</br>
 
@@ -69,13 +66,13 @@ A brief introduction to data wrangling
 :::
 ::::::
 
-## Jeremy Hemberger, PhD
+## Jeremy Hemberger, PhD {.smaller}
 
 ***Assistant Professor - Department of Entomology*** </br> </br> 🏫 Office location: 408 Hodson </br> 🕥 Office hours: 8:00-12:00 Mondays (in person)
 
 # Course logistics and learning objectives {.bkrd-color-2}
 
-## What this course is about
+## What this course is about {.smaller}
 
 :::: {.fragment .fade-in}
 ::: box-1-list
@@ -89,7 +86,7 @@ We'll emphasize: working with data, formulating hypotheses, constructing models,
 :::
 ::::
 
-## What this course isn't
+## What this course isn't {.smaller}
 
 :::: {.fragment .fade-in}
 ::: box-1-list
@@ -103,33 +100,34 @@ Memorizing equations and hand-calculating t-tests and ANOVAs [*(but, sometimes t
 :::
 ::::
 
-## Some basic expectations
+## Some basic expectations {.smaller}
+. . . 
 
-:::: {.fragment .fade-in}
 ::: box-1-list
 I do expect folks have a working understanding of basic calculus and statistics from past classes in high school or undergraduate studies
 :::
-::::
 
-:::: {.fragment .fade-in}
+. . . 
+
 ::: box-1-list
 It's ok to feel lost or get frustrated. Analyzing data (and working with {{< fa brands r-project title="R Project" >}}) is hard!
 :::
-::::
 
-:::: {.fragment .fade-in}
+. . . 
+
 ::: box-1-list
 Ask questions! Work together! Treat this not like a class, but like a semester long workshop
 :::
-::::
 
-## Learning objectives for the semester {.smaller .incremental}
+## Learning objectives for the semester {.smaller}
 
+:::{.incremental} 
 1.  Apply the appropriate techniques to characterize spatial and temporal dependence data
 2.  Understand how spatial and temporal dependence can affect statistical inference
 3.  Identify and choose the appropriate analytical methods to contend with such dependence in widely-used statistical methods like regression and ANOVA
 4.  Critically evaluate and understand the strengths and limits of these approaches
 5.  Present analytical results in a format befitting a scientific presentation or publication
+:::
 
 ## Course logistics {.smaller}
 
@@ -430,16 +428,15 @@ I recommend keeping this metadata file as a separate plain-text or Markdown file
 
 ![](){width="50%" fig-align="center"}
 
-
 ## Data handling {.smaller}
 
 ### Common data import problems
 
 Computers can have trouble reading and processing data. Some tips to avoid issues when importing into {{< fa brands r-project title="R Project" >}}:
 
-1. Don't use any spaces in column names or in data entries. Use `"-"` or `"_"`. I don't recommend using `"."`
-2. Don't mix characters into columns that are supposed to be numeric, or vice-versa. 
-3. No special characters (`!@#$%^&*<>/\{}[]`)
+1.  Don't use any spaces in column names or in data entries. Use `"-"` or `"_"`. I don't recommend using `"."`
+2.  Don't mix characters into columns that are supposed to be numeric, or vice-versa.
+3.  No special characters (`!@#$%^&*<>/\{}[]`)
 
 ## Data handling {.smaller}
 
@@ -452,23 +449,23 @@ Once your data is entered, do some QA/QC. This can be done by:
 ::::
 
 ::: {.fragment .fade-in}
-1. Subsetting several sections and examining for errors
-2. Employing friend to examine column/variable names and comparing with metadata (and seeing if they think your names make any sense)
-3. Import it into R and perform some data cleaning (e.g., use the `janitor` package, build some basic summaries and plots to see if values make sense)
+1.  Subsetting several sections and examining for errors
+2.  Employing friend to examine column/variable names and comparing with metadata (and seeing if they think your names make any sense)
+3.  Import it into R and perform some data cleaning (e.g., use the `janitor` package, build some basic summaries and plots to see if values make sense)
 :::
 
 ## Data handling {.smaller}
 
 ### Exporting data
 
-Many programs, R included, are capable of directly handling propriatary file-types like `.xcel` files. However, you should save your file as something universally useable by folks who may not have access to excel! These include:
+Many programs, R included, are capable of directly handling propriatary file-types like `.xcel` files. However, you should save your file as something universally useable by folks who may not have access to Excel! These include:
 
-1. `*.txt` plain text files
-2. `*.txt` tab-delimited plain text
-3. `*dat` space-delimited plain text
-4. `*.csv` comma separated values
+1.  `*.txt` plain text files
+2.  `*.txt` tab-delimited plain text
+3.  `*.dat` space-delimited plain text
+4.  `*.csv` comma separated values
 
-::: {.callout-note}
+::: callout-note
 Most of us will work primarily with `.csv` files, and these are most often the files we'll see in online data repositories for tabular data.
 :::
 
