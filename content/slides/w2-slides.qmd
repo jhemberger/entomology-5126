@@ -1,12 +1,14 @@
 ---
 title: "Week 2"
 subtitle: "An (re)introduction to statistics: Sampling, probability, and random variables"
+editor:
+  mode: source
 format:
   revealjs: 
     output-file: w2-slides.html
-    theme: ["simple", "slide-styles.scss"]
+    theme: ["simple", "slide_styles/slide-styles.scss"]
     smaller: true
-    navigation-mode: vertical
+    # navigation-mode: vertical
     slide-number: c/t
     chalkboard: 
       buttons: true
@@ -15,46 +17,50 @@ format:
     transition: fade
     transition-speed: slow
     logo: /media/5126-header.png
-    css: ["default", "slide-styles.css", "slide-styles.scss"]
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
 ---
 
-#
-## What we'll cover this week 
-. . . 
+# What we'll cover this week
+
+## A brief survey of basic statistical concepts
+
+. . .
 
 ::: box-1-list
 [{{< fa chart-simple >}}]{.margin-1} What is statistics?
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 [{{< fa vials >}}]{.margin-1} Sampling
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 [{{< fa coins >}}]{.margin-1} Probability
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 [{{< fa shuffle >}}]{.margin-1} Random variables
 :::
 
-
 # What is statistics?
-## Definition
-. . . 
 
-::: {.box-6-list}
+## Definition
+
+. . .
+
+::: box-6-list
 Statistics is the *art* / *science* of collecting, analyzing, interpreting, and presenting data
 :::
 
 ## Why do we need statistics?
-:::: columns
+
+::::: columns
 ::: {.column width="60%"}
 Statistics are an integral component of the scientific process that allow us separate signal from noise in complex biological and ecological systems so that we can understand how systems work and make informed decisions instead of just...</br>
 
@@ -64,10 +70,11 @@ Statistics are an integral component of the scientific process that allow us sep
 ::: {.column width="40%"}
 ![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHllNzA4em9qejRlbGN5cWR1OGNoaHY4eGxpZ2RjcDFibjhsaHp1diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yIh6EVwpd2VJ6NbNNY/giphy.gif)
 :::
-::::
+:::::
 
-## So is it an art or a science? 
-. . . 
+## So is it an art or a science?
+
+. . .
 
 ![](slide_media/w2/confounding_variables_2x.png){width="70%" fig-align="center"}
 
@@ -77,45 +84,47 @@ Statistics are an integral component of the scientific process that allow us sep
 The art/science of designing and conducting a good experiment or observational study makes the art/science of doing statistics far easier.
 :::
 
-
 # Sampling
 
 ## Population vs. sample
-. . . 
 
-::: {.box-6-list}
-A [population]{.highlight-tomato} is a whole set/group of individuals/objects which we are interested in studying. I.e. the complete set of all possible observation (finite or infinite)
+. . .
+
+::: box-6-list
+A [population]{.highlight-tomato} is a whole set/group of individuals/objects which we are interested in studying. I.e. the complete set of all possible observations (finite or infinite)
 :::
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> All plants of species X, all lakes in Minnesota]{.indented-text}
 
 . . .
 
-::: {.box-6-list}
+::: box-6-list
 A [sample]{.highlight-tomato} is a representative subset of the population that we actually observe in order to learn about the population
 :::
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> 100 plants of species X at 25 sites, 50 random lakes in Minnesota]{.indented-text}
 
 ## Population vs. sample
+
 We use different symbols/notation for the same parameters depending on whether we're referring to the [population]{.highlight-tomato} or to the [sample]{.highlight-tomato}
 
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Mean: [$\mu$]{.med-text} (population) vs [$\bar{x}$]{.med-text} (sample)]{.indented-text}
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Mean:]{.indented-text}[$\mu$]{.med-text} (population) vs [$\bar{x}$]{.med-text} (sample)
 
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Variance: [$\sigma^2$]{.med-text} (population) vs [$s^2$]{.med-text} (sample)]{.indented-text}
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Variance:]{.indented-text}[$\sigma^2$]{.med-text} (population) vs [$s^2$]{.med-text} (sample)
 
 ## The three primary realms of statistics
-. . . 
 
-::: {.box-6-list}
+. . .
+
+::: box-6-list
 Descriptive statistics
 :::
 
-::: {.box-6-list}
+::: box-6-list
 Probability
 :::
 
-::: {.box-6-list}
+::: box-6-list
 Inferential statistics
 :::
 
@@ -124,16 +133,17 @@ Inferential statistics
 Together, these elements are used to make [inferences]{.highlight-tomato} about a collection of data and address specific hypotheses
 
 ## Realms of statistics
+
 ### Descriptive statistics
 
-::: {.box-6-list}
+::: box-6-list
 Displaying and summarizing the main features of data in a sample
 :::
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> e.g., `mean`, `median`, `mode`, `max`, `min`]{.indented-text}
 
-
 ## Realms of statistics
+
 ### Probability: the foundation of statistics
 
 Given a population, understand the uncertainty associated with taking a sample taken from the population
@@ -141,39 +151,42 @@ Given a population, understand the uncertainty associated with taking a sample t
 Probability is the mathematics of chance and randomness. Properties of a population are assumed as known and questions about a sample are posed and answered. The approach is [deductive]{.highlight-tomato} (general {{< fa arrow-right >}} specific)
 
 ## Realms of statistics
+
 ### Inferential statistics
 
-Given a sample, learn methods to draw conclusions aboiut a population while taking into account uncertainties in the sample.
+Given a sample, learn methods to draw conclusions about a population while taking into account uncertainties in the sample.
 
-In inferential statistics, properties of a sample are available and conclusions about a the population are drawn based on the sample. The approach is [inductive]{.highlight-tomato} (specific {{< fa arrow-right >}} general)
+In inferential statistics, properties of a sample are available and conclusions about the population are drawn based on the sample. The approach is [inductive]{.highlight-tomato} (specific {{< fa arrow-right >}} general)
 
 ## Discussion questions {{< fa comments >}}
-Pair up and have a quick chat (2-3 minutes) about the following questions. We'll then discuss as a larger group. 
 
-. . . 
+Pair up and have a quick chat (2-3 minutes) about the following questions. We'll then discuss as a larger group.
 
-::: {.box-6-list}
+. . .
+
+::: box-6-list
 [{{< fa question >}}]{.margin-1} Are statistics always *necessary* for population-level inferences?
 :::
 
-. . . 
+. . .
 
-::: {.box-6-list}
+::: box-6-list
 [{{< fa question >}}]{.margin-1} Can you think of situations where sampling is *needed* for inference?
 :::
 
-. . . 
+. . .
 
-::: {.box-6-list}
+::: box-6-list
 [{{< fa question >}}]{.margin-1} How can we be sure our sampling schemes are *representative* of the population?
 :::
 
 ## Bias {{< fa scale-unbalanced >}}
-::: {.box-6-list} 
+
+::: box-6-list
 Bias is an extremely important concept in science and statistics: it is a type of [systematic]{.highlight-tomato} error (as opposed to random error) that can impact:
 :::
 
-. . . 
+. . .
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> Study design (e.g., improper design of experiment)]{.indented-text}
 
@@ -181,84 +194,207 @@ Bias is an extremely important concept in science and statistics: it is a type o
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> Statistical analyses (e.g., improperly accounting for confounding variables)]{.indented-text}
 
-. . . 
+. . .
 
-Collectively, bias impacts our interpretation of our research and threaten the scientific enterprise writ large. It's super important that we attempt to control or account for as many potential sources of bias as possible. 
+Collectively, bias impacts our interpretation of our research and threatens the scientific enterprise writ large. It's super important that we attempt to control or account for as many potential sources of bias as possible.
 
 In this course, one of our objectives is to account for the impact of *space* and *time* as a source of bias in our data.
 
-
 # Probability
 
-## Probability
-### The foundation of statistics
+## Probability is the foundation of statistics
 
-::: {.box-6-list} 
+::: box-6-list
 The concept of probability is central to all statistical methods & sub-disciplines. Here, we define it as [the likely outcome of an event of which we are unsure]{.highlight-tomato} (e.g., a coin toss)
 :::
 
-::: {.fragment .fade-in}
+. . .
+
 $$ Probability = \frac{n\:outcomes}{n\:trials} $$
-:::
 
-::: {.fragment .fade-in}
+. . .
+
 $$ 0 ≤ P ≤ 1 $$
+
+. . .
+
+Uncertainty arises because of natural (i.e., *random*) variation in the world we live in
+
+## Some key terms that we need to know
+
+::: box-6-list
+Reminder, probability is defined as [the likely outcome of an event of which we are unsure]{.highlight-tomato}. To measure probability, we need to consider...
 :::
 
-::: {.fragment .fade-in}
-Uncertainty arises because of natural (i.e. *random*) variation in the world we live in
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Events]{.highlight-tomato}: a simple process with a well-defined beginning and end
 :::
 
-## Probability
-::: {.box-6-list} 
-Reminder, probability is defined it as [the likely outcome of an event of which we are unsure]{.highlight-tomato}. To measure probability, we need to consider:
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Outcomes]{.highlight-tomato}: the result of an event. Defining ecological outcomes can be tricky
 :::
 
-. . . 
+. . .
 
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Events]{.highlight-tomato}: a simple process with a well-defined beginning and end]{.indented-text}
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Discrete outcomes]{.highlight-tomato}: outcome assigned a positive integer (e.g., live = 1, dead = 0)
+:::
 
-. . . 
+. . .
 
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Outcomes]{.highlight-tomato}: the result of an event. Defining ecological outcomes can be tricky]{.indented-text}
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Sample space]{.highlight-tomato}: The set formed from all of the possible outcomes
+:::
 
-. . . 
+. . .
 
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Discrete outcomes]{.highlight-tomato}: outcome assigned a positive integer (e.g., live = 1, dead = 0)]{.indented-text}
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Trials]{.highlight-tomato}: a single event, from start to finish, ending in an outcome
+:::
 
-. . . 
+. . .
 
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Sample space]{.highlight-tomato}: The set formed from all of the possible outcomes]{.indented-text}
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Replicates]{.highlight-tomato}: a single trial
+:::
 
-. . . 
+. . .
 
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Trials]{.highlight-tomato}: a single event, from start to finish, ending in an outcome]{.indented-text}
-
-. . . 
-
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Replicates]{.highlight-tomato}: a single trial]{.indented-text}
-
-. . . 
-
-[<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Experiments]{.highlight-tomato}: a collection of trials]{.indented-text}
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [Experiments]{.highlight-tomato}: a collection of trials
+:::
 
 # Random variables
 
-## Random variables
-**Neither random, nor variable...**🙄
+## Neither random, nor variable...🙄
 
-::: {.box-6-list} 
+::: box-6-list
 A [variable]{.highlight-tomato} is the actual property measured by individual observations in a trial (e.g., length, pH, fitness)
 :::
 
-. . . 
+. . .
 
-::: {.box-6-list} 
-A [random variable]{.highlight-tomato} is a variable whose values are not known before a sample is taken - a variable that depends on the outcome of a chance situation. 
+::: box-6-list
+A [random variable]{.highlight-tomato} is a variable whose values are not known before a sample is taken — a variable that depends on the outcome of a chance situation.
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Mathematically, it's a rule or a function that assigns a numerical value to each possible outcome of an experiment in the sample space.
+:::
+
+## Types of random variables
+
+**There are two primary types of random variables**
+
+::: box-6-list
+A [*discrete* random variable]{.highlight-tomato} are characterized by a finite number of possible values (e.g., $y_1, .... y_n$).
 :::
 
 . . . 
 
-::: {.box-6-list} 
-Mathematically, it's a rule or a function that assigns a numerical value to each possible outcome of an experiment in the sample space. 
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Examples include presence/absence of a species, number of offspring, number of seeds germinating
+
+:::
+
+. . . 
+
+::: box-6-list
+A [*continuous* random variable]{.highlight-tomato} are those that take on any value in a smooth interval.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Examples include mass of an insect, leaf area consumed, dissolved oxygen content in water sample
+:::
+
+## Types of random variables
+::: box-6-list
+All random variables can be characterized by a [probability distribution]{.highlight-tomato}
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Area under a probability distribution always sums to 1
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Ecological data can be described by many common probability distributions (we'll get into this in the next lecture)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Pretty much every statistical test we do depends on an assumption of data fitting a specific probability distribution (most commonly, the Normal or Gaussian distribution)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Data that don't fit must be *transformed* or modeled using different approaches (e.g., generalized linear models)
+:::
+
+## Characterizing the expectation of RV probability distribution
+::: box-6-list
+Rarely do we need to know the entire distribution, but rather we want to characterize the [expectation]{.highlight-tomato} (i.e., most typical value) and the [variance]{.highlight-tomato}
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Expectation of a random variable $Y$ is the population mean of the probability distribution of $Y$. 
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Denoted as $E(Y)\:or\:\mu_Y$ 
+:::
+
+## Characterizing the variance of RV probability distribution
+::: box-6-list
+Rarely do we need to know the entire distribution, but rather we want to characterize the [expectation]{.highlight-tomato} (i.e., most typical value) and the [variance]{.highlight-tomato}
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Variance of a random variable $Y$ measures the population spread/variability of the probability distribution of $Y$. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Can be thought of as amount $Y$ deviates from the expectation $mu_Y$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Denoted as $Var(Y)\:or\:\sigma^2_Y$ 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Standard deviation is simply the square root of the variance: 
+:::
+
+$$\sigma^2_Y = \sqrt{Var(Y)}$$
+
+## Independence of random variables
+::: box-6-list
+Two random variables $X$ and $Y$ are [*independent*]{.highlight-tomato} if knowledge of the value of one has no effect on the probability of the other.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> For example, the size and weight of a moose are probably not independent!
 :::

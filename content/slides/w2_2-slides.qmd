@@ -1,0 +1,169 @@
+---
+title: "Week 2"
+subtitle: "Probability distributions"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w2-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---
+
+
+# What we'll cover this week
+
+## A quick review of different probability distributions
+
+. . .
+
+::: box-1-list
+[{{< fa tree >}}]{.margin-1} Discrete probability distributions
+:::
+
+. . . 
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Bernoulli, Binomial, and Poisson]{.indented-text}
+
+. . .
+
+::: box-1-list
+[{{< fa scale-balanced >}}]{.margin-1} Continuous probability distributions
+:::
+
+. . . 
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Uniform, Normal, and Exponential]{.indented-text}
+
+# Discrete probability distributions
+
+## Bernoulli random variables
+::: box-6-list
+Bernoulli random variables describe an outcome of an experiment or event that has only *two* outcomes (commonly referred to as Bernoulli trials)
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Common applications in ecology are for species presence/absence or for individuals that are alive or dead. 
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Usually coded as 0/1 in a datasheet, with 1 the positive outcome (alive, present) and 0 the negative (dead, absent) [^1] 
+:::
+
+[^1]: Be sure you note this in your metadata!
+
+## Bernoulli random variables
+::: box-6-list
+We say that a random variable $X$ follows a Bernoulli distribution: $X \sim Bernoulli(p)$ or $P(X) = p$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Most familiar example is a coin toss, where $P = 0.50$
+:::
+
+## Binomial random variables
+::: box-6-list
+A binomial random variable is simply a collection of multiple, *independent* Bernoulli trials
+:::
+
+. . . 
+
+![](slide_media/w2/bernoulli_rv.png)
+
+
+## Binomial random variables
+::: box-6-list
+A binomial random variable is simply a collection of multiple, *independent* Bernoulli trials
+:::
+
+![](slide_media/w2/binomial_rv.png)
+
+## Example: Seed germination experiment
+
+Take three seeds. The seeds are independent (harvested from different plants of the same species). We soak them in water for 24 hours and plant them into a planting mix. After 7 days, we record successful germinations. Let $Y$ be the number of successful germinations. Our sample space is then defined as:
+
+. . . 
+
+| 1st seed | 2nd seed | 3rd seed | Germinations |
+|----------|----------|----------|--------------|
+| Y        | Y        | Y        | 3            |
+| Y        | Y        | N        | 2            |
+| Y        | N        | Y        | 2            |
+| N        | Y        | Y        | 2            |
+| Y        | N        | N        | 1            |
+| N        | Y        | N        | 1            |
+| N        | N        | Y        | 1            |
+| N        | N        | N        | 0            |
+
+## Example: Seed germination experiment
+
+Suppose there is a 50% chance of each seed germinating: 
+
+$$
+P(Y) = P(N) = 1/2
+$$
+
+Then:
+$$ 
+P(Y = 3) = P(YYY)\\
+         = P(Y)P(Y)P(Y)\\
+         = 1/2 * 1/2 * 1/2 = 1/8\\
+P(Y = 2) = P(YYN \ or \ YNY \ or \ NYY)\\
+         = P(YYN) + P(YNY) + P(NYY)\\
+         = P(Y)P(Y)P(N) + P(Y)P(N)P(Y) + P(N)P(Y)P(Y)\\
+         = 1/8 + 1/8 + 1/8 = 3/8
+$$
+
+## Example: Seed germination experiment
+
+We can use a line graph to show the probability distribution of $Y$.
+
+. . . 
+
+$$Y \sim Bernoulli(n, p)$$
+$$Y \sim Bernoulli(3, 0.5)$$
+
+. . .
+
+::: center-x
+``` 
+p(y) |
+     |
+3/8  |     T  T
+     |     |  |
+1/8  |  T  |  |  T
+     |--|--|--|--|--> y
+        0  1  2  3
+```
+:::
+
+## Poisson random variables
+::: box-6-list
+The [Poisson distribution]{.highlight-tomato} is used to describe the number of occurrences of an event recorded in a sample of fixed area or during a fixed time interval. It's used frequently in spatial and temporal statistics (and for count data!)
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Examples include number of plants in a quadrat, number of birds visiting a feeder over a period of time, etc.
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Modeled as $X \sim Poisson(\lambda)$
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $\lambda$, the "intensity", is the average value of the number of occurrences of the event in each sample. Critical in spatial point processes!
+:::
+
+# Continuous 

@@ -17,96 +17,57 @@ about:
 # engine: knitr
 ---
 
-:::::: {layout="[ 60, 5, 35 ]"}
-::: {#first-column}
-<p class="landing-text" style="text-align:justify;">
-
+:::::::: {columns}
+:::: {.column width="70%"}
+::: landing-text
 Anyone attempting to analyze data from lab, field, or existing datasets are frequently confronted with a stark reality: organisms rarely stay in the same place in space and time. The goal of this course is to provide a gentle, but thorough foundation to the concepts and tools needed to ***analyze***, ***interpret***, and ***communicate*** spatially and temporally dependent data.
+:::
+::::
 
-</p>
+::: {.column width="5%"}
 :::
 
-::: {#second-column}
-:::
-
-::: {#third-column}
-<p class="landing-text">
-
+:::: {.column width="24%"}
+::: landing-text
 **Spring 2026 Semester**</br> College of Food, Agricultural, and Natural Resource Sciences</br> University of Minnesota
-
-</p>
-
 :::
-::::::
+::::
+::::::::
 
 ------------------------------------------------------------------------
 
-::::::: {layout="[ 25, 25, 25, 25 ]"}
-<div>
-
-<h2 style="text-align:left;">
-
-Instructor
-
-</h2>
-
-<p class="landing-text" style="text-align:left;">
+::::::::::: {columns}
+:::: {.column width="24%"}
+::: landing-text
+## Instructor
 
 {{< fa person-chalkboard >}} [Dr. Jeremy Hemberger](https://entomology.umn.edu/people/jeremy-hemberger)</br> {{< fa building >}} 408 Hodson Hall</br> {{< fa envelope >}} [jhemberg\@umn.edu](mailto:jhemberg@umn.edu)
+:::
+::::
 
-</p>
+:::: {.column width="24%"}
+::: landing-text
+## Lecture details
 
-</div>
+{{< fa calendar >}} Wednesday and Friday</br> {{< fa clock >}} 9:30-10:20am</br> {{< fa location-dot >}} 408 Hodson Hall</br>
+:::
+::::
 
-<div>
+:::: {.column width="24%"}
+::: landing-text
+## Lab details
 
-<h2 style="text-align:left;">
+{{< fa calendar >}} Friday</br> {{< fa clock >}} 10:30-12:30pm</br> {{< fa location-dot >}} 408 Hodson Hall</br>
+:::
+::::
 
-Lecture details
-
-</h2>
-
-<p class="landing-text" style="text-align:left;">
-
-{{< fa calendar >}} Wednesday and Friday</br> {{< fa clock >}} 9:30-10:20am</br> {{< fa location-dot >}} 408 Hodson Hall
-
-</p>
-
-</div>
-
-<div>
-
-<h2 style="text-align:left;">
-
-Lab details
-
-</h2>
-
-<p class="landing-text" style="text-align:left;">
-
-{{< fa calendar >}} Friday</br> {{< fa clock >}} 10:30-12:30pm</br> {{< fa location-dot >}} 408 Hodson Hall
-
-</p>
-
-</div>
-
-::: {#forth-column}
-<h2 style="text-align:left;">
-
-Important links
-
-</h2>
-
-<p class="buttons" style="text-align:left;">
+:::: {.column width="24%"}
+::: landing-text
+## Important links
 
 [{{< fa user-graduate >}} [Canvas Site](https://canvas.umn.edu//)]{.btn .btn-outline-warning}
 
-</p>
-
-<p class="buttons" style="text-align:left;">
-
 [{{< fa brands github >}} [Class Github](https://github.com/jhemberger/entomology-5126)]{.btn .btn-outline-warning}
-
-</p>
 :::
-:::::::
+::::
+:::::::::::

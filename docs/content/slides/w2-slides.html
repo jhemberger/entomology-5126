@@ -31,10 +31,10 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f157ca72877eb04dfa763e9712f88053.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-207d2aaea499fbf291ebd3ef4299628c.css">
   <link rel="stylesheet" href="default">
-  <link rel="stylesheet" href="slide-styles.css">
-  <link rel="stylesheet" href="slide-styles.scss">
+  <link rel="stylesheet" href="slide_styles/slide-styles.css">
+  <link rel="stylesheet" href="slide_styles/slide-styles.scss">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -135,257 +135,202 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Week 2</h1>
-  <p class="subtitle">An (re)introduction to statistics: Sampling, probability, and random variables</p>
+  <p class="subtitle">Probability distributions</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
 <section>
-<section id="section" class="title-slide slide level1 center">
-<h1></h1>
+<section id="what-well-cover-this-week" class="title-slide slide level1 center">
+<h1>What we’ll cover this week</h1>
 
 </section>
-<section id="what-well-cover-this-week" class="slide level2">
-<h2>What we’ll cover this week</h2>
+<section id="a-quick-review-of-different-probability-distributions" class="slide level2">
+<h2>A quick review of different probability distributions</h2>
 <div class="fragment">
 <div class="box-1-list">
-<p><span class="margin-1"><i class="fa-solid fa-chart-simple" aria-label="chart-simple"></i></span> What is statistics?</p>
+<p><span class="margin-1"><i class="fa-solid fa-tree" aria-label="tree"></i></span> Discrete probability distributions</p>
 </div>
 </div>
 <div class="fragment">
-<div class="box-1-list">
-<p><span class="margin-1"><i class="fa-solid fa-vials" aria-label="vials"></i></span> Sampling</p>
-</div>
+<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Bernoulli, Binomial, and Poisson</span></p>
 </div>
 <div class="fragment">
 <div class="box-1-list">
-<p><span class="margin-1"><i class="fa-solid fa-coins" aria-label="coins"></i></span> Probability</p>
+<p><span class="margin-1"><i class="fa-solid fa-scale-balanced" aria-label="scale-balanced"></i></span> Continuous probability distributions</p>
 </div>
 </div>
 <div class="fragment">
-<div class="box-1-list">
-<p><span class="margin-1"><i class="fa-solid fa-shuffle" aria-label="shuffle"></i></span> Random variables</p>
-</div>
+<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Uniform, Normal, and Exponential</span></p>
 </div>
 </section></section>
 <section>
-<section id="what-is-statistics" class="title-slide slide level1 center">
-<h1>What is statistics?</h1>
+<section id="discrete-probability-distributions" class="title-slide slide level1 center">
+<h1>Discrete probability distributions</h1>
 
 </section>
-<section id="definition" class="slide level2">
-<h2>Definition</h2>
-<div class="fragment">
+<section id="bernoulli-random-variables" class="slide level2">
+<h2>Bernoulli random variables</h2>
 <div class="box-6-list">
-<p>Statistics is the <em>art</em> / <em>science</em> of collecting, analyzing, interpreting, and presenting data</p>
+<p>Bernoulli random variables describe an outcome of an experiment or event that has only <em>two</em> outcomes (commonly referred to as Bernoulli trials)</p>
+</div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Common applications in ecology are for species presence/absence or for individuals that are alive or dead.</p>
+</div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Usually coded as 0/1 in a datasheet, with 1 the positive outcome (alive, present) and 0 the negative (dead, absent) <sup>1</sup></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Be sure you note this in your metadata!</p></li></ol></aside></section>
+<section id="bernoulli-random-variables-1" class="slide level2">
+<h2>Bernoulli random variables</h2>
+<div class="box-6-list">
+<p>We say that a random variable <span class="math inline">\(X\)</span> follows a Bernoulli distribution: <span class="math inline">\(X \sim Bernoulli(p)\)</span> or <span class="math inline">\(P(X) = p\)</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Most familiar example is a coin toss, where <span class="math inline">\(P = 0.50\)</span></p>
 </div>
 </div>
 </section>
-<section id="why-do-we-need-statistics" class="slide level2">
-<h2>Why do we need statistics?</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>Statistics are an integral component of the scientific process that allow us separate signal from noise in complex biological and ecological systems so that we can understand how systems work and make informed decisions instead of just…<br></p>
-<p>…going with your gut and “vibes”.</p>
-</div><div class="column" style="width:40%;">
-<p><img data-src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHllNzA4em9qejRlbGN5cWR1OGNoaHY4eGxpZ2RjcDFibjhsaHp1diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yIh6EVwpd2VJ6NbNNY/giphy.gif"></p>
-</div></div>
+<section id="binomial-random-variables" class="slide level2">
+<h2>Binomial random variables</h2>
+<div class="box-6-list">
+<p>A binomial random variable is simply a collection of multiple, <em>independent</em> Bernoulli trials</p>
+</div>
+<div class="fragment">
+<p><img data-src="slide_media/w2/bernoulli_rv.png"></p>
+</div>
 </section>
-<section id="so-is-it-an-art-or-a-science" class="slide level2">
-<h2>So is it an art or a science?</h2>
+<section id="binomial-random-variables-1" class="slide level2">
+<h2>Binomial random variables</h2>
+<div class="box-6-list">
+<p>A binomial random variable is simply a collection of multiple, <em>independent</em> Bernoulli trials</p>
+</div>
+<p><img data-src="slide_media/w2/binomial_rv.png"></p>
+</section>
+<section id="example-seed-germination-experiment" class="slide level2">
+<h2>Example: Seed germination experiment</h2>
+<p>Take three seeds. The seeds are independent (harvested from different plants of the same species). We soak them in water for 24 hours and plant them into a planting mix. After 7 days, we record successful germinations. Let <span class="math inline">\(Y\)</span> be the number of successful germinations. Our sample space is then defined as:</p>
 <div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slide_media/w2/confounding_variables_2x.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>1st seed</th>
+<th>2nd seed</th>
+<th>3rd seed</th>
+<th>Germinations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 </div>
+</section>
+<section id="example-seed-germination-experiment-1" class="slide level2">
+<h2>Example: Seed germination experiment</h2>
+<p>Suppose there is a 50% chance of each seed germinating:</p>
+<p><span class="math display">\[
+P(Y) = P(N) = 1/2
+\]</span></p>
+<p>Then: <span class="math display">\[
+P(Y = 3) = P(YYY)\\
+         = P(Y)P(Y)P(Y)\\
+         = 1/2 * 1/2 * 1/2 = 1/8\\
+P(Y = 2) = P(YYN \ or \ YNY \ or \ NYY)\\
+         = P(YYN) + P(YNY) + P(NYY)\\
+         = P(Y)P(Y)P(N) + P(Y)P(N)P(Y) + P(N)P(Y)P(Y)\\
+         = 1/8 + 1/8 + 1/8 = 3/8
+\]</span></p>
+</section>
+<section id="example-seed-germination-experiment-2" class="slide level2">
+<h2>Example: Seed germination experiment</h2>
+<p>We can use a line graph to show the probability distribution of <span class="math inline">\(Y\)</span>.</p>
+<div class="fragment">
+<p><span class="math display">\[Y \sim Bernoulli(n, p)\]</span> <span class="math display">\[Y \sim Bernoulli(3, 0.5)\]</span></p>
 </div>
 <div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>The art/science of designing and conducting a good experiment or observational study makes the art/science of doing statistics far easier.</p>
+<div class="center-x">
+<pre><code>p(y) |
+     |
+3/8  |     T  T
+     |     |  |
+1/8  |  T  |  |  T
+     |--|--|--|--|--&gt; y
+        0  1  2  3</code></pre>
 </div>
 </div>
+</section>
+<section id="poisson-random-variables" class="slide level2">
+<h2>Poisson random variables</h2>
+<div class="box-6-list">
+<p>The <span class="highlight-tomato">Poisson distribution</span> is used to describe the number of occurrences of an event recorded in a sample of fixed area or during a fixed time interval. It’s used frequently in spatial and temporal statistics (and for count data!)</p>
 </div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Examples include number of plants in a quadrat, number of birds visiting a feeder over a period of time, etc.</p>
+</div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Modeled as <span class="math inline">\(X \sim Poisson(\lambda)\)</span></p>
+</div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(\lambda\)</span>, the “intensity”, is the average value of the number of occurrences of the event in each sample. Critical in spatial point processes!</p>
 </div>
 </section></section>
-<section>
-<section id="sampling" class="title-slide slide level1 center">
-<h1>Sampling</h1>
-
-</section>
-<section id="population-vs.-sample" class="slide level2">
-<h2>Population vs.&nbsp;sample</h2>
-<div class="fragment">
-<div class="box-6-list">
-<p>A <span class="highlight-tomato">population</span> is a whole set/group of individuals/objects which we are interested in studying. I.e. the complete set of all possible observation (finite or infinite)</p>
-</div>
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> All plants of species X, all lakes in Minnesota</span></p>
-</div>
-<div class="fragment">
-<div class="box-6-list">
-<p>A <span class="highlight-tomato">sample</span> is a representative subset of the population that we actually observe in order to learn about the population</p>
-</div>
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> 100 plants of species X at 25 sites, 50 random lakes in Minnesota</span></p>
-</div>
-</section>
-<section id="population-vs.-sample-1" class="slide level2">
-<h2>Population vs.&nbsp;sample</h2>
-<p>We use different symbols/notation for the same parameters depending on whether we’re referring to the <span class="highlight-tomato">population</span> or to the <span class="highlight-tomato">sample</span></p>
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Mean: <span class="med-text"><span class="math inline">\(\mu\)</span></span> (population) vs <span class="med-text"><span class="math inline">\(\bar{x}\)</span></span> (sample)</span></p>
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Variance: <span class="med-text"><span class="math inline">\(\sigma^2\)</span></span> (population) vs <span class="med-text"><span class="math inline">\(s^2\)</span></span> (sample)</span></p>
-</section>
-<section id="the-three-primary-realms-of-statistics" class="slide level2">
-<h2>The three primary realms of statistics</h2>
-<div class="fragment">
-<div class="box-6-list">
-<p>Descriptive statistics</p>
-</div>
-<div class="box-6-list">
-<p>Probability</p>
-</div>
-<div class="box-6-list">
-<p>Inferential statistics</p>
-</div>
-</div>
-<div class="fragment">
-<p>Together, these elements are used to make <span class="highlight-tomato">inferences</span> about a collection of data and address specific hypotheses</p>
-</div>
-</section>
-<section id="realms-of-statistics" class="slide level2">
-<h2>Realms of statistics</h2>
-<h3 id="descriptive-statistics">Descriptive statistics</h3>
-<div class="box-6-list">
-<p>Displaying and summarizing the main features of data in a sample</p>
-</div>
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> e.g., <code>mean</code>, <code>median</code>, <code>mode</code>, <code>max</code>, <code>min</code></span></p>
-</section>
-<section id="realms-of-statistics-1" class="slide level2">
-<h2>Realms of statistics</h2>
-<h3 id="probability-the-foundation-of-statistics">Probability: the foundation of statistics</h3>
-<p>Given a population, understand the uncertainty associated with taking a sample taken from the population</p>
-<p>Probability is the mathematics of chance and randomness. Properties of a population are assumed as known and questions about a sample are posed and answered. The approach is <span class="highlight-tomato">deductive</span> (general <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> specific)</p>
-</section>
-<section id="realms-of-statistics-2" class="slide level2">
-<h2>Realms of statistics</h2>
-<h3 id="inferential-statistics">Inferential statistics</h3>
-<p>Given a sample, learn methods to draw conclusions aboiut a population while taking into account uncertainties in the sample.</p>
-<p>In inferential statistics, properties of a sample are available and conclusions about a the population are drawn based on the sample. The approach is <span class="highlight-tomato">inductive</span> (specific <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> general)</p>
-</section>
-<section id="discussion-questions" class="slide level2">
-<h2>Discussion questions <i class="fa-solid fa-comments" aria-label="comments"></i></h2>
-<p>Pair up and have a quick chat (2-3 minutes) about the following questions. We’ll then discuss as a larger group.</p>
-<div class="fragment">
-<div class="box-6-list">
-<p><span class="margin-1"><i class="fa-solid fa-question" aria-label="question"></i></span> Are statistics always <em>necessary</em> for population-level inferences?</p>
-</div>
-</div>
-<div class="fragment">
-<div class="box-6-list">
-<p><span class="margin-1"><i class="fa-solid fa-question" aria-label="question"></i></span> Can you think of situations where sampling is <em>needed</em> for inference?</p>
-</div>
-</div>
-<div class="fragment">
-<div class="box-6-list">
-<p><span class="margin-1"><i class="fa-solid fa-question" aria-label="question"></i></span> How can we be sure our sampling schemes are <em>representative</em> of the population?</p>
-</div>
-</div>
-</section>
-<section id="bias" class="slide level2">
-<h2>Bias <i class="fa-solid fa-scale-unbalanced" aria-label="scale-unbalanced"></i></h2>
-<div class="box-6-list">
-<p>Bias is an extremely important concept in science and statistics: it is a type of <span class="highlight-tomato">systematic</span> error (as opposed to random error) that can impact:</p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Study design (e.g., improper design of experiment)</span></p>
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Data collection (e.g., sampling from only one side of a field)</span></p>
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Statistical analyses (e.g., improperly accounting for confounding variables)</span></p>
-</div>
-<div class="fragment">
-<p>Collectively, bias impacts our interpretation of our research and threaten the scientific enterprise writ large. It’s super important that we attempt to control or account for as many potential sources of bias as possible.</p>
-<p>In this course, one of our objectives is to account for the impact of <em>space</em> and <em>time</em> as a source of bias in our data.</p>
-</div>
-</section></section>
-<section>
-<section id="probability" class="title-slide slide level1 center">
-<h1>Probability</h1>
-
-</section>
-<section id="probability-1" class="slide level2">
-<h2>Probability</h2>
-<h3 id="the-foundation-of-statistics">The foundation of statistics</h3>
-<div class="box-6-list">
-<p>The concept of probability is central to all statistical methods &amp; sub-disciplines. Here, we define it as <span class="highlight-tomato">the likely outcome of an event of which we are unsure</span> (e.g., a coin toss)</p>
-</div>
-<div class="fragment fade-in">
-<p><span class="math display">\[ Probability = \frac{n\:outcomes}{n\:trials} \]</span></p>
-</div>
-<div class="fragment fade-in">
-<p><span class="math display">\[ 0 ≤ P ≤ 1 \]</span></p>
-</div>
-<div class="fragment fade-in">
-<p>Uncertainty arises because of natural (i.e.&nbsp;<em>random</em>) variation in the world we live in</p>
-</div>
-</section>
-<section id="probability-2" class="slide level2">
-<h2>Probability</h2>
-<div class="box-6-list">
-<p>Reminder, probability is defined it as <span class="highlight-tomato">the likely outcome of an event of which we are unsure</span>. To measure probability, we need to consider:</p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato">Events</span>: a simple process with a well-defined beginning and end</span></p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato">Outcomes</span>: the result of an event. Defining ecological outcomes can be tricky</span></p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato">Discrete outcomes</span>: outcome assigned a positive integer (e.g., live = 1, dead = 0)</span></p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato">Sample space</span>: The set formed from all of the possible outcomes</span></p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato">Trials</span>: a single event, from start to finish, ending in an outcome</span></p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato">Replicates</span>: a single trial</span></p>
-</div>
-<div class="fragment">
-<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato">Experiments</span>: a collection of trials</span></p>
-</div>
-</section></section>
-<section>
-<section id="random-variables" class="title-slide slide level1 center">
-<h1>Random variables</h1>
-
-</section>
-<section id="random-variables-1" class="slide level2">
-<h2>Random variables</h2>
-<p><strong>Neither random, nor variable…</strong>🙄</p>
-<div class="box-6-list">
-<p>A <span class="highlight-tomato">variable</span> is the actual property measured by individual observations in a trial (e.g., length, pH, fitness)</p>
-</div>
-<div class="fragment">
-<div class="box-6-list">
-<p>A <span class="highlight-tomato">random variable</span> is a variable whose values are not known before a sample is taken - a variable that depends on the outcome of a chance situation.</p>
-</div>
-</div>
-<div class="fragment">
-<div class="box-6-list">
-<p>Mathematically, it’s a rule or a function that assigns a numerical value to each possible outcome of an experiment in the sample space.</p>
-</div>
+<section id="continuous" class="title-slide slide level1 center">
+<h1>Continuous</h1>
 
 
-</div>
-</section></section>
+</section>
+
+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../../media/5126-header.png" class="slide-logo"></p>
@@ -486,7 +431,7 @@
         rtl: false,
 
         // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'default',
+        navigationMode: 'linear',
 
         // Randomizes the order of slides each time the presentation loads
         shuffle: false,

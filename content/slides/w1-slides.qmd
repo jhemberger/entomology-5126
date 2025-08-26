@@ -1,12 +1,15 @@
 ---
 title: "Week 1"
 subtitle: "Class orientation and introduction to R, RStudio, and data wrangling"
+editor:
+  mode: source
 format:
   revealjs: 
     # center-title-slide: false
     output-file: w1-slides.html
-    theme: ["simple", "slide-styles.scss"]
-    navigation-mode: vertical
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    # navigation-mode: vertical
+    smaller: true
     slide-number: c/t
     chalkboard: 
       buttons: true
@@ -15,32 +18,33 @@ format:
     transition: fade
     transition-speed: slow
     logo: /media/5126-header.png
-    css: ["default", "slide-styles.css", "slide-styles.scss"]
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
     # footer: '[https://jhemberger.github.io/entomology-5126/](https://jhemberger.github.io/entomology-5126/)'
 ---
 
 # Welcome!
 
 ## What we'll cover this week {.smaller}
+
 . . .
 
 ::: box-1-list
 [{{< fa user >}}]{.margin-1} Who am I?
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 [{{< fa clipboard-list >}}]{.margin-1} Course logistics and learning objectives
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 [{{< fa floppy-disk >}}]{.margin-1} Data best management practices
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 [{{< fa hat-cowboy >}}]{.margin-1} A brief introduction to data wranglin'
@@ -101,19 +105,20 @@ Memorizing equations and hand-calculating t-tests and ANOVAs [*(but, sometimes t
 ::::
 
 ## Some basic expectations {.smaller}
-. . . 
+
+. . .
 
 ::: box-1-list
 I do expect folks have a working understanding of basic calculus and statistics from past classes in high school or undergraduate studies
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 It's ok to feel lost or get frustrated. Analyzing data (and working with {{< fa brands r-project title="R Project" >}}) is hard!
 :::
 
-. . . 
+. . .
 
 ::: box-1-list
 Ask questions! Work together! Treat this not like a class, but like a semester long workshop
@@ -121,7 +126,7 @@ Ask questions! Work together! Treat this not like a class, but like a semester l
 
 ## Learning objectives for the semester {.smaller}
 
-:::{.incremental} 
+::: incremental
 1.  Apply the appropriate techniques to characterize spatial and temporal dependence data
 2.  Understand how spatial and temporal dependence can affect statistical inference
 3.  Identify and choose the appropriate analytical methods to contend with such dependence in widely-used statistical methods like regression and ANOVA
