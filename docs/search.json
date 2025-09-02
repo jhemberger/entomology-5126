@@ -1838,5 +1838,110 @@
     "title": "Week 2",
     "section": "Poisson random variables",
     "text": "Poisson random variables\n\nThe Poisson distribution is used to describe the number of occurrences of an event recorded in a sample of fixed area or during a fixed time interval. It’s used frequently in spatial and temporal statistics (and for count data!)\n\n\n Examples include number of plants in a quadrat, number of birds visiting a feeder over a period of time, etc.\n\n\n Modeled as \\(X \\sim Poisson(\\lambda)\\)\n\n\n \\(\\lambda\\), the “intensity”, is the average value of the number of occurrences of the event in each sample. Critical in spatial point processes!"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#continuous-random-variables",
+    "href": "content/slides/w2-slides.html#continuous-random-variables",
+    "title": "Week 2",
+    "section": "Continuous random variables",
+    "text": "Continuous random variables\n\nThe probability distribution of a continuous random variable is described by a probability density curve such that the area under the curve corresponds to the probability\n\n\n\n With continuous random variables, we can no longer find probability of a discrete outcome (i.e., specific value), instead we use intervals\n\n\n\n\n Examples of continuous random variables include body mass, wing length, tree height, concentration, etc.\n\n\n\n\n We’ll discuss uniform, normal, and standard normal distributions (but others exist including exponential, log-normal, Chi-Square, F, gamma, beta)"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#the-uniform-random-variable",
+    "href": "content/slides/w2-slides.html#the-uniform-random-variable",
+    "title": "Week 2",
+    "section": "The uniform random variable",
+    "text": "The uniform random variable\n\nA uniform random variable is one that has an equal probability at each and every subinterval along the interval\n\n\nThe probability distribution of such a variable is a rectangle with an area under the curve equal to 1 (The First Axiom of Probability)"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#the-normal-random-variable",
+    "href": "content/slides/w2-slides.html#the-normal-random-variable",
+    "title": "Week 2",
+    "section": "The normal random variable",
+    "text": "The normal random variable\n\nA normal random variable is the most popular continuous probability distribution due to its fit of so many empirical datasets (i.e., continuous data infuenced by small and unrelated random effects that are normally distributed)\n\n\n\n Also referred to as a “Gaussian” probability distribution, normal curve, or bell curve."
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#properties-of-the-normal-random-probability-distribution",
+    "href": "content/slides/w2-slides.html#properties-of-the-normal-random-probability-distribution",
+    "title": "Week 2",
+    "section": "Properties of the normal random probability distribution",
+    "text": "Properties of the normal random probability distribution\n\nA random variable \\(Y\\) is said to have a normal distribution with parameters \\(\\mu\\) and \\(\\sigma^2\\) and is written as:\n\n\\[\nY \\sim N(\\mu, \\sigma^2)\n\\]\n\n\n Total area under the distribution curve is 1 (First Axiom)\n\n\n\n\n Distribution is symmtric about the expectation, \\(\\mu\\), such that:\n\n\n\n\\[\nE(Y) = \\mu :\\:\\:\\ Var(Y) = \\sigma^2\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#properties-of-the-normal-random-probability-distribution-1",
+    "href": "content/slides/w2-slides.html#properties-of-the-normal-random-probability-distribution-1",
+    "title": "Week 2",
+    "section": "Properties of the normal random probability distribution",
+    "text": "Properties of the normal random probability distribution\n\nWe can transform normal distributions with scaling and shifting operations. Consider two random variables \\(X\\) and \\(Y\\):\n\n\n\\[\nX \\sim N(\\mu, \\sigma^2) :\\:\\:\\ Y = aX + b\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#transforming-to-a-standard-normal-probability-distribution",
+    "href": "content/slides/w2-slides.html#transforming-to-a-standard-normal-probability-distribution",
+    "title": "Week 2",
+    "section": "Transforming to a standard normal probability distribution",
+    "text": "Transforming to a standard normal probability distribution\n\nSpecial case of applying a shift and scale operation in which \\(a = 1/\\sigma\\) and \\(b = -1(\\mu/\\sigma)\\)\n\n\\[\nFor:\\ X \\sim N(\\mu, \\sigma), Y = aX + b\n\\]\n\n\\[\n= (1/\\sigma)X - \\mu/\\sigma\n\\]\n\n\n\\[\n= \\frac{X}{1} * \\frac{1}{\\sigma} - \\frac{\\mu}{\\sigma}\n\\]\n\n\n\\[\n= \\frac{X}{\\sigma} - \\frac{\\mu}{\\sigma}\n\\]\n\n\n\\[\n= \\frac{X - \\mu}{\\sigma}\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#standard-normal-probability-distribution",
+    "href": "content/slides/w2-slides.html#standard-normal-probability-distribution",
+    "title": "Week 2",
+    "section": "Standard normal probability distribution",
+    "text": "Standard normal probability distribution\n\n\\(\\frac{X - \\mu}{\\sigma}\\) –&gt; This random variable is referred to as Z, or a Z-score!\n\n\n\n We write that \\(Z \\sim N(\\mu, \\sigma^2\\) with expectation \\(\\mu=0\\) and variance \\(\\sigma^2=1\\), or:)\n\n\\[\nZ \\sim N(0, 1)\n\\]\n\n\n\n The distribution is symmetric around the center \\(\\mu=0\\)\n\n\n\n\n The area between [-1, 1] (i.e., \\(\\mu ± \\sigma\\)) is 0.6826\n\n\n\n\n The area between [-2, 2] is 0.9545"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#standard-normal-probability-distribution-1",
+    "href": "content/slides/w2-slides.html#standard-normal-probability-distribution-1",
+    "title": "Week 2",
+    "section": "Standard normal probability distribution",
+    "text": "Standard normal probability distribution\n\nSuppose \\(Z\\) is a standard normal random variable (i.e., \\(Z \\sim N(0, 1)\\)):\n\n\n\n \\(P(Z ≤ 0) = 0.5\\)\n\n\n\n\n \\(P(-\\infty ≤ Z ≤ +\\infty) = 0.5\\)\n\n\n\n\n \\(P(Z = 1) = 0\\) and in general, \\(P(Z = c) = 0\\) for any \\(c\\)\n\n  How do we find \\(P(Z ≥ / ≤ z)\\) for any given value of \\(z\\)?\n\n\n\n Use table from a book or statistical software! (hint, draw pictures!)"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#find-the-probability-under-the-curve",
+    "href": "content/slides/w2-slides.html#find-the-probability-under-the-curve",
+    "title": "Week 2",
+    "section": "Find the probability under the curve",
+    "text": "Find the probability under the curve\n\\[\\begin{eqnarray*}\nP(Z\\geq 1.5) &=& 0.0668 \\\\\nP(Z\\leq 1.5) &=& 1-P(Z\\geq 1.5) \\\\ &=& 1-0.0668 = 0.9332 \\\\\nP(0\\leq Z\\leq 1.5) &=& P(Z\\geq 0)-P(Z\\geq 1.5) \\\\ &=& 0.5-0.0668 = 0.4332\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#find-the-probability-under-the-curve-1",
+    "href": "content/slides/w2-slides.html#find-the-probability-under-the-curve-1",
+    "title": "Week 2",
+    "section": "Find the probability under the curve",
+    "text": "Find the probability under the curve\n\\[\\begin{eqnarray*}\nP(Z\\geq -0.6) &=& 1-P(Z\\leq -0.6)\\\\ &=& 1-P(Z\\geq 0.6) \\\\ &=& 1-0.2743 = 0.7257\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#find-the-probability-under-the-curve-2",
+    "href": "content/slides/w2-slides.html#find-the-probability-under-the-curve-2",
+    "title": "Week 2",
+    "section": "Find the probability under the curve",
+    "text": "Find the probability under the curve\n\\[\\begin{eqnarray*}\nP(-1.7 \\leq Z\\leq 1.7) &=& 2\\times P(0\\leq Z\\leq 1.7) \\\\ &=& 2\\times(0.5-0.0446) = 0.9108\n\\end{eqnarray*}\\]\n\nOR\n\n\n\\[\\begin{eqnarray*}\nP(-1.7 \\leq Z\\leq 1.7) &=& 1-P(Z\\leq -1.7 {\\rm ~or~} Z\\geq 1.7) \\\\ &=& 1-2\\times P(Z\\geq 1.7) \\\\ &=& 1-2\\times 0.0446 = 1-0.0892 = 0.9108.\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable",
+    "href": "content/slides/w2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable",
+    "title": "Week 2",
+    "section": "Transforming a general normal variable to a standard normal variable",
+    "text": "Transforming a general normal variable to a standard normal variable\nA random variable \\(Y\\) may be normally distributed with parameters \\(\\mu\\) and \\(\\sigma^2\\) and written as:\n\\[\nY\\sim N(\\mu,\\sigma^2)\n\\]\n\nFor example, \\(Y\\sim N(20,3^2)\\) stands for normal distribution with \\(\\mu=20,\\sigma^2=9\\).\n\n\n Suppose \\(Y\\sim N(\\mu,\\sigma^2)\\), then a very useful transformation is:\n\\[\nZ=\\frac{Y-\\mu}{\\sigma}\\sim N(0,1)\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-1",
+    "href": "content/slides/w2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-1",
+    "title": "Week 2",
+    "section": "Transforming a general normal variable to a standard normal variable",
+    "text": "Transforming a general normal variable to a standard normal variable\nFor \\(Y\\sim N(20,3^2)\\) (i.e. \\(\\mu=20,\\sigma^2=9\\)), we have \\[\\begin{eqnarray*}\nP(20\\leq Y\\leq 23) &=& P(20-\\mu\\leq Y-\\mu\\leq 23-\\mu) \\\\\n&=& P\\left(\\frac{20-\\mu}{\\sigma}\\leq \\frac{Y-\\mu}{\\sigma}\\leq \\frac{23-\\mu}{\\sigma}\\right) \\\\\n&=& P\\left(\\frac{20-20}{3}\\leq Z\\leq \\frac{23-20}{3}\\right) \\\\\n&=& P(0\\leq Z\\leq 1) \\\\\n&=& P(Z\\geq 0)-P(Z\\geq 1) \\\\\n&=& 0.5-0.1587 = 0.3413\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-2",
+    "href": "content/slides/w2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-2",
+    "title": "Week 2",
+    "section": "Transforming a general normal variable to a standard normal variable",
+    "text": "Transforming a general normal variable to a standard normal variable\nSuppose \\(Y\\sim N(20,3^2)\\), what is \\(P(Y\\leq 15.5)\\)?\n\\[\\begin{eqnarray*}\nP(Y\\leq 15.5) &=& P\\left(\\frac{Y-\\mu}{\\sigma}\\leq \\frac{15.5-\\mu}{\\sigma}\\right) \\\\\n&=& P\\left(Z\\leq \\frac{15.5-20}{3}\\right) \\\\\n&=& P(Z\\leq -1.5) \\\\\n&=& 0.0668\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2-slides.html#z-scores-and-interpretation",
+    "href": "content/slides/w2-slides.html#z-scores-and-interpretation",
+    "title": "Week 2",
+    "section": "Z-scores and interpretation",
+    "text": "Z-scores and interpretation\n\nGiven a value \\(y\\), the term: \\[\nz=\\frac{y-\\mu}{\\sigma}\n\\] is called the z-score corresponding to y. It represents the number of standard deviations \\(y\\) is from \\(\\mu\\).\n\n\nFor \\(Y\\sim N(20,3^2)\\),\n\n\n\n 23 is \\(1\\sigma\\) away from \\(\\mu=20\\).\n\n\n\n\n 20 is \\(0\\sigma\\) away from \\(\\mu=20\\) (i.e. at \\(\\mu=20\\)).\n\n\n\n\n 24 is \\(\\frac{4}{3}\\sigma\\) away from \\(\\mu=20\\).\n\n\n\n\n 17 is \\(-1\\sigma\\) away from \\(\\mu=20\\)."
   }
 ]
