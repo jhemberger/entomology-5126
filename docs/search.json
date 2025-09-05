@@ -1447,9 +1447,9 @@
   {
     "objectID": "content/w2-content.html",
     "href": "content/w2-content.html",
-    "title": "Week 1",
+    "title": "Week 2",
     "section": "",
-    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n    View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
     "crumbs": [
       "Content",
       "Module 2: Reviewing foundations in statistics",
@@ -1459,9 +1459,9 @@
   {
     "objectID": "content/w2-content.html#slides",
     "href": "content/w2-content.html#slides",
-    "title": "Week 1",
+    "title": "Week 2",
     "section": "",
-    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n    View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
     "crumbs": [
       "Content",
       "Module 2: Reviewing foundations in statistics",
@@ -1943,5 +1943,356 @@
     "title": "Week 2",
     "section": "Z-scores and interpretation",
     "text": "Z-scores and interpretation\n\nGiven a value \\(y\\), the term: \\[\nz=\\frac{y-\\mu}{\\sigma}\n\\] is called the z-score corresponding to y. It represents the number of standard deviations \\(y\\) is from \\(\\mu\\).\n\n\nFor \\(Y\\sim N(20,3^2)\\),\n\n\n\n 23 is \\(1\\sigma\\) away from \\(\\mu=20\\).\n\n\n\n\n 20 is \\(0\\sigma\\) away from \\(\\mu=20\\) (i.e. at \\(\\mu=20\\)).\n\n\n\n\n 24 is \\(\\frac{4}{3}\\sigma\\) away from \\(\\mu=20\\).\n\n\n\n\n 17 is \\(-1\\sigma\\) away from \\(\\mu=20\\)."
+  },
+  {
+    "objectID": "content/w2-content.html#lecture-2.2",
+    "href": "content/w2-content.html#lecture-2.2",
+    "title": "Week 2",
+    "section": "Lecture 2.2",
+    "text": "Lecture 2.2\n    View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "crumbs": [
+      "Content",
+      "Module 2: Reviewing foundations in statistics",
+      "Week 2: Sampling, probability, random variables"
+    ]
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html",
+    "href": "content/slides/w2_1-slides.html",
+    "title": "Week 2",
+    "section": "",
+    "text": ". . .\n\n What is statistics?\n\n. . .\n\n Sampling\n\n. . .\n\n Probability\n\n. . .\n\n Random variables"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#a-brief-survey-of-basic-statistical-concepts",
+    "href": "content/slides/w2_1-slides.html#a-brief-survey-of-basic-statistical-concepts",
+    "title": "Week 2",
+    "section": "A brief survey of basic statistical concepts",
+    "text": "A brief survey of basic statistical concepts\n\n\n What is statistics?\n\n\n\n\n Sampling\n\n\n\n\n Probability\n\n\n\n\n Random variables"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#definition",
+    "href": "content/slides/w2_1-slides.html#definition",
+    "title": "Week 2",
+    "section": "Definition",
+    "text": "Definition\n\n\nStatistics is the art / science of collecting, analyzing, interpreting, and presenting data"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#why-do-we-need-statistics",
+    "href": "content/slides/w2_1-slides.html#why-do-we-need-statistics",
+    "title": "Week 2",
+    "section": "Why do we need statistics?",
+    "text": "Why do we need statistics?\n\n\nStatistics are an integral component of the scientific process that allow us separate signal from noise in complex biological and ecological systems so that we can understand how systems work and make informed decisions instead of just…\n…going with your gut and “vibes”."
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#so-is-it-an-art-or-a-science",
+    "href": "content/slides/w2_1-slides.html#so-is-it-an-art-or-a-science",
+    "title": "Week 2",
+    "section": "So is it an art or a science?",
+    "text": "So is it an art or a science?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThe art/science of designing and conducting a good experiment or observational study makes the art/science of doing statistics far easier."
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#population-vs.-sample",
+    "href": "content/slides/w2_1-slides.html#population-vs.-sample",
+    "title": "Week 2",
+    "section": "Population vs. sample",
+    "text": "Population vs. sample\n\n\nA population is a whole set/group of individuals/objects which we are interested in studying. I.e. the complete set of all possible observations (finite or infinite)\n\n All plants of species X, all lakes in Minnesota\n\n\n\nA sample is a representative subset of the population that we actually observe in order to learn about the population\n\n 100 plants of species X at 25 sites, 50 random lakes in Minnesota"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#population-vs.-sample-1",
+    "href": "content/slides/w2_1-slides.html#population-vs.-sample-1",
+    "title": "Week 2",
+    "section": "Population vs. sample",
+    "text": "Population vs. sample\nWe use different symbols/notation for the same parameters depending on whether we’re referring to the population or to the sample\n Mean:\\(\\mu\\) (population) vs \\(\\bar{x}\\) (sample)\n Variance:\\(\\sigma^2\\) (population) vs \\(s^2\\) (sample)"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#the-three-primary-realms-of-statistics",
+    "href": "content/slides/w2_1-slides.html#the-three-primary-realms-of-statistics",
+    "title": "Week 2",
+    "section": "The three primary realms of statistics",
+    "text": "The three primary realms of statistics\n\n\nDescriptive statistics\n\n\nProbability\n\n\nInferential statistics\n\n\n\nTogether, these elements are used to make inferences about a collection of data and address specific hypotheses"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#realms-of-statistics",
+    "href": "content/slides/w2_1-slides.html#realms-of-statistics",
+    "title": "Week 2",
+    "section": "Realms of statistics",
+    "text": "Realms of statistics\nDescriptive statistics\n\nDisplaying and summarizing the main features of data in a sample\n\n e.g., mean, median, mode, max, min"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#realms-of-statistics-1",
+    "href": "content/slides/w2_1-slides.html#realms-of-statistics-1",
+    "title": "Week 2",
+    "section": "Realms of statistics",
+    "text": "Realms of statistics\nProbability: the foundation of statistics\nGiven a population, understand the uncertainty associated with taking a sample taken from the population\nProbability is the mathematics of chance and randomness. Properties of a population are assumed as known and questions about a sample are posed and answered. The approach is deductive (general  specific)"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#realms-of-statistics-2",
+    "href": "content/slides/w2_1-slides.html#realms-of-statistics-2",
+    "title": "Week 2",
+    "section": "Realms of statistics",
+    "text": "Realms of statistics\nInferential statistics\nGiven a sample, learn methods to draw conclusions about a population while taking into account uncertainties in the sample.\nIn inferential statistics, properties of a sample are available and conclusions about the population are drawn based on the sample. The approach is inductive (specific  general)"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#discussion-questions",
+    "href": "content/slides/w2_1-slides.html#discussion-questions",
+    "title": "Week 2",
+    "section": "Discussion questions ",
+    "text": "Discussion questions \nPair up and have a quick chat (2-3 minutes) about the following questions. We’ll then discuss as a larger group.\n\n\n Are statistics always necessary for population-level inferences?\n\n\n\n\n Can you think of situations where sampling is needed for inference?\n\n\n\n\n How can we be sure our sampling schemes are representative of the population?"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#bias",
+    "href": "content/slides/w2_1-slides.html#bias",
+    "title": "Week 2",
+    "section": "Bias ",
+    "text": "Bias \n\nBias is an extremely important concept in science and statistics: it is a type of systematic error (as opposed to random error) that can impact:\n\n\n Study design (e.g., improper design of experiment)\n Data collection (e.g., sampling from only one side of a field)\n Statistical analyses (e.g., improperly accounting for confounding variables)\n\n\nCollectively, bias impacts our interpretation of our research and threatens the scientific enterprise writ large. It’s super important that we attempt to control or account for as many potential sources of bias as possible.\nIn this course, one of our objectives is to account for the impact of space and time as a source of bias in our data."
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#probability-is-the-foundation-of-statistics",
+    "href": "content/slides/w2_1-slides.html#probability-is-the-foundation-of-statistics",
+    "title": "Week 2",
+    "section": "Probability is the foundation of statistics",
+    "text": "Probability is the foundation of statistics\n\nThe concept of probability is central to all statistical methods & sub-disciplines. Here, we define it as the likely outcome of an event of which we are unsure (e.g., a coin toss)\n\n\n\\[ Probability = \\frac{n\\:outcomes}{n\\:trials} \\]\n\n\n\\[ 0 ≤ P ≤ 1 \\]\n\n\nUncertainty arises because of natural (i.e., random) variation in the world we live in"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#some-key-terms-that-we-need-to-know",
+    "href": "content/slides/w2_1-slides.html#some-key-terms-that-we-need-to-know",
+    "title": "Week 2",
+    "section": "Some key terms that we need to know",
+    "text": "Some key terms that we need to know\n\nReminder, probability is defined as the likely outcome of an event of which we are unsure. To measure probability, we need to consider…\n\n\n\n Events: a simple process with a well-defined beginning and end\n\n\n\n\n Outcomes: the result of an event. Defining ecological outcomes can be tricky\n\n\n\n\n Discrete outcomes: outcome assigned a positive integer (e.g., live = 1, dead = 0)\n\n\n\n\n Sample space: The set formed from all of the possible outcomes\n\n\n\n\n Trials: a single event, from start to finish, ending in an outcome\n\n\n\n\n Replicates: a single trial\n\n\n\n\n Experiments: a collection of trials"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#neither-random-nor-variable",
+    "href": "content/slides/w2_1-slides.html#neither-random-nor-variable",
+    "title": "Week 2",
+    "section": "Neither random, nor variable…🙄",
+    "text": "Neither random, nor variable…🙄\n\nA variable is the actual property measured by individual observations in a trial (e.g., length, pH, fitness)\n\n\n\nA random variable is a variable whose values are not known before a sample is taken — a variable that depends on the outcome of a chance situation.\n\n\n\n\n Mathematically, it’s a rule or a function that assigns a numerical value to each possible outcome of an experiment in the sample space."
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#types-of-random-variables",
+    "href": "content/slides/w2_1-slides.html#types-of-random-variables",
+    "title": "Week 2",
+    "section": "Types of random variables",
+    "text": "Types of random variables\nThere are two primary types of random variables\n\nA discrete random variable are characterized by a finite number of possible values (e.g., \\(y_1, .... y_n\\)).\n\n\n\n Examples include presence/absence of a species, number of offspring, number of seeds germinating\n\n\n\n\nA continuous random variable are those that take on any value in a smooth interval.\n\n\n\n\n Examples include mass of an insect, leaf area consumed, dissolved oxygen content in water sample"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#types-of-random-variables-1",
+    "href": "content/slides/w2_1-slides.html#types-of-random-variables-1",
+    "title": "Week 2",
+    "section": "Types of random variables",
+    "text": "Types of random variables\n\nAll random variables can be characterized by a probability distribution\n\n\n\n Area under a probability distribution always sums to 1\n\n\n\n\n Ecological data can be described by many common probability distributions (we’ll get into this in the next lecture)\n\n\n\n\n Pretty much every statistical test we do depends on an assumption of data fitting a specific probability distribution (most commonly, the Normal or Gaussian distribution)\n\n\n\n\n Data that don’t fit must be transformed or modeled using different approaches (e.g., generalized linear models)"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#characterizing-the-expectation-of-rv-probability-distribution",
+    "href": "content/slides/w2_1-slides.html#characterizing-the-expectation-of-rv-probability-distribution",
+    "title": "Week 2",
+    "section": "Characterizing the expectation of RV probability distribution",
+    "text": "Characterizing the expectation of RV probability distribution\n\nRarely do we need to know the entire distribution, but rather we want to characterize the expectation (i.e., most typical value) and the variance\n\n\n Expectation of a random variable \\(Y\\) is the population mean of the probability distribution of \\(Y\\).\n\n\n Denoted as \\(E(Y)\\:or\\:\\mu_Y\\)"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#characterizing-the-variance-of-rv-probability-distribution",
+    "href": "content/slides/w2_1-slides.html#characterizing-the-variance-of-rv-probability-distribution",
+    "title": "Week 2",
+    "section": "Characterizing the variance of RV probability distribution",
+    "text": "Characterizing the variance of RV probability distribution\n\nRarely do we need to know the entire distribution, but rather we want to characterize the expectation (i.e., most typical value) and the variance\n\n\n\n Variance of a random variable \\(Y\\) measures the population spread/variability of the probability distribution of \\(Y\\).\n\n\n\n\n Can be thought of as amount \\(Y\\) deviates from the expectation \\(mu_Y\\)\n\n\n\n\n Denoted as \\(Var(Y)\\:or\\:\\sigma^2_Y\\)\n\n\n\n\n Standard deviation is simply the square root of the variance:\n\n\\[\\sigma^2_Y = \\sqrt{Var(Y)}\\]"
+  },
+  {
+    "objectID": "content/slides/w2_1-slides.html#independence-of-random-variables",
+    "href": "content/slides/w2_1-slides.html#independence-of-random-variables",
+    "title": "Week 2",
+    "section": "Independence of random variables",
+    "text": "Independence of random variables\n\nTwo random variables \\(X\\) and \\(Y\\) are independent if knowledge of the value of one has no effect on the probability of the other.\n\n\n\n For example, the size and weight of a moose are probably not independent!"
+  },
+  {
+    "objectID": "content/w3-content.html",
+    "href": "content/w3-content.html",
+    "title": "Week 3",
+    "section": "",
+    "text": "Tip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "crumbs": [
+      "Content",
+      "Module 2: Reviewing foundations in statistics",
+      "Week 3: Data transformations, hypotheses, t-tests"
+    ]
+  },
+  {
+    "objectID": "content/w3-content.html#slides",
+    "href": "content/w3-content.html#slides",
+    "title": "Week 3",
+    "section": "",
+    "text": "Tip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "crumbs": [
+      "Content",
+      "Module 2: Reviewing foundations in statistics",
+      "Week 3: Data transformations, hypotheses, t-tests"
+    ]
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#a-quick-review-of-different-probability-distributions",
+    "href": "content/slides/w2_2-slides.html#a-quick-review-of-different-probability-distributions",
+    "title": "Week 2",
+    "section": "A quick review of different probability distributions",
+    "text": "A quick review of different probability distributions\n\n\n Discrete probability distributions\n\n\n\n Bernoulli, Binomial, and Poisson\n\n\n\n Continuous probability distributions\n\n\n\n Uniform, Normal, and Exponential"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#bernoulli-random-variables",
+    "href": "content/slides/w2_2-slides.html#bernoulli-random-variables",
+    "title": "Week 2",
+    "section": "Bernoulli random variables",
+    "text": "Bernoulli random variables\n\nBernoulli random variables describe an outcome of an experiment or event that has only two outcomes (commonly referred to as Bernoulli trials)\n\n\n Common applications in ecology are for species presence/absence or for individuals that are alive or dead.\n\n\n Usually coded as 0/1 in a datasheet, with 1 the positive outcome (alive, present) and 0 the negative (dead, absent) 1\n\nBe sure you note this in your metadata!"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#bernoulli-random-variables-1",
+    "href": "content/slides/w2_2-slides.html#bernoulli-random-variables-1",
+    "title": "Week 2",
+    "section": "Bernoulli random variables",
+    "text": "Bernoulli random variables\n\nWe say that a random variable \\(X\\) follows a Bernoulli distribution: \\(X \\sim Bernoulli(p)\\) or \\(P(X) = p\\)\n\n\n\n Most familiar example is a coin toss, where \\(P = 0.50\\)"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#binomial-random-variables",
+    "href": "content/slides/w2_2-slides.html#binomial-random-variables",
+    "title": "Week 2",
+    "section": "Binomial random variables",
+    "text": "Binomial random variables\n\nA binomial random variable is simply a collection of multiple, independent Bernoulli trials"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#binomial-random-variables-1",
+    "href": "content/slides/w2_2-slides.html#binomial-random-variables-1",
+    "title": "Week 2",
+    "section": "Binomial random variables",
+    "text": "Binomial random variables\n\nA binomial random variable is simply a collection of multiple, independent Bernoulli trials"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#example-seed-germination-experiment",
+    "href": "content/slides/w2_2-slides.html#example-seed-germination-experiment",
+    "title": "Week 2",
+    "section": "Example: Seed germination experiment",
+    "text": "Example: Seed germination experiment\nTake three seeds. The seeds are independent (harvested from different plants of the same species). We soak them in water for 24 hours and plant them into a planting mix. After 7 days, we record successful germinations. Let \\(Y\\) be the number of successful germinations. Our sample space is then defined as:\n\n\n\n\n1st seed\n2nd seed\n3rd seed\nGerminations\n\n\n\n\nY\nY\nY\n3\n\n\nY\nY\nN\n2\n\n\nY\nN\nY\n2\n\n\nN\nY\nY\n2\n\n\nY\nN\nN\n1\n\n\nN\nY\nN\n1\n\n\nN\nN\nY\n1\n\n\nN\nN\nN\n0"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#example-seed-germination-experiment-1",
+    "href": "content/slides/w2_2-slides.html#example-seed-germination-experiment-1",
+    "title": "Week 2",
+    "section": "Example: Seed germination experiment",
+    "text": "Example: Seed germination experiment\nSuppose there is a 50% chance of each seed germinating:\n\\[\nP(Y) = P(N) = 1/2\n\\]\nThen: \\[\nP(Y = 3) = P(YYY)\\\\\n         = P(Y)P(Y)P(Y)\\\\\n         = 1/2 * 1/2 * 1/2 = 1/8\\\\\nP(Y = 2) = P(YYN \\ or \\ YNY \\ or \\ NYY)\\\\\n         = P(YYN) + P(YNY) + P(NYY)\\\\\n         = P(Y)P(Y)P(N) + P(Y)P(N)P(Y) + P(N)P(Y)P(Y)\\\\\n         = 1/8 + 1/8 + 1/8 = 3/8\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#example-seed-germination-experiment-2",
+    "href": "content/slides/w2_2-slides.html#example-seed-germination-experiment-2",
+    "title": "Week 2",
+    "section": "Example: Seed germination experiment",
+    "text": "Example: Seed germination experiment\nWe can use a line graph to show the probability distribution of \\(Y\\).\n\n\\[Y \\sim Bernoulli(n, p)\\] \\[Y \\sim Bernoulli(3, 0.5)\\]\n\n\n\np(y) |\n     |\n3/8  |     T  T\n     |     |  |\n1/8  |  T  |  |  T\n     |--|--|--|--|--&gt; y\n        0  1  2  3"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#poisson-random-variables",
+    "href": "content/slides/w2_2-slides.html#poisson-random-variables",
+    "title": "Week 2",
+    "section": "Poisson random variables",
+    "text": "Poisson random variables\n\nThe Poisson distribution is used to describe the number of occurrences of an event recorded in a sample of fixed area or during a fixed time interval. It’s used frequently in spatial and temporal statistics (and for count data!)\n\n\n Examples include number of plants in a quadrat, number of birds visiting a feeder over a period of time, etc.\n\n\n Modeled as \\(X \\sim Poisson(\\lambda)\\)\n\n\n \\(\\lambda\\), the “intensity”, is the average value of the number of occurrences of the event in each sample. Critical in spatial point processes!"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#continuous-random-variables",
+    "href": "content/slides/w2_2-slides.html#continuous-random-variables",
+    "title": "Week 2",
+    "section": "Continuous random variables",
+    "text": "Continuous random variables\n\nThe probability distribution of a continuous random variable is described by a probability density curve such that the area under the curve corresponds to the probability\n\n\n\n With continuous random variables, we can no longer find probability of a discrete outcome (i.e., specific value), instead we use intervals\n\n\n\n\n Examples of continuous random variables include body mass, wing length, tree height, concentration, etc.\n\n\n\n\n We’ll discuss uniform, normal, and standard normal distributions (but others exist including exponential, log-normal, Chi-Square, F, gamma, beta)"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#the-uniform-random-variable",
+    "href": "content/slides/w2_2-slides.html#the-uniform-random-variable",
+    "title": "Week 2",
+    "section": "The uniform random variable",
+    "text": "The uniform random variable\n\nA uniform random variable is one that has an equal probability at each and every subinterval along the interval\n\n\nThe probability distribution of such a variable is a rectangle with an area under the curve equal to 1 (The First Axiom of Probability)"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#the-normal-random-variable",
+    "href": "content/slides/w2_2-slides.html#the-normal-random-variable",
+    "title": "Week 2",
+    "section": "The normal random variable",
+    "text": "The normal random variable\n\nA normal random variable is the most popular continuous probability distribution due to its fit of so many empirical datasets (i.e., continuous data infuenced by small and unrelated random effects that are normally distributed)\n\n\n\n Also referred to as a “Gaussian” probability distribution, normal curve, or bell curve."
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#properties-of-the-normal-random-probability-distribution",
+    "href": "content/slides/w2_2-slides.html#properties-of-the-normal-random-probability-distribution",
+    "title": "Week 2",
+    "section": "Properties of the normal random probability distribution",
+    "text": "Properties of the normal random probability distribution\n\nA random variable \\(Y\\) is said to have a normal distribution with parameters \\(\\mu\\) and \\(\\sigma^2\\) and is written as:\n\n\\[\nY \\sim N(\\mu, \\sigma^2)\n\\]\n\n\n Total area under the distribution curve is 1 (First Axiom)\n\n\n\n\n Distribution is symmtric about the expectation, \\(\\mu\\), such that:\n\n\n\n\\[\nE(Y) = \\mu :\\:\\:\\ Var(Y) = \\sigma^2\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#properties-of-the-normal-random-probability-distribution-1",
+    "href": "content/slides/w2_2-slides.html#properties-of-the-normal-random-probability-distribution-1",
+    "title": "Week 2",
+    "section": "Properties of the normal random probability distribution",
+    "text": "Properties of the normal random probability distribution\n\nWe can transform normal distributions with scaling and shifting operations. Consider two random variables \\(X\\) and \\(Y\\):\n\n\n\\[\nX \\sim N(\\mu, \\sigma^2) :\\:\\:\\ Y = aX + b\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#transforming-to-a-standard-normal-probability-distribution",
+    "href": "content/slides/w2_2-slides.html#transforming-to-a-standard-normal-probability-distribution",
+    "title": "Week 2",
+    "section": "Transforming to a standard normal probability distribution",
+    "text": "Transforming to a standard normal probability distribution\n\nSpecial case of applying a shift and scale operation in which \\(a = 1/\\sigma\\) and \\(b = -1(\\mu/\\sigma)\\)\n\n\\[\nFor:\\ X \\sim N(\\mu, \\sigma), Y = aX + b\n\\]\n\n\\[\n= (1/\\sigma)X - \\mu/\\sigma\n\\]\n\n\n\\[\n= \\frac{X}{1} * \\frac{1}{\\sigma} - \\frac{\\mu}{\\sigma}\n\\]\n\n\n\\[\n= \\frac{X}{\\sigma} - \\frac{\\mu}{\\sigma}\n\\]\n\n\n\\[\n= \\frac{X - \\mu}{\\sigma}\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#standard-normal-probability-distribution",
+    "href": "content/slides/w2_2-slides.html#standard-normal-probability-distribution",
+    "title": "Week 2",
+    "section": "Standard normal probability distribution",
+    "text": "Standard normal probability distribution\n\n\\(\\frac{X - \\mu}{\\sigma}\\) –&gt; This random variable is referred to as Z, or a Z-score!\n\n\n\n We write that \\(Z \\sim N(\\mu, \\sigma^2\\) with expectation \\(\\mu=0\\) and variance \\(\\sigma^2=1\\), or:)\n\n\\[\nZ \\sim N(0, 1)\n\\]\n\n\n\n The distribution is symmetric around the center \\(\\mu=0\\)\n\n\n\n\n The area between [-1, 1] (i.e., \\(\\mu ± \\sigma\\)) is 0.6826\n\n\n\n\n The area between [-2, 2] is 0.9545"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#standard-normal-probability-distribution-1",
+    "href": "content/slides/w2_2-slides.html#standard-normal-probability-distribution-1",
+    "title": "Week 2",
+    "section": "Standard normal probability distribution",
+    "text": "Standard normal probability distribution\n\nSuppose \\(Z\\) is a standard normal random variable (i.e., \\(Z \\sim N(0, 1)\\)):\n\n\n\n \\(P(Z ≤ 0) = 0.5\\)\n\n\n\n\n \\(P(-\\infty ≤ Z ≤ +\\infty) = 0.5\\)\n\n\n\n\n \\(P(Z = 1) = 0\\) and in general, \\(P(Z = c) = 0\\) for any \\(c\\)\n\n  How do we find \\(P(Z ≥ / ≤ z)\\) for any given value of \\(z\\)?\n\n\n\n Use table from a book or statistical software! (hint, draw pictures!)"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#find-the-probability-under-the-curve",
+    "href": "content/slides/w2_2-slides.html#find-the-probability-under-the-curve",
+    "title": "Week 2",
+    "section": "Find the probability under the curve",
+    "text": "Find the probability under the curve\n\\[\\begin{eqnarray*}\nP(Z\\geq 1.5) &=& 0.0668 \\\\\nP(Z\\leq 1.5) &=& 1-P(Z\\geq 1.5) \\\\ &=& 1-0.0668 = 0.9332 \\\\\nP(0\\leq Z\\leq 1.5) &=& P(Z\\geq 0)-P(Z\\geq 1.5) \\\\ &=& 0.5-0.0668 = 0.4332\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#find-the-probability-under-the-curve-1",
+    "href": "content/slides/w2_2-slides.html#find-the-probability-under-the-curve-1",
+    "title": "Week 2",
+    "section": "Find the probability under the curve",
+    "text": "Find the probability under the curve\n\\[\\begin{eqnarray*}\nP(Z\\geq -0.6) &=& 1-P(Z\\leq -0.6)\\\\ &=& 1-P(Z\\geq 0.6) \\\\ &=& 1-0.2743 = 0.7257\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#find-the-probability-under-the-curve-2",
+    "href": "content/slides/w2_2-slides.html#find-the-probability-under-the-curve-2",
+    "title": "Week 2",
+    "section": "Find the probability under the curve",
+    "text": "Find the probability under the curve\n\\[\\begin{eqnarray*}\nP(-1.7 \\leq Z\\leq 1.7) &=& 2\\times P(0\\leq Z\\leq 1.7) \\\\ &=& 2\\times(0.5-0.0446) = 0.9108\n\\end{eqnarray*}\\]\n\nOR\n\n\n\\[\\begin{eqnarray*}\nP(-1.7 \\leq Z\\leq 1.7) &=& 1-P(Z\\leq -1.7 {\\rm ~or~} Z\\geq 1.7) \\\\ &=& 1-2\\times P(Z\\geq 1.7) \\\\ &=& 1-2\\times 0.0446 = 1-0.0892 = 0.9108.\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable",
+    "href": "content/slides/w2_2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable",
+    "title": "Week 2",
+    "section": "Transforming a general normal variable to a standard normal variable",
+    "text": "Transforming a general normal variable to a standard normal variable\nA random variable \\(Y\\) may be normally distributed with parameters \\(\\mu\\) and \\(\\sigma^2\\) and written as:\n\\[\nY\\sim N(\\mu,\\sigma^2)\n\\]\n\nFor example, \\(Y\\sim N(20,3^2)\\) stands for normal distribution with \\(\\mu=20,\\sigma^2=9\\).\n\n\n Suppose \\(Y\\sim N(\\mu,\\sigma^2)\\), then a very useful transformation is:\n\\[\nZ=\\frac{Y-\\mu}{\\sigma}\\sim N(0,1)\n\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-1",
+    "href": "content/slides/w2_2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-1",
+    "title": "Week 2",
+    "section": "Transforming a general normal variable to a standard normal variable",
+    "text": "Transforming a general normal variable to a standard normal variable\nFor \\(Y\\sim N(20,3^2)\\) (i.e. \\(\\mu=20,\\sigma^2=9\\)), we have \\[\\begin{eqnarray*}\nP(20\\leq Y\\leq 23) &=& P(20-\\mu\\leq Y-\\mu\\leq 23-\\mu) \\\\\n&=& P\\left(\\frac{20-\\mu}{\\sigma}\\leq \\frac{Y-\\mu}{\\sigma}\\leq \\frac{23-\\mu}{\\sigma}\\right) \\\\\n&=& P\\left(\\frac{20-20}{3}\\leq Z\\leq \\frac{23-20}{3}\\right) \\\\\n&=& P(0\\leq Z\\leq 1) \\\\\n&=& P(Z\\geq 0)-P(Z\\geq 1) \\\\\n&=& 0.5-0.1587 = 0.3413\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#z-scores-and-interpretation",
+    "href": "content/slides/w2_2-slides.html#z-scores-and-interpretation",
+    "title": "Week 2",
+    "section": "Z-scores and interpretation",
+    "text": "Z-scores and interpretation\n\nGiven a value \\(y\\), the term: \\[\nz=\\frac{y-\\mu}{\\sigma}\n\\] is called the z-score corresponding to y. It represents the number of standard deviations \\(y\\) is from \\(\\mu\\).\n\n\nFor \\(Y\\sim N(20,3^2)\\),\n\n\n\n 23 is \\(1\\sigma\\) away from \\(\\mu=20\\).\n\n\n\n\n 20 is \\(0\\sigma\\) away from \\(\\mu=20\\) (i.e. at \\(\\mu=20\\)).\n\n\n\n\n 24 is \\(\\frac{4}{3}\\sigma\\) away from \\(\\mu=20\\).\n\n\n\n\n 17 is \\(-1\\sigma\\) away from \\(\\mu=20\\)."
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-2",
+    "href": "content/slides/w2_2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-2",
+    "title": "Week 2",
+    "section": "Transforming a general normal variable to a standard normal variable",
+    "text": "Transforming a general normal variable to a standard normal variable\nSuppose \\(Y\\sim N(20,3^2)\\), what is \\(P(Y\\leq 15.5)\\)?\n\\[\\begin{eqnarray*}\nP(Y\\leq 15.5) &=& P\\left(\\frac{Y-\\mu}{\\sigma}\\leq \\frac{15.5-\\mu}{\\sigma}\\right) \\\\\n&=& P\\left(Z\\leq \\frac{15.5-20}{3}\\right) \\\\\n&=& P(Z\\leq -1.5) \\\\\n&=& 0.0668\n\\end{eqnarray*}\\]"
   }
 ]

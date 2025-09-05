@@ -1,0 +1,15 @@
+---
+title: "Week 3"
+subtitle: "Data transformations, hypotheses, t-tests"
+date: last-modified
+date-format: long
+format: html
+---
+
+## Slides
+
+### Lecture 3.1
+
+::: callout-tip
+**Tip**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
+:::

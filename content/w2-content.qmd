@@ -8,7 +8,13 @@ format: html
 
 ## Slides
 
-{{< revealjs file="slides/w2-slides.html" height="500px" class="ratio ratio-16x9" >}}
+### Lecture 2.1
+
+{{< revealjs file="slides/w2_1-slides.html" height="500px" class="ratio ratio-16x9" >}}
+
+### Lecture 2.2
+
+{{< revealjs file="slides/w2_2-slides.html" height="500px" class="ratio ratio-16x9" >}}
 
 ::: callout-tip
 **Tip**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.

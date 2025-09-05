@@ -1,0 +1,21 @@
+---
+title: "Week 3"
+subtitle: "Classic data transformations"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w3_1-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---

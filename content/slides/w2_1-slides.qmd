@@ -5,7 +5,7 @@ editor:
   mode: source
 format:
   revealjs: 
-    output-file: w2-slides.html
+    output-file: w2_1-slides.html
     theme: ["simple", "slide_styles/slide-styles.scss"]
     smaller: true
     # navigation-mode: vertical
