@@ -2294,5 +2294,12 @@
     "title": "Week 2",
     "section": "Transforming a general normal variable to a standard normal variable",
     "text": "Transforming a general normal variable to a standard normal variable\nSuppose \\(Y\\sim N(20,3^2)\\), what is \\(P(Y\\leq 15.5)\\)?\n\\[\\begin{eqnarray*}\nP(Y\\leq 15.5) &=& P\\left(\\frac{Y-\\mu}{\\sigma}\\leq \\frac{15.5-\\mu}{\\sigma}\\right) \\\\\n&=& P\\left(Z\\leq \\frac{15.5-20}{3}\\right) \\\\\n&=& P(Z\\leq -1.5) \\\\\n&=& 0.0668\n\\end{eqnarray*}\\]"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#the-beginnings-of-statistical-analyses",
+    "href": "content/slides/w3_1-slides.html#the-beginnings-of-statistical-analyses",
+    "title": "Week 3",
+    "section": "The beginnings of statistical analyses",
+    "text": "The beginnings of statistical analyses\n\n\n Statistical method\n\n\n\n\nn-1 Degrees of freedom\n\n\n\n\n Data transformations"
   }
 ]

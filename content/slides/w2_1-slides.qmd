@@ -39,7 +39,7 @@ format:
 . . .
 
 ::: box-1-list
-[{{< fa coins >}}]{.margin-1} Probability
+[{{< fa dice >}}]{.margin-1} Probability
 :::
 
 . . .
