@@ -1,6 +1,6 @@
 ---
 title: "Week 3"
-subtitle: "Data transformations"
+subtitle: "Statistical methods, degrees of freedom, and data transformations"
 editor:
   mode: source
 format:
@@ -40,4 +40,222 @@ format:
 
 ::: box-1-list
 [{{< fa arrows-turn-to-dots >}}]{.margin-1} Data transformations
+:::
+
+# Statistical method
+
+## Statistical method
+
+. . . 
+
+::: box-6-list
+Our typical approach to answering scientific questions uses [inductive reasoning]{.highlight-tomato}: attempting to form generalities from specific cases (i.e., data)
+:::
+
+. . . 
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> The sparrows nest outside my window is made of grass]{.indented-text}
+
+. . . 
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> The nest (and my window) is near a grassland]{.indented-text}
+
+. . . 
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Sparrows use grasses in their nests because grass is more abundant in their habitat]{.indented-text}
+
+. . . 
+
+::: {.callout-important}
+We will also use [deductive reasoning]{.highlight-tomato} (general --> specific) to derive specific predictions from our general hypotheses (e.g., If sparrows use grass because it is more abundant, then sparrows in a woodland habitat should use more twigs)
+:::
+
+## A formal statistical method
+
+:::{.incremental}
+1. State research question 
+2. Formulate null and alternative hypotheses
+3. Identify population variable and, when possible, its distribution
+4. Sample data according to chosen sampling procedure
+5. Examine your data
+6. Determine and calculate appropriate test statistic
+7. Reject or "accept" null hypothesis
+8. State conclusion and answer question in step 1
+:::
+
+## What we DON'T do
+
+:::{.incremental}
+1. State research question
+2. Formulate null and alternative hypotheses
+3. Formulate conclusion based on perception, prior knowledge, or other maligned incentive
+4. Identify population variable and distribution 
+5. Sample data according to chosen sampling procedure
+6. Examine data
+7. Determine and calculate test statistic most likely to conform to predetermined conclusion
+8. Reject or "accept" null hypothesis
+9. State "conclusion" and answer question in step 1
+:::
+
+. . . 
+
+::: {.callout-warning}
+## Danger!
+This process is one of many ways to "p-hack" your way to "significant" results
+:::
+
+# Degrees of Freedom
+
+## *df*: degrees of what? 
+::: box-6-list
+We're putting all of the pieces in place to begin doing statistical tests of our data
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> A key component of most statistical tests is the [degrees of freedom]{.highlight-tomato} of the reference distribution of our tests statistic (e.g., *t*, *F*)
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> It's very important, but can be a bit of a mind-bending process to fully comprehend. Let's break it down.
+:::
+
+## Example using sample variance
+
+. . . 
+
+We learned that sample variance ($s^2$) is calculated as: 
+
+$$
+s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
+$$
+
+where $x$ is a given sample, and $\bar x$ is the sample mean.
+
+. . . 
+
+::: box-6-list
+Why do we divide by $n-1$ but not by $n$?
+:::
+
+## Degrees of freedom
+::: box-6-list
+In this case, $n-1$ is the [degrees of freedom]{.highlight-tomato} in our sample. This refers to the number of observations within our sample that are free to vary.
+:::
+
+. . . 
+
+Put another way, it's the number of observations that you would need to recover all of the information about a sample if all that you had was a summary statistic, the sample mean ($\bar x$)
+
+## Example 1
+
+{{< fa coins >}} **A coin toss** gives us 1 degree of freedom. Even with 100 tosses, the fact that there are only two outcomes means that we can recover all of the information about a sample with 1 piece of information (e.g,, n heads, or tails). Only *one* of those values is free to vary!
+
+::: {.center-x}
+![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R1dXpmdjM2MHMzamtmbjVzeTBmaDUwNTl2Y2s5OTMzb2U3ZHR6MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y4cMaANkENnOxDEPe6/giphy.gif)
+:::
+
+## Example 2
+
+{{< fa traffic-light >}} **A traffic light** gives us 2 degrees of freedom. We have 3 total outcomes (Red, Yellow, and Green), and we need *two* required pieces of information to resolve the full dataset (and whether there is a cat on the light)
+
+::: {.center-x}
+![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzF2Y2NiN3R4OHJ0MzVjNmR0ZGIwa2pzZmZybjg2ZmN4YWl5MmN6ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/10MRVQrUVoeSIg/giphy.gif)
+:::
+
+## General formula for the *df*
+::: box-6-list
+In general, formula to calculate degrees of freedom is: $df = n - p$
+:::
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> $n$ is equal to the sample size]{.indented-text}
+
+. . . 
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> $p$ is equal to the number of parameters (restrictions) that are imposed)]{.indented-text}
+
+
+## Practical implications for *df*
+::: box-6-list
+Dividing by $n$ will [consistently underestimate the variance of a population]{.highlight-tomato}. This, in effect, is because when we divide by $n$, we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance ($s^2$) that will ***always*** be smaller than the true population variance ($\sigma^2$). 
+:::
+
+. . . 
+
+:::{.callout-important}
+This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with [biased]{.highlight-tomato} estimates.
+:::
+
+## Practical implications for *df*
+::: box-6-list
+More degrees of freedom means that we have more independent pieces of information with which to estimate our parameter of choice. This leads to more *precise* estimates, and more *powerful* statistical tests. 
+:::
+
+. . . 
+
+::::: columns
+:::{.column width="50%"}
+***df* and $t$ distribution**
+![](https://www.scribbr.com/wp-content/uploads/2022/07/null-distribution-when-t-changes-1.webp)
+:::
+
+::::{.column width="50%"}
+***df* and $\chi^2$ distribution**
+![](https://www.scribbr.com/wp-content/uploads/2022/07/nul-distribution-of-chi-square-changes-1.webp)
+:::
+:::::
+
+# Data transformations
+
+## Why transform data?
+::: box-6-list
+Most of the parametric (i.e., "classical") statistical analyses we conduct depend on an assumption of data that are independent and normally distributed (or have residuals that are normally distributed).
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Most of the time in ecology, this ain't the case!
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> To meet this assumption, we have a couple of options. [Transforming]{.highlight-tomato} our data is one of the options that we have.
+:::
+
+## What transformations do
+
+::: box-6-list
+Transformations change the spacing between our data points, but do **not** change the rank order *(e.g., If we transform data points that have the values 4.5 and 10.7, the transformed 10.7 will always be > the transformed 4.5)*
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we have to try several transformations to best "normalize" our data, but we have a few tried-and-true starting points.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Typical transformations include: log, square-root, arcsin (angular), reciprocal, and Box-Cox.
+:::
+
+. . . 
+
+:::{.callout-warning}
+## Be warned!
+There is a lively debate on the practice of transforming data among ecological/statistical practitioners and experts. In general, I caution *against* transforming data unless there is clear precedent in your field and/or a more robust analysis framework (e.g., generalized linear models) cannot be used (which, in my experience, is rare). 
+:::
+
+## Examples of transformations: square root
+
+::: box-6-list
+The square root transformation ($\sqrt x$) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Count data is often Poisson distributed, and taking the square root tends to normalize the data (i.e., approximates a normal distribution). 
 :::

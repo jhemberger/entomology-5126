@@ -2301,5 +2301,124 @@
     "title": "Week 3",
     "section": "The beginnings of statistical analyses",
     "text": "The beginnings of statistical analyses\n\n\n Statistical method\n\n\n\n\nn-1 Degrees of freedom\n\n\n\n\n Data transformations"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#the-protocol-for-answering-a-research-question",
+    "href": "content/slides/w3_1-slides.html#the-protocol-for-answering-a-research-question",
+    "title": "Week 3",
+    "section": "The protocol for answering a research question",
+    "text": "The protocol for answering a research question\n\nA population is a whole set/group of individuals/objects which we are interested in studying. I.e. the complete set of all possible observations (finite or infinite)"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#statistical-method-1",
+    "href": "content/slides/w3_1-slides.html#statistical-method-1",
+    "title": "Week 3",
+    "section": "Statistical method",
+    "text": "Statistical method\n\n\nOur typical approach to answering scientific questions uses inductive reasoning: attempting to form generalities from specific cases (i.e., data)\n\n\n\n The sparrows nest outside my window is made of grass\n\n\n The nest (and my window) is near a grassland\n\n\n Sparrows use grasses in their nests because grass is more abundant in their habitat\n\n\n\n\n\n\n\n\nImportant\n\n\nWe will also use deductive reasoning (general –&gt; specific) to derive specific predictions from our general hypotheses (e.g., If sparrows use grass because it is more abundant, then sparrows in a woodland habitat should use more twigs)"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#a-formal-statistical-method",
+    "href": "content/slides/w3_1-slides.html#a-formal-statistical-method",
+    "title": "Week 3",
+    "section": "A formal statistical method",
+    "text": "A formal statistical method\n\nState research question\nFormulate null and alternative hypotheses\nIdentify population variable and, when possible, its distribution\nSample data according to chosen sampling procedure\nExamine your data\nDetermine and calculate appropriate test statistic\nReject or “accept” null hypothesis\nState conclusion and answer question in step 1"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#what-we-dont-do",
+    "href": "content/slides/w3_1-slides.html#what-we-dont-do",
+    "title": "Week 3",
+    "section": "What we DON’T do",
+    "text": "What we DON’T do\n\nState research question\nFormulate null and alternative hypotheses\nFormulate conclusion based on perception, prior knowledge, or other maligned incentive\nIdentify population variable and distribution\nSample data according to chosen sampling procedure\nExamine data\nDetermine and calculate test statistic most likely to conform to predetermined conclusion\nReject or “accept” null hypothesis\nState “conclusion” and answer question in step 1\n\n\n\n\n\n\n\n\nDanger!\n\n\nThis process is one of many ways to “p-hack” your way to “significant” results"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#df---a-concept-that-takes-some-time-to-get",
+    "href": "content/slides/w3_1-slides.html#df---a-concept-that-takes-some-time-to-get",
+    "title": "Week 3",
+    "section": "df - a concept that takes some time to get",
+    "text": "df - a concept that takes some time to get"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#df-degrees-of-what",
+    "href": "content/slides/w3_1-slides.html#df-degrees-of-what",
+    "title": "Week 3",
+    "section": "df: degrees of what?",
+    "text": "df: degrees of what?\n\nWe’re putting all of the pieces in place to begin doing statistical tests of our data\n\n\n A key component of most statistical tests is the degrees of freedom of the reference distribution of our tests statistic (e.g., t, F)\n\n\n It’s very important, but can be a bit of a mind-bending process to fully comprehend. Let’s break it down."
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#example-using-sample-variance",
+    "href": "content/slides/w3_1-slides.html#example-using-sample-variance",
+    "title": "Week 3",
+    "section": "Example using sample variance",
+    "text": "Example using sample variance\n\nWe learned that sample variance (\\(s^2\\)) is calculated as:\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i-\\bar x)^2}{n-1}\n\\]\nwhere \\(x\\) is a given sample, and \\(\\bar x\\) is the sample mean.\n\n\n\nWhy do we divide by \\(n-1\\) but not by \\(n\\)?"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#degrees-of-freedom-1",
+    "href": "content/slides/w3_1-slides.html#degrees-of-freedom-1",
+    "title": "Week 3",
+    "section": "Degrees of freedom",
+    "text": "Degrees of freedom\n\nIn this case, \\(n-1\\) is the degrees of freedom in our sample. This refers to the number of observations within our sample that are free to vary.\n\n\nPut another way, it’s the number of observations that you would need to recover all of the information about a sample if all that you had was a summary statistic, the sample mean (\\(\\bar x\\))"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#examples",
+    "href": "content/slides/w3_1-slides.html#examples",
+    "title": "Week 3",
+    "section": "Examples",
+    "text": "Examples\n A coin toss gives us 1 degree of freedom. Even with 100 tosses, the fact that there are only two outcomes means that we can recover all of the information about a sample with 1 piece of information (e.g,, n heads, or tails). Only one of those values is free to vary!"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#example-1",
+    "href": "content/slides/w3_1-slides.html#example-1",
+    "title": "Week 3",
+    "section": "Example 1",
+    "text": "Example 1\n A coin toss gives us 1 degree of freedom. Even with 100 tosses, the fact that there are only two outcomes means that we can recover all of the information about a sample with 1 piece of information (e.g,, n heads, or tails). Only one of those values is free to vary!"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#example-2",
+    "href": "content/slides/w3_1-slides.html#example-2",
+    "title": "Week 3",
+    "section": "Example 2",
+    "text": "Example 2\n A traffic light gives us 2 degrees of freedom. We have 3 total outcomes (Red, Yellow, and Green), and we need two required pieces of information to resolve the full dataset (and whether there is a cat on the light)"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#general-formula-for-the-df",
+    "href": "content/slides/w3_1-slides.html#general-formula-for-the-df",
+    "title": "Week 3",
+    "section": "General formula for the df",
+    "text": "General formula for the df\n\nIn general, formula to calculate degrees of freedom is: \\(df = n - p\\)\n\n \\(n\\) is equal to the sample size\n\n \\(p\\) is equal to the number of parameters (restrictions) that are imposed)"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#practical-implications-for-df",
+    "href": "content/slides/w3_1-slides.html#practical-implications-for-df",
+    "title": "Week 3",
+    "section": "Practical implications for df",
+    "text": "Practical implications for df\n\nDividing by \\(n\\) will consistently underestimate the variance of a population. This, in effect, is because when we divide by \\(n\\), we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance (\\(s^2\\)) that will always be smaller than the true population variance (\\(\\sigma^2\\)).\n\n\n\n\n\n\n\n\nImportant\n\n\nThis is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with biased estimates."
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#practical-implications-for-df-1",
+    "href": "content/slides/w3_1-slides.html#practical-implications-for-df-1",
+    "title": "Week 3",
+    "section": "Practical implications for df",
+    "text": "Practical implications for df\n\nMore degrees of freedom means that we have more independent pieces of information with which to estimate our parameter of choice. This leads to more precise estimates, and more powerful statistical tests.\n\n\n\n\ndf and \\(t\\) distribution \n\ndf and \\(\\chi^2\\) distribution"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#why-transform-data",
+    "href": "content/slides/w3_1-slides.html#why-transform-data",
+    "title": "Week 3",
+    "section": "Why transform data?",
+    "text": "Why transform data?\n\nMost of the parametric (i.e., “classical”) statistical analyses we conduct depend on an assumption of data that are independent and normally distributed (or have residuals that are normally distributed).\n\n\n\n Most of the time in ecology, this ain’t the case!\n\n\n\n\n To meet this assumption, we have a couple of options. Transforming our data is one of the options that we have."
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#what-transformations-do",
+    "href": "content/slides/w3_1-slides.html#what-transformations-do",
+    "title": "Week 3",
+    "section": "What transformations do",
+    "text": "What transformations do\n\nTransformations change the spacing between our data points, but do not change the rank order (e.g., If we transform data points that have the values 4.5 and 10.7, the transformed 10.7 will always be &gt; the transformed 4.5)\n\n\n\n Often, we have to try several transformations to best “normalize” our data, but we have a few tried-and-true starting points.\n\n\n\n\n Typical transformations include: log, square-root, arcsin (angular), reciprocal, and Box-Cox.\n\n\n\n\n\n\n\n\n\nBe warned!\n\n\nThere is a lively debate on the practice of transforming data among ecological/statistical practitioners and experts. In general, I caution against transforming data unless there is clear precedent in your field and/or a more robust analysis framework (e.g., generalized linear models) cannot be used (which, in my experience, is rare)."
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#examples-of-transformations-square-root",
+    "href": "content/slides/w3_1-slides.html#examples-of-transformations-square-root",
+    "title": "Week 3",
+    "section": "Examples of transformations: square root",
+    "text": "Examples of transformations: square root\n\nThe square root transformation (\\(\\sqrt x\\)) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).\n\n\n\n Count data is often Poisson distributed, and taking the square root tends to normalize the data (i.e., approximates a normal distribution)."
   }
 ]

@@ -135,7 +135,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Week 3</h1>
-  <p class="subtitle">Data transformations</p>
+  <p class="subtitle">Statistical methods, degrees of freedom, and data transformations</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -161,6 +161,248 @@
 <div class="fragment">
 <div class="box-1-list">
 <p><span class="margin-1"><i class="fa-solid fa-arrows-turn-to-dots" aria-label="arrows-turn-to-dots"></i></span> Data transformations</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="statistical-method" class="title-slide slide level1 center">
+<h1>Statistical method</h1>
+
+</section>
+<section id="statistical-method-1" class="slide level2">
+<h2>Statistical method</h2>
+<div class="fragment">
+<div class="box-6-list">
+<p>Our typical approach to answering scientific questions uses <span class="highlight-tomato">inductive reasoning</span>: attempting to form generalities from specific cases (i.e., data)</p>
+</div>
+</div>
+<div class="fragment">
+<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> The sparrows nest outside my window is made of grass</span></p>
+</div>
+<div class="fragment">
+<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> The nest (and my window) is near a grassland</span></p>
+</div>
+<div class="fragment">
+<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> Sparrows use grasses in their nests because grass is more abundant in their habitat</span></p>
+</div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>We will also use <span class="highlight-tomato">deductive reasoning</span> (general –&gt; specific) to derive specific predictions from our general hypotheses (e.g., If sparrows use grass because it is more abundant, then sparrows in a woodland habitat should use more twigs)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-formal-statistical-method" class="slide level2">
+<h2>A formal statistical method</h2>
+<ol type="1">
+<li class="fragment">State research question</li>
+<li class="fragment">Formulate null and alternative hypotheses</li>
+<li class="fragment">Identify population variable and, when possible, its distribution</li>
+<li class="fragment">Sample data according to chosen sampling procedure</li>
+<li class="fragment">Examine your data</li>
+<li class="fragment">Determine and calculate appropriate test statistic</li>
+<li class="fragment">Reject or “accept” null hypothesis</li>
+<li class="fragment">State conclusion and answer question in step 1</li>
+</ol>
+</section>
+<section id="what-we-dont-do" class="slide level2">
+<h2>What we DON’T do</h2>
+<ol type="1">
+<li class="fragment">State research question</li>
+<li class="fragment">Formulate null and alternative hypotheses</li>
+<li class="fragment">Formulate conclusion based on perception, prior knowledge, or other maligned incentive</li>
+<li class="fragment">Identify population variable and distribution</li>
+<li class="fragment">Sample data according to chosen sampling procedure</li>
+<li class="fragment">Examine data</li>
+<li class="fragment">Determine and calculate test statistic most likely to conform to predetermined conclusion</li>
+<li class="fragment">Reject or “accept” null hypothesis</li>
+<li class="fragment">State “conclusion” and answer question in step 1</li>
+</ol>
+<div class="fragment">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Danger!</strong></p>
+</div>
+<div class="callout-content">
+<p>This process is one of many ways to “p-hack” your way to “significant” results</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="degrees-of-freedom" class="title-slide slide level1 center">
+<h1>Degrees of Freedom</h1>
+
+</section>
+<section id="df-degrees-of-what" class="slide level2">
+<h2><em>df</em>: degrees of what?</h2>
+<div class="box-6-list">
+<p>We’re putting all of the pieces in place to begin doing statistical tests of our data</p>
+</div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> A key component of most statistical tests is the <span class="highlight-tomato">degrees of freedom</span> of the reference distribution of our tests statistic (e.g., <em>t</em>, <em>F</em>)</p>
+</div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> It’s very important, but can be a bit of a mind-bending process to fully comprehend. Let’s break it down.</p>
+</div>
+</section>
+<section id="example-using-sample-variance" class="slide level2">
+<h2>Example using sample variance</h2>
+<div class="fragment">
+<p>We learned that sample variance (<span class="math inline">\(s^2\)</span>) is calculated as:</p>
+<p><span class="math display">\[
+s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
+\]</span></p>
+<p>where <span class="math inline">\(x\)</span> is a given sample, and <span class="math inline">\(\bar x\)</span> is the sample mean.</p>
+</div>
+<div class="fragment">
+<div class="box-6-list">
+<p>Why do we divide by <span class="math inline">\(n-1\)</span> but not by <span class="math inline">\(n\)</span>?</p>
+</div>
+</div>
+</section>
+<section id="degrees-of-freedom-1" class="slide level2">
+<h2>Degrees of freedom</h2>
+<div class="box-6-list">
+<p>In this case, <span class="math inline">\(n-1\)</span> is the <span class="highlight-tomato">degrees of freedom</span> in our sample. This refers to the number of observations within our sample that are free to vary.</p>
+</div>
+<div class="fragment">
+<p>Put another way, it’s the number of observations that you would need to recover all of the information about a sample if all that you had was a summary statistic, the sample mean (<span class="math inline">\(\bar x\)</span>)</p>
+</div>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example 1</h2>
+<p><i class="fa-solid fa-coins" aria-label="coins"></i> <strong>A coin toss</strong> gives us 1 degree of freedom. Even with 100 tosses, the fact that there are only two outcomes means that we can recover all of the information about a sample with 1 piece of information (e.g,, n heads, or tails). Only <em>one</em> of those values is free to vary!</p>
+<div class="center-x">
+<p><img data-src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R1dXpmdjM2MHMzamtmbjVzeTBmaDUwNTl2Y2s5OTMzb2U3ZHR6MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y4cMaANkENnOxDEPe6/giphy.gif"></p>
+</div>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example 2</h2>
+<p><i class="fa-solid fa-traffic-light" aria-label="traffic-light"></i> <strong>A traffic light</strong> gives us 2 degrees of freedom. We have 3 total outcomes (Red, Yellow, and Green), and we need <em>two</em> required pieces of information to resolve the full dataset (and whether there is a cat on the light)</p>
+<div class="center-x">
+<p><img data-src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzF2Y2NiN3R4OHJ0MzVjNmR0ZGIwa2pzZmZybjg2ZmN4YWl5MmN6ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/10MRVQrUVoeSIg/giphy.gif"></p>
+</div>
+</section>
+<section id="general-formula-for-the-df" class="slide level2">
+<h2>General formula for the <em>df</em></h2>
+<div class="box-6-list">
+<p>In general, formula to calculate degrees of freedom is: <span class="math inline">\(df = n - p\)</span></p>
+</div>
+<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(n\)</span> is equal to the sample size</span></p>
+<div class="fragment">
+<p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(p\)</span> is equal to the number of parameters (restrictions) that are imposed)</span></p>
+</div>
+</section>
+<section id="practical-implications-for-df" class="slide level2">
+<h2>Practical implications for <em>df</em></h2>
+<div class="box-6-list">
+<p>Dividing by <span class="math inline">\(n\)</span> will <span class="highlight-tomato">consistently underestimate the variance of a population</span>. This, in effect, is because when we divide by <span class="math inline">\(n\)</span>, we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance (<span class="math inline">\(s^2\)</span>) that will <strong><em>always</em></strong> be smaller than the true population variance (<span class="math inline">\(\sigma^2\)</span>).</p>
+</div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with <span class="highlight-tomato">biased</span> estimates.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="practical-implications-for-df-1" class="slide level2">
+<h2>Practical implications for <em>df</em></h2>
+<div class="box-6-list">
+<p>More degrees of freedom means that we have more independent pieces of information with which to estimate our parameter of choice. This leads to more <em>precise</em> estimates, and more <em>powerful</em> statistical tests.</p>
+</div>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong><em>df</em> and <span class="math inline">\(t\)</span> distribution</strong> <img data-src="https://www.scribbr.com/wp-content/uploads/2022/07/null-distribution-when-t-changes-1.webp"></p>
+</div><div class="column" style="width:50%;">
+<p><strong><em>df</em> and <span class="math inline">\(\chi^2\)</span> distribution</strong> <img data-src="https://www.scribbr.com/wp-content/uploads/2022/07/nul-distribution-of-chi-square-changes-1.webp"></p>
+</div></div>
+</div>
+</section></section>
+<section>
+<section id="data-transformations" class="title-slide slide level1 center">
+<h1>Data transformations</h1>
+
+</section>
+<section id="why-transform-data" class="slide level2">
+<h2>Why transform data?</h2>
+<div class="box-6-list">
+<p>Most of the parametric (i.e., “classical”) statistical analyses we conduct depend on an assumption of data that are independent and normally distributed (or have residuals that are normally distributed).</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Most of the time in ecology, this ain’t the case!</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> To meet this assumption, we have a couple of options. <span class="highlight-tomato">Transforming</span> our data is one of the options that we have.</p>
+</div>
+</div>
+</section>
+<section id="what-transformations-do" class="slide level2">
+<h2>What transformations do</h2>
+<div class="box-6-list">
+<p>Transformations change the spacing between our data points, but do <strong>not</strong> change the rank order <em>(e.g., If we transform data points that have the values 4.5 and 10.7, the transformed 10.7 will always be &gt; the transformed 4.5)</em></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we have to try several transformations to best “normalize” our data, but we have a few tried-and-true starting points.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Typical transformations include: log, square-root, arcsin (angular), reciprocal, and Box-Cox.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Be warned!</strong></p>
+</div>
+<div class="callout-content">
+<p>There is a lively debate on the practice of transforming data among ecological/statistical practitioners and experts. In general, I caution <em>against</em> transforming data unless there is clear precedent in your field and/or a more robust analysis framework (e.g., generalized linear models) cannot be used (which, in my experience, is rare).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-of-transformations-square-root" class="slide level2">
+<h2>Examples of transformations: square root</h2>
+<div class="box-6-list">
+<p>The square root transformation (<span class="math inline">\(\sqrt x\)</span>) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Count data is often Poisson distributed, and taking the square root tends to normalize the data (i.e., approximates a normal distribution).</p>
 </div>
 
 
