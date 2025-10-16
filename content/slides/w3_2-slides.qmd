@@ -1,0 +1,148 @@
+---
+title: "Week 3"
+subtitle: "Hypotheses and t-tests"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w3_2-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---
+
+# What we'll cover this week
+
+## Structuring statistics around our research questions
+
+. . .
+
+::: box-1-list
+[{{< fa circle-question >}}]{.margin-1} Hypothesis formulation
+:::
+
+. . .
+
+::: box-1-list
+[{{< fa chart-simple >}}]{.margin-1} One-sample *t* tests
+:::
+
+. . .
+
+::: box-1-list
+[{{< fa chart-simple >}}]{.margin-1} Paired, two-sample *t* tests
+:::
+
+# Hypothesis formulation
+
+## The tail (pun intended) of two hypotheses
+
+::: box-6-list
+Let's start by formulating some basic hypotheses around a simple research question. To do that, we will frame out two competing hypotheses:
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> First, write the [null hypothesis]{.highlight-tomato}, $H_0$. This reflects the claim believed to be true, that a system is governed by simple, random variation in the universe.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Next, specify the [alternative hypothesis]{.highlight-tomato}, $H_A$. This reflects a departure from $H_0$ that we are designing and experiment or study to be able to detect: that the results of our sampling reflect some factor or influence other than random variation.
+:::
+
+## How many tails do we use?
+
+::: box-6-list
+In previous stats courses, you likely covered one- and two-tailed statistical tests, which ultimately stem from the structure of our hypotheses.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> In practice, we almost always will be using *two-tailed* tests, unless we have very specific reasons to suspect a directional hypothesis. 
+:::
+
+. . . 
+
+:::{.callout-important}
+## Make your intentions clear!
+Before conducting any tests (or even looking at your data), decide on whether you will be using a one- vs. two-tailed test of $H_A$.
+:::
+
+## Hypothesis formulation example: one-tailed
+
+::: box-6-list
+Research question: Are maple trees ***taller than*** oak trees? 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_0$: There is no difference between the heights of oak and maple trees
+:::
+
+$$\mu_{oak} = \mu_{maple}$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_A$: Oak trees are taller than maple trees
+:::
+
+$$\mu_{oak} > \mu_{maple}$$
+
+## Hypothesis formulation example: two-tailed
+
+::: box-6-list
+In practice, we would want to formulate our hypothesis more conservatively -- allowing for any potential differences between our sampled populations:
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_0$: There is no difference between the heights of oak and maple trees
+:::
+
+$$\mu_{oak} = \mu_{maple}$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_A$: There is a difference in height between oak and maple trees
+:::
+
+$$\mu_{oak} ≠ \mu_{maple}$$
+
+## Hypothesis formulation example: two-tailed
+
+::: box-6-list
+Research question: We want to know whether patients experience an a reduction in coughing when given cough medication {{< fa capsules >}}
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_0$: There is no difference in number of coughs per hour with or without {{< fa capsules >}}
+:::
+
+$$\mu_{medicated} = \mu_{unmedicated}$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_A$: There is a difference coughs per hour when taking {{< fa capsules >}}
+:::
+
+$$\mu_{medicated} ≠ \mu_{unmedicated}$$

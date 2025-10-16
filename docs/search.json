@@ -2455,5 +2455,47 @@
     "title": "Week 3",
     "section": "Transformations: which is best?",
     "text": "Transformations: which is best?\n\nWhen fitting a model, examining your residual plots can help guide your choice of transformation. These plots are diagnostic of many ways in which we can violate the assumptions of our various modeling approaches.\n\n\n\n In all cases, the first choice should be using a model framework more appropriate to your particular data than shoe-horning transformed data into a linear model because that’s what you know how to use.\n\n\n\n\n However, there are particular cases where tranforming data is a normal practice and, provided you can support your decision with a clear rationale or citations."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#structuring-statistics-around-our-research-questions",
+    "href": "content/slides/w3_2-slides.html#structuring-statistics-around-our-research-questions",
+    "title": "Week 3",
+    "section": "Structuring statistics around our research questions",
+    "text": "Structuring statistics around our research questions\n\n\n Hypothesis formulation\n\n\n\n\n One-sample t tests\n\n\n\n\n Paired, two-sample t tests"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#the-tail-pun-intended-of-two-hypotheses",
+    "href": "content/slides/w3_2-slides.html#the-tail-pun-intended-of-two-hypotheses",
+    "title": "Week 3",
+    "section": "The tail (pun intended) of two hypotheses",
+    "text": "The tail (pun intended) of two hypotheses\n\nLet’s start by formulating some basic hypotheses around a simple research question. To do that, we will frame out two competing hypotheses:\n\n\n\n First, write the null hypothesis, \\(H_0\\). This reflects the claim believed to be true, that a system is governed by simple, random variation in the universe.\n\n\n\n\n Next, specify the alternative hypothesis, \\(H_A\\). This reflects a departure from \\(H_0\\) that we are designing and experiment or study to be able to detect: that the results of our sampling reflect some factor or influence other than random variation."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#how-many-tails-do-we-use",
+    "href": "content/slides/w3_2-slides.html#how-many-tails-do-we-use",
+    "title": "Week 3",
+    "section": "How many tails do we use?",
+    "text": "How many tails do we use?\n\nIn previous stats courses, you likely covered one- and two-tailed statistical tests, which ultimately stem from the structure of our hypotheses.\n\n\n\n In practice, we almost always will be using two-tailed tests, unless we have very specific reasons to suspect a directional hypothesis.\n\n\n\n\n\n\n\n\n\nMake your intentions clear!\n\n\nBefore conducting any tests (or even looking at your data), decide on whether you will be using a one- vs. two-tailed test of \\(H_A\\)."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#hypothesis-formulation-example-one-tailed",
+    "href": "content/slides/w3_2-slides.html#hypothesis-formulation-example-one-tailed",
+    "title": "Week 3",
+    "section": "Hypothesis formulation example: one-tailed",
+    "text": "Hypothesis formulation example: one-tailed\n\nResearch question: Are maple trees taller than oak trees?\n\n\n\n \\(H_0\\): There is no difference between the heights of oak and maple trees\n\n\\[\\mu_{oak} = \\mu_{maple}\\]\n\n\n\n \\(H_A\\): Oak trees are taller than maple trees\n\n\\[\\mu_{oak} &gt; \\mu_{maple}\\]"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#hypothesis-formulation-example-two-tailed",
+    "href": "content/slides/w3_2-slides.html#hypothesis-formulation-example-two-tailed",
+    "title": "Week 3",
+    "section": "Hypothesis formulation example: two-tailed",
+    "text": "Hypothesis formulation example: two-tailed\n\nIn practice, we would want to formulate our hypothesis more conservatively – allowing for any potential differences between our sampled populations:\n\n\n\n \\(H_0\\): There is no difference between the heights of oak and maple trees\n\n\\[\\mu_{oak} = \\mu_{maple}\\]\n\n\n\n \\(H_A\\): There is a difference in height between oak and maple trees\n\n\\[\\mu_{oak} ≠ \\mu_{maple}\\]"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#hypothesis-formulation-example-two-tailed-1",
+    "href": "content/slides/w3_2-slides.html#hypothesis-formulation-example-two-tailed-1",
+    "title": "Week 3",
+    "section": "Hypothesis formulation example: two-tailed",
+    "text": "Hypothesis formulation example: two-tailed\n\nResearch question: We want to know whether patients experience an a reduction in coughing when given cough medication \n\n\n\n \\(H_0\\): There is no difference in number of coughs per hour with or without \n\n\\[\\mu_{medicated} = \\mu_{unmedicated}\\]\n\n\n\n \\(H_A\\): There is a difference coughs per hour when taking \n\n\\[\\mu_{medicated} ≠ \\mu_{unmedicated}\\]"
   }
 ]
