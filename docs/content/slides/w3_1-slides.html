@@ -323,7 +323,7 @@ s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
 <p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p>This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with <span class="highlight-tomato">biased</span> estimates.</p>
+<p>This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with <span class="highlight-tomato">biased</span> estimates of our parameters, and this can lead to inflated error rates in our statistical tests and inference.</p>
 </div>
 </div>
 </div>
@@ -398,11 +398,86 @@ s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
 <section id="examples-of-transformations-square-root" class="slide level2">
 <h2>Examples of transformations: square root</h2>
 <div class="box-6-list">
-<p>The square root transformation (<span class="math inline">\(\sqrt x\)</span>) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).</p>
+<p>The <span class="highlight-tomato">square root</span> transformation (<span class="math inline">\(\sqrt x\)</span>) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).</p>
 </div>
 <div class="fragment">
 <div class="indented-text">
 <p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Count data is often Poisson distributed, and taking the square root tends to normalize the data (i.e., approximates a normal distribution).</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> The better way to do this, however, is to use Poisson regression (i.e., a generalized linear model)</p>
+</div>
+</div>
+</section>
+<section id="examples-of-transformations-logarithmic" class="slide level2">
+<h2>Examples of transformations: logarithmic</h2>
+<div class="box-6-list">
+<p>The <span class="highlight-tomato">log</span> transformation (<span class="math inline">\(log(x)\)</span>) is used to normalize very skewed count data (i.e., data that has a long tail).</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Most of the time, when we say log transformed, we are referrng ot the natural log [<span class="math inline">\(ln(x)\)</span>] and NOT the base-10 log [<span class="math inline">\(log_{10}(x)\)</span>]</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we use <span class="math inline">\(log(x_1)\)</span>. Why?</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Knowing which base you are using is important for back-transforming your data to interpret/plot</p>
+</div>
+</div>
+</section>
+<section id="examples-of-transformations-angular-arcsin" class="slide level2">
+<h2>Examples of transformations: angular (arcsin)</h2>
+<div class="box-6-list">
+<p>The <span class="highlight-tomato">angular</span> transformation <span class="math inline">\(arcsin(\sqrt x)\)</span> is used to normalize proportional data between 0 and 1.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This method can have distinct problems if your sample size for each proportion (i.e., the denominator) is not the same for all proportions analyzed (https://esj-journals.onlinelibrary.wiley.com/doi/10.1111/j.1440-1703.2003.00620.x)</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> For analyzing proportion data, there are better methods such as using logistic regression (i.e., a GLM).</p>
+</div>
+</div>
+</section>
+<section id="examples-of-transformations-reciprocal" class="slide level2">
+<h2>Examples of transformations: reciprocal</h2>
+<div class="box-6-list">
+<p>The <span class="highlight-tomato">reciprocal</span> transformation <span class="math inline">\(1/x\)</span> is used to normalize rate data (e.g., the number of offspring per female)</p>
+</div>
+</section>
+<section id="examples-of-transformations-box-cox" class="slide level2">
+<h2>Examples of transformations: Box-Cox</h2>
+<div class="box-6-list">
+<p>The <span class="highlight-tomato">Box-Cox</span> transformation is a power transformation that is done automagically using software that determines the best exponent to transform and normalize data (e.g, <span class="math inline">\(y^0.056493\)</span>)</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This is a lot to do, and now that we have other methods like generalized linear models, I would start with much simpler transformations or more appropriate tools given the type of data you are attempting to model.</p>
+</div>
+</div>
+</section>
+<section id="transformations-which-is-best" class="slide level2">
+<h2>Transformations: which is best?</h2>
+<div class="box-6-list">
+<p>When fitting a model, examining your residual plots can help guide your choice of transformation. These plots are diagnostic of many ways in which we can violate the assumptions of our various modeling approaches.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> In all cases, the first choice should be using a model framework more appropriate to your particular data than shoe-horning transformed data into a linear model because that’s what you know how to use.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> However, there are particular cases where tranforming data is a normal practice and, provided you can support your decision with a clear rationale or citations.</p>
 </div>
 
 

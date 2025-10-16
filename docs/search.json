@@ -2391,7 +2391,7 @@
     "href": "content/slides/w3_1-slides.html#practical-implications-for-df",
     "title": "Week 3",
     "section": "Practical implications for df",
-    "text": "Practical implications for df\n\nDividing by \\(n\\) will consistently underestimate the variance of a population. This, in effect, is because when we divide by \\(n\\), we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance (\\(s^2\\)) that will always be smaller than the true population variance (\\(\\sigma^2\\)).\n\n\n\n\n\n\n\n\nImportant\n\n\nThis is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with biased estimates."
+    "text": "Practical implications for df\n\nDividing by \\(n\\) will consistently underestimate the variance of a population. This, in effect, is because when we divide by \\(n\\), we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance (\\(s^2\\)) that will always be smaller than the true population variance (\\(\\sigma^2\\)).\n\n\n\n\n\n\n\n\nImportant\n\n\nThis is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with biased estimates of our parameters, and this can lead to inflated error rates in our statistical tests and inference."
   },
   {
     "objectID": "content/slides/w3_1-slides.html#practical-implications-for-df-1",
@@ -2419,6 +2419,41 @@
     "href": "content/slides/w3_1-slides.html#examples-of-transformations-square-root",
     "title": "Week 3",
     "section": "Examples of transformations: square root",
-    "text": "Examples of transformations: square root\n\nThe square root transformation (\\(\\sqrt x\\)) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).\n\n\n\n Count data is often Poisson distributed, and taking the square root tends to normalize the data (i.e., approximates a normal distribution)."
+    "text": "Examples of transformations: square root\n\nThe square root transformation (\\(\\sqrt x\\)) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).\n\n\n\n Count data is often Poisson distributed, and taking the square root tends to normalize the data (i.e., approximates a normal distribution).\n\n\n\n\n The better way to do this, however, is to use Poisson regression (i.e., a generalized linear model)"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#examples-of-transformations-logarithmic",
+    "href": "content/slides/w3_1-slides.html#examples-of-transformations-logarithmic",
+    "title": "Week 3",
+    "section": "Examples of transformations: logarithmic",
+    "text": "Examples of transformations: logarithmic\n\nThe log transformation (\\(log(x)\\)) is used to normalize very skewed count data (i.e., data that has a long tail).\n\n\n\n Most of the time, when we say log transformed, we are referrng ot the natural log [\\(ln(x)\\)] and NOT the base-10 log [\\(log_{10}(x)\\)]\n\n\n\n\n Often, we use \\(log(x_1)\\). Why?\n\n\n\n\n Knowing which base you are using is important for back-transforming your data to interpret/plot"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#examples-of-transformations-angular-arcsin",
+    "href": "content/slides/w3_1-slides.html#examples-of-transformations-angular-arcsin",
+    "title": "Week 3",
+    "section": "Examples of transformations: angular (arcsin)",
+    "text": "Examples of transformations: angular (arcsin)\n\nThe angular transformation \\(arcsin(\\sqrt x)\\) is used to normalize proportional data between 0 and 1.\n\n\n\n This method can have distinct problems if your sample size for each proportion (i.e., the denominator) is not the same for all proportions analyzed (https://esj-journals.onlinelibrary.wiley.com/doi/10.1111/j.1440-1703.2003.00620.x)\n\n\n\n\n For analyzing proportion data, there are better methods such as using logistic regression (i.e., a GLM)."
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#examples-of-transformations-reciprocal",
+    "href": "content/slides/w3_1-slides.html#examples-of-transformations-reciprocal",
+    "title": "Week 3",
+    "section": "Examples of transformations: reciprocal",
+    "text": "Examples of transformations: reciprocal\n\nThe reciprocal transformation \\(1/x\\) is used to normalize rate data (e.g., the number of offspring per female)"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#examples-of-transformations-box-cox",
+    "href": "content/slides/w3_1-slides.html#examples-of-transformations-box-cox",
+    "title": "Week 3",
+    "section": "Examples of transformations: Box-Cox",
+    "text": "Examples of transformations: Box-Cox\n\nThe Box-Cox transformation is a power transformation that is done automagically using software that determines the best exponent to transform and normalize data (e.g, \\(y^0.056493\\))\n\n\n\n This is a lot to do, and now that we have other methods like generalized linear models, I would start with much simpler transformations or more appropriate tools given the type of data you are attempting to model."
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#transformations-which-is-best",
+    "href": "content/slides/w3_1-slides.html#transformations-which-is-best",
+    "title": "Week 3",
+    "section": "Transformations: which is best?",
+    "text": "Transformations: which is best?\n\nWhen fitting a model, examining your residual plots can help guide your choice of transformation. These plots are diagnostic of many ways in which we can violate the assumptions of our various modeling approaches.\n\n\n\n In all cases, the first choice should be using a model framework more appropriate to your particular data than shoe-horning transformed data into a linear model because that’s what you know how to use.\n\n\n\n\n However, there are particular cases where tranforming data is a normal practice and, provided you can support your decision with a clear rationale or citations."
   }
 ]

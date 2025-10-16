@@ -182,7 +182,7 @@ Dividing by $n$ will [consistently underestimate the variance of a population]{.
 . . . 
 
 :::{.callout-important}
-This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with [biased]{.highlight-tomato} estimates.
+This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with [biased]{.highlight-tomato} estimates of our parameters, and this can lead to inflated error rates in our statistical tests and inference.
 :::
 
 ## Practical implications for *df*
@@ -251,7 +251,7 @@ There is a lively debate on the practice of transforming data among ecological/s
 ## Examples of transformations: square root
 
 ::: box-6-list
-The square root transformation ($\sqrt x$) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).
+The [square root]{.highlight-tomato} transformation ($\sqrt x$) is often used on discrete count variables (e.g., the number of insects in a pitfall trap, number of flowers visited by a bee).
 :::
 
 . . . 
@@ -259,3 +259,88 @@ The square root transformation ($\sqrt x$) is often used on discrete count varia
 ::: indented-text
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> Count data is often Poisson distributed, and taking the square root tends to normalize the data (i.e., approximates a normal distribution). 
 :::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> The better way to do this, however, is to use Poisson regression (i.e., a generalized linear model)
+:::
+
+## Examples of transformations: logarithmic
+
+::: box-6-list
+The [log]{.highlight-tomato} transformation ($log(x)$) is used to normalize very skewed count data (i.e., data that has a long tail).
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Most of the time, when we say log transformed, we are referrng ot the natural log [$ln(x)$] and NOT the base-10 log [$log_{10}(x)$]
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we use $log(x_1)$. Why? 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Knowing which base you are using is important for back-transforming your data to interpret/plot
+:::
+
+## Examples of transformations: angular (arcsin)
+
+::: box-6-list
+The [angular]{.highlight-tomato} transformation $arcsin(\sqrt x)$ is used to normalize proportional data between 0 and 1. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This method can have distinct problems if your sample size for each proportion (i.e., the denominator) is not the same for all proportions analyzed (https://esj-journals.onlinelibrary.wiley.com/doi/10.1111/j.1440-1703.2003.00620.x)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> For analyzing proportion data, there are better methods such as using logistic regression (i.e., a GLM). 
+:::
+
+## Examples of transformations: reciprocal
+
+::: box-6-list
+The [reciprocal]{.highlight-tomato} transformation $1/x$ is used to normalize rate data (e.g., the number of offspring per female) 
+:::
+
+## Examples of transformations: Box-Cox
+
+::: box-6-list
+The [Box-Cox]{.highlight-tomato} transformation is a power transformation that is done automagically using software that determines the best exponent to transform and normalize data (e.g, $y^0.056493$)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This is a lot to do, and now that we have other methods like generalized linear models, I would start with much simpler transformations or more appropriate tools given the type of data you are attempting to model.
+:::
+
+## Transformations: which is best?
+
+::: box-6-list
+When fitting a model, examining your residual plots can help guide your choice of transformation. These plots are diagnostic of many ways in which we can violate the assumptions of our various modeling approaches. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> In all cases, the first choice should be using a model framework more appropriate to your particular data than shoe-horning transformed data into a linear model because that's what you know how to use. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> However, there are particular cases where tranforming data is a normal practice and, provided you can support your decision with a clear rationale or citations.
+:::
+
