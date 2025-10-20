@@ -2496,6 +2496,62 @@
     "href": "content/slides/w3_2-slides.html#hypothesis-formulation-example-two-tailed-1",
     "title": "Week 3",
     "section": "Hypothesis formulation example: two-tailed",
-    "text": "Hypothesis formulation example: two-tailed\n\nResearch question: We want to know whether patients experience an a reduction in coughing when given cough medication \n\n\n\n \\(H_0\\): There is no difference in number of coughs per hour with or without \n\n\\[\\mu_{medicated} = \\mu_{unmedicated}\\]\n\n\n\n \\(H_A\\): There is a difference coughs per hour when taking \n\n\\[\\mu_{medicated} ≠ \\mu_{unmedicated}\\]"
+    "text": "Hypothesis formulation example: two-tailed\n\nResearch question: We want to know whether patients experience a reduction in coughing when given cough medication \n\n\n\n \\(H_0\\): There is no difference in number of coughs per hour with or without \n\n\\[\\mu_{medicated} = \\mu_{unmedicated}\\]\n\n\n\n \\(H_A\\): There is a difference coughs per hour when taking \n\n\\[\\mu_{medicated} ≠ \\mu_{unmedicated}\\]"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#pair-up-and-formulate",
+    "href": "content/slides/w3_2-slides.html#pair-up-and-formulate",
+    "title": "Week 3",
+    "section": "Pair up and formulate!",
+    "text": "Pair up and formulate!\n\nResearch question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#significance-tests-an-overview",
+    "href": "content/slides/w3_2-slides.html#significance-tests-an-overview",
+    "title": "Week 3",
+    "section": "Significance tests: an overview",
+    "text": "Significance tests: an overview\n\nWhen we go out and perform an experiment and collect data, our sample data are outcomes of a data generating process\n\n\n\n The data generating process may be described by a probability distribution with certain parameters\n\n\n\n\n We begin by considering a random sampole \\(Y_1, Y_2, Y_3,...Y_n\\) of size \\(n\\) from a normal distribution \\(N(\\mu, \\sigma^2)\\) with unknown \\(\\mu\\) and known \\(\\sigma^2\\).\n\n\n\n\n We then use statistics from the sample data to draw inference about the parameters of the probability distribution (e.g., whether the mean is different than our hypothesized value)"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#significance-tests-an-overview-1",
+    "href": "content/slides/w3_2-slides.html#significance-tests-an-overview-1",
+    "title": "Week 3",
+    "section": "Significance tests: an overview",
+    "text": "Significance tests: an overview\n\nFor example, use the sample mean \\(\\bar{Y}\\) to draw inference about the population mean \\(\\mu\\).\n\n\n\n There are several ways of pursuing statistical inference. One of them is called significance testing.\n\n\n\n\n The main idea of significance tests is to make a yes/no decision about some aspect of a population, based on a single sample."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#significance-tests-the-ingredients-needed",
+    "href": "content/slides/w3_2-slides.html#significance-tests-the-ingredients-needed",
+    "title": "Week 3",
+    "section": "Significance tests: the ingredients needed",
+    "text": "Significance tests: the ingredients needed\n\nAspect of a population that is of interest (motivated by research question)\nNull hypothesis \\(H_0\\)\nAlternative hypothesis \\(H_A\\)\nTest statistic and null distribution\nMeasure evidence against \\(H_0\\)\nMake a decision and interpret in the context of the problem or question"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#significance-tests-the-recipe-needed",
+    "href": "content/slides/w3_2-slides.html#significance-tests-the-recipe-needed",
+    "title": "Week 3",
+    "section": "Significance tests: the recipe needed",
+    "text": "Significance tests: the recipe needed\n\nAspect of a population that is of interest (motivated by research question)\nNull hypothesis \\(H_0\\)\nAlternative hypothesis \\(H_A\\)\nTest statistic and null distribution\nMeasure evidence against \\(H_0\\)\nMake a decision and interpret in the context of the problem or question"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#test-statistic-distribtiions",
+    "href": "content/slides/w3_2-slides.html#test-statistic-distribtiions",
+    "title": "Week 3",
+    "section": "Test statistic distribtiions",
+    "text": "Test statistic distribtiions\n\n\\(Z\\): standard normal distribution - no parameters, mean/variance fixed\n\\(t\\): one parameter, two-tailed distribution\n\\(F\\): two-parameter, one-tailed distribution\n\\(\\chi^2\\): one-parameter, one-tailed distribution"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#significance-tests-for-a-known-sigma",
+    "href": "content/slides/w3_2-slides.html#significance-tests-for-a-known-sigma",
+    "title": "Week 3",
+    "section": "Significance tests for a known \\(\\sigma\\)",
+    "text": "Significance tests for a known \\(\\sigma\\)\n\nIn your previous courses/stats work, you probably started with calculating a \\(Z\\) statistic using the formula:\n\n\\[Z = \\frac{\\bar{Y} - \\mu}{\\sigma / \\sqrt{n}}\\]\n\n\n This value was then compared to a \\(Z\\) distribution where you could obtain a p-value.\n\n\n\n\n In ecology (and really, every field), we never know the population variance \\(\\sigma^2\\), so we cannot use a \\(Z\\) statistic.\n\n\n\n\n Instead, we estimate \\(\\sigma^2\\) using the sample variance \\(S^2\\) and calculate a \\(t\\) statistic instead!"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-z-whats-the-difference",
+    "href": "content/slides/w3_2-slides.html#t-z-whats-the-difference",
+    "title": "Week 3",
+    "section": "\\(t\\), \\(Z\\), what’s the difference!?",
+    "text": "\\(t\\), \\(Z\\), what’s the difference!?"
   }
 ]

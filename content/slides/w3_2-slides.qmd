@@ -128,7 +128,7 @@ $$\mu_{oak} ≠ \mu_{maple}$$
 ## Hypothesis formulation example: two-tailed
 
 ::: box-6-list
-Research question: We want to know whether patients experience an a reduction in coughing when given cough medication {{< fa capsules >}}
+Research question: We want to know whether patients experience a reduction in coughing when given cough medication {{< fa capsules >}}
 :::
 
 . . . 
@@ -146,3 +146,106 @@ $$\mu_{medicated} = \mu_{unmedicated}$$
 :::
 
 $$\mu_{medicated} ≠ \mu_{unmedicated}$$
+
+## Pair up and formulate!
+
+::: box-6-list
+Research question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream {{< fa fish-fins >}}
+:::
+
+::: {.center-x}
+![](https://healthyheadwaterslab.ca/wp-content/uploads/2021/03/v2H.png)
+:::
+
+# One-sample *t* tests
+
+## Significance tests: an overview
+::: box-6-list
+When we go out and perform an experiment and collect data, our sample data are outcomes of a data generating process
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> The data generating process may be described by a probability distribution with certain parameters
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We begin by considering a random sampole $Y_1, Y_2, Y_3,...Y_n$ of size $n$ from a normal distribution $N(\mu, \sigma^2)$ with unknown $\mu$ and known $\sigma^2$. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We then use statistics from the sample data to draw *inference* about the parameters of the probability distribution (e.g., whether the mean is different than our hypothesized value)
+:::
+
+## Significance tests: an overview
+::: box-6-list
+For example, use the sample mean $\bar{Y}$ to draw inference about the population mean $\mu$.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> There are several ways of pursuing statistical inference. One of them is called [significance testing]{.highlight-tomato}.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> The main idea of significance tests is to make a yes/no decision about some aspect of a population, based on a single sample. 
+:::
+
+## Significance tests: the recipe needed
+
+::: {.incremental}
+1. Aspect of a population that is of interest (motivated by research question)
+2. Null hypothesis $H_0$
+3. Alternative hypothesis $H_A$
+4. Test statistic and null distribution
+5. Measure evidence against $H_0$
+6. Make a decision and interpret in the context of the problem or question
+:::
+
+## Test statistic distribtiions
+
+::: {.incremental}
+1. $Z$: standard normal distribution - no parameters, mean/variance fixed
+2. $t$: one parameter, two-tailed distribution
+3. $F$: two-parameter, one-tailed distribution
+4. $\chi^2$: one-parameter, one-tailed distribution
+:::
+
+## Significance tests for a known $\sigma$
+::: box-6-list
+In your previous courses/stats work, you probably started with calculating a $Z$ statistic using the formula: 
+:::
+
+$$Z = \frac{\bar{Y} - \mu}{\sigma / \sqrt{n}}$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This value was then compared to a $Z$ distribution where you could obtain a p-value. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> In ecology (and really, every field), we never know the population variance $\sigma^2$, so we cannot use a $Z$ statistic. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Instead, we estimate $\sigma^2$ using the sample variance $S^2$ and calculate a $t$ statistic instead!
+:::
+
+## $t$, $Z$, what's the difference!?
+
+::: {.center-x}
+![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*k19QblVo30Cb2Q_rOs0QAA.png)
+:::
