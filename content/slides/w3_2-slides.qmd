@@ -16,6 +16,7 @@ format:
     auto-stretch: false
     transition: fade
     transition-speed: slow
+    scrollable: true
     logo: /media/5126-header.png
     css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
 ---
@@ -245,7 +246,432 @@ $$Z = \frac{\bar{Y} - \mu}{\sigma / \sqrt{n}}$$
 :::
 
 ## $t$, $Z$, what's the difference!?
+::: box-6-list
+Like a $Z$ distribution, a $t$ distribution is defined by a symmetric, bell-shaped curve symmetric about 0
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> But, the $t$ distribution has heavier tails than the $Z$ does
+:::
+
+## $t$, $Z$, what's the difference!?
 
 ::: {.center-x}
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*k19QblVo30Cb2Q_rOs0QAA.png)
 :::
+
+## $t$, $Z$, what's the difference!?
+::: box-6-list
+Like a $Z$ distribution, a $t$ distribution is defined by a symmetric, bell-shaped curve symmetric about 0
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> But, the $t$ distribution has heavier tails than the $Z$ does
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> The shape of the curve depends on the sample size, $n$. The larger the $n$, the thinner the tails/lesser the spread. In fact, $t_\infty = Z$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This shape takes into consideration the [degrees of freedom]{.highlight-tomato} of our sample, effectively penalyzing for our uncertainty of the population variance.
+:::
+
+## $t$ significance testing with unknown $\sigma$
+::: box-6-list
+Consider a random sample $Y_1, Y_2, Y_3,...Y_n$ of size $n$ from a normal distribution $N(\mu, \sigma^2)$ with *unknown* $\mu$ and *unknown* $\sigma^2$.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Suppose our signifiance test of interest is: 
+:::
+
+$$H_0 : \mu = \mu_0$$
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We can calculate our test statistic as:
+:::
+
+$$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}}$$
+
+::: indented-text
+where $T_{n-1}$ is a $T$ distribution with $n-1$ degrees of freedom.
+:::
+
+## $t$ significance testing with unknown $\sigma$
+**Wheat yield example**
+
+::: box-6-list
+Six, 1-acre plots are sown with a new variety of wheat. The yields for each plot (in cwt/acre) are: `25, 21, 24, 20, 26, 22` and are from $N(\mu, \sigma^2)$. 
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Is there evidence that the population mean yield for this variety of wheat differs from the historical average yield (20 cwt/acre) of the old variety of wheat you were using?
+:::
+
+## $t$ significance testing with unknown $\sigma$
+**Wheat yield example**
+
+::: box-6-list
+Let $\mu$ = population mean yield of this variety of wheat
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_0 : \mu = 20$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_A : \mu ≠ 20$
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Under $H_0$, the test statistic is: 
+:::
+
+$$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}$$
+
+## $t$ significance testing with unknown $\sigma$
+**Wheat yield example**
+
+::: box-6-list
+Let's gather and list out our values of interest. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $n = 6, \bar{y} = 23, s = 2.37$
+:::
+
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Our observed test statistic is then:
+:::
+
+$$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} = \frac{23 - 20}{2.37 / \sqrt{6}} = 3.10$$
+
+::: indented-text
+on $df = n - 1 = 5$
+:::
+
+::: indented-text
+Using our $t$ table or some statistics software, we can calculate that:
+:::
+
+$$P(T_5 ≥ 3.10) \approx 0.0138 \times 2 = \textbf{0.0276}$$
+
+## $t$ significance testing with unknown $\sigma$
+**Wheat yield example**
+
+::: box-6-list
+We can then use this p-value and compare it against a [critical threshold]{.highlight-tomato} of, for example, $\alpha = 0.05$. If our p-value is < 0.05, we can then...
+:::
+
+. . . 
+
+:::{.center-x}
+*Reject $H_0$ at the $\alpha = 0.05$ level*
+:::
+</br>
+
+. . . 
+
+:::{.center-x}
+or...
+:::
+</br>
+
+:::{.center-x}
+*"The mean yield of our new wheat variety is significantly different than the historical mean yield."*
+:::
+
+## Interpreting p-values
+::: box-6-list
+The p-value can be interpreted as the evidence that we have against $H_0$. The p-value is the probability that we would observe a value equal to or more extreme than our sample mean *if the null hypothesis were true*. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> At our value of 0.0276, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of $\mu_0 = 20$ were true. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> P-values are nothing more than a guide to making a decision. It allows us to make conclusions about our *statistical hypothesis* of whether there are patterns in our data, but ***not*** whether those patterns are driven by our *scientific hypothesis*
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> It's up to us to draw conclusions about the validity of our scientific hypothesis based on the statistical patterns in the data. The strength of this inference depends on many factors. 
+:::
+
+## A general guide to interpreting p-values
+
+::: box-6-list
+You'll often read papers and see language describing the strength of statistical support. Assuming a critical threshold of $\alpha = 0.05$, then we can intrepret a p-value: 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> ≥ 0.10 as no evidence against $H_0$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> between 0.05 and 0.10 as weak evidence against $H_0$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> between 0.01 and 0.05 as moderate evidence against $H_0$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> between 0.001 and 0.01 as strong evidence against $H_0$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> smaller than 0.001 as very strong evidence against $H_0$
+:::
+
+## Assumptions for t-tests
+
+::: {.incremental}
+1. Data are independent
+2. $Y_1....Y_n$ form a random sample of size $n$ from $N(\mu, \sigma^2)$
+3. $\sigma^2$ is unknown (i.e., no assumption about population variance)
+4. Any sample size $n$ (i.e., no assumption about sample size)
+:::
+
+. . . 
+
+:::{.callout-note}
+## Assumptions are not equal!
+T-tests are relatively robust to data that are not normally distributed. However, tests are very sensitive to dependence among samples. Our data must be independent!
+:::
+
+# Paired, two-sample $t$ test
+
+## Comparing two samples
+::: box-6-list
+Two-sample comparisons are far more common in ecology and biology than one-sample studies. Some examples include:
+:::
+
+. . . 
+
+::: indented-text
+[{{< fa cow >}}]{.margin-1} Compare milk yields of cows on two different diets
+:::
+
+. . . 
+
+::: indented-text
+[{{< fa tree >}}]{.margin-1} Compare timber volumes of two species of tree in a forest
+:::
+
+. . . 
+
+::: indented-text
+[{{< fa heart >}}]{.margin-1} Compare heart rates of patients before and after a drug treatment
+:::
+
+. . . 
+
+::: indented-text
+[{{< fa dog >}}]{.margin-1} Compare blood flow in two different arteries of dogs
+:::
+
+## Paired or unpaired?
+::: box-6-list
+There are two types of two-sample experiments: paired vs. unpaired two-sample designs
+:::
+
+. . .
+
+::: indented-text
+[{{< fa people-arrows >}}]{.margin-1} In an independent, two-sample design, there are two treatments (e.g., treatment and placebo), but there is *no direct relationship* between an observation on trt A and an observation on trt B
+:::
+
+. . .
+
+::: indented-text
+[{{< fa person >}}]{.margin-1} In an paired two-sample design, there are two treatments (e.g., treatment and control) and each observation of treatment A is paired with an observation of treatment B. Related or the same experimental units are used for both treatments (i.e., on the same person, animal, etc.)
+:::
+
+. . .
+
+::: {.callout-important}
+## Design of experimental is critical!
+Choice of paired versus independent two-sample experiment is an important experimental design issue that must be considered!
+:::
+
+. . .
+
+::: {.callout-important}
+## Choice of analyses is critical!
+In addition, it's critical that we always analyze an experiment consistent with the manner in which it was designed.
+:::
+
+## Paired or unpaired? An example
+
+::: box-6-list
+Let's imagine comparing the heart rates of 10 patients before and after a drug treatment. Which design would you prefer?
+:::
+
+. . .
+
+::: indented-text
+{{< fa heart-pulse >}}{{< fa person >}} Heart rates of 10 patients before and after a drug treatment (same experimental units)
+:::
+
+. . .
+
+::: indented-text
+{{< fa heart-pulse >}}{{< fa people-arrows >}} Heart rates of 10 patients before drug treatment and heart rates of another 10 patients after the drug treatment
+:::
+
+. . . 
+
+::: box-6-list
+We would chose the first design to remove the effect of variability among individuals and increase our precision in estimating the treatment differences (i.e., effect of the medication)
+:::
+
+## Paired samples
+
+::: box-6-list
+When two samples are paired, you will find that the pairing generally falls into one of two types:
+:::
+
+. . . 
+
+::: indented-text
+{{< fa people-arrows >}} [Matched sample]{.highlight-tomato}: two groups are matched on a particular variable (e.g., twins, spouses)
+:::
+
+. . . 
+
+::: indented-text
+{{< fa person >}}{{< fa arrow-right >}}{{< fa person >}} [Repeated measures]{.highlight-tomato}: a measurement on the same experimental unit before and after
+:::
+
+## Paired or unpaired?
+
+::: box-6-list
+How would you design experiments around the following research questions? Paired, or unpaired?
+:::
+
+. . . 
+
+::: indented-text
+{{< fa tree >}} How does timber volume vary between two species of tree?
+:::
+
+. . . 
+
+::: indented-text
+{{< fa dog >}} How does the blood flow of two different arteries compare in dogs? 
+:::
+
+. . . 
+
+::: indented-text
+{{< fa cow >}} How does the milk yield of cows vary on two different diets?
+:::
+
+## Paired two-sample t-test
+**Blood pressure example**
+
+::: box-6-list
+A new drug is thought to reduce blood pressure. It is called haemowussilin. An experiment is conducted on 15 middle-aged, male hypertension patients to evaluate the effect of the drug. For each patient, blood pressure is measured, and then after 6 months of the drug treatment, blood pressure is measured again. The question of interest is whether there is any evidence that haemowussilin has an effect on blood pressure.
+:::
+
+:::{.center-x}
+{{< fa person >}} + {{< fa tablets >}} + {{< fa heart >}}
+:::
+
+## Paired two-sample t-test
+**Blood pressure example: the data**
+
+| Subject | Before ($Y_1$) | After ($Y_2$) |
+|---------|----------------|---------------|
+| 1       | 90             | 88            |
+| 2       | 100            | 92            |
+| 3       | 92             | 82            |
+| 4       | 96             | 90            |
+| 5       | 96             | 78            |
+| 6       | 96             | 86            |
+| 7       | 92             | 88            |
+| 8       | 98             | 72            |
+| 9       | 102            | 84            |
+| 10      | 94             | 102           |
+| 11      | 94             | 94            |
+| 12      | 102            | 70            |
+| 13      | 94             | 94            |
+| 14      | 88             | 92            |
+| 15      | 104            | 94            |
+
+## Paired two-sample t-test
+**Blood pressure example: the method**
+
+::: box-6-list
+Recall the general formula of a t-test:
+:::
+
+$$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}$$
+
+. . . 
+
+::: indented-text
+How do we get this to fit the experiment? We calculate the *difference*
+:::
+
+## Paired two-sample t-test
+**Blood pressure example: the data**
+
+| Subject | Before ($Y_1$) | After ($Y_2$) | Difference ($D = Y_1 - Y_2$) |
+|---------|----------------|---------------|------------------------------|
+| 1       | 90             | 88            | 2                            |
+| 2       | 100            | 92            | 8                            |
+| 3       | 92             | 82            | 10                           |
+| 4       | 96             | 90            | 6                            |
+| 5       | 96             | 78            | 18                           |
+| 6       | 96             | 86            | 10                           |
+| 7       | 92             | 88            | 4                            |
+| 8       | 98             | 72            | 26                           |
+| 9       | 102            | 84            | 18                           |
+| 10      | 94             | 102           | -8                           |
+| 11      | 94             | 94            | 0                            |
+| 12      | 102            | 70            | 32                           |
+| 13      | 94             | 94            | 0                            |
+| 14      | 88             | 92            | -4                           |
+| 15      | 104            | 94            | 10                           |

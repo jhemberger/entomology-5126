@@ -2552,6 +2552,146 @@
     "href": "content/slides/w3_2-slides.html#t-z-whats-the-difference",
     "title": "Week 3",
     "section": "\\(t\\), \\(Z\\), what’s the difference!?",
+    "text": "\\(t\\), \\(Z\\), what’s the difference!?\n\nLike a \\(Z\\) distribution, a \\(t\\) distribution is defined by a symmetric, bell-shaped curve symmetric about 0\n\n\n\n But, the \\(t\\) distribution has heavier tails than the \\(Z\\) does"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-z-whats-the-difference-1",
+    "href": "content/slides/w3_2-slides.html#t-z-whats-the-difference-1",
+    "title": "Week 3",
+    "section": "\\(t\\), \\(Z\\), what’s the difference!?",
     "text": "\\(t\\), \\(Z\\), what’s the difference!?"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-z-whats-the-difference-2",
+    "href": "content/slides/w3_2-slides.html#t-z-whats-the-difference-2",
+    "title": "Week 3",
+    "section": "\\(t\\), \\(Z\\), what’s the difference!?",
+    "text": "\\(t\\), \\(Z\\), what’s the difference!?\n\nLike a \\(Z\\) distribution, a \\(t\\) distribution is defined by a symmetric, bell-shaped curve symmetric about 0\n\n\n But, the \\(t\\) distribution has heavier tails than the \\(Z\\) does\n\n\n\n The shape of the curve depends on the sample size, \\(n\\). The larger the \\(n\\), the thinner the tails/lesser the spread. In fact, \\(t_\\infty = Z\\)\n\n\n\n\n This shape takes into consideration the degrees of freedom of our sample, effectively penalyzing for our uncertainty of the population variance."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma",
+    "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma",
+    "title": "Week 3",
+    "section": "\\(t\\) significance testing with unknown \\(\\sigma\\)",
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\n\nConsider a random sample \\(Y_1, Y_2, Y_3,...Y_n\\) of size \\(n\\) from a normal distribution \\(N(\\mu, \\sigma^2)\\) with unknown \\(\\mu\\) and unknown \\(\\sigma^2\\).\n\n\n\n Suppose our signifiance test of interest is:\n\n\\[H_0 : \\mu = \\mu_0\\]\n\n\n\n We can calculate our test statistic as:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}}\\]\n\nwhere \\(T_{n-1}\\) is a \\(T\\) distribution with \\(n-1\\) degrees of freedom."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-example",
+    "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-example",
+    "title": "Week 3",
+    "section": "\\(t\\) significance testing with unknown \\(\\sigma\\): example",
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\): example"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-1",
+    "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-1",
+    "title": "Week 3",
+    "section": "\\(t\\) significance testing with unknown \\(\\sigma\\)",
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\nWheat yield example\n\nSix, 1-acre plots are sown with a new variety of wheat. The yields for each plot (in cwt/acre) are: 25, 21, 24, 20, 26, 22 and are from \\(N(\\mu, \\sigma^2)\\).\n\n\n\n Is there evidence that the population mean yield for this variety of wheat differs from the historical average yield (20 cwt/acre) of the old variety of wheat you were using?"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-2",
+    "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-2",
+    "title": "Week 3",
+    "section": "\\(t\\) significance testing with unknown \\(\\sigma\\)",
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\nWheat yield example\n\nLet \\(\\mu\\) = population mean yield of this variety of wheat\n\n\n\n \\(H_0 : \\mu = 20\\)\n\n\n\n\n \\(H_A : \\mu ≠ 20\\)\n\n\n\n\n Under \\(H_0\\), the test statistic is:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} \\sim T_{n-1}\\]"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-3",
+    "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-3",
+    "title": "Week 3",
+    "section": "\\(t\\) significance testing with unknown \\(\\sigma\\)",
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\nWheat yield example\n\nLet’s gather and list out our values of interest.\n\n\n\n \\(n = 6, \\bar{y} = 23, s = 2.37\\)\n\n\n\n\n Our observed test statistic is then:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} = \\frac{23 - 20}{2.37 / \\sqrt{6}} = 3.10\\]\n\non \\(df = n - 1 = 5\\)\n\n\nUsing our \\(t\\) table or some statistics software, we can calculate that:\n\n\\[P(T_5 ≥ 3.10) \\approx 0.0138 \\times 2 = \\textbf{0.0276}\\]"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-4",
+    "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-4",
+    "title": "Week 3",
+    "section": "\\(t\\) significance testing with unknown \\(\\sigma\\)",
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\nWheat yield example\n\nWe can then use this p-value and compare it against a critical threshold of, for example, \\(\\alpha = 0.05\\). If our p-value is &lt; 0.05, we can then…\n\n\n\nReject \\(H_0\\) at the \\(\\alpha = 0.05\\) level\n\n\n\n\n\nor…\n\n\n\n“The mean yield of our new wheat variety is significantly different than the historical mean yield.”"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#interpreting-p-values",
+    "href": "content/slides/w3_2-slides.html#interpreting-p-values",
+    "title": "Week 3",
+    "section": "Interpreting p-values",
+    "text": "Interpreting p-values\n\nThe p-value can be interpreted as the evidence that we have against \\(H_0\\). The p-value is the probability that we would observe a value equal to or more extreme than our sample mean if the null hypothesis were true.\n\n\n\n At our value of 0.0276, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of \\(\\mu_0 = 20\\) were true.\n\n\n\n\n P-values are nothing more than a guide to making a decision. It allows us to make conclusions about our statistical hypothesis of whether there are patterns in our data, but not whether those patterns are driven by our scientific hypothesis\n\n\n\n\n It’s up to us to draw conclusions about the validity of our scientific hypothesis based on the statistical patterns in the data. The strength of this inference depends on many factors."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#a-general-guide-to-interpreting-p-values",
+    "href": "content/slides/w3_2-slides.html#a-general-guide-to-interpreting-p-values",
+    "title": "Week 3",
+    "section": "A general guide to interpreting p-values",
+    "text": "A general guide to interpreting p-values\n\nYou’ll often read papers and see language describing the strength of statistical support. Assuming a critical threshold of \\(\\alpha = 0.05\\), then we can intrepret a p-value:\n\n\n\n ≥ 0.10 as no evidence against \\(H_0\\)\n\n\n\n\n between 0.05 and 0.10 as weak evidence against \\(H_0\\)\n\n\n\n\n between 0.01 and 0.05 as moderate evidence against \\(H_0\\)\n\n\n\n\n between 0.001 and 0.01 as strong evidence against \\(H_0\\)\n\n\n\n\n smaller than 0.001 as very strong evidence against \\(H_0\\)"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#assumptions-for-t-tests",
+    "href": "content/slides/w3_2-slides.html#assumptions-for-t-tests",
+    "title": "Week 3",
+    "section": "Assumptions for t-tests",
+    "text": "Assumptions for t-tests\n\nData are independent\n\\(Y_1....Y_n\\) form a random sample of size \\(n\\) from \\(N(\\mu, \\sigma^2)\\)\n\\(\\sigma^2\\) is unknown (i.e., no assumption about population variance)\nAny sample size \\(n\\) (i.e., no assumption about sample size)\n\n\n\n\n\n\n\n\nAssumptions are not equal!\n\n\nT-tests are relatively robust to data that are not normally distributed. However, tests are very sensitive to dependence among samples. Our data must be independent!"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#comparing-two-samples",
+    "href": "content/slides/w3_2-slides.html#comparing-two-samples",
+    "title": "Week 3",
+    "section": "Comparing two samples",
+    "text": "Comparing two samples\n\nTwo-sample comparisons are far more common in ecology and biology than one-sample studies. Some examples include:\n\n\n\n Compare milk yields of cows on two different diets\n\n\n\n\n Compare timber volumes of two species of tree in a forest\n\n\n\n\n Compare heart rates of patients before and after a drug treatment\n\n\n\n\n Compare blood flow in two different arteries of dogs"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-or-unpaired",
+    "href": "content/slides/w3_2-slides.html#paired-or-unpaired",
+    "title": "Week 3",
+    "section": "Paired or unpaired?",
+    "text": "Paired or unpaired?\n\nThere are two types of two-sample experiments: paired vs. unpaired two-sample designs\n\n\n\n In an independent, two-sample design, there are two treatments (e.g., treatment and placebo), but there is no direct relationship between an observation on trt A and an observation on trt B\n\n\n\n\n In an paired two-sample design, there are two treatments (e.g., treatment and control) and each observation of treatment A is paired with an observation of treatment B. Related or the same experimental units are used for both treatments (i.e., on the same person, animal, etc.)\n\n\n\n\n\n\n\n\n\nDesign of experimental is critical!\n\n\nChoice of paired versus independent two-sample experiment is an important experimental design issue that must be considered!\n\n\n\n\n\n\n\n\n\n\n\nChoice of analyses is critical!\n\n\nIn addition, it’s critical that we always analyze an experiment consistent with the manner in which it was designed."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-or-unpaired-an-example",
+    "href": "content/slides/w3_2-slides.html#paired-or-unpaired-an-example",
+    "title": "Week 3",
+    "section": "Paired or unpaired? An example",
+    "text": "Paired or unpaired? An example\n\nLet’s imagine comparing the heart rates of 10 patients before and after a drug treatment. Which design would you prefer?\n\n\n\n Heart rates of 10 patients before and after a drug treatment (same experimental units)\n\n\n\n\n Heart rates of 10 patients before drug treatment and heart rates of another 10 patients after the drug treatment\n\n\n\n\nWe would chose the first design to remove the effect of variability among individuals and increase our precision in estimating the treatment differences (i.e., effect of the medication)"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-samples",
+    "href": "content/slides/w3_2-slides.html#paired-samples",
+    "title": "Week 3",
+    "section": "Paired samples",
+    "text": "Paired samples\n\nWhen two samples are paired, you will find that the pairing generally falls into one of two types:\n\n\n\n Matched sample: two groups are matched on a particular variable (e.g., twins, spouses)\n\n\n\n\n Repeated measures: a measurement on the same experimental unit before and after"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-or-unpaired-1",
+    "href": "content/slides/w3_2-slides.html#paired-or-unpaired-1",
+    "title": "Week 3",
+    "section": "Paired or unpaired?",
+    "text": "Paired or unpaired?\n\nHow would you design experiments around the following research questions? Paired, or unpaired?\n\n\n\n How does timber volume vary between two species of tree?\n\n\n\n\n How does the blood flow of two different arteries compare in dogs?\n\n\n\n\n How does the milk yield of cows vary on two different diets?"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-1",
+    "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-1",
+    "title": "Week 3",
+    "section": "Paired two-sample t-test",
+    "text": "Paired two-sample t-test\nBlood pressure example\n\nA new drug is thought to reduce blood pressure. It is called haemowussilin. An experiment is conducted on 15 middle-aged, male hypertension patients to evaluate the effect of the drug. For each patient, blood pressure is measured, and then after 6 months of the drug treatment, blood pressure is measured again. The question of interest is whether there is any evidence that haemowussilin has an effect on blood pressure.\n\n\n +  +"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-2",
+    "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-2",
+    "title": "Week 3",
+    "section": "Paired two-sample t-test",
+    "text": "Paired two-sample t-test\nBlood pressure example: the data\n\n\n\nSubject\nBefore (\\(Y_1\\))\nAfter (\\(Y_2\\))\n\n\n\n\n1\n90\n88\n\n\n2\n100\n92\n\n\n3\n92\n82\n\n\n4\n96\n90\n\n\n5\n96\n78\n\n\n6\n96\n86\n\n\n7\n92\n88\n\n\n8\n98\n72\n\n\n9\n102\n84\n\n\n10\n94\n102\n\n\n11\n94\n94\n\n\n12\n102\n70\n\n\n13\n94\n94\n\n\n14\n88\n92\n\n\n15\n104\n94"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-3",
+    "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-3",
+    "title": "Week 3",
+    "section": "Paired two-sample t-test",
+    "text": "Paired two-sample t-test\nBlood pressure example: the method\n\nRecall the general formula of a t-test:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} \\sim T_{n-1}\\]\n\n\nHow do we get this to fit the experiment? We calculate the difference"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-4",
+    "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-4",
+    "title": "Week 3",
+    "section": "Paired two-sample t-test",
+    "text": "Paired two-sample t-test\nBlood pressure example: the data\n\n\n\n\n\n\n\n\n\nSubject\nBefore (\\(Y_1\\))\nAfter (\\(Y_2\\))\nDifference (\\(D = Y_1 - Y_2\\))\n\n\n\n\n1\n90\n88\n2\n\n\n2\n100\n92\n8\n\n\n3\n92\n82\n10\n\n\n4\n96\n90\n6\n\n\n5\n96\n78\n18\n\n\n6\n96\n86\n10\n\n\n7\n92\n88\n4\n\n\n8\n98\n72\n26\n\n\n9\n102\n84\n18\n\n\n10\n94\n102\n-8\n\n\n11\n94\n94\n0\n\n\n12\n102\n70\n32\n\n\n13\n94\n94\n0\n\n\n14\n88\n92\n-4\n\n\n15\n104\n94\n10"
   }
 ]

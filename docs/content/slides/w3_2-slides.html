@@ -52,6 +52,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -316,7 +317,7 @@
 </div>
 </div>
 </section>
-<section id="significance-tests-the-recipe-needed" class="slide level2">
+<section id="significance-tests-the-recipe-needed" class="slide level2 scrollable">
 <h2>Significance tests: the recipe needed</h2>
 <ol type="1">
 <li class="fragment">Aspect of a population that is of interest (motivated by research question)</li>
@@ -327,7 +328,7 @@
 <li class="fragment">Make a decision and interpret in the context of the problem or question</li>
 </ol>
 </section>
-<section id="test-statistic-distribtiions" class="slide level2">
+<section id="test-statistic-distribtiions" class="slide level2 scrollable">
 <h2>Test statistic distribtiions</h2>
 <ol type="1">
 <li class="fragment"><span class="math inline">\(Z\)</span>: standard normal distribution - no parameters, mean/variance fixed</li>
@@ -360,9 +361,578 @@
 </section>
 <section id="t-z-whats-the-difference" class="slide level2">
 <h2><span class="math inline">\(t\)</span>, <span class="math inline">\(Z\)</span>, what’s the difference!?</h2>
+<div class="box-6-list">
+<p>Like a <span class="math inline">\(Z\)</span> distribution, a <span class="math inline">\(t\)</span> distribution is defined by a symmetric, bell-shaped curve symmetric about 0</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> But, the <span class="math inline">\(t\)</span> distribution has heavier tails than the <span class="math inline">\(Z\)</span> does</p>
+</div>
+</div>
+</section>
+<section id="t-z-whats-the-difference-1" class="slide level2">
+<h2><span class="math inline">\(t\)</span>, <span class="math inline">\(Z\)</span>, what’s the difference!?</h2>
 <div class="center-x">
 <p><img data-src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*k19QblVo30Cb2Q_rOs0QAA.png"></p>
 </div>
+</section>
+<section id="t-z-whats-the-difference-2" class="slide level2">
+<h2><span class="math inline">\(t\)</span>, <span class="math inline">\(Z\)</span>, what’s the difference!?</h2>
+<div class="box-6-list">
+<p>Like a <span class="math inline">\(Z\)</span> distribution, a <span class="math inline">\(t\)</span> distribution is defined by a symmetric, bell-shaped curve symmetric about 0</p>
+</div>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> But, the <span class="math inline">\(t\)</span> distribution has heavier tails than the <span class="math inline">\(Z\)</span> does</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> The shape of the curve depends on the sample size, <span class="math inline">\(n\)</span>. The larger the <span class="math inline">\(n\)</span>, the thinner the tails/lesser the spread. In fact, <span class="math inline">\(t_\infty = Z\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This shape takes into consideration the <span class="highlight-tomato">degrees of freedom</span> of our sample, effectively penalyzing for our uncertainty of the population variance.</p>
+</div>
+</div>
+</section>
+<section id="t-significance-testing-with-unknown-sigma" class="slide level2">
+<h2><span class="math inline">\(t\)</span> significance testing with unknown <span class="math inline">\(\sigma\)</span></h2>
+<div class="box-6-list">
+<p>Consider a random sample <span class="math inline">\(Y_1, Y_2, Y_3,...Y_n\)</span> of size <span class="math inline">\(n\)</span> from a normal distribution <span class="math inline">\(N(\mu, \sigma^2)\)</span> with <em>unknown</em> <span class="math inline">\(\mu\)</span> and <em>unknown</em> <span class="math inline">\(\sigma^2\)</span>.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Suppose our signifiance test of interest is:</p>
+</div>
+<p><span class="math display">\[H_0 : \mu = \mu_0\]</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We can calculate our test statistic as:</p>
+</div>
+<p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}}\]</span></p>
+<div class="indented-text">
+<p>where <span class="math inline">\(T_{n-1}\)</span> is a <span class="math inline">\(T\)</span> distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+</div>
+</div>
+</section>
+<section id="t-significance-testing-with-unknown-sigma-1" class="slide level2">
+<h2><span class="math inline">\(t\)</span> significance testing with unknown <span class="math inline">\(\sigma\)</span></h2>
+<p><strong>Wheat yield example</strong></p>
+<div class="box-6-list">
+<p>Six, 1-acre plots are sown with a new variety of wheat. The yields for each plot (in cwt/acre) are: <code>25, 21, 24, 20, 26, 22</code> and are from <span class="math inline">\(N(\mu, \sigma^2)\)</span>.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Is there evidence that the population mean yield for this variety of wheat differs from the historical average yield (20 cwt/acre) of the old variety of wheat you were using?</p>
+</div>
+</div>
+</section>
+<section id="t-significance-testing-with-unknown-sigma-2" class="slide level2">
+<h2><span class="math inline">\(t\)</span> significance testing with unknown <span class="math inline">\(\sigma\)</span></h2>
+<p><strong>Wheat yield example</strong></p>
+<div class="box-6-list">
+<p>Let <span class="math inline">\(\mu\)</span> = population mean yield of this variety of wheat</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_0 : \mu = 20\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_A : \mu ≠ 20\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Under <span class="math inline">\(H_0\)</span>, the test statistic is:</p>
+</div>
+<p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}\]</span></p>
+</div>
+</section>
+<section id="t-significance-testing-with-unknown-sigma-3" class="slide level2">
+<h2><span class="math inline">\(t\)</span> significance testing with unknown <span class="math inline">\(\sigma\)</span></h2>
+<p><strong>Wheat yield example</strong></p>
+<div class="box-6-list">
+<p>Let’s gather and list out our values of interest.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(n = 6, \bar{y} = 23, s = 2.37\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Our observed test statistic is then:</p>
+</div>
+<p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} = \frac{23 - 20}{2.37 / \sqrt{6}} = 3.10\]</span></p>
+<div class="indented-text">
+<p>on <span class="math inline">\(df = n - 1 = 5\)</span></p>
+</div>
+<div class="indented-text">
+<p>Using our <span class="math inline">\(t\)</span> table or some statistics software, we can calculate that:</p>
+</div>
+<p><span class="math display">\[P(T_5 ≥ 3.10) \approx 0.0138 \times 2 = \textbf{0.0276}\]</span></p>
+</div>
+</section>
+<section id="t-significance-testing-with-unknown-sigma-4" class="slide level2">
+<h2><span class="math inline">\(t\)</span> significance testing with unknown <span class="math inline">\(\sigma\)</span></h2>
+<p><strong>Wheat yield example</strong></p>
+<div class="box-6-list">
+<p>We can then use this p-value and compare it against a <span class="highlight-tomato">critical threshold</span> of, for example, <span class="math inline">\(\alpha = 0.05\)</span>. If our p-value is &lt; 0.05, we can then…</p>
+</div>
+<div class="fragment">
+<div class="center-x">
+<p><em>Reject <span class="math inline">\(H_0\)</span> at the <span class="math inline">\(\alpha = 0.05\)</span> level</em></p>
+</div>
+<p><br></p>
+</div>
+<div class="fragment">
+<div class="center-x">
+<p>or…</p>
+</div>
+<p><br></p>
+<div class="center-x">
+<p><em>“The mean yield of our new wheat variety is significantly different than the historical mean yield.”</em></p>
+</div>
+</div>
+</section>
+<section id="interpreting-p-values" class="slide level2">
+<h2>Interpreting p-values</h2>
+<div class="box-6-list">
+<p>The p-value can be interpreted as the evidence that we have against <span class="math inline">\(H_0\)</span>. The p-value is the probability that we would observe a value equal to or more extreme than our sample mean <em>if the null hypothesis were true</em>.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> At our value of 0.0276, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of <span class="math inline">\(\mu_0 = 20\)</span> were true.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> P-values are nothing more than a guide to making a decision. It allows us to make conclusions about our <em>statistical hypothesis</em> of whether there are patterns in our data, but <strong><em>not</em></strong> whether those patterns are driven by our <em>scientific hypothesis</em></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> It’s up to us to draw conclusions about the validity of our scientific hypothesis based on the statistical patterns in the data. The strength of this inference depends on many factors.</p>
+</div>
+</div>
+</section>
+<section id="a-general-guide-to-interpreting-p-values" class="slide level2">
+<h2>A general guide to interpreting p-values</h2>
+<div class="box-6-list">
+<p>You’ll often read papers and see language describing the strength of statistical support. Assuming a critical threshold of <span class="math inline">\(\alpha = 0.05\)</span>, then we can intrepret a p-value:</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> ≥ 0.10 as no evidence against <span class="math inline">\(H_0\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> between 0.05 and 0.10 as weak evidence against <span class="math inline">\(H_0\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> between 0.01 and 0.05 as moderate evidence against <span class="math inline">\(H_0\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> between 0.001 and 0.01 as strong evidence against <span class="math inline">\(H_0\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> smaller than 0.001 as very strong evidence against <span class="math inline">\(H_0\)</span></p>
+</div>
+</div>
+</section>
+<section id="assumptions-for-t-tests" class="slide level2 scrollable">
+<h2>Assumptions for t-tests</h2>
+<ol type="1">
+<li class="fragment">Data are independent</li>
+<li class="fragment"><span class="math inline">\(Y_1....Y_n\)</span> form a random sample of size <span class="math inline">\(n\)</span> from <span class="math inline">\(N(\mu, \sigma^2)\)</span></li>
+<li class="fragment"><span class="math inline">\(\sigma^2\)</span> is unknown (i.e., no assumption about population variance)</li>
+<li class="fragment">Any sample size <span class="math inline">\(n\)</span> (i.e., no assumption about sample size)</li>
+</ol>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Assumptions are not equal!</strong></p>
+</div>
+<div class="callout-content">
+<p>T-tests are relatively robust to data that are not normally distributed. However, tests are very sensitive to dependence among samples. Our data must be independent!</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="paired-two-sample-t-test" class="title-slide slide level1 center">
+<h1>Paired, two-sample <span class="math inline">\(t\)</span> test</h1>
+
+</section>
+<section id="comparing-two-samples" class="slide level2">
+<h2>Comparing two samples</h2>
+<div class="box-6-list">
+<p>Two-sample comparisons are far more common in ecology and biology than one-sample studies. Some examples include:</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><span class="margin-1"><i class="fa-solid fa-cow" aria-label="cow"></i></span> Compare milk yields of cows on two different diets</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><span class="margin-1"><i class="fa-solid fa-tree" aria-label="tree"></i></span> Compare timber volumes of two species of tree in a forest</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><span class="margin-1"><i class="fa-solid fa-heart" aria-label="heart"></i></span> Compare heart rates of patients before and after a drug treatment</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><span class="margin-1"><i class="fa-solid fa-dog" aria-label="dog"></i></span> Compare blood flow in two different arteries of dogs</p>
+</div>
+</div>
+</section>
+<section id="paired-or-unpaired" class="slide level2">
+<h2>Paired or unpaired?</h2>
+<div class="box-6-list">
+<p>There are two types of two-sample experiments: paired vs.&nbsp;unpaired two-sample designs</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><span class="margin-1"><i class="fa-solid fa-people-arrows" aria-label="people-arrows"></i></span> In an independent, two-sample design, there are two treatments (e.g., treatment and placebo), but there is <em>no direct relationship</em> between an observation on trt A and an observation on trt B</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><span class="margin-1"><i class="fa-solid fa-person" aria-label="person"></i></span> In an paired two-sample design, there are two treatments (e.g., treatment and control) and each observation of treatment A is paired with an observation of treatment B. Related or the same experimental units are used for both treatments (i.e., on the same person, animal, etc.)</p>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Design of experimental is critical!</strong></p>
+</div>
+<div class="callout-content">
+<p>Choice of paired versus independent two-sample experiment is an important experimental design issue that must be considered!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Choice of analyses is critical!</strong></p>
+</div>
+<div class="callout-content">
+<p>In addition, it’s critical that we always analyze an experiment consistent with the manner in which it was designed.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="paired-or-unpaired-an-example" class="slide level2">
+<h2>Paired or unpaired? An example</h2>
+<div class="box-6-list">
+<p>Let’s imagine comparing the heart rates of 10 patients before and after a drug treatment. Which design would you prefer?</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-heart-pulse" aria-label="heart-pulse"></i><i class="fa-solid fa-person" aria-label="person"></i> Heart rates of 10 patients before and after a drug treatment (same experimental units)</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-heart-pulse" aria-label="heart-pulse"></i><i class="fa-solid fa-people-arrows" aria-label="people-arrows"></i> Heart rates of 10 patients before drug treatment and heart rates of another 10 patients after the drug treatment</p>
+</div>
+</div>
+<div class="fragment">
+<div class="box-6-list">
+<p>We would chose the first design to remove the effect of variability among individuals and increase our precision in estimating the treatment differences (i.e., effect of the medication)</p>
+</div>
+</div>
+</section>
+<section id="paired-samples" class="slide level2">
+<h2>Paired samples</h2>
+<div class="box-6-list">
+<p>When two samples are paired, you will find that the pairing generally falls into one of two types:</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-people-arrows" aria-label="people-arrows"></i> <span class="highlight-tomato">Matched sample</span>: two groups are matched on a particular variable (e.g., twins, spouses)</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-person" aria-label="person"></i><i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i><i class="fa-solid fa-person" aria-label="person"></i> <span class="highlight-tomato">Repeated measures</span>: a measurement on the same experimental unit before and after</p>
+</div>
+</div>
+</section>
+<section id="paired-or-unpaired-1" class="slide level2">
+<h2>Paired or unpaired?</h2>
+<div class="box-6-list">
+<p>How would you design experiments around the following research questions? Paired, or unpaired?</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-tree" aria-label="tree"></i> How does timber volume vary between two species of tree?</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-dog" aria-label="dog"></i> How does the blood flow of two different arteries compare in dogs?</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-cow" aria-label="cow"></i> How does the milk yield of cows vary on two different diets?</p>
+</div>
+</div>
+</section>
+<section id="paired-two-sample-t-test-1" class="slide level2">
+<h2>Paired two-sample t-test</h2>
+<p><strong>Blood pressure example</strong></p>
+<div class="box-6-list">
+<p>A new drug is thought to reduce blood pressure. It is called haemowussilin. An experiment is conducted on 15 middle-aged, male hypertension patients to evaluate the effect of the drug. For each patient, blood pressure is measured, and then after 6 months of the drug treatment, blood pressure is measured again. The question of interest is whether there is any evidence that haemowussilin has an effect on blood pressure.</p>
+</div>
+<div class="center-x">
+<p><i class="fa-solid fa-person" aria-label="person"></i> + <i class="fa-solid fa-tablets" aria-label="tablets"></i> + <i class="fa-solid fa-heart" aria-label="heart"></i></p>
+</div>
+</section>
+<section id="paired-two-sample-t-test-2" class="slide level2">
+<h2>Paired two-sample t-test</h2>
+<p><strong>Blood pressure example: the data</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Before (<span class="math inline">\(Y_1\)</span>)</th>
+<th>After (<span class="math inline">\(Y_2\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>90</td>
+<td>88</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>100</td>
+<td>92</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>92</td>
+<td>82</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>96</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>96</td>
+<td>78</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>96</td>
+<td>86</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>92</td>
+<td>88</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>98</td>
+<td>72</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>102</td>
+<td>84</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>94</td>
+<td>102</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>94</td>
+<td>94</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>102</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>94</td>
+<td>94</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>88</td>
+<td>92</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>104</td>
+<td>94</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="paired-two-sample-t-test-3" class="slide level2">
+<h2>Paired two-sample t-test</h2>
+<p><strong>Blood pressure example: the method</strong></p>
+<div class="box-6-list">
+<p>Recall the general formula of a t-test:</p>
+</div>
+<p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}\]</span></p>
+<div class="fragment">
+<div class="indented-text">
+<p>How do we get this to fit the experiment? We calculate the <em>difference</em></p>
+</div>
+</div>
+</section>
+<section id="paired-two-sample-t-test-4" class="slide level2">
+<h2>Paired two-sample t-test</h2>
+<p><strong>Blood pressure example: the data</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Before (<span class="math inline">\(Y_1\)</span>)</th>
+<th>After (<span class="math inline">\(Y_2\)</span>)</th>
+<th>Difference (<span class="math inline">\(D = Y_1 - Y_2\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>90</td>
+<td>88</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>100</td>
+<td>92</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>92</td>
+<td>82</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>96</td>
+<td>90</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>96</td>
+<td>78</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>96</td>
+<td>86</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>92</td>
+<td>88</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>98</td>
+<td>72</td>
+<td>26</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>102</td>
+<td>84</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>94</td>
+<td>102</td>
+<td>-8</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>94</td>
+<td>94</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>102</td>
+<td>70</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>94</td>
+<td>94</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>88</td>
+<td>92</td>
+<td>-4</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>104</td>
+<td>94</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
 
 
 </section></section>
