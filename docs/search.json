@@ -2685,7 +2685,7 @@
     "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-3",
     "title": "Week 3",
     "section": "Paired two-sample t-test",
-    "text": "Paired two-sample t-test\nBlood pressure example: the method\n\nRecall the general formula of a t-test:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} \\sim T_{n-1}\\]\n\n\nHow do we get this to fit the experiment? We calculate the difference"
+    "text": "Paired two-sample t-test\nBlood pressure example: the method\n\nRecall the general formula of a t-test:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} \\sim T_{n-1}\\]\n\nHow do we get this to fit the experiment? We calculate the difference"
   },
   {
     "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-4",
@@ -2693,5 +2693,40 @@
     "title": "Week 3",
     "section": "Paired two-sample t-test",
     "text": "Paired two-sample t-test\nBlood pressure example: the data\n\n\n\n\n\n\n\n\n\nSubject\nBefore (\\(Y_1\\))\nAfter (\\(Y_2\\))\nDifference (\\(D = Y_1 - Y_2\\))\n\n\n\n\n1\n90\n88\n2\n\n\n2\n100\n92\n8\n\n\n3\n92\n82\n10\n\n\n4\n96\n90\n6\n\n\n5\n96\n78\n18\n\n\n6\n96\n86\n10\n\n\n7\n92\n88\n4\n\n\n8\n98\n72\n26\n\n\n9\n102\n84\n18\n\n\n10\n94\n102\n-8\n\n\n11\n94\n94\n0\n\n\n12\n102\n70\n32\n\n\n13\n94\n94\n0\n\n\n14\n88\n92\n-4\n\n\n15\n104\n94\n10"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-5",
+    "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-5",
+    "title": "Week 3",
+    "section": "Paired two-sample t-test",
+    "text": "Paired two-sample t-test\nBlood pressure example: the math\n\nLet \\(\\mu_1 =\\) the population mean blood pressure before the drug treatment and \\(\\mu_2 =\\) the population mean blood pressure after the drug treatment.\n\n\n\n Let \\(\\mu_D = \\mu_1 - \\mu_2\\) denote the difference between the two blood pressure levels.\n\n\n\n\n We want to test \\(\\mu_1 = \\mu_2\\) or \\(\\mu_1 ≠ \\mu_2\\). Equivalently, we can test:\n\n\\[H_0: \\mu_D = 0\\:\\:\\ vs \\:\\:\\ H_A: \\mu_D ≠ 0\\]\n\n\n\n Let \\(D = Y_1 - Y_2\\) denote the blood pressure difference and assume a random sample \\(D_1, D_2...,D_15\\) of sample size \\(n = 15\\) from \\(N(\\mu_D, \\sigma_D^2)\\)\n\n\n\n\n Using this framework, we can use a one-sample t-test."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-6",
+    "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-6",
+    "title": "Week 3",
+    "section": "Paired two-sample t-test",
+    "text": "Paired two-sample t-test\nBlood pressure example: the math\nUnder \\(H_0 : \\mu_D = 0\\), the test statistic is:\n\n\\[T = \\frac{\\bar{D} - 0}{S_D / \\sqrt{n}} \\sim T_{n-1}\\]\n\n\nFrom the data, the observed \\(\\bar{d} = 8.80\\), \\(s_d = 10.98\\). Thus the observed t statistic:\n\n\n\\[T = \\frac{\\bar{d} - 0}{S_d / \\sqrt{n}} = \\frac{8.80 - 0}{10.98 / \\sqrt{15}} = 3.10\\]\non \\(n-1 = 14\\) degrees of freedom\n\n\np-value is: \\(2 \\times P(T_{14} ≥ 3.10) = 0.0078\\). We reject \\(H_0\\) at the 1% (\\(\\alpha = 0.01\\)) level. There is strong evidence against \\(H_0\\)."
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#paired-two-sample-t-test-assumptions",
+    "href": "content/slides/w3_2-slides.html#paired-two-sample-t-test-assumptions",
+    "title": "Week 3",
+    "section": "Paired two-sample t-test: assumptions",
+    "text": "Paired two-sample t-test: assumptions\n\n\\(D\\) is a random sample from a normal distribution (We can check this with a histogram, density plot)\n\n\n\n Individual \\(Y_1\\) and \\(Y_2\\) need not be normally distributed. We’re not performing the test on the individual scores, but rather the difference\n\n\n\n\nIndependence of the differences (This is addressed during study/experimental design)\n\n\n\n\n Note that \\(Y_1\\) and \\(Y_2\\) are not usually independent because of the pairing/same experimental unit"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#structuring-statistics-around-our-research-questions",
+    "href": "content/slides/w4-slides.html#structuring-statistics-around-our-research-questions",
+    "title": "Week 4",
+    "section": "Structuring statistics around our research questions",
+    "text": "Structuring statistics around our research questions\n\n\n Independent, two-sample t-tests\n\n\n\n\n Analysis of Variance (ANOVA)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#more-tools-to-detect-differences-among-samples",
+    "href": "content/slides/w4-slides.html#more-tools-to-detect-differences-among-samples",
+    "title": "Week 4",
+    "section": "More tools to detect differences among samples",
+    "text": "More tools to detect differences among samples\n\n\n Independent, two-sample t-tests\n\n\n\n\n Analysis of Variance (ANOVA)"
   }
 ]

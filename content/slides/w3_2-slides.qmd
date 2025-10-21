@@ -651,9 +651,7 @@ $$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}$$
 
 . . . 
 
-::: indented-text
 How do we get this to fit the experiment? We calculate the *difference*
-:::
 
 ## Paired two-sample t-test
 **Blood pressure example: the data**
@@ -675,3 +673,83 @@ How do we get this to fit the experiment? We calculate the *difference*
 | 13      | 94             | 94            | 0                            |
 | 14      | 88             | 92            | -4                           |
 | 15      | 104            | 94            | 10                           |
+
+## Paired two-sample t-test
+**Blood pressure example: the math**
+
+::: box-6-list
+Let $\mu_1 =$ the population mean blood pressure before the drug treatment and $\mu_2 =$ the population mean blood pressure after the drug treatment. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Let $\mu_D = \mu_1 - \mu_2$ denote the difference between the two blood pressure levels. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We want to test $\mu_1 = \mu_2$ or $\mu_1 ≠ \mu_2$. Equivalently, we can test: 
+:::
+
+$$H_0: \mu_D = 0\:\:\ vs \:\:\ H_A: \mu_D ≠ 0$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Let $D = Y_1 - Y_2$ denote the blood pressure difference and assume a random sample $D_1, D_2...,D_15$ of sample size $n = 15$ from $N(\mu_D, \sigma_D^2)$ 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Using this framework, we can use a one-sample t-test.
+:::
+
+## Paired two-sample t-test
+**Blood pressure example: the math**
+
+Under $H_0 : \mu_D = 0$, the test statistic is:
+
+. . . 
+
+$$T = \frac{\bar{D} - 0}{S_D / \sqrt{n}} \sim T_{n-1}$$
+
+. . .
+
+From the data, the observed $\bar{d} = 8.80$, $s_d = 10.98$. Thus the observed t statistic:
+
+. . . 
+
+$$T = \frac{\bar{d} - 0}{S_d / \sqrt{n}} = \frac{8.80 - 0}{10.98 / \sqrt{15}} = 3.10$$
+
+on $n-1 = 14$ degrees of freedom
+
+. . . 
+
+p-value is: $2 \times P(T_{14} ≥ 3.10) = 0.0078$. We reject $H_0$ at the 1% ($\alpha = 0.01$) level. There is strong evidence against $H_0$. 
+
+## Paired two-sample t-test: assumptions
+
+::: box-6-list
+$D$ is a random sample from a normal distribution *(We can check this with a histogram, density plot)*
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Individual $Y_1$ and $Y_2$ need not be normally distributed. We're not performing the test on the individual scores, but rather the *difference*
+:::
+
+. . . 
+
+::: box-6-list
+Independence of the differences *(This is addressed during study/experimental design)*
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Note that $Y_1$ and $Y_2$ are not usually independent because of the pairing/same experimental unit
+:::

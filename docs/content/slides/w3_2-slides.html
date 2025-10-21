@@ -817,9 +817,7 @@
 </div>
 <p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}\]</span></p>
 <div class="fragment">
-<div class="indented-text">
 <p>How do we get this to fit the experiment? We calculate the <em>difference</em></p>
-</div>
 </div>
 </section>
 <section id="paired-two-sample-t-test-4" class="slide level2">
@@ -933,8 +931,75 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="paired-two-sample-t-test-5" class="slide level2">
+<h2>Paired two-sample t-test</h2>
+<p><strong>Blood pressure example: the math</strong></p>
+<div class="box-6-list">
+<p>Let <span class="math inline">\(\mu_1 =\)</span> the population mean blood pressure before the drug treatment and <span class="math inline">\(\mu_2 =\)</span> the population mean blood pressure after the drug treatment.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Let <span class="math inline">\(\mu_D = \mu_1 - \mu_2\)</span> denote the difference between the two blood pressure levels.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We want to test <span class="math inline">\(\mu_1 = \mu_2\)</span> or <span class="math inline">\(\mu_1 ≠ \mu_2\)</span>. Equivalently, we can test:</p>
+</div>
+<p><span class="math display">\[H_0: \mu_D = 0\:\:\ vs \:\:\ H_A: \mu_D ≠ 0\]</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Let <span class="math inline">\(D = Y_1 - Y_2\)</span> denote the blood pressure difference and assume a random sample <span class="math inline">\(D_1, D_2...,D_15\)</span> of sample size <span class="math inline">\(n = 15\)</span> from <span class="math inline">\(N(\mu_D, \sigma_D^2)\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Using this framework, we can use a one-sample t-test.</p>
+</div>
+</div>
+</section>
+<section id="paired-two-sample-t-test-6" class="slide level2">
+<h2>Paired two-sample t-test</h2>
+<p><strong>Blood pressure example: the math</strong></p>
+<p>Under <span class="math inline">\(H_0 : \mu_D = 0\)</span>, the test statistic is:</p>
+<div class="fragment">
+<p><span class="math display">\[T = \frac{\bar{D} - 0}{S_D / \sqrt{n}} \sim T_{n-1}\]</span></p>
+</div>
+<div class="fragment">
+<p>From the data, the observed <span class="math inline">\(\bar{d} = 8.80\)</span>, <span class="math inline">\(s_d = 10.98\)</span>. Thus the observed t statistic:</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[T = \frac{\bar{d} - 0}{S_d / \sqrt{n}} = \frac{8.80 - 0}{10.98 / \sqrt{15}} = 3.10\]</span></p>
+<p>on <span class="math inline">\(n-1 = 14\)</span> degrees of freedom</p>
+</div>
+<div class="fragment">
+<p>p-value is: <span class="math inline">\(2 \times P(T_{14} ≥ 3.10) = 0.0078\)</span>. We reject <span class="math inline">\(H_0\)</span> at the 1% (<span class="math inline">\(\alpha = 0.01\)</span>) level. There is strong evidence against <span class="math inline">\(H_0\)</span>.</p>
+</div>
+</section>
+<section id="paired-two-sample-t-test-assumptions" class="slide level2">
+<h2>Paired two-sample t-test: assumptions</h2>
+<div class="box-6-list">
+<p><span class="math inline">\(D\)</span> is a random sample from a normal distribution <em>(We can check this with a histogram, density plot)</em></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Individual <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> need not be normally distributed. We’re not performing the test on the individual scores, but rather the <em>difference</em></p>
+</div>
+</div>
+<div class="fragment">
+<div class="box-6-list">
+<p>Independence of the differences <em>(This is addressed during study/experimental design)</em></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Note that <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> are not usually independent because of the pairing/same experimental unit</p>
+</div>
 
 
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

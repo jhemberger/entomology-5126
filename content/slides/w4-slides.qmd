@@ -1,0 +1,38 @@
+---
+title: "Week 4"
+subtitle: "Independent t-tests and ANOVA"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w4-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    scrollable: true
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---
+
+# What we'll cover this week
+
+## More tools to detect differences among samples
+
+. . .
+
+::: box-1-list
+[{{< fa chart-simple >}}]{.margin-1} Independent, two-sample *t*-tests
+:::
+
+. . .
+
+::: box-1-list
+[{{< fa chart-simple >}}]{.margin-1} Analysis of Variance (ANOVA)
+:::
