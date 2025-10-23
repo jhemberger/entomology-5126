@@ -2728,5 +2728,33 @@
     "title": "Week 4",
     "section": "More tools to detect differences among samples",
     "text": "More tools to detect differences among samples\n\n\n Independent, two-sample t-tests\n\n\n\n\n Analysis of Variance (ANOVA)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#comparing-two-samples-overview",
+    "href": "content/slides/w4-slides.html#comparing-two-samples-overview",
+    "title": "Week 4",
+    "section": "Comparing two samples: overview",
+    "text": "Comparing two samples: overview\n\nThere are two types of two-sample experiments: paired two-sample and independent (unpaired) two-sample\n\n\n\n The paired two-sample t test is essentially a one-sample t test of the differences between the pairs\n\n\n\n\n In an independent two-sample study, there are two treatments, but there is no direct relationship between observations in the two treatments.\n\n\n\n\n This means that we can re-arrange the data within each column with no effect on the result of the test.\n\n\n\n\n\n\n\n\n\nRemember!\n\n\nIt’s critical that we always analyze an experiment consistent with the manner in which the data were collected."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#independent-two-sample",
+    "href": "content/slides/w4-slides.html#independent-two-sample",
+    "title": "Week 4",
+    "section": "Independent two-sample",
+    "text": "Independent two-sample\nExample: fat rats\n\nA vet researcher is interested in comparing the effects of two diets on the weight gains of juvenile rats. A total of 5 rats were assigned to diet type A and another 5 rats were assigned to diet type B. The weight gains (in grams) were recorded for a given period of time. The question of interest is whether there is evidence of a difference in the effect of diet on weight gains."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#independent-two-sample-1",
+    "href": "content/slides/w4-slides.html#independent-two-sample-1",
+    "title": "Week 4",
+    "section": "Independent two-sample",
+    "text": "Independent two-sample\nExample: fat rats\n\n\n\nSubject\nDiet 1 (\\(Y_1\\))\nDiet 2 (\\(Y_2\\))\n\n\n\n\n1\n37.8\n12.3\n\n\n2\n27.5\n14.3\n\n\n3\n41.2\n19.2\n\n\n4\n26.5\n4.0\n\n\n5\n28.6\n25.9\n\n\n\n\nNote:\n\n\n There is no pairing between subjects\n\n\n We can permute (rearrange) the observations within each treatment with no effect on our results"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#independent-two-sample-2",
+    "href": "content/slides/w4-slides.html#independent-two-sample-2",
+    "title": "Week 4",
+    "section": "Independent two-sample",
+    "text": "Independent two-sample\nExample: fat rats\nRecall the formula for a t-test:\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}}\\]\nHow can we get this to fit the experiment?"
   }
 ]

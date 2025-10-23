@@ -36,3 +36,75 @@ format:
 ::: box-1-list
 [{{< fa chart-simple >}}]{.margin-1} Analysis of Variance (ANOVA)
 :::
+
+# Independent, two-sample *t* tests
+
+## Comparing two samples: overview
+
+::: box-6-list
+There are two types of two-sample experiments: [paired]{.highlight-tomato} two-sample and [independent]{.highlight-tomato} (unpaired) two-sample
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> The paired two-sample *t* test is essentially a one-sample *t* test of the differences between the pairs
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> In an independent two-sample study, there are two treatments, but there is no direct relationship between observations in the two treatments. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This means that we can re-arrange the data within each column with no effect on the result of the test. 
+:::
+
+. . . 
+
+::: {.callout-important}
+## Remember!
+It's critical that we always analyze an experiment consistent with the manner in which the data were collected.
+:::
+
+## Independent two-sample
+**Example: fat rats**
+
+::: box-6-list
+A vet researcher is interested in comparing the effects of two diets on the weight gains of juvenile rats. A total of 5 rats were assigned to diet type A and another 5 rats were assigned to diet type B. The weight gains (in grams) were recorded for a given period of time. The question of interest is whether there is evidence of a difference in the effect of diet on weight gains.
+:::
+
+## Independent two-sample
+**Example: fat rats**
+
+| Subject | Diet 1 ($Y_1$) | Diet 2 ($Y_2$) |
+|---------|----------------|----------------|
+| 1       | 37.8           | 12.3           |
+| 2       | 27.5           | 14.3           |
+| 3       | 41.2           | 19.2           |
+| 4       | 26.5           | 4.0            |
+| 5       | 28.6           | 25.9           |
+
+::: indented-text
+Note: 
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> There is *no* pairing between subjects
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We can permute (rearrange) the observations within each treatment with no effect on our results
+:::
+
+## Independent two-sample
+**Example: fat rats**
+
+Recall the formula for a *t*-test:
+
+$$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}}$$
+
+How can we get this to fit the experiment?
