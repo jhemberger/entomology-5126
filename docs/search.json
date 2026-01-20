@@ -2108,7 +2108,7 @@
     "href": "content/w3-content.html",
     "title": "Week 3",
     "section": "",
-    "text": "Tip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n    View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
     "crumbs": [
       "Content",
       "Module 2: Reviewing foundations in statistics",
@@ -2120,7 +2120,7 @@
     "href": "content/w3-content.html#slides",
     "title": "Week 3",
     "section": "",
-    "text": "Tip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n    View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
     "crumbs": [
       "Content",
       "Module 2: Reviewing foundations in statistics",
@@ -2931,5 +2931,29 @@
     "title": "Week 4",
     "section": "Analysis of variance (ANOVA)",
     "text": "Analysis of variance (ANOVA)\nTwo-way ANOVA | The ANOVA table\n\n\n\n\n\n\n\n\n\nSource\ndf\nSS\nMS\n\n\n\n\nFactor A\n\\(a - 1\\)\n(see PES pg. 305)\n\\(\\frac{SS_{factor A}}{df_{factor A}}\\)\n\n\nFactor B\n\\(b - 1\\)\n(see PES pg. 305)\n\\(\\frac{SS_{factor B}}{df_{factor B}}\\)\n\n\nA x B interaction\n\\((a-1)(b-1)\\)\n(see PES pg. 305)\n\\(\\frac{SS_{interaction}}{df_{interaction}}\\)\n\n\nError\n\\(ab(n-1)\\)\n(see PES pg. 305)\n\\(\\frac{SS_{error}}{df_{error}}\\)\n\n\nTotal\n\\(abn-1\\)\n(see PES pg. 305)\n\n\n\n\n\nHere, you can test 3 \\(F\\)-ratios: two main effects and their interaction. All use the \\(MS_{error}\\) term in the denominator!"
+  },
+  {
+    "objectID": "content/w4-content.html",
+    "href": "content/w4-content.html",
+    "title": "Week 4",
+    "section": "",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "crumbs": [
+      "Content",
+      "Module 2: Reviewing foundations in statistics",
+      "Week 4: More t-tests and ANOVA"
+    ]
+  },
+  {
+    "objectID": "content/w4-content.html#slides",
+    "href": "content/w4-content.html#slides",
+    "title": "Week 4",
+    "section": "",
+    "text": "View slides in full screen\n       \n      \n    \n  \n\n\n\n\n\n\nTip\n\n\n\nTip: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
+    "crumbs": [
+      "Content",
+      "Module 2: Reviewing foundations in statistics",
+      "Week 4: More t-tests and ANOVA"
+    ]
   }
 ]
