@@ -108,3 +108,479 @@ Recall the formula for a *t*-test:
 $$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}}$$
 
 How can we get this to fit the experiment?
+
+## Independent two-sample
+**Example: fat rats**
+
+::: box-6-list
+Let $\mu_A =$ the population mean weight gain of rats that are assigned diet A and $\mu_B =$ the population mean weight gain of rats that are assigned diet B. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We want to test: 
+:::
+
+$$H_0 : \mu_A = \mu_B \:\:\ vs \:\:\ H_A : \mu_A ≠ \mu_B$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We can think about this in a similar way as a paired t-test, in that we can use the difference in the sample means ($\bar{Y_A} - \bar{Y_B}$) to mathematically assess our null and alternative hypothesis. 
+:::
+
+## Independent two-sample
+**Example: fat rats**
+
+::: box-6-list
+Let $\mu_{\bar{Y_A}-\bar{Y_B}} = \mu_A - \mu_B$ (i.e., the mean of the sample differences approximates the difference between our populations)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Using a normal distribution, we can then calculate the test statistic as: 
+:::
+
+$$T = \frac{\bar{Y_A}-\bar{Y_B} - \mu_{\bar{Y_A}-\bar{Y_B}}}{S_{\bar{Y_A}-\bar{Y_B}}}$$ on $n_1 + n_2 - 2$ degrees of freedom
+
+
+## Independent two-sample
+**Example: fat rats | assumptions**
+
+::: {.incremental}
+1. Assume two independent samples $Y_A$ and $Y_B$.
+2. The variances are the same in our two samples: $\sigma_1^2 = \sigma_2^2 = \sigma^2$
+3. The first sample $Y_{A1}, Y_{A2},...,Y_{An_A}$ is a random sample of size $n_A$ from $N(\mu_A, \sigma_A^2)$. The second sample $Y_{B1}, Y_{B2},...,Y_{Bn_B}$ is a random sample of size $n_B$ from $N(\mu_B, \sigma_B^2)$.
+:::
+
+. . . 
+
+::: {.callout-note}
+## Note:
+Sample sizes for the two groups do *not* have to be equal.
+:::
+
+## Independent two-sample
+**Example: fat rats | setup the test statistic**
+
+Under our assumptions: 
+
+$$\bar Y_A\sim N(\mu_A,\frac{\sigma^2}{n_A}),\quad \bar Y_B\sim N(\mu_B,\frac{\sigma^2}{n_B})$$
+
+. . . 
+
+The expectation of $\bar{Y_A}-\bar{Y_B}$ is:
+
+\begin{eqnarray*}
+\mu_{\bar Y_A-\bar Y_B}&=&E(\bar Y_A-\bar Y_B)\\
+&=&E(\bar Y_A)-E(\bar Y_B)=\mu_A-\mu_B
+\end{eqnarray*}
+
+. . . 
+
+Thus we want to test: 
+
+$$H_0:\mu_{\bar Y_A-\bar Y_B}=0 \quad{\rm vs}\quad H_A:\mu_{\bar Y_A-\bar Y_B}\neq 0$$
+
+## Independent two-sample
+**Example: fat rats | calculating variance**
+
+::: box-6-list
+Calculating the variance in a two-sample scenario is a bit different because we have two, independent samples and thus two variance estimates to determine!
+:::
+
+. . .
+
+The variance of $\bar{Y_A}-\bar{Y_B}$ is:
+
+\begin{eqnarray*}
+\sigma^2_{\bar Y_A-\bar Y_B}&=&Var(\bar Y_A-\bar Y_B)\\
+&=&Var(\bar Y_A)+Var(\bar Y_B)\\
+&=&\frac{\sigma^2}{n_A} + \frac{\sigma^2}{n_B} = \sigma^2(\frac{1}{n_A}+\frac{1}{n_B})
+\end{eqnarray*}
+
+. . . 
+
+$S^2$ is an estimator of $\sigma^2$, so we can estimate $\sigma^2_{\bar{Y_A}-\bar{Y_B}}$ by $S^2(\frac{1}{n_A}+\frac{1}{n_B})$ and $\sigma_{\bar{Y_A}-\bar{Y_B}}$ by $S\sqrt{\frac{1}{n_A} + \frac{1}{n_B}}$
+
+## Independent two-sample
+**Example: fat rats | calculating variance**
+
+But what is $S^2$ in this case? We know that $S_A^2$ and $S_B^2$ both estimate $\sigma^2$. $S^2$ is a *pooled* estimate of $\sigma^2$: 
+
+$$S^2_p = \frac{(n_A-1)S_A^2+(n_B-1)S_B^2}{n_A+n_B-2}$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $S^2_p$ is the [weighted average]{.highlight-tomato} of the two sample variances, weighted by the total degrees of freedom. This accounts and adjusts for different group sizes. For example, if $n_A$ is larger, we're giving it more weight in the calculation of the pooled variance estimate.
+:::
+
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> If sample sizes are equal, $S_p^2 = \frac{S_A^2 + S_B^2}{2}$ (simple average) and $S = S_p\sqrt{\frac{2}{n}}$.
+:::
+
+## Independent two-sample
+**Example: fat rats | calculating our t-statistic**
+
+Going back to our hypotheses:
+
+$$H_0 : \mu_A = \mu_B \:\:\ vs \:\:\ H_A : \mu_A ≠ \mu_B$$
+
+. . .
+
+Under $H_0$, $\mu_{\bar{Y_A} - \bar{Y_B}} = 0$, and thus: 
+
+$$T=\frac{(\bar Y_A-\bar Y_B)-0}{S_p\sqrt{\frac{1}{n_A}+\frac{1}{n_B}}}\sim T_{n_A+n_B-2}$$
+
+## Independent two-sample
+**Example: fat rats | calculating our t-statistic**
+
+Let's calculate $S_p$. Our observed parameters are: $\bar y_A=32.32,\bar y_B=15.14,s^2_A=44.96, s^2_B=66.28$ with $n_A=n_B=5$.
+
+$$s^2_p=\frac{4\times 44.96+4\times 66.28}{8}=55.62,$$
+
+. . . 
+
+$s_p=\sqrt{55.62}=7.46$, and the observed test statistic is:
+
+$$t=\frac{(32.32-15.14)-0}{7.46\sqrt{1/5+1/5}}= 3.64$$
+
+on df = $n_1+n_2-2=8$.
+
+## Independent two-sample
+**Example: fat rats | concluding our study**
+
+$$t=\frac{(32.32-15.14)-0}{7.46\sqrt{1/5+1/5}}= 3.64$$
+
+on df = $n_1+n_2-2=8$. 
+
+$p$-value is $2\times P(T_{8}\geq 3.64)$, which is less than 0.01.
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> *Reject* $H_0$ at the 5\% level.  There is strong evidence against $H_0$.
+:::
+
+# Analysis of variance (ANOVA)
+
+## Analysis of variance (ANOVA)
+**An overview**
+
+::: box-6-list
+We will continue to work with categorical or factor data (i.e., the type of data for which you'd draw a bar or box plot to depict your experimental results). This requires that we need:
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> A response variable that is ~ normally distributed (or can be transformed as such)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> A dependent variable with 2 or more categories/levels (i.e., treatment and control)
+:::
+
+. . . 
+
+:::{.callout-note}
+## Building on t-tests
+ANOVAs will build on the methods we've already learned, but expand them to allow us to compare more than two categories!
+:::
+
+## Analysis of variance (ANOVA)
+**Why ANOVA?**
+
+::: box-6-list
+In ecology, we often have more than two groups or treatments that we want to compare!
+:::
+
+:::{.incremental}
+1. Weight gain of horses on 3 diets as well as a control
+2. Growth responses of plants on 3 different fertilizer regimes
+3. Nesting habits of swallows provided with 3 different nest box designs
+:::
+
+. . . 
+
+But why don't we just use what we've already learned and do comparisons across all possible pairings using independent, two-sample t-tests?
+
+## Analysis of variance (ANOVA)
+**Why ANOVA?**
+
+::: box-6-list
+ANOVA provides us with a method to compare more than two treatments without inflating our type-1 error rate
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> One-way ANOVA can be viewed as an extension of the independent two-sample case to multiple, independent samples
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> As the name suggests, we'll work to analyze how the variance is [partitioned]{.highlight-tomato} across our samples, using a concept called the sum of squares
+:::
+
+$$\sum(Y_i-\bar{Y})^2$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> First, we'll reconsider our independent, two-sample case and then generalize to multiple, independent samples.
+:::
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Independent two samples**
+
+Consider the following independent samples:
+
+:::{.center-x}
+`x: 4, 12, 8`</br>
+`y: 17, 8, 11`
+:::
+
+</br>
+</br>
+</br>
+
+. . . 
+
+The summary statistics for these samples are:
+
+\begin{eqnarray*}
+&&\bar x = 8, \quad s_x^2 = 16, \quad \sum_{i=1}^3 (x_i-\bar x)^2 = 32 \\
+&&\bar y = 12, \quad s_y^2 = 21, \quad \sum_{i=1}^3 (y_i-\bar y)^2 = 42 \\
+&&\quad s_p^2 = 18.5
+\end{eqnarray*}
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Independent two samples**
+
+For testing $H_0:\mu_1=\mu_2$ vs $H_A:\mu_1\neq\mu_2$, use $t$-test:
+
+$$T = \frac{(12-8)-0}{\sqrt{18.5(1/3+1/3)}}=1.14$$
+
+on df = 4. The two-side $p$-value is 0.1590.
+
+. . . 
+
+::: box-6-list
+Thus do not reject $H_0$ at $\alpha=5\%$ and there is no evidence against $H_0$.
+:::
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Partitioning sums of squares**
+
+::: box-6-list
+We can answer the same question by partitioning the sums of squares
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We will split up (partition) the variance present in the system into components
+:::
+
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $SS_{total} = SS_{treatment} + SS_{error}$
+:::
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Total sum of squares**
+
+To calculate $SS_{total}$, imagine that all of the observations are from a single population. The overall mean is: 
+
+$$\frac{4+12+8+17+8+11}{6}=10$$
+
+. . . 
+
+and the $SS_{total}$ is:
+
+$$(4-10)^2+(12-10)^2+(8-10)^2+(17-10)^2+$$ \br
+$$(8-10)^2+(11-10)^2=98$$
+
+on $df = 5$.
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Treatment sum of squares**
+
+To calculate $SS_{treatment}$, we ask the question: how much of the $SS_{total}$ be attributed to the differences *between* treatment groups? To get at this, we replace each observation in the dataset with the group mean:
+
+:::{.center-x}
+`x: 8, 8, 8`</br>
+`y: 12, 12, 12`
+:::
+
+</br>
+</br>
+</br>
+
+. . . 
+
+The overall mean here is then:
+
+$$\frac{8+8+8+12+12+12}{6}=10$$
+
+and the $SS_{treatment}$ is: 
+
+$$(8-10)^2+(8-10)^2+(8-10)^2+(12-10)^2+$$ \br
+$$(12-10)^2+(12-10)^2=24$$
+
+on $df=1$.
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Error sum of squares**
+
+To calculate $SS_{error}$, we ask the question: how much of the $SS_{total}$ be attributed to the differences *within* treatment groups (i.e., how variable are measurements within our groups)? To get at this, we sum the squared differences between each observation and its group mean:
+
+. . . 
+
+$$(4-8)^2+(12-8)^2+(8-8)^2+(17-12)^2+$$ \br
+$$(8-12)^2+(11-12)^2=74$$
+
+on $df=4$
+
+. . . 
+
+:::{.callout-note}
+## Note:
+The $\frac{SS_{error}}{df_{error}} = 18.5 = s_p^2$ from our two-sample t-test!
+:::
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Relationship of sums of squares**
+
+Folks that have done this before may recall that these sums of squares are related, and we can calculate them by: 
+
+$$SS_{total} = SS_{treatment} + SS_{error} (98=24+74)$$ \br
+$$df_{total} = df_{treatment} + df_{error} (5=1+4)$$
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | The ANOVA table**
+
+| Source    | *df* | SS | MS   |
+|-----------|------|----|------|
+| Treatment | 1    | 24 | 24   |
+| Error     | 4    | 74 | 18.5 |
+| Total     | 5    | 98 | -    |
+
+Here, MS is the mean square, or the average variability from a source of variation: the between group variation [the treatment], or within group variation [the error].
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | The ANOVA table**
+
+| Source    | *df*   | SS                                                | MS                                     |
+|-----------|--------|---------------------------------------------------|----------------------------------------|
+| Treatment | a-1    | $\sum_{i=1}^{a}\sum_{j=1}^{n}(\bar{Y_i}-\bar{Y})^2$ | $\frac{SS_{treatment}}{df_{treatment}}$ |
+| Error     | a(n-1) | $\sum_{i=1}^{a}\sum_{j=1}^{n}(Y_{i,j}-\bar{Y_i})^2$ | $\frac{SS_{error}}{df_{error}}$         |
+| Total     | an-1   | $\sum_{i=1}^{a}\sum_{j=1}^{n}(Y_{i,j}-\bar{Y})^2$   | -                                      |
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> [$n$]{.highlight-tomato} denotes the number of observations within each group. [$a$]{.highlight-tomato} is the number of treatment groups (e.g., types of diet)
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> The $F$-ratio is simply $\frac{MS_{treatment}}{MS_{error}}$ on the degrees of freedom associated with the treatment and error terms, respectively. 
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> From the $F$-statistic, we can calculate a p-value and evaluate the support for our null hypothesis. 
+:::
+
+## Analysis of variance (ANOVA)
+**One-way ANOVA | Back to our samples! Let's do the F-test...**
+
+Considering the following independent samples:
+
+:::{.center-x}
+`x: 4, 12, 8`</br>
+`y: 17, 8, 11`
+:::
+
+</br>
+</br>
+</br>
+
+. . . 
+
+Here, the observed $f=24/18.5=1.30$.
+
+. . . 
+
+Compare this to an $F$-distribution with 1 and 4 df in the numerator and denominator, respectively: $F_{1,4}$.
+
+. . . 
+
+The (one-sided) p-value $P(F_{1,4}\geq 1.30)$ is 0.6523. 
+
+. . . 
+
+:::box-6-list
+Do not reject $H_0$ at the 10% level. There is no evidence against $H_0$.
+:::
+
+## 
+
+:::{.center-xy}
+**Cool! But what about when we have an experiment with more than 1 treatment factor (e.g., temperature and precipitation?)**
+:::
+
+## Analysis of variance (ANOVA)
+**Two-way ANOVA**
+
+:::box-6-list
+In a factorial design, two (or more) categorical variables are "crossed" with one another (e.g., two levels of temperature and two levels of irrigation)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This design, also called a fully-factorial, or full-crossed design, yields 4 total treatment combinations that we *could* analyze in a 1-way ANOVA.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> However, such an approach only allows us to determine the impact of each treatment independently, and not their combined or interactive effects with one another!
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Two-way ANOVAs let us specifically model the [interaction]{.highlight-tomato} term that examines whether the effect of one treatment variable varies depending on the level of the other treatment.
+:::
+
+## Analysis of variance (ANOVA)
+**Two-way ANOVA | The ANOVA table**
+
+| Source            	| *df*         	| SS                	| MS                                          	|
+|-------------------------	|--------------	|----------------------------	|---------------------------------------------	|
+| Factor A          	| $a - 1$      	| (see PES pg. 305) 	| $\frac{SS_{factor A}}{df_{factor A}}$       	|
+| Factor B          	| $b - 1$      	| (see PES pg. 305) 	| $\frac{SS_{factor B}}{df_{factor B}}$       	|
+| A x B interaction 	| $(a-1)(b-1)$ 	| (see PES pg. 305) 	| $\frac{SS_{interaction}}{df_{interaction}}$ 	|
+| Error             	| $ab(n-1)$    	| (see PES pg. 305) 	| $\frac{SS_{error}}{df_{error}}$             	|
+| Total             	| $abn-1$      	| (see PES pg. 305) 	|                                             	|
+
+. . . 
+
+Here, you can test 3 $F$-ratios: two main effects and their interaction. All use the $MS_{error}$ term in the denominator!
