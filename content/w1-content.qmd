@@ -10,6 +10,6 @@ format: html
 
 {{< revealjs file="slides/w1-slides.html" height="500px" class="ratio ratio-16x9" >}}
 
-:::{.callout-tip}
+::: callout-tip
 **Tip**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
 :::
