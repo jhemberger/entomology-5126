@@ -329,7 +329,7 @@
     "href": "content/slides/w1-slides.html#data-handling-3",
     "title": "Week 1",
     "section": "Data handling",
-    "text": "Data handling\nBest practices\n\nBacking up your data is of utmost importance. Follow the 3-2-1 rule:\n\n{.absolute-width=“800” .center-x}"
+    "text": "Data handling\nBest practices\n\nBacking up your data is of utmost importance. Follow the 3-2-1 rule:"
   },
   {
     "objectID": "content/slides/w1-slides.html#data-handling-4",
@@ -2138,5 +2138,12 @@
     "title": "Resources",
     "section": "",
     "text": "Test."
+  },
+  {
+    "objectID": "content/slides/w1-slides.html#data-handling-resources",
+    "href": "content/slides/w1-slides.html#data-handling-resources",
+    "title": "Week 1",
+    "section": "Data handling: resources",
+    "text": "Data handling: resources"
   }
 ]

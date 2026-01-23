@@ -294,12 +294,14 @@ Data management plans should stress: ***data integrity*** and ***reproducible re
 Following a rigorous data management plan will help future you to:
 :::
 
+::: {.incremental}
 1.  Remember how and why you performed specific analyses
 2.  Quickly and simply modify analyses and figures long after you have moved on to other projects
 3.  Quickly reconfigure previous coding tasks so you don’t have to reinvent processes
 4.  Indicate rigor, trustworthiness, and transparency to other professionals
 5.  Increase paper citation rates and allow data and code citation in addition to manuscripts
 6.  Meet journal requirements[^1]
+:::
 
 [^1]: List adapted from [Schulte-Moore data management plan](https://faculty.sites.iastate.edu/lschulte/lab-data-and-file-management-sops)
 
@@ -311,7 +313,7 @@ Following a rigorous data management plan will help future you to:
 Backing up your data is of utmost importance. Follow the `3-2-1` rule:
 :::
 
-![](slide_media/w1/321-rule.png){.absolute-width="800" .center-x}
+![](slide_media/w1/321-rule.png)
 
 ## Data handling {.smaller}
 
@@ -320,6 +322,13 @@ Backing up your data is of utmost importance. Follow the `3-2-1` rule:
 ::: box-1-list
 Data privacy & sensitive data
 :::
+
+
+![](slide_media/w1/ferpa.png){width="60%" fig-align="center"}
+
+
+![](slide_media/w1/hipaa){width="60%" fig-align="center"}
+
 
 ## Data handling {.smaller}
 
@@ -431,7 +440,7 @@ I recommend keeping this metadata file as a separate plain-text or Markdown file
 
 ### Metadata: example
 
-![](){width="50%" fig-align="center"}
+![](slide_media/w1/metadata.png){width="100%" fig-align="center"}
 
 ## Data handling {.smaller}
 
@@ -487,3 +496,6 @@ Most of us will work primarily with `.csv` files, and these are most often the f
 ::: box-1-list
 [{{< fa code >}}]{.med-text} Develop clear documentation and metadata surrounding your data set
 :::
+
+## Data handling: resources
+
