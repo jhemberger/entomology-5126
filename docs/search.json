@@ -1801,7 +1801,7 @@
     "href": "content/slides/w2_1-slides.html#realms-of-statistics",
     "title": "Week 2",
     "section": "Realms of statistics",
-    "text": "Realms of statistics\nDescriptive statistics\n\nDisplaying and summarizing the main features of data in a sample\n\n e.g., mean, median, mode, max, min"
+    "text": "Realms of statistics\nDescriptive statistics\n\nDisplaying and summarizing the main features of data in a sample\n\n\n e.g., mean, median, mode, max, min"
   },
   {
     "objectID": "content/slides/w2_1-slides.html#realms-of-statistics-1",
@@ -1815,7 +1815,7 @@
     "href": "content/slides/w2_1-slides.html#realms-of-statistics-2",
     "title": "Week 2",
     "section": "Realms of statistics",
-    "text": "Realms of statistics\nInferential statistics\nGiven a sample, learn methods to draw conclusions about a population while taking into account uncertainties in the sample.\nIn inferential statistics, properties of a sample are available and conclusions about the population are drawn based on the sample. The approach is inductive (specific  general)"
+    "text": "Realms of statistics\nInferential statistics\nGiven a sample, learn methods to draw conclusions about a population while taking into account uncertainties in the sample.\n\nIn inferential statistics, properties of a sample are available and conclusions about the population are drawn based on the sample. The approach is inductive (specific  general)"
   },
   {
     "objectID": "content/slides/w2_1-slides.html#discussion-questions",
@@ -1829,7 +1829,7 @@
     "href": "content/slides/w2_1-slides.html#bias",
     "title": "Week 2",
     "section": "Bias ",
-    "text": "Bias \n\nBias is an extremely important concept in science and statistics: it is a type of systematic error (as opposed to random error) that can impact:\n\n\n Study design (e.g., improper design of experiment)\n Data collection (e.g., sampling from only one side of a field)\n Statistical analyses (e.g., improperly accounting for confounding variables)\n\n\nCollectively, bias impacts our interpretation of our research and threatens the scientific enterprise writ large. It’s super important that we attempt to control or account for as many potential sources of bias as possible.\nIn this course, one of our objectives is to account for the impact of space and time as a source of bias in our data."
+    "text": "Bias \n\nBias is an extremely important concept in science and statistics: it is a type of systematic error (as opposed to random error) that can impact:\n\n\n Study design (e.g., improper design of experiment)\n\n\n Data collection (e.g., sampling from only one side of a field)\n\n\n Statistical analyses (e.g., improperly accounting for confounding variables)\n\n\nCollectively, bias impacts our interpretation of our research and threatens the scientific enterprise writ large. It’s super important that we attempt to control or account for as many potential sources of bias as possible.\nIn this course, one of our objectives is to account for the impact of space and time as a source of bias in our data."
   },
   {
     "objectID": "content/slides/w2_1-slides.html#probability-is-the-foundation-of-statistics",
@@ -1878,7 +1878,7 @@
     "href": "content/slides/w2_1-slides.html#characterizing-the-variance-of-rv-probability-distribution",
     "title": "Week 2",
     "section": "Characterizing the variance of RV probability distribution",
-    "text": "Characterizing the variance of RV probability distribution\n\nRarely do we need to know the entire distribution, but rather we want to characterize the expectation (i.e., most typical value) and the variance\n\n\n\n Variance of a random variable \\(Y\\) measures the population spread/variability of the probability distribution of \\(Y\\).\n\n\n\n\n Can be thought of as amount \\(Y\\) deviates from the expectation \\(mu_Y\\)\n\n\n\n\n Denoted as \\(Var(Y)\\:or\\:\\sigma^2_Y\\)\n\n\n\n\n Standard deviation is simply the square root of the variance:\n\n\\[\\sigma^2_Y = \\sqrt{Var(Y)}\\]"
+    "text": "Characterizing the variance of RV probability distribution\n\nRarely do we need to know the entire distribution, but rather we want to characterize the expectation (i.e., most typical value) and the variance\n\n\n\n Variance of a random variable \\(Y\\) measures the population spread/variability of the probability distribution of \\(Y\\).\n\n\n\n\n Can be thought of as amount \\(Y\\) deviates from the expectation \\(mu_Y\\)\n\n\n\n\n Denoted as \\(Var(Y)\\:or\\:\\sigma^2_Y\\)\n\n\n\n\n Standard deviation is simply the square root of the variance:\n\n\\[\\sigma_Y = \\sqrt{Var(Y)}\\]"
   },
   {
     "objectID": "content/slides/w2_1-slides.html#independence-of-random-variables",

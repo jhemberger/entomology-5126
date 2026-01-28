@@ -9,6 +9,7 @@ format:
     theme: ["simple", "slide_styles/slide-styles.scss"]
     smaller: true
     # navigation-mode: vertical
+    incremental: true
     slide-number: c/t
     chalkboard: 
       buttons: true
@@ -86,6 +87,8 @@ The art/science of designing and conducting a good experiment or observational s
 
 # Sampling
 
+![](slide_media/w2/pitcher-plant.JPG){width="70%" fig-align="center"}
+
 ## Population vs. sample
 
 . . .
@@ -140,7 +143,9 @@ Together, these elements are used to make [inferences]{.highlight-tomato} about 
 Displaying and summarizing the main features of data in a sample
 :::
 
+:::{.fragment}
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> e.g., `mean`, `median`, `mode`, `max`, `min`]{.indented-text}
+:::
 
 ## Realms of statistics
 
@@ -156,7 +161,9 @@ Probability is the mathematics of chance and randomness. Properties of a populat
 
 Given a sample, learn methods to draw conclusions about a population while taking into account uncertainties in the sample.
 
+:::{.fragment}
 In inferential statistics, properties of a sample are available and conclusions about the population are drawn based on the sample. The approach is [inductive]{.highlight-tomato} (specific {{< fa arrow-right >}} general)
+:::
 
 ## Discussion questions {{< fa comments >}}
 
@@ -190,7 +197,11 @@ Bias is an extremely important concept in science and statistics: it is a type o
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> Study design (e.g., improper design of experiment)]{.indented-text}
 
+. . . 
+
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> Data collection (e.g., sampling from only one side of a field)]{.indented-text}
+
+. . . 
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> Statistical analyses (e.g., improperly accounting for confounding variables)]{.indented-text}
 
@@ -386,7 +397,7 @@ Rarely do we need to know the entire distribution, but rather we want to charact
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> Standard deviation is simply the square root of the variance: 
 :::
 
-$$\sigma^2_Y = \sqrt{Var(Y)}$$
+$$\sigma_Y = \sqrt{Var(Y)}$$
 
 ## Independence of random variables
 ::: box-6-list
