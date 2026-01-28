@@ -1787,7 +1787,7 @@
     "href": "content/slides/w2_1-slides.html#population-vs.-sample-1",
     "title": "Week 2",
     "section": "Population vs. sample",
-    "text": "Population vs. sample\nWe use different symbols/notation for the same parameters depending on whether we’re referring to the population or to the sample\n Mean:\\(\\mu\\) (population) vs \\(\\bar{x}\\) (sample)\n Variance:\\(\\sigma^2\\) (population) vs \\(s^2\\) (sample)"
+    "text": "Population vs. sample\nWe use different symbols/notation for the same parameters depending on whether we’re referring to the population or to the sample\n Mean:\\(\\mu\\) (population) vs \\(\\bar{x}\\) (sample)\n Variance:\\(\\sigma^2\\) (population) vs \\(s^2\\) (sample)\n\n\n\n\n\n\n\nQuestion\n\n\nWhy is it necessary that we distinguish between these two units?"
   },
   {
     "objectID": "content/slides/w2_1-slides.html#the-three-primary-realms-of-statistics",
@@ -1808,7 +1808,7 @@
     "href": "content/slides/w2_1-slides.html#realms-of-statistics-1",
     "title": "Week 2",
     "section": "Realms of statistics",
-    "text": "Realms of statistics\nProbability: the foundation of statistics\nGiven a population, understand the uncertainty associated with taking a sample taken from the population\nProbability is the mathematics of chance and randomness. Properties of a population are assumed as known and questions about a sample are posed and answered. The approach is deductive (general  specific)"
+    "text": "Realms of statistics\nProbability: the foundation of statistics\nGiven a population, understand the uncertainty associated with taking a sample taken from the population\n\nProperties of a population are assumed as known and questions about a sample are posed and answered. The approach is deductive (general  specific)"
   },
   {
     "objectID": "content/slides/w2_1-slides.html#realms-of-statistics-2",
@@ -1829,7 +1829,7 @@
     "href": "content/slides/w2_1-slides.html#bias",
     "title": "Week 2",
     "section": "Bias ",
-    "text": "Bias \n\nBias is an extremely important concept in science and statistics: it is a type of systematic error (as opposed to random error) that can impact:\n\n\n Study design (e.g., improper design of experiment)\n\n\n Data collection (e.g., sampling from only one side of a field)\n\n\n Statistical analyses (e.g., improperly accounting for confounding variables)\n\n\nCollectively, bias impacts our interpretation of our research and threatens the scientific enterprise writ large. It’s super important that we attempt to control or account for as many potential sources of bias as possible.\nIn this course, one of our objectives is to account for the impact of space and time as a source of bias in our data."
+    "text": "Bias \n\nBias is an extremely important concept in science and statistics: it is a type of systematic error (as opposed to random error) that can impact:\n\n\n Study design (e.g., improper design of experiment)\n\n\n Data collection (e.g., sampling from only one side of a field)\n\n\n Statistical analyses (e.g., improperly accounting for confounding variables)\n\n\n Interpretation (e.g., cherry-picking statistics/analyses to support a hypothesis)\n\n\nCollectively, bias impacts our interpretation of our research and threatens the scientific enterprise writ large. It’s super important that we attempt to control or account for as many potential sources of bias as possible.\nIn this course, one of our objectives is to account for the impact of space and time as a source of bias in our data."
   },
   {
     "objectID": "content/slides/w2_1-slides.html#probability-is-the-foundation-of-statistics",

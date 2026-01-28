@@ -115,6 +115,13 @@ We use different symbols/notation for the same parameters depending on whether w
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> Variance:]{.indented-text}[$\sigma^2$]{.med-text} (population) vs [$s^2$]{.med-text} (sample)
 
+. . . 
+
+::: callout-tip
+### Question
+Why is it necessary that we distinguish between these two units?
+:::
+
 ## The three primary realms of statistics
 
 . . .
@@ -153,7 +160,9 @@ Displaying and summarizing the main features of data in a sample
 
 Given a population, understand the uncertainty associated with taking a sample taken from the population
 
-Probability is the mathematics of chance and randomness. Properties of a population are assumed as known and questions about a sample are posed and answered. The approach is [deductive]{.highlight-tomato} (general {{< fa arrow-right >}} specific)
+:::{.fragment}
+Properties of a population are assumed as known and questions about a sample are posed and answered. The approach is [deductive]{.highlight-tomato} (general {{< fa arrow-right >}} specific)
+:::
 
 ## Realms of statistics
 
@@ -206,6 +215,10 @@ Bias is an extremely important concept in science and statistics: it is a type o
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> Statistical analyses (e.g., improperly accounting for confounding variables)]{.indented-text}
 
 . . .
+
+[<i class="fa-solid fa-turn-up fa-rotate-90"></i> Interpretation (e.g., cherry-picking statistics/analyses to support a hypothesis)]{.indented-text}
+
+. . . 
 
 Collectively, bias impacts our interpretation of our research and threatens the scientific enterprise writ large. It's super important that we attempt to control or account for as many potential sources of bias as possible.
 
