@@ -1626,14 +1626,14 @@
     "href": "content/slides/w2_2-slides.html#example-seed-germination-experiment-1",
     "title": "Week 2",
     "section": "Example: Seed germination experiment",
-    "text": "Example: Seed germination experiment\nSuppose there is a 50% chance of each seed germinating:\n\\[\nP(Y) = P(N) = 1/2\n\\]\nThen: \\[\nP(Y = 3) = P(YYY)\\\\\n         = P(Y)P(Y)P(Y)\\\\\n         = 1/2 * 1/2 * 1/2 = 1/8\\\\\nP(Y = 2) = P(YYN \\ or \\ YNY \\ or \\ NYY)\\\\\n         = P(YYN) + P(YNY) + P(NYY)\\\\\n         = P(Y)P(Y)P(N) + P(Y)P(N)P(Y) + P(N)P(Y)P(Y)\\\\\n         = 1/8 + 1/8 + 1/8 = 3/8\n\\]"
+    "text": "Example: Seed germination experiment\nSuppose there is a 50% chance of each seed germinating:\n\\[\nP(Y) = P(N) = 1/2\n\\]\n\nThen: \\[\nP(Y = 3) = P(YYY)\\\\\n         = P(Y)P(Y)P(Y)\\\\\n         = 1/2 * 1/2 * 1/2 = 1/8\\\\\nP(Y = 2) = P(YYN \\ or \\ YNY \\ or \\ NYY)\\\\\n         = P(YYN) + P(YNY) + P(NYY)\\\\\n         = P(Y)P(Y)P(N) + P(Y)P(N)P(Y) + P(N)P(Y)P(Y)\\\\\n         = 1/8 + 1/8 + 1/8 = 3/8\n\\]"
   },
   {
     "objectID": "content/slides/w2_2-slides.html#example-seed-germination-experiment-2",
     "href": "content/slides/w2_2-slides.html#example-seed-germination-experiment-2",
     "title": "Week 2",
     "section": "Example: Seed germination experiment",
-    "text": "Example: Seed germination experiment\nWe can use a line graph to show the probability distribution of \\(Y\\).\n\n\\[Y \\sim Bernoulli(n, p)\\] \\[Y \\sim Bernoulli(3, 0.5)\\]\n\n\n\np(y) |\n     |\n3/8  |     T  T\n     |     |  |\n1/8  |  T  |  |  T\n     |--|--|--|--|--&gt; y\n        0  1  2  3"
+    "text": "Example: Seed germination experiment\nWe can use a line graph to show the probability distribution of \\(Y\\).\n\n\\[Y \\sim Binomial(n, p)\\] \\[Y \\sim Binomial(3, 0.5)\\]\n\n\n\np(y) |\n     |\n3/8  |     T  T\n     |     |  |\n1/8  |  T  |  |  T\n     |--|--|--|--|--&gt; y\n        0  1  2  3"
   },
   {
     "objectID": "content/slides/w2_2-slides.html#poisson-random-variables",
@@ -1668,7 +1668,7 @@
     "href": "content/slides/w2_2-slides.html#properties-of-the-normal-random-probability-distribution",
     "title": "Week 2",
     "section": "Properties of the normal random probability distribution",
-    "text": "Properties of the normal random probability distribution\n\nA random variable \\(Y\\) is said to have a normal distribution with parameters \\(\\mu\\) and \\(\\sigma^2\\) and is written as:\n\n\\[\nY \\sim N(\\mu, \\sigma^2)\n\\]\n\n\n Total area under the distribution curve is 1 (First Axiom)\n\n\n\n\n Distribution is symmtric about the expectation, \\(\\mu\\), such that:\n\n\n\n\\[\nE(Y) = \\mu :\\:\\:\\ Var(Y) = \\sigma^2\n\\]"
+    "text": "Properties of the normal random probability distribution\n\nA random variable \\(Y\\) is said to have a normal distribution with parameters \\(\\mu\\) and \\(\\sigma^2\\) and is written as:\n\n\\[\nY \\sim N(\\mu, \\sigma^2)\n\\]\n\n\n Total area under the distribution curve is 1 (First Axiom)\n\n\n\n\n Distribution is symmetric about the expectation, \\(\\mu\\), such that:\n\n\n\n\\[\nE(Y) = \\mu :\\:\\:\\ Var(Y) = \\sigma^2\n\\]"
   },
   {
     "objectID": "content/slides/w2_2-slides.html#properties-of-the-normal-random-probability-distribution-1",
@@ -1745,7 +1745,7 @@
     "href": "content/slides/w2_2-slides.html#transforming-a-general-normal-variable-to-a-standard-normal-variable-2",
     "title": "Week 2",
     "section": "Transforming a general normal variable to a standard normal variable",
-    "text": "Transforming a general normal variable to a standard normal variable\nSuppose \\(Y\\sim N(20,3^2)\\), what is \\(P(Y\\leq 15.5)\\)?\n\\[\\begin{eqnarray*}\nP(Y\\leq 15.5) &=& P\\left(\\frac{Y-\\mu}{\\sigma}\\leq \\frac{15.5-\\mu}{\\sigma}\\right) \\\\\n&=& P\\left(Z\\leq \\frac{15.5-20}{3}\\right) \\\\\n&=& P(Z\\leq -1.5) \\\\\n&=& 0.0668\n\\end{eqnarray*}\\]"
+    "text": "Transforming a general normal variable to a standard normal variable\nSuppose \\(Y\\sim N(20,3^2)\\), what is \\(P(Y\\leq 15.5)\\)?\n\n\\[\\begin{eqnarray*}\nP(Y\\leq 15.5) &=& P\\left(\\frac{Y-\\mu}{\\sigma}\\leq \\frac{15.5-\\mu}{\\sigma}\\right) \\\\\n&=& P\\left(Z\\leq \\frac{15.5-20}{3}\\right) \\\\\n&=& P(Z\\leq -1.5) \\\\\n&=& 0.0668\n\\end{eqnarray*}\\]"
   },
   {
     "objectID": "content/slides/w2_1-slides.html#a-brief-survey-of-basic-statistical-concepts",
@@ -2145,5 +2145,12 @@
     "title": "Week 1",
     "section": "Data handling: resources",
     "text": "Data handling: resources"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#summary",
+    "href": "content/slides/w2_2-slides.html#summary",
+    "title": "Week 2",
+    "section": "Summary",
+    "text": "Summary\n\nKey to remember here is that for any random variable, whether continuous or discrete, can be characterized by:\n\n\n\n Exact probability values for a particular value (discrete distribution) or interval (continuous distribution) of the variable\n\n\n\n\n An expectation, \\(E(X)\\)\n\n\n\n\n A variance, \\(\\sigma^2(X)\\)\n\n\n\n\nThis information alone can help us to describe our data, calculate probabilities of certain values, test hypotheses, and conduct parameter inference"
   }
 ]

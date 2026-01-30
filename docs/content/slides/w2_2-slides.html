@@ -281,6 +281,7 @@
 <p><span class="math display">\[
 P(Y) = P(N) = 1/2
 \]</span></p>
+<div class="fragment">
 <p>Then: <span class="math display">\[
 P(Y = 3) = P(YYY)\\
          = P(Y)P(Y)P(Y)\\
@@ -290,12 +291,13 @@ P(Y = 2) = P(YYN \ or \ YNY \ or \ NYY)\\
          = P(Y)P(Y)P(N) + P(Y)P(N)P(Y) + P(N)P(Y)P(Y)\\
          = 1/8 + 1/8 + 1/8 = 3/8
 \]</span></p>
+</div>
 </section>
 <section id="example-seed-germination-experiment-2" class="slide level2">
 <h2>Example: Seed germination experiment</h2>
 <p>We can use a line graph to show the probability distribution of <span class="math inline">\(Y\)</span>.</p>
 <div class="fragment">
-<p><span class="math display">\[Y \sim Bernoulli(n, p)\]</span> <span class="math display">\[Y \sim Bernoulli(3, 0.5)\]</span></p>
+<p><span class="math display">\[Y \sim Binomial(n, p)\]</span> <span class="math display">\[Y \sim Binomial(3, 0.5)\]</span></p>
 </div>
 <div class="fragment">
 <div class="center-x">
@@ -385,7 +387,7 @@ Y \sim N(\mu, \sigma^2)
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Distribution is symmtric about the expectation, <span class="math inline">\(\mu\)</span>, such that:</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Distribution is symmetric about the expectation, <span class="math inline">\(\mu\)</span>, such that:</p>
 </div>
 </div>
 <div class="fragment">
@@ -584,14 +586,42 @@ z=\frac{y-\mu}{\sigma}
 <section id="transforming-a-general-normal-variable-to-a-standard-normal-variable-2" class="slide level2">
 <h2>Transforming a general normal variable to a standard normal variable</h2>
 <p>Suppose <span class="math inline">\(Y\sim N(20,3^2)\)</span>, what is <span class="math inline">\(P(Y\leq 15.5)\)</span>?</p>
+<div class="fragment">
 <p><span class="math display">\[\begin{eqnarray*}
 P(Y\leq 15.5) &amp;=&amp; P\left(\frac{Y-\mu}{\sigma}\leq \frac{15.5-\mu}{\sigma}\right) \\
 &amp;=&amp; P\left(Z\leq \frac{15.5-20}{3}\right) \\
 &amp;=&amp; P(Z\leq -1.5) \\
 &amp;=&amp; 0.0668
 \end{eqnarray*}\]</span></p>
+</div>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<div class="box-6-list">
+<p>Key to remember here is that for any random variable, whether continuous or discrete, can be characterized by:</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Exact probability values for a particular value (discrete distribution) or interval (continuous distribution) of the variable</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> An expectation, <span class="math inline">\(E(X)\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> A variance, <span class="math inline">\(\sigma^2(X)\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="box-6-list">
+<p>This information alone can help us to describe our data, calculate probabilities of certain values, test hypotheses, and conduct parameter inference</p>
+</div>
 
 
+</div>
 </section></section>
 
     </div>

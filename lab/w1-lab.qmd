@@ -17,7 +17,7 @@ highlight-style: ayu
 
 <p class="buttons" style="text-align:left;">
 
-{{< fa download >}} [Download lab data](https://canvas.umn.edu/courses/539629/modules/items/15583284){.btn .btn-outline-warning} 
+{{< fa download >}} [Download lab data](https://canvas.umn.edu/courses/539629/modules/items/15583284){.btn .btn-outline-warning}
 
 </p>
 
@@ -25,11 +25,11 @@ highlight-style: ayu
 
 `R` is a software environment for statistical computing and graphics. It's also a word that pirates say, but that's not important right now. `R` is the best statistical software available, is free, and runs on Windows, Macintosh, and Linux platforms. `R` may be downloaded for personal use from `http://www.r-project.org`. `R` is open-source, which means that many people work on it around the world and are constantly improving it. Updated versions are released on the website every 2 months or so. If there is an advancement in statistics, it is incorporated rapidly.
 
-`R` is both a programming language and has an integrated console that allows us to write and compile code. This interface hasn't been updated in 20 years, and serves functionally equivalent to a Mac console or Windows Command Prompt instance. We won't ever (and I don't really recommend that you do) use this way of writing R code. It's cumbersome, error-prone, and lacks many of the quality-of-life enhancements that a modern integrated development environment (IDE) provides. We'll be using [RStudio](https://posit.co/download/rstudio-desktop/) as our IDE of choice in this course. It's the standard for most Bio/Eco folks doing stats, though there are others including [VS Code](https://code.visualstudio.com/) and [Positron](https://positron.posit.co/).  
+`R` is both a programming language and has an integrated console that allows us to write and compile code. This interface hasn't been updated in 20 years, and serves functionally equivalent to a Mac console or Windows Command Prompt instance. We won't ever (and I don't really recommend that you do) use this way of writing R code. It's cumbersome, error-prone, and lacks many of the quality-of-life enhancements that a modern integrated development environment (IDE) provides. We'll be using [RStudio](https://posit.co/download/rstudio-desktop/) as our IDE of choice in this course. It's the standard for most Bio/Eco folks doing stats, though there are others including [VS Code](https://code.visualstudio.com/) and [Positron](https://positron.posit.co/).
 
 ## Installing packages
 
-Like ecology, there are many subdisciplines of statistics. `R` comes as a 'base' package. Depending on what you want to do, this may be sufficient. Often, however, you will need to install a contributed addition to do more specialized tasks, like plotting, modeling, or spatial or temporal analyses. These additions are called "packages." Think of statistics as creating a recipe to analyze your data, where `R` is an oven to bake your creation. Packages, then, are extra features you can add to the oven (e.g., air fryer, stainless steel griddle, extra burner, etc.) if your recipe needs it. These packages don't come with your base installation or R: you'll need to install them. To do this, you can use the package manager (Tools --> Install Packages), or you can write code to do so:
+Like ecology, there are many subdisciplines of statistics. `R` comes as a 'base' package. Depending on what you want to do, this may be sufficient. Often, however, you will need to install a contributed addition to do more specialized tasks, like plotting, modeling, or spatial or temporal analyses. These additions are called "packages." Think of statistics as creating a recipe to analyze your data, where `R` is an oven to bake your creation. Packages, then, are extra features you can add to the oven (e.g., air fryer, stainless steel griddle, extra burner, etc.) if your recipe needs it. These packages don't come with your base installation or R: you'll need to install them. To do this, you can use the package manager (Tools --\> Install Packages), or you can write code to do so:
 
 ```         
 install.packages("packagenamehere")
@@ -37,13 +37,13 @@ install.packages("packagenamehere")
 
 Once installed, these packages are available for your use. However, R doesn't automaticaly load all of your installed packages in when you boot up RStudio as this would slow down your computer by adding a bunch of features/programs that may not be necessary for your particular session. As such, we should take care to only load the packages that we need for a particular analysis. To load packages in, we use the `library()` command:
 
-```       
+```         
 library(whateverpackageyouneed)
 ```
 
-If you're only interested in using a couple of functions from a package, you don't need to load the entire thing into memory. You can directly call functions from packages in your code using the following format: 
+If you're only interested in using a couple of functions from a package, you don't need to load the entire thing into memory. You can directly call functions from packages in your code using the following format:
 
-```
+```         
 superPackage::nifty_function()
 ```
 
@@ -51,7 +51,7 @@ The package name is specified before the double semi-colon, and the function you
 
 I typically start all of my scripts with a chunk of code to load in the appropriate packages. In today's lab, we'll be working mostly in base R, but we'll also use functions from the `janitor` and `tidyverse` ecosystem of data science packages. You can install those and load them now if you'd like!
 
-```
+```         
 install.packages(c("janitor", "tidyverse"))
 library(janitor)
 library(tidyverse)
@@ -93,7 +93,7 @@ It is a good idea to keep a notes while you work. As our analyses get progressiv
 
 A common method of statistical analysis uses "batch files." This is a rather old, but effective, way of conducting analyses. Essentially, one writes the programming code and sends it to the statistical software, either line by line or in large chunks. The computer runs the code, and then gives the output. That could include error messages (hopefully not!), or the results of your analysis. The really nice thing about a batch file is that you can save it and rerun the analysis later. Think of it like writing a recipe (batch file) before putting your creation into the oven (`R`).
 
-The most common batch file interface in `R` is `RStudio` available from `http://www.rstudio.com`. `RStudio` is a free and open source integrated development environment (IDE) for `R`. You can run it on your desktop (Windows, Mac, or Linux) or even over the web using RStudio Server. 
+The most common batch file interface in `R` is `RStudio` available from `http://www.rstudio.com`. `RStudio` is a free and open source integrated development environment (IDE) for `R`. You can run it on your desktop (Windows, Mac, or Linux) or even over the web using RStudio Server.
 
 With `RStudio`, you can write your batch code on one window, and then send directly to `R` that is running in another window (Ctrl-Enter/Command-Enter to send a single line). You can easily save and reload your analyses later by saving the batch file with a ".R" file extension (or using R Notebooks/Markdown documents). `RStudio` also has the advantage of syntactic highlighting. That is, when you mouse over a parenthesis, quotes, etc., the program will highlight its partner. It is an easy way to keep track of missing punctuation that can drive a computer program (and the user!) crazy.
 
@@ -109,7 +109,7 @@ Open your blank file again (File/Open...). See how easy it is to pick up where y
 
 While your cursor is on the `2 + 2` line, hold down `Ctrl` and then press `Enter` to send the code from the script to `R` below. In the `R` console, you should see
 
-```
+```         
 > 2+2
 [1] 4
 ```
@@ -162,7 +162,7 @@ Keep in mind, comments are meant to clarify your code/objects in your code, not 
 
 ## Object-oriented programming
 
-R uses something called "object-oriented" programming. This means that you assign names to various pieces of your data and analyses. You can name things whatever you want to help you keep track. Analyses are performed on these objects, one command at a time through something called a "command line interface." It's like a batch file in slow motion: if there is an error, you will see it instantly. To assign names to various pieces of your data or analyses, simply use an arrow (`<-`), or an equal sign if you prefer. Once you run code creating a new object, you will see this oject pop up in your `Environment` RStudio Pane (typically in the top right of the IDE). 
+R uses something called "object-oriented" programming. This means that you assign names to various pieces of your data and analyses. You can name things whatever you want to help you keep track. Analyses are performed on these objects, one command at a time through something called a "command line interface." It's like a batch file in slow motion: if there is an error, you will see it instantly. To assign names to various pieces of your data or analyses, simply use an arrow (`<-`), or an equal sign if you prefer. Once you run code creating a new object, you will see this oject pop up in your `Environment` RStudio Pane (typically in the top right of the IDE).
 
 The downside to OOP is that you can quickly create many objects that you then have to keep track of and take care to not overwrite (unless you're specifically trying to do so). This makes *consistency* in your naming conventions important. In general, I highly recommend following a fixed coding style (i.e., https://style.tidyverse.org/). This will make debugging analyses faster, and make the lives of your collaborators, reviewers, and other folks who see your code much easier.
 
@@ -190,7 +190,7 @@ R will return the follwing in the console:
 [1] 1 2 3 4 5
 ```
 
-You have just created your first object! Note: when concatenating data, it's important to ensure the elements are of the same data type (i.e., a number, or a "string"). If you concatenate a mixture of numbers and words, R will default to making all of the elements strings making them useless for any arithmatic operations. 
+You have just created your first object! Note: when concatenating data, it's important to ensure the elements are of the same data type (i.e., a number, or a "string"). If you concatenate a mixture of numbers and words, R will default to making all of the elements strings making them useless for any arithmatic operations.
 
 ## Entering data into `R`
 
@@ -198,7 +198,7 @@ Ok, seriously, if you have lots of data, you are not going to enter it one line 
 
 ### Loading Excel files directly into `R`
 
-Disclaimer; I do not use or recommend this method because there are a few "point and click" steps that are difficult to reproduce if you forget a step. I include it because many people use this method and is simple for small datasets. `R Studio` has a menu item labeled "Import Dataset" (File --> Import Dataset) from which one can choose importation from an Excel spreadsheet. Once the file is identified, the data will be shown in a Data Preview screen. You can make adjustments (identifying rows or columns to exclude, for example), by editing options or clicking buttons at the bottom of the screen under Import Options. Notice that as you change options (e.g., excluding the first row as column names), the code that imports the data (bottom right pane) changes. In the interest of *reproducible results*, I start with a simple text file and write the accompanying code to load that data set directly. Then I never have to worry about changes to the recipe. That method is shown below.
+Disclaimer; I do not use or recommend this method because there are a few "point and click" steps that are difficult to reproduce if you forget a step. I include it because many people use this method and is simple for small datasets. `R Studio` has a menu item labeled "Import Dataset" (File --\> Import Dataset) from which one can choose importation from an Excel spreadsheet. Once the file is identified, the data will be shown in a Data Preview screen. You can make adjustments (identifying rows or columns to exclude, for example), by editing options or clicking buttons at the bottom of the screen under Import Options. Notice that as you change options (e.g., excluding the first row as column names), the code that imports the data (bottom right pane) changes. In the interest of *reproducible results*, I start with a simple text file and write the accompanying code to load that data set directly. Then I never have to worry about changes to the recipe. That method is shown below.
 
 ### Loading plain text files directly into `R`
 
@@ -220,7 +220,7 @@ By using object-oriented programming, your data set can be referred to simply as
 
 Sometimes, our raw data files are messy (especially those from our silly collaborators!) and you need to clean them up a bit. The `janitor` package has some great tools to help expediate this process and find errors in raw data files. My personal favorite is the `clean_names()` function: it automatically converts the column headers into names with the same style and convention. Try using this function out on a data file. Open up the help file for this function for some more details on how to use it and what the various arguments do.
 
-```
+```         
 clean.names.df <- clean_names(myniftydata)
 ```
 
@@ -242,7 +242,7 @@ Once you get the data read into `R`, it is a good idea to check the data. There 
 
 -   `str(myniftydata)` returns the structure of your data frame
 
--   `glimpse(myniftydata)`  returns a more thorough and aesthetically clean structure of your data (in the `dplyr` package that is a part of the `tidyverse`)
+-   `glimpse(myniftydata)` returns a more thorough and aesthetically clean structure of your data (in the `dplyr` package that is a part of the `tidyverse`)
 
 Perhaps the most useful command is
 
@@ -262,17 +262,17 @@ myniftydata[rowsIwant, columnsIwant]
 
 It's relatively simple to select various rows or columns. You can either name them, or use the indexing position. A comma separates the row from the column arguments.
 
-- `myniftydata[1:5,2]` selects the first 5 rows in the 2nd column.
+-   `myniftydata[1:5,2]` selects the first 5 rows in the 2nd column.
 
-- `myniftydata[-3,2]` selects all rows EXCEPT the 3rd, in the 2nd column.
+-   `myniftydata[-3,2]` selects all rows EXCEPT the 3rd, in the 2nd column.
 
-- `myniftydata[,2:6]` selects all rows and columns 2 through 6.
+-   `myniftydata[,2:6]` selects all rows and columns 2 through 6.
 
-- `myniftydata[3:5,]` selects rows 3 to 5 of all columns.
+-   `myniftydata[3:5,]` selects rows 3 to 5 of all columns.
 
-- `myniftydata[1:5, c("year","trial")]` selects the first 5 rows of two columns named "year" and "trial."
+-   `myniftydata[1:5, c("year","trial")]` selects the first 5 rows of two columns named "year" and "trial."
 
-The commands above use base `R`. Packages such as `tidyR` have exploded in popularity in the last decade and use a slightly different syntax. Most of you, myself included, are probably best versed in this "Tidyverse" ecosystem. I highly recommend using it over base R as most package development is in line with this coding philosophy (and it will make your life easier). 
+The commands above use base `R`. Packages such as `tidyR` have exploded in popularity in the last decade and use a slightly different syntax. Most of you, myself included, are probably best versed in this "Tidyverse" ecosystem. I highly recommend using it over base R as most package development is in line with this coding philosophy (and it will make your life easier).
 
 ## Objects in memory
 

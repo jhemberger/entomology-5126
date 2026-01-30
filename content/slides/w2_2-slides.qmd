@@ -119,6 +119,8 @@ $$
 P(Y) = P(N) = 1/2
 $$
 
+. . .
+
 Then:
 $$ 
 P(Y = 3) = P(YYY)\\
@@ -136,8 +138,8 @@ We can use a line graph to show the probability distribution of $Y$.
 
 . . . 
 
-$$Y \sim Bernoulli(n, p)$$
-$$Y \sim Bernoulli(3, 0.5)$$
+$$Y \sim Binomial(n, p)$$
+$$Y \sim Binomial(3, 0.5)$$
 
 . . .
 
@@ -237,7 +239,7 @@ $$
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> Distribution is symmtric about the expectation, $\mu$, such that:
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Distribution is symmetric about the expectation, $\mu$, such that:
 :::
 
 . . . 
@@ -468,6 +470,8 @@ For $Y\sim N(20,3^2)$,
 
 Suppose $Y\sim N(20,3^2)$, what is $P(Y\leq 15.5)$?
 
+. . . 
+
 \begin{eqnarray*}
 P(Y\leq 15.5) &=& P\left(\frac{Y-\mu}{\sigma}\leq \frac{15.5-\mu}{\sigma}\right) \\
 &=& P\left(Z\leq \frac{15.5-20}{3}\right) \\
@@ -475,3 +479,32 @@ P(Y\leq 15.5) &=& P\left(\frac{Y-\mu}{\sigma}\leq \frac{15.5-\mu}{\sigma}\right)
 &=& 0.0668
 \end{eqnarray*}
 
+## Summary
+
+::: box-6-list
+Key to remember here is that for any random variable, whether continuous or discrete, can be characterized by:
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Exact probability values for a particular value (discrete distribution) or interval (continuous distribution) of the variable
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> An expectation, $E(X)$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> A variance, $\sigma^2(X)$
+:::
+
+. . . 
+
+::: box-6-list
+This information alone can help us to describe our data, calculate probabilities of certain values, test hypotheses, and conduct parameter inference
+:::
