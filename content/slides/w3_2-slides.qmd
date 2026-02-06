@@ -336,7 +336,7 @@ Six, 1-acre plots are sown with a new variety of wheat. The yields for each plot
 **Wheat yield example**
 
 ::: box-6-list
-Let $\mu$ = population mean yield of this variety of wheat
+Let $\mu$ = population mean yield of this variety of wheat. What are our null and alternative hypotheses?
 :::
 
 . . .

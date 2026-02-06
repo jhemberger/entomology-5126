@@ -546,7 +546,7 @@
     "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-2",
     "title": "Week 3",
     "section": "\\(t\\) significance testing with unknown \\(\\sigma\\)",
-    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\nWheat yield example\n\nLet \\(\\mu\\) = population mean yield of this variety of wheat\n\n\n\n \\(H_0 : \\mu = 20\\)\n\n\n\n\n \\(H_A : \\mu ≠ 20\\)\n\n\n\n\n Under \\(H_0\\), the test statistic is:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} \\sim T_{n-1}\\]"
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\nWheat yield example\n\nLet \\(\\mu\\) = population mean yield of this variety of wheat. What are our null and alternative hypotheses?\n\n\n\n \\(H_0 : \\mu = 20\\)\n\n\n\n\n \\(H_A : \\mu ≠ 20\\)\n\n\n\n\n Under \\(H_0\\), the test statistic is:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} \\sim T_{n-1}\\]"
   },
   {
     "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-3",
