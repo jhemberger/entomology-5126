@@ -155,6 +155,11 @@
 </div>
 <div class="fragment">
 <div class="box-1-list">
+<p><span class="margin-1"><span class="math inline">\(\mu, \sigma^2\)</span></span> Measures of location and spread</p>
+</div>
+</div>
+<div class="fragment">
+<div class="box-1-list">
 <p><span class="margin-1"><em>n</em>-1</span> Degrees of freedom</p>
 </div>
 </div>
@@ -244,36 +249,93 @@
 </div>
 </section></section>
 <section>
-<section id="degrees-of-freedom" class="title-slide slide level1 center">
-<h1>Degrees of Freedom</h1>
+<section id="measures-of-spread-and-location" class="title-slide slide level1 center">
+<h1>Measures of spread and location</h1>
 
 </section>
-<section id="df-degrees-of-what" class="slide level2">
-<h2><em>df</em>: degrees of what?</h2>
+<section id="the-values-we-often-care-most-about-in-our-data" class="slide level2">
+<h2>The values we often care most about in our data…</h2>
 <div class="box-6-list">
-<p>We’re putting all of the pieces in place to begin doing statistical tests of our data</p>
+<p>As we discussed last week, we often don’t care about the entire population distribution that our data come from – we want to know something about the expected value (the mean, <span class="math inline">\(\mu\)</span>) and the variation, or variance, around this value (<span class="math inline">\(\sigma^2\)</span>). We will most often work with…</p>
 </div>
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> A key component of most statistical tests is the <span class="highlight-tomato">degrees of freedom</span> of the reference distribution of our tests statistic (e.g., <em>t</em>, <em>F</em>)</p>
+<div class="fragment">
+<p>The arithmetic mean: <span class="math inline">\(\bar{Y} = \frac{\sum_{i=1}^{n}Y_i}{n}\)</span></p>
 </div>
+<div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> It’s very important, but can be a bit of a mind-bending process to fully comprehend. Let’s break it down.</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This value is an unbiased estimate of our population mean, <span class="math inline">\(\mu\)</span>, provided that: (1) our observations are</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> (1) our observations are randomly sampled</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> (2) our observations are independent of one another</p>
+</div>
 </div>
 </section>
-<section id="example-using-sample-variance" class="slide level2">
-<h2>Example using sample variance</h2>
-<div class="fragment">
-<p>We learned that sample variance (<span class="math inline">\(s^2\)</span>) is calculated as:</p>
-<p><span class="math display">\[
-s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
-\]</span></p>
-<p>where <span class="math inline">\(x\)</span> is a given sample, and <span class="math inline">\(\bar x\)</span> is the sample mean.</p>
-</div>
-<div class="fragment">
+<section id="the-values-we-often-care-most-about-in-our-data-1" class="slide level2">
+<h2>The values we often care most about in our data…</h2>
 <div class="box-6-list">
-<p>Why do we divide by <span class="math inline">\(n-1\)</span> but not by <span class="math inline">\(n\)</span>?</p>
+<p>As we discussed last week, we often don’t care about the entire population distribution that our data come from – we want to know something about the expected value (the mean, <span class="math inline">\(\mu\)</span>) and the variation, or variance, around this value (<span class="math inline">\(\sigma^2\)</span>). We will most often work with…</p>
+</div>
+<div class="fragment">
+<p>The variance: <span class="math inline">\(s^2 = \frac{\sum_{i=1}^{n}(Y_i - \bar{Y})^2}{n}\)</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Here, we calculate variance by subtracting our mean value from our observed values and squaring them (this is called the sum of squares) and divide by the sample size, <span class="math inline">\(n\)</span>.</p>
 </div>
 </div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> However, if we utilize this calculation to estimate our population variance using our sample variance, we will ALWAYS <em>underestimate</em> the true value.</p>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{\sum_{i=1}^{n}(Y_i - \bar{Y})^2}{n} &lt; \frac{\sum_{i=1}^{n}(Y_i - \mu)^2}{n}
+\]</span></p>
+</div>
+</section></section>
+<section>
+<section id="degrees-of-freedom" class="title-slide slide level1 center">
+<h1>Degrees of Freedom</h1>
+<!--
+## *df*: degrees of what? 
+::: box-6-list
+We're putting all of the pieces in place to begin doing statistical tests of our data
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> A key component of most statistical tests is the [degrees of freedom]{.highlight-tomato} of the reference distribution of our tests statistic (e.g., *t*, *F*)
+:::
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> It's very important, but can be a bit of a mind-bending process to fully comprehend. Let's break it down.
+:::
+
+## Example using sample variance
+
+. . . 
+
+We learned that sample variance ($s^2$) is calculated as: 
+
+$$
+s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
+$$
+
+where $x$ is a given sample, and $\bar x$ is the sample mean.
+
+. . . 
+
+::: box-6-list
+Why do we divide by $n-1$ but not by $n$?
+:::
+-->
 </section>
 <section id="degrees-of-freedom-1" class="slide level2">
 <h2>Degrees of freedom</h2>
@@ -306,30 +368,21 @@ s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
 <p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(n\)</span> is equal to the sample size</span></p>
 <div class="fragment">
 <p><span class="indented-text"><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(p\)</span> is equal to the number of parameters (restrictions) that are imposed)</span></p>
+<!--
+## Practical implications for *df*
+::: box-6-list
+Dividing by $n$ will [consistently underestimate the variance of a population]{.highlight-tomato}. This, in effect, is because when we divide by $n$, we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance ($s^2$) that will ***always*** be smaller than the true population variance ($\sigma^2$). 
+:::
+
+. . . 
+
+:::{.callout-important}
+This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with [biased]{.highlight-tomato} estimates of our parameters, and this can lead to inflated error rates in our statistical tests and inference.
+:::
+-->
 </div>
 </section>
 <section id="practical-implications-for-df" class="slide level2">
-<h2>Practical implications for <em>df</em></h2>
-<div class="box-6-list">
-<p>Dividing by <span class="math inline">\(n\)</span> will <span class="highlight-tomato">consistently underestimate the variance of a population</span>. This, in effect, is because when we divide by <span class="math inline">\(n\)</span>, we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance (<span class="math inline">\(s^2\)</span>) that will <strong><em>always</em></strong> be smaller than the true population variance (<span class="math inline">\(\sigma^2\)</span>).</p>
-</div>
-<div class="fragment">
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Important</strong></p>
-</div>
-<div class="callout-content">
-<p>This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with <span class="highlight-tomato">biased</span> estimates of our parameters, and this can lead to inflated error rates in our statistical tests and inference.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="practical-implications-for-df-1" class="slide level2">
 <h2>Practical implications for <em>df</em></h2>
 <div class="box-6-list">
 <p>More degrees of freedom means that we have more independent pieces of information with which to estimate our parameter of choice. This leads to more <em>precise</em> estimates, and more <em>powerful</em> statistical tests.</p>
@@ -360,7 +413,7 @@ s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> To meet this assumption, we have a couple of options. <span class="highlight-tomato">Transforming</span> our data is one of the options that we have.</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> To meet this assumption, we have a couple of options. The central limit theorem helps us out for any tests involving the mean of <span class="math inline">\(n\)</span> random samples. But sometimes this isn’t enough. <span class="highlight-tomato">Transforming</span> our data is another one of the options that we have.</p>
 </div>
 </div>
 </section>
@@ -423,7 +476,7 @@ s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we use <span class="math inline">\(log(x_1)\)</span>. Why?</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we use <span class="math inline">\(log(x+1)\)</span>. Why?</p>
 </div>
 </div>
 <div class="fragment">
@@ -444,7 +497,7 @@ s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> For analyzing proportion data, there are better methods such as using logistic regression (i.e., a GLM).</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> For analyzing proportion data, there are other methods such as using logistic or beta regression (i.e., a GLM).</p>
 </div>
 </div>
 </section>

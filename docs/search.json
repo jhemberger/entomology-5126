@@ -84,7 +84,7 @@
     "href": "content/slides/w3_1-slides.html#the-beginnings-of-statistical-analyses",
     "title": "Week 3",
     "section": "The beginnings of statistical analyses",
-    "text": "The beginnings of statistical analyses\n\n\n Statistical method\n\n\n\n\nn-1 Degrees of freedom\n\n\n\n\n Data transformations"
+    "text": "The beginnings of statistical analyses\n\n\n Statistical method\n\n\n\n\n\\(\\mu, \\sigma^2\\) Measures of location and spread\n\n\n\n\nn-1 Degrees of freedom\n\n\n\n\n Data transformations"
   },
   {
     "objectID": "content/slides/w3_1-slides.html#statistical-method-1",
@@ -154,7 +154,7 @@
     "href": "content/slides/w3_1-slides.html#practical-implications-for-df",
     "title": "Week 3",
     "section": "Practical implications for df",
-    "text": "Practical implications for df\n\nDividing by \\(n\\) will consistently underestimate the variance of a population. This, in effect, is because when we divide by \\(n\\), we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance (\\(s^2\\)) that will always be smaller than the true population variance (\\(\\sigma^2\\)).\n\n\n\n\n\n\n\n\nImportant\n\n\nThis is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with biased estimates of our parameters, and this can lead to inflated error rates in our statistical tests and inference."
+    "text": "Practical implications for df\n\nMore degrees of freedom means that we have more independent pieces of information with which to estimate our parameter of choice. This leads to more precise estimates, and more powerful statistical tests.\n\n\n\n\ndf and \\(t\\) distribution \n\ndf and \\(\\chi^2\\) distribution"
   },
   {
     "objectID": "content/slides/w3_1-slides.html#practical-implications-for-df-1",
@@ -168,7 +168,7 @@
     "href": "content/slides/w3_1-slides.html#why-transform-data",
     "title": "Week 3",
     "section": "Why transform data?",
-    "text": "Why transform data?\n\nMost of the parametric (i.e., “classical”) statistical analyses we conduct depend on an assumption of data that are independent and normally distributed (or have residuals that are normally distributed).\n\n\n\n Most of the time in ecology, this ain’t the case!\n\n\n\n\n To meet this assumption, we have a couple of options. Transforming our data is one of the options that we have."
+    "text": "Why transform data?\n\nMost of the parametric (i.e., “classical”) statistical analyses we conduct depend on an assumption of data that are independent and normally distributed (or have residuals that are normally distributed).\n\n\n\n Most of the time in ecology, this ain’t the case!\n\n\n\n\n To meet this assumption, we have a couple of options. The central limit theorem helps us out for any tests involving the mean of \\(n\\) random samples. But sometimes this isn’t enough. Transforming our data is another one of the options that we have."
   },
   {
     "objectID": "content/slides/w3_1-slides.html#what-transformations-do",
@@ -189,14 +189,14 @@
     "href": "content/slides/w3_1-slides.html#examples-of-transformations-logarithmic",
     "title": "Week 3",
     "section": "Examples of transformations: logarithmic",
-    "text": "Examples of transformations: logarithmic\n\nThe log transformation (\\(log(x)\\)) is used to normalize very skewed count data (i.e., data that has a long tail).\n\n\n\n Most of the time, when we say log transformed, we are referrng ot the natural log [\\(ln(x)\\)] and NOT the base-10 log [\\(log_{10}(x)\\)]\n\n\n\n\n Often, we use \\(log(x_1)\\). Why?\n\n\n\n\n Knowing which base you are using is important for back-transforming your data to interpret/plot"
+    "text": "Examples of transformations: logarithmic\n\nThe log transformation (\\(log(x)\\)) is used to normalize very skewed count data (i.e., data that has a long tail).\n\n\n\n Most of the time, when we say log transformed, we are referrng ot the natural log [\\(ln(x)\\)] and NOT the base-10 log [\\(log_{10}(x)\\)]\n\n\n\n\n Often, we use \\(log(x+1)\\). Why?\n\n\n\n\n Knowing which base you are using is important for back-transforming your data to interpret/plot"
   },
   {
     "objectID": "content/slides/w3_1-slides.html#examples-of-transformations-angular-arcsin",
     "href": "content/slides/w3_1-slides.html#examples-of-transformations-angular-arcsin",
     "title": "Week 3",
     "section": "Examples of transformations: angular (arcsin)",
-    "text": "Examples of transformations: angular (arcsin)\n\nThe angular transformation \\(arcsin(\\sqrt x)\\) is used to normalize proportional data between 0 and 1.\n\n\n\n This method can have distinct problems if your sample size for each proportion (i.e., the denominator) is not the same for all proportions analyzed (https://esj-journals.onlinelibrary.wiley.com/doi/10.1111/j.1440-1703.2003.00620.x)\n\n\n\n\n For analyzing proportion data, there are better methods such as using logistic regression (i.e., a GLM)."
+    "text": "Examples of transformations: angular (arcsin)\n\nThe angular transformation \\(arcsin(\\sqrt x)\\) is used to normalize proportional data between 0 and 1.\n\n\n\n This method can have distinct problems if your sample size for each proportion (i.e., the denominator) is not the same for all proportions analyzed (https://esj-journals.onlinelibrary.wiley.com/doi/10.1111/j.1440-1703.2003.00620.x)\n\n\n\n\n For analyzing proportion data, there are other methods such as using logistic or beta regression (i.e., a GLM)."
   },
   {
     "objectID": "content/slides/w3_1-slides.html#examples-of-transformations-reciprocal",
@@ -455,7 +455,7 @@
     "href": "content/slides/w3_2-slides.html#hypothesis-formulation-example-two-tailed",
     "title": "Week 3",
     "section": "Hypothesis formulation example: two-tailed",
-    "text": "Hypothesis formulation example: two-tailed\n\nIn practice, we would want to formulate our hypothesis more conservatively – allowing for any potential differences between our sampled populations:\n\n\n\n \\(H_0\\): There is no difference between the heights of oak and maple trees\n\n\\[\\mu_{oak} = \\mu_{maple}\\]\n\n\n\n \\(H_A\\): There is a difference in height between oak and maple trees\n\n\\[\\mu_{oak} ≠ \\mu_{maple}\\]"
+    "text": "Hypothesis formulation example: two-tailed\n\nIn practice, we would want to formulate our hypothesis more conservatively – allowing for any potential differences between our sampled populations:\n\n\n\n \\(H_0\\): There is no difference between the heights of oak and maple trees\n\n\n\n\\[\n\\mu_{oak} = \\mu_{maple}\n\\]\n\n\n\n \\(H_A\\): There is a difference in height between oak and maple trees\n\n\n\n\\[\\mu_{oak} ≠ \\mu_{maple}\\]"
   },
   {
     "objectID": "content/slides/w3_2-slides.html#hypothesis-formulation-example-two-tailed-1",
@@ -469,14 +469,14 @@
     "href": "content/slides/w3_2-slides.html#pair-up-and-formulate",
     "title": "Week 3",
     "section": "Pair up and formulate!",
-    "text": "Pair up and formulate!\n\nResearch question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream"
+    "text": "Pair up and formulate!\n\nResearch question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream . In your group, formulate a scientific and statistical hypothesis to address this question."
   },
   {
     "objectID": "content/slides/w3_2-slides.html#significance-tests-an-overview",
     "href": "content/slides/w3_2-slides.html#significance-tests-an-overview",
     "title": "Week 3",
     "section": "Significance tests: an overview",
-    "text": "Significance tests: an overview\n\nWhen we go out and perform an experiment and collect data, our sample data are outcomes of a data generating process\n\n\n\n The data generating process may be described by a probability distribution with certain parameters\n\n\n\n\n We begin by considering a random sampole \\(Y_1, Y_2, Y_3,...Y_n\\) of size \\(n\\) from a normal distribution \\(N(\\mu, \\sigma^2)\\) with unknown \\(\\mu\\) and known \\(\\sigma^2\\).\n\n\n\n\n We then use statistics from the sample data to draw inference about the parameters of the probability distribution (e.g., whether the mean is different than our hypothesized value)"
+    "text": "Significance tests: an overview\n\nWhen we go out and perform an experiment and collect data, our sample data are outcomes of a data generating process\n\n\n\n The data generating process may be described by a probability distribution with certain parameters\n\n\n\n\n We begin by considering a random sample \\(Y_1, Y_2, Y_3,...Y_n\\) of size \\(n\\) from a normal distribution \\(N(\\mu, \\sigma^2)\\) with unknown \\(\\mu\\) and known \\(\\sigma^2\\).\n\n\n\n\n We then use statistics from the sample data to draw inference about the parameters of the probability distribution (e.g., whether the mean is different than our hypothesized value)"
   },
   {
     "objectID": "content/slides/w3_2-slides.html#significance-tests-an-overview-1",
@@ -525,14 +525,14 @@
     "href": "content/slides/w3_2-slides.html#t-z-whats-the-difference-2",
     "title": "Week 3",
     "section": "\\(t\\), \\(Z\\), what’s the difference!?",
-    "text": "\\(t\\), \\(Z\\), what’s the difference!?\n\nLike a \\(Z\\) distribution, a \\(t\\) distribution is defined by a symmetric, bell-shaped curve symmetric about 0\n\n\n But, the \\(t\\) distribution has heavier tails than the \\(Z\\) does\n\n\n\n The shape of the curve depends on the sample size, \\(n\\). The larger the \\(n\\), the thinner the tails/lesser the spread. In fact, \\(t_\\infty = Z\\)\n\n\n\n\n This shape takes into consideration the degrees of freedom of our sample, effectively penalyzing for our uncertainty of the population variance."
+    "text": "\\(t\\), \\(Z\\), what’s the difference!?\n\nLike a \\(Z\\) distribution, a \\(t\\) distribution is defined by a symmetric, bell-shaped curve symmetric about 0\n\n\n But, the \\(t\\) distribution has heavier tails than the \\(Z\\) does\n\n\n\n The shape of the curve depends on the sample size, \\(n\\). The larger the \\(n\\), the thinner the tails/lesser the spread. In fact, \\(t_\\infty = Z\\)\n\n\n\n\n This shape takes into consideration the degrees of freedom of our sample, effectively penalyzing for our uncertainty of the population variance given we’re estimating it with the sample variance."
   },
   {
     "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma",
     "href": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma",
     "title": "Week 3",
     "section": "\\(t\\) significance testing with unknown \\(\\sigma\\)",
-    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\n\nConsider a random sample \\(Y_1, Y_2, Y_3,...Y_n\\) of size \\(n\\) from a normal distribution \\(N(\\mu, \\sigma^2)\\) with unknown \\(\\mu\\) and unknown \\(\\sigma^2\\).\n\n\n\n Suppose our signifiance test of interest is:\n\n\\[H_0 : \\mu = \\mu_0\\]\n\n\n\n We can calculate our test statistic as:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}}\\]\n\nwhere \\(T_{n-1}\\) is a \\(T\\) distribution with \\(n-1\\) degrees of freedom."
+    "text": "\\(t\\) significance testing with unknown \\(\\sigma\\)\n\nConsider a random sample \\(Y_1, Y_2, Y_3,...Y_n\\) of size \\(n\\) from a normal distribution \\(N(\\mu, \\sigma^2)\\) with unknown \\(\\mu\\) and unknown \\(\\sigma^2\\).\n\n\n\n Suppose our significance test of interest is:\n\n\\[H_0 : \\mu = \\mu_0\\]\n\n\n\n We can calculate our test statistic as:\n\n\\[T = \\frac{\\bar{Y} - \\mu_0}{S / \\sqrt{n}} \\sim T_{n-1}\\]\n\nwhere \\(T_{n-1}\\) is a \\(T\\) distribution with \\(n-1\\) degrees of freedom."
   },
   {
     "objectID": "content/slides/w3_2-slides.html#t-significance-testing-with-unknown-sigma-1",
@@ -567,7 +567,7 @@
     "href": "content/slides/w3_2-slides.html#interpreting-p-values",
     "title": "Week 3",
     "section": "Interpreting p-values",
-    "text": "Interpreting p-values\n\nThe p-value can be interpreted as the evidence that we have against \\(H_0\\). The p-value is the probability that we would observe a value equal to or more extreme than our sample mean if the null hypothesis were true.\n\n\n\n At our value of 0.0276, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of \\(\\mu_0 = 20\\) were true.\n\n\n\n\n P-values are nothing more than a guide to making a decision. It allows us to make conclusions about our statistical hypothesis of whether there are patterns in our data, but not whether those patterns are driven by our scientific hypothesis\n\n\n\n\n It’s up to us to draw conclusions about the validity of our scientific hypothesis based on the statistical patterns in the data. The strength of this inference depends on many factors."
+    "text": "Interpreting p-values\n\nThe p-value can be interpreted as the evidence that we have against \\(H_0\\). The p-value is the probability that we would observe a value equal to or more extreme than our sample mean if the null hypothesis were true.\n\n\n\n At our value of \\(p = 0.0276\\), we would be unlikely to find a mean sample yield of 23 if our null hypothesis of \\(\\mu_0 = 20\\) were true.\n\n\n\n\n P-values are nothing more than a guide to making a decision. It allows us to make conclusions about our statistical hypothesis of whether there are patterns in our data, but not whether those patterns are driven by our scientific hypothesis\n\n\n\n\n It’s up to us to draw conclusions about the validity of our scientific hypothesis based on the statistical patterns in the data. The strength of this inference depends on many factors."
   },
   {
     "objectID": "content/slides/w3_2-slides.html#a-general-guide-to-interpreting-p-values",
@@ -1284,7 +1284,7 @@
     "href": "lab/w3-lab.html#reminder",
     "title": "Lab 3: summarizing data",
     "section": "Reminder",
-    "text": "Reminder\nPlease do keep a separate Word or text file of your favourite commands - things that you know worked! It may become invaluable later on in the semester, in other courses, or even when you are doing your own analyses after you graduate. Remember, because R can be run with simple commands, you can always copy and paste from the clipboard in Windows straight to R.",
+    "text": "Reminder\nPlease do keep a separate Word or text file of your favorite commands - things that you know worked! It may become invaluable later on in the semester, in other courses, or even when you are doing your own analyses after you graduate. Remember, because R can be run with simple commands, you can always copy and paste from the clipboard in Windows straight to R.",
     "crumbs": [
       "Labs",
       "Module 1: RStudio and Tidyverse crash course",
@@ -1296,7 +1296,7 @@
     "href": "lab/w3-lab.html#the-sign",
     "title": "Lab 3: summarizing data",
     "section": "The + sign",
-    "text": "The + sign\nWe may now get into commands that flow across your screen and onto the next line. That’s fine - just type the command until it is complete and hit Enter. If you hit Enter before the command is complete, R may detect this (e.g., perhaps the last parenthesis is not included) and display a + sign instead of the command prompt. Just finish typing the command and hit Enter.",
+    "text": "The + sign\nWe may now get into commands that flow across your screen and onto the next line. That’s fine - just type the command until it is complete and hit Enter. If you hit Enter before the command is complete, R may detect this (e.g., perhaps the last parenthesis is not included) and display a + sign instead of the command prompt. Just finish typing the command and hit Enter. This is only relevant if you are entering commands directly into the R console. If you’re writing your code in an R script or .Rmd document, you can simply write your code in its entirety before compiling (running) it.",
     "crumbs": [
       "Labs",
       "Module 1: RStudio and Tidyverse crash course",
@@ -2152,5 +2152,33 @@
     "title": "Week 2",
     "section": "Summary",
     "text": "Summary\n\nKey to remember here is that for any random variable, whether continuous or discrete, can be characterized by:\n\n\n\n Exact probability values for a particular value (discrete distribution) or interval (continuous distribution) of the variable\n\n\n\n\n An expectation, \\(E(X)\\)\n\n\n\n\n A variance, \\(\\sigma^2(X)\\)\n\n\n\n\nThis information alone can help us to describe our data, calculate probabilities of certain values, test hypotheses, and conduct parameter inference"
+  },
+  {
+    "objectID": "content/slides/w2_2-slides.html#the-central-limit-theorem",
+    "href": "content/slides/w2_2-slides.html#the-central-limit-theorem",
+    "title": "Week 2",
+    "section": "The Central Limit Theorem",
+    "text": "The Central Limit Theorem\n\nIf there are so many different distributions that our data can originate from, why are we spending so much time bothering with normal distributions?\n\n\nLet’s do a bunch of sampling of a couple of non-normal distributions and see what we find…\n\n\nThis finding, that any random variable that is itself the average of multiple independent random variables results in a standard normal random variable (i.e., a normal distribution), is called the central limit theorem"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#the-values-we-often-care-most-about-in-our-data",
+    "href": "content/slides/w3_1-slides.html#the-values-we-often-care-most-about-in-our-data",
+    "title": "Week 3",
+    "section": "The values we often care most about in our data…",
+    "text": "The values we often care most about in our data…\n\nAs we discussed last week, we often don’t care about the entire population distribution that our data come from – we want to know something about the expected value (the mean, \\(\\mu\\)) and the variation, or variance, around this value (\\(\\sigma^2\\)). We will most often work with…\n\n\nThe arithmetic mean: \\(\\bar{Y} = \\frac{\\sum_{i=1}^{n}Y_i}{n}\\)\n\n\n\n This value is an unbiased estimate of our population mean, \\(\\mu\\), provided that: (1) our observations are\n\n\n\n\n (1) our observations are randomly sampled\n\n\n\n\n (2) our observations are independent of one another"
+  },
+  {
+    "objectID": "content/slides/w3_1-slides.html#the-values-we-often-care-most-about-in-our-data-1",
+    "href": "content/slides/w3_1-slides.html#the-values-we-often-care-most-about-in-our-data-1",
+    "title": "Week 3",
+    "section": "The values we often care most about in our data…",
+    "text": "The values we often care most about in our data…\n\nAs we discussed last week, we often don’t care about the entire population distribution that our data come from – we want to know something about the expected value (the mean, \\(\\mu\\)) and the variation, or variance, around this value (\\(\\sigma^2\\)). We will most often work with…\n\n\nThe variance: \\(s^2 = \\frac{\\sum_{i=1}^{n}(Y_i - \\bar{Y})^2}{n}\\)\n\n\n\n Here, we calculate variance by subtracting our mean value from our observed values and squaring them (this is called the sum of squares) and divide by the sample size, \\(n\\).\n\n\n\n\n However, if we utilize this calculation to estimate our population variance using our sample variance, we will ALWAYS underestimate the true value.\n\n\n\n\\[\n\\frac{\\sum_{i=1}^{n}(Y_i - \\bar{Y})^2}{n} &lt; \\frac{\\sum_{i=1}^{n}(Y_i - \\mu)^2}{n}\n\\]"
+  },
+  {
+    "objectID": "content/slides/w3_2-slides.html#hypothesis-formulation-example",
+    "href": "content/slides/w3_2-slides.html#hypothesis-formulation-example",
+    "title": "Week 3",
+    "section": "Hypothesis formulation example:",
+    "text": "Hypothesis formulation example:\n\nResearch question: Are maple trees taller than oak trees?\n\n\n\n \\(H_0\\): There is no difference between the heights of oak and maple trees\n\n\n\n\\[\\mu_{oak} = \\mu_{maple}\\]\n\n\n\n \\(H_A\\): Oak trees are taller than maple trees\n\n\n\n\\[\\mu_{oak} &gt; \\mu_{maple}\\]"
   }
 ]

@@ -26,7 +26,7 @@ Last week many class members used R Studio, but not everyone was familiar with R
 
 # Manipulating Data
 
-It can sometimes be easiest to do data manipulation directly in Microsoft Excel. That said, older 32-bit versions of Excel could only handle 65,500 rows of data. Often, when you are working on an analysis, you will have to transform data on the fly. Doing transformations and reimportations of Excel data can get tedious. It's also a great way to accidentally change a value that you *don't* want to change, not realize it, and end up forever editing your data file. Remember; keep a totally raw, untouched, and locked data file in multiple locations to prevent such a mistake! In today's lab, we will also work a little with manipulating data directly within R. In general, this is a preferred way to manipulate data, because it is **documented** and **repeatable**. 
+It can sometimes be easiest to do data manipulation directly in Microsoft Excel. That said, older 32-bit versions of Excel could only handle 65,500 rows of data. Often, when you are working on an analysis, you will have to transform data on the fly. Doing transformations and reimportations of Excel data can get tedious. It's also a great way to accidentally change a value that you *don't* want to change, not realize it, and end up forever editing your data file. Remember; keep a totally raw, untouched, and locked data file in multiple locations to prevent such a mistake! In today's lab, we will also work a little with manipulating data directly within R. In general, this is a preferred way to manipulate data, because it is **documented** and **repeatable**.
 
 # Useful Commands
 
@@ -119,7 +119,6 @@ It helps during EDA (Exploratory Data Analysis) to graph the data and see what s
 
 > Regression without first plotting the data is *always* a regression!
 
-
 If you have a dataset named `myniftydata`, typing
 
 `plot(mymyniftydata)` plots all of the variables in your data set against each other in a scatterplot matrix. This is a good way to spot trends between continuous variables. If you are only interested in a few variables (let's say columns 3,4, and 5), just specify those columns, e.g., `plot(myniftydata[,3:5])`.
@@ -136,7 +135,6 @@ If you are working with one or two specific variables in the dataframe,
 
 `plot(density(mydata$y))` plots a density plot (with labels if you like).
 
-
 # Assignment
 
 1.  Load the Excel data named Lab2datal.xls into `R`. Like last week, separate the metadata into its own sheet. I do not need to see the metadata this time, however.
@@ -151,9 +149,9 @@ If you are working with one or two specific variables in the dataframe,
 
 6.  Create a new column with percentage of insects eaten.
 
-8. Try reproducing the above scatterplot matrix in ggplot instead of Base R. Do the same for the boxplot below. 
+7.  Try reproducing the above scatterplot matrix in ggplot instead of Base R. Do the same for the boxplot below.
 
-7.  Please turn in
+8.  Please turn in
 
     1.  A summary of your final dataframe. (The data set, when you read it into R, is stored in what is called a - essentially a table with rows and columns).
 

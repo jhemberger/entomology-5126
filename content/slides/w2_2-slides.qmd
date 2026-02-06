@@ -479,6 +479,19 @@ P(Y\leq 15.5) &=& P\left(\frac{Y-\mu}{\sigma}\leq \frac{15.5-\mu}{\sigma}\right)
 &=& 0.0668
 \end{eqnarray*}
 
+## The Central Limit Theorem
+::: box-6-list
+If there are so many different distributions that our data can originate from, why are we spending so much time bothering with normal distributions?
+:::
+
+. . . 
+
+Let's do a bunch of sampling of a couple of non-normal distributions and see what we find...
+
+. . . 
+
+This finding, that any random variable that is itself the average of multiple independent random variables results in a standard normal random variable (i.e., a normal distribution), is called the [central limit theorem]{.highlight-tomato}
+
 ## Summary
 
 ::: box-6-list
@@ -508,3 +521,4 @@ Key to remember here is that for any random variable, whether continuous or disc
 ::: box-6-list
 This information alone can help us to describe our data, calculate probabilities of certain values, test hypotheses, and conduct parameter inference
 :::
+

@@ -21,7 +21,7 @@ format:
     css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
 ---
 
-# What we'll cover this week
+# What we'll cover today
 
 ## Structuring statistics around our research questions
 
@@ -63,6 +63,32 @@ Let's start by formulating some basic hypotheses around a simple research questi
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> Next, specify the [alternative hypothesis]{.highlight-tomato}, $H_A$. This reflects a departure from $H_0$ that we are designing and experiment or study to be able to detect: that the results of our sampling reflect some factor or influence other than random variation.
 :::
 
+## Hypothesis formulation example:
+
+::: box-6-list
+Research question: Are maple trees ***taller than*** oak trees? 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_0$: There is no difference between the heights of oak and maple trees
+:::
+
+. . . 
+
+$$\mu_{oak} = \mu_{maple}$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_A$: Oak trees are taller than maple trees
+:::
+
+. . . 
+
+$$\mu_{oak} > \mu_{maple}$$
+
 ## How many tails do we use?
 
 ::: box-6-list
@@ -82,27 +108,6 @@ In previous stats courses, you likely covered one- and two-tailed statistical te
 Before conducting any tests (or even looking at your data), decide on whether you will be using a one- vs. two-tailed test of $H_A$.
 :::
 
-## Hypothesis formulation example: one-tailed
-
-::: box-6-list
-Research question: Are maple trees ***taller than*** oak trees? 
-:::
-
-. . . 
-
-::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_0$: There is no difference between the heights of oak and maple trees
-:::
-
-$$\mu_{oak} = \mu_{maple}$$
-
-. . . 
-
-::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_A$: Oak trees are taller than maple trees
-:::
-
-$$\mu_{oak} > \mu_{maple}$$
 
 ## Hypothesis formulation example: two-tailed
 
@@ -116,13 +121,19 @@ In practice, we would want to formulate our hypothesis more conservatively -- al
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_0$: There is no difference between the heights of oak and maple trees
 :::
 
-$$\mu_{oak} = \mu_{maple}$$
+. . . 
+
+$$
+\mu_{oak} = \mu_{maple}
+$$
 
 . . . 
 
 ::: indented-text
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> $H_A$: There is a difference in height between oak and maple trees
 :::
+
+. . . 
 
 $$\mu_{oak} ≠ \mu_{maple}$$
 
@@ -151,7 +162,7 @@ $$\mu_{medicated} ≠ \mu_{unmedicated}$$
 ## Pair up and formulate!
 
 ::: box-6-list
-Research question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream {{< fa fish-fins >}}
+Research question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream {{< fa fish-fins >}}. In your group, formulate a scientific and statistical hypothesis to address this question.
 :::
 
 ::: {.center-x}
@@ -174,7 +185,7 @@ When we go out and perform an experiment and collect data, our sample data are o
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> We begin by considering a random sampole $Y_1, Y_2, Y_3,...Y_n$ of size $n$ from a normal distribution $N(\mu, \sigma^2)$ with unknown $\mu$ and known $\sigma^2$. 
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We begin by considering a random sample $Y_1, Y_2, Y_3,...Y_n$ of size $n$ from a normal distribution $N(\mu, \sigma^2)$ with unknown $\mu$ and known $\sigma^2$. 
 :::
 
 . . . 
@@ -280,7 +291,7 @@ Like a $Z$ distribution, a $t$ distribution is defined by a symmetric, bell-shap
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> This shape takes into consideration the [degrees of freedom]{.highlight-tomato} of our sample, effectively penalyzing for our uncertainty of the population variance.
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This shape takes into consideration the [degrees of freedom]{.highlight-tomato} of our sample, effectively penalyzing for our uncertainty of the population variance given we're estimating it with the sample variance.
 :::
 
 ## $t$ significance testing with unknown $\sigma$
@@ -291,7 +302,7 @@ Consider a random sample $Y_1, Y_2, Y_3,...Y_n$ of size $n$ from a normal distri
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> Suppose our signifiance test of interest is: 
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Suppose our significance test of interest is: 
 :::
 
 $$H_0 : \mu = \mu_0$$
@@ -302,7 +313,7 @@ $$H_0 : \mu = \mu_0$$
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> We can calculate our test statistic as:
 :::
 
-$$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}}$$
+$$T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}$$ 
 
 ::: indented-text
 where $T_{n-1}$ is a $T$ distribution with $n-1$ degrees of freedom.
@@ -413,7 +424,7 @@ The p-value can be interpreted as the evidence that we have against $H_0$. The p
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> At our value of 0.0276, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of $\mu_0 = 20$ were true. 
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> At our value of $p = 0.0276$, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of $\mu_0 = 20$ were true. 
 :::
 
 . . . 
@@ -519,13 +530,13 @@ There are two types of two-sample experiments: paired vs. unpaired two-sample de
 . . .
 
 ::: indented-text
-[{{< fa people-arrows >}}]{.margin-1} In an independent, two-sample design, there are two treatments (e.g., treatment and placebo), but there is *no direct relationship* between an observation on trt A and an observation on trt B
+[{{< fa person >}}]{.margin-1} In an independent, two-sample design, there are two treatments (e.g., treatment and placebo), but there is *no direct relationship* between an observation on trt A and an observation on trt B
 :::
 
 . . .
 
 ::: indented-text
-[{{< fa person >}}]{.margin-1} In an paired two-sample design, there are two treatments (e.g., treatment and control) and each observation of treatment A is paired with an observation of treatment B. Related or the same experimental units are used for both treatments (i.e., on the same person, animal, etc.)
+[{{< fa people-arrows >}}]{.margin-1} In an paired two-sample design, there are two treatments (e.g., treatment and control) and each observation of treatment A is paired with an observation of treatment B. Related or the same experimental units are used for both treatments (i.e., on the same person, animal, etc.)
 :::
 
 . . .

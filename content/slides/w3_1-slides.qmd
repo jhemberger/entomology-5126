@@ -33,6 +33,12 @@ format:
 . . .
 
 ::: box-1-list
+[$\mu, \sigma^2$]{.margin-1} Measures of location and spread
+:::
+
+. . . 
+
+::: box-1-list
 [*n*-1]{.margin-1} Degrees of freedom
 :::
 
@@ -104,8 +110,67 @@ We will also use [deductive reasoning]{.highlight-tomato} (general --> specific)
 This process is one of many ways to "p-hack" your way to "significant" results
 :::
 
+# Measures of spread and location
+
+## The values we often care most about in our data...
+
+::: box-6-list
+As we discussed last week, we often don't care about the entire population distribution that our data come from -- we want to know something about the expected value (the mean, $\mu$) and the variation, or variance, around this value ($\sigma^2$). We will most often work with...
+:::
+
+. . . 
+
+The arithmetic mean: $\bar{Y} = \frac{\sum_{i=1}^{n}Y_i}{n}$ 
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This value is an unbiased estimate of our population mean, $\mu$, provided that: (1) our observations are  
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> (1) our observations are randomly sampled
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> (2) our observations are independent of one another
+:::
+
+## The values we often care most about in our data...
+
+::: box-6-list
+As we discussed last week, we often don't care about the entire population distribution that our data come from -- we want to know something about the expected value (the mean, $\mu$) and the variation, or variance, around this value ($\sigma^2$). We will most often work with...
+:::
+
+. . . 
+
+The variance: $s^2 = \frac{\sum_{i=1}^{n}(Y_i - \bar{Y})^2}{n}$ 
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Here, we calculate variance by subtracting our mean value from our observed values and squaring them (this is called the sum of squares) and divide by the sample size, $n$. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> However, if we utilize this calculation to estimate our population variance using our sample variance, we will ALWAYS *underestimate* the true value. 
+:::
+
+. . . 
+
+$$
+\frac{\sum_{i=1}^{n}(Y_i - \bar{Y})^2}{n} < \frac{\sum_{i=1}^{n}(Y_i - \mu)^2}{n}
+$$
+
 # Degrees of Freedom
 
+<!--
 ## *df*: degrees of what? 
 ::: box-6-list
 We're putting all of the pieces in place to begin doing statistical tests of our data
@@ -136,6 +201,7 @@ where $x$ is a given sample, and $\bar x$ is the sample mean.
 ::: box-6-list
 Why do we divide by $n-1$ but not by $n$?
 :::
+-->
 
 ## Degrees of freedom
 ::: box-6-list
@@ -173,7 +239,7 @@ In general, formula to calculate degrees of freedom is: $df = n - p$
 
 [<i class="fa-solid fa-turn-up fa-rotate-90"></i> $p$ is equal to the number of parameters (restrictions) that are imposed)]{.indented-text}
 
-
+<!--
 ## Practical implications for *df*
 ::: box-6-list
 Dividing by $n$ will [consistently underestimate the variance of a population]{.highlight-tomato}. This, in effect, is because when we divide by $n$, we essentially double dip with one of our pieces of information, given that we already know the sample mean. The effect of this double dipping is ending up with an estimate of the population variance ($s^2$) that will ***always*** be smaller than the true population variance ($\sigma^2$). 
@@ -184,6 +250,7 @@ Dividing by $n$ will [consistently underestimate the variance of a population]{.
 :::{.callout-important}
 This is the real reason why degrees of freedom is so important. Without accounting for the used up bits of information, we end up with [biased]{.highlight-tomato} estimates of our parameters, and this can lead to inflated error rates in our statistical tests and inference.
 :::
+-->
 
 ## Practical implications for *df*
 ::: box-6-list
@@ -220,7 +287,7 @@ Most of the parametric (i.e., "classical") statistical analyses we conduct depen
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> To meet this assumption, we have a couple of options. [Transforming]{.highlight-tomato} our data is one of the options that we have.
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> To meet this assumption, we have a couple of options. The central limit theorem helps us out for any tests involving the mean of $n$ random samples. But sometimes this isn't enough. [Transforming]{.highlight-tomato} our data is another one of the options that we have.
 :::
 
 ## What transformations do
@@ -281,7 +348,7 @@ The [log]{.highlight-tomato} transformation ($log(x)$) is used to normalize very
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we use $log(x_1)$. Why? 
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Often, we use $log(x+1)$. Why? 
 :::
 
 . . . 
@@ -305,7 +372,7 @@ The [angular]{.highlight-tomato} transformation $arcsin(\sqrt x)$ is used to nor
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> For analyzing proportion data, there are better methods such as using logistic regression (i.e., a GLM). 
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> For analyzing proportion data, there are other methods such as using logistic or beta regression (i.e., a GLM).
 :::
 
 ## Examples of transformations: reciprocal

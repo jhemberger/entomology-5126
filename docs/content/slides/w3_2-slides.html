@@ -143,8 +143,8 @@
 
 </section>
 <section>
-<section id="what-well-cover-this-week" class="title-slide slide level1 center">
-<h1>What we’ll cover this week</h1>
+<section id="what-well-cover-today" class="title-slide slide level1 center">
+<h1>What we’ll cover today</h1>
 
 </section>
 <section id="structuring-statistics-around-our-research-questions" class="slide level2">
@@ -186,6 +186,28 @@
 </div>
 </div>
 </section>
+<section id="hypothesis-formulation-example" class="slide level2">
+<h2>Hypothesis formulation example:</h2>
+<div class="box-6-list">
+<p>Research question: Are maple trees <strong><em>taller than</em></strong> oak trees?</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_0\)</span>: There is no difference between the heights of oak and maple trees</p>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math display">\[\mu_{oak} = \mu_{maple}\]</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_A\)</span>: Oak trees are taller than maple trees</p>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math display">\[\mu_{oak} &gt; \mu_{maple}\]</span></p>
+</div>
+</section>
 <section id="how-many-tails-do-we-use" class="slide level2">
 <h2>How many tails do we use?</h2>
 <div class="box-6-list">
@@ -212,24 +234,6 @@
 </div>
 </div>
 </section>
-<section id="hypothesis-formulation-example-one-tailed" class="slide level2">
-<h2>Hypothesis formulation example: one-tailed</h2>
-<div class="box-6-list">
-<p>Research question: Are maple trees <strong><em>taller than</em></strong> oak trees?</p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_0\)</span>: There is no difference between the heights of oak and maple trees</p>
-</div>
-<p><span class="math display">\[\mu_{oak} = \mu_{maple}\]</span></p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_A\)</span>: Oak trees are taller than maple trees</p>
-</div>
-<p><span class="math display">\[\mu_{oak} &gt; \mu_{maple}\]</span></p>
-</div>
-</section>
 <section id="hypothesis-formulation-example-two-tailed" class="slide level2">
 <h2>Hypothesis formulation example: two-tailed</h2>
 <div class="box-6-list">
@@ -239,12 +243,18 @@
 <div class="indented-text">
 <p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_0\)</span>: There is no difference between the heights of oak and maple trees</p>
 </div>
-<p><span class="math display">\[\mu_{oak} = \mu_{maple}\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\mu_{oak} = \mu_{maple}
+\]</span></p>
 </div>
 <div class="fragment">
 <div class="indented-text">
 <p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(H_A\)</span>: There is a difference in height between oak and maple trees</p>
 </div>
+</div>
+<div class="fragment">
 <p><span class="math display">\[\mu_{oak} ≠ \mu_{maple}\]</span></p>
 </div>
 </section>
@@ -269,7 +279,7 @@
 <section id="pair-up-and-formulate" class="slide level2">
 <h2>Pair up and formulate!</h2>
 <div class="box-6-list">
-<p>Research question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream <i class="fa-solid fa-fish-fins" aria-label="fish-fins"></i></p>
+<p>Research question: We want to know whether a particular species of trout prefers riffles or pools (two habitat types) within a stream <i class="fa-solid fa-fish-fins" aria-label="fish-fins"></i>. In your group, formulate a scientific and statistical hypothesis to address this question.</p>
 </div>
 <div class="center-x">
 <p><img data-src="https://healthyheadwaterslab.ca/wp-content/uploads/2021/03/v2H.png"></p>
@@ -292,7 +302,7 @@
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We begin by considering a random sampole <span class="math inline">\(Y_1, Y_2, Y_3,...Y_n\)</span> of size <span class="math inline">\(n\)</span> from a normal distribution <span class="math inline">\(N(\mu, \sigma^2)\)</span> with unknown <span class="math inline">\(\mu\)</span> and known <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We begin by considering a random sample <span class="math inline">\(Y_1, Y_2, Y_3,...Y_n\)</span> of size <span class="math inline">\(n\)</span> from a normal distribution <span class="math inline">\(N(\mu, \sigma^2)\)</span> with unknown <span class="math inline">\(\mu\)</span> and known <span class="math inline">\(\sigma^2\)</span>.</p>
 </div>
 </div>
 <div class="fragment">
@@ -391,7 +401,7 @@
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This shape takes into consideration the <span class="highlight-tomato">degrees of freedom</span> of our sample, effectively penalyzing for our uncertainty of the population variance.</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This shape takes into consideration the <span class="highlight-tomato">degrees of freedom</span> of our sample, effectively penalyzing for our uncertainty of the population variance given we’re estimating it with the sample variance.</p>
 </div>
 </div>
 </section>
@@ -402,7 +412,7 @@
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Suppose our signifiance test of interest is:</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Suppose our significance test of interest is:</p>
 </div>
 <p><span class="math display">\[H_0 : \mu = \mu_0\]</span></p>
 </div>
@@ -410,7 +420,7 @@
 <div class="indented-text">
 <p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We can calculate our test statistic as:</p>
 </div>
-<p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}}\]</span></p>
+<p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}} \sim T_{n-1}\]</span></p>
 <div class="indented-text">
 <p>where <span class="math inline">\(T_{n-1}\)</span> is a <span class="math inline">\(T\)</span> distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
 </div>
@@ -505,7 +515,7 @@
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> At our value of 0.0276, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of <span class="math inline">\(\mu_0 = 20\)</span> were true.</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> At our value of <span class="math inline">\(p = 0.0276\)</span>, we would be unlikely to find a mean sample yield of 23 if our null hypothesis of <span class="math inline">\(\mu_0 = 20\)</span> were true.</p>
 </div>
 </div>
 <div class="fragment">
@@ -612,12 +622,12 @@
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><span class="margin-1"><i class="fa-solid fa-people-arrows" aria-label="people-arrows"></i></span> In an independent, two-sample design, there are two treatments (e.g., treatment and placebo), but there is <em>no direct relationship</em> between an observation on trt A and an observation on trt B</p>
+<p><span class="margin-1"><i class="fa-solid fa-person" aria-label="person"></i></span> In an independent, two-sample design, there are two treatments (e.g., treatment and placebo), but there is <em>no direct relationship</em> between an observation on trt A and an observation on trt B</p>
 </div>
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><span class="margin-1"><i class="fa-solid fa-person" aria-label="person"></i></span> In an paired two-sample design, there are two treatments (e.g., treatment and control) and each observation of treatment A is paired with an observation of treatment B. Related or the same experimental units are used for both treatments (i.e., on the same person, animal, etc.)</p>
+<p><span class="margin-1"><i class="fa-solid fa-people-arrows" aria-label="people-arrows"></i></span> In an paired two-sample design, there are two treatments (e.g., treatment and control) and each observation of treatment A is paired with an observation of treatment B. Related or the same experimental units are used for both treatments (i.e., on the same person, animal, etc.)</p>
 </div>
 </div>
 <div class="fragment">

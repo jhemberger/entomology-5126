@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jeremy Hemberger and Brian Aukema">
-<meta name="dcterms.date" content="2025-07-28">
+<meta name="dcterms.date" content="2026-02-05">
 
 <title>Lab 3: summarizing data – Entomology 5126</title>
 <style>
@@ -174,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.html">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.html">Lab 3: Summarizing data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.html">Lab 3: Summarizing data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -214,13 +214,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w1-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w1-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 1: An introduction to R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w2-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w2-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 2: Data wrangling and plotting</span></a>
   </div>
 </li>
@@ -360,7 +360,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.html">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.html">Lab 3: Summarizing data</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.html">Lab 3: Summarizing data</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Lab 3: summarizing data</h1>
 <p class="subtitle lead">Entomology 5126 - Spring 2026</p>
@@ -380,7 +380,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 28, 2025</p>
+      <p class="date">February 5, 2026</p>
     </div>
   </div>
   
@@ -396,18 +396,18 @@ window.Quarto = {
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>By now I hope that you are becoming comfortable with the initial steps in data analysis: annotating metadata, preparing the data for export from a spreadsheet, reading it into a statistics package, performing a summary or two both graphically and numerically, converting all necessary variables to factors, and rechecking. You have probably run into some typical problems (e.g., not spelling a column name correctly, forward vs.&nbsp;backwards slashes, etc.) but are getting better at spotting such stumbles and correcting them.<br>
-Today, we’ll focus less on selecting specific elements in a dataframe (last week’s exercise) and more on <em>doing things</em> with those particular elements.<br>
+Today, we’ll focus less on selecting specific elements in a dataframe (last week’s exercise) and more on <em>doing things</em> with those particular elements. Our examples will use both a base R and tidyverse approach.<br>
 </p>
 <section id="reminder" class="level2">
 <h2 class="anchored" data-anchor-id="reminder">Reminder</h2>
-<p>Please <em>do</em> keep a separate Word or text file of your favourite commands - things that you know worked! It may become invaluable later on in the semester, in other courses, or even when you are doing your own analyses after you graduate. Remember, because R can be run with simple commands, you can always copy and paste from the clipboard in Windows straight to R.</p>
+<p>Please <em>do</em> keep a separate Word or text file of your favorite commands - things that you know worked! It may become invaluable later on in the semester, in other courses, or even when you are doing your own analyses after you graduate. Remember, because R can be run with simple commands, you can always copy and paste from the clipboard in Windows straight to R.</p>
 </section>
 </section>
 <section id="manipulating-data" class="level1">
 <h1>Manipulating data</h1>
 <section id="the-sign" class="level2">
 <h2 class="anchored" data-anchor-id="the-sign">The + sign</h2>
-<p>We may now get into commands that flow across your screen and onto the next line. That’s fine - just type the command until it is complete and hit <code>Enter</code>. If you hit <code>Enter</code> before the command is complete, R may detect this (e.g., perhaps the last parenthesis is not included) and display a + sign instead of the command prompt. Just finish typing the command and hit <code>Enter</code>.</p>
+<p>We may now get into commands that flow across your screen and onto the next line. That’s fine - just type the command until it is complete and hit <code>Enter</code>. If you hit <code>Enter</code> before the command is complete, R may detect this (e.g., perhaps the last parenthesis is not included) and display a + sign instead of the command prompt. Just finish typing the command and hit <code>Enter</code>. This is only relevant if you are entering commands <em>directly</em> into the R console. If you’re writing your code in an R script or <code>.Rmd</code> document, you can simply write your code in its entirety before compiling (running) it.</p>
 </section>
 <section id="selecting-specific-rows-or-columns" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-specific-rows-or-columns">Selecting specific rows or columns</h2>
