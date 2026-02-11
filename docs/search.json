@@ -1913,7 +1913,7 @@
     "href": "content/slides/w4-slides.html#independent-two-sample-1",
     "title": "Week 4",
     "section": "Independent two-sample",
-    "text": "Independent two-sample\nExample: fat rats\n\n\n\nSubject\nDiet 1 (\\(Y_1\\))\nDiet 2 (\\(Y_2\\))\n\n\n\n\n1\n37.8\n12.3\n\n\n2\n27.5\n14.3\n\n\n3\n41.2\n19.2\n\n\n4\n26.5\n4.0\n\n\n5\n28.6\n25.9\n\n\n\n\nNote:\n\n\n There is no pairing between subjects\n\n\n We can permute (rearrange) the observations within each treatment with no effect on our results"
+    "text": "Independent two-sample\nExample: fat rats\n\n\n\nSubject\nDiet 1 (\\(Y_A\\))\nDiet 2 (\\(Y_B\\))\n\n\n\n\n1\n37.8\n12.3\n\n\n2\n27.5\n14.3\n\n\n3\n41.2\n19.2\n\n\n4\n26.5\n4.0\n\n\n5\n28.6\n25.9\n\n\n\n\nNote:\n\n\n There is no pairing between subjects\n\n\n We can permute (rearrange) the observations within each treatment with no effect on our results"
   },
   {
     "objectID": "content/slides/w4-slides.html#independent-two-sample-2",
@@ -2180,5 +2180,40 @@
     "title": "Week 3",
     "section": "Hypothesis formulation example:",
     "text": "Hypothesis formulation example:\n\nResearch question: Are maple trees taller than oak trees?\n\n\n\n \\(H_0\\): There is no difference between the heights of oak and maple trees\n\n\n\n\\[\\mu_{oak} = \\mu_{maple}\\]\n\n\n\n \\(H_A\\): Oak trees are taller than maple trees\n\n\n\n\\[\\mu_{oak} &gt; \\mu_{maple}\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#pop-quiz-hot-shot",
+    "href": "content/slides/w4-slides.html#pop-quiz-hot-shot",
+    "title": "Week 4",
+    "section": "Pop-quiz, hot shot…",
+    "text": "Pop-quiz, hot shot…"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#pop-quiz-hot-shot-1",
+    "href": "content/slides/w4-slides.html#pop-quiz-hot-shot-1",
+    "title": "Week 4",
+    "section": "Pop-quiz, hot shot…",
+    "text": "Pop-quiz, hot shot…"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#pop-quiz-hot-shots",
+    "href": "content/slides/w4-slides.html#pop-quiz-hot-shots",
+    "title": "Week 4",
+    "section": "Pop-quiz, hot shot(s)…",
+    "text": "Pop-quiz, hot shot(s)…"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#pop-quiz-hot-shots-1",
+    "href": "content/slides/w4-slides.html#pop-quiz-hot-shots-1",
+    "title": "Week 4",
+    "section": "Pop-quiz, hot shot(s)…",
+    "text": "Pop-quiz, hot shot(s)…"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#pop-quiz-hot-shots-2",
+    "href": "content/slides/w4-slides.html#pop-quiz-hot-shots-2",
+    "title": "Week 4",
+    "section": "Pop-quiz, hot shot(s)…",
+    "text": "Pop-quiz, hot shot(s)…\nOk, but actually let’s do a little mini-quiz since we’re ~25% of the way though the semester! In groups, address the following questions:\n\nImagine you’ve conducted a t-test (one, two sample, doesn’t matter), and calculated a t-statistic of 3.6. Which t-distribution would yield a smaller p-value when calculated: \\(t_{15}\\) or \\(t_{120}\\)? Why?\n\n\n\nRelated to number 1, what are the two things that we can change about an experiment/observational study, and in what direction should we change them, to increase the power of our statistical test?\n\n\n\n\nWhat is the advantage of standardizing our data using a Z-distribution (i.e., Z-score)?\n\n\n\n\nMath time! Imagine we have a random variable, \\(Y \\sim N(20, 3^2)\\). Calculate the probability that our random variable takes the values between 20 and 23 (i.e., \\(P(20 ≤ Y ≤ 23)\\)). I’ll give you a critical piece you need here…\\(P(Z ≥ 1) = 0.1587\\)."
   }
 ]

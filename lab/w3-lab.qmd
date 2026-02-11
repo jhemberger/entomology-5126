@@ -33,7 +33,7 @@ We may now get into commands that flow across your screen and onto the next line
 
 A quick review: suppose the second column is named `"Site"`. To select this column in a dataframe of 8 columns, these commands would all be the same:
 
-``` R
+``` r
 # Probably the easiest when selecting entire column
 mydata$Site 
 
@@ -56,7 +56,7 @@ mydata %>%
 
 To select the 5th through 10th rows of this column, these commands would all be the same:
 
-``` R
+``` r
 # Works, but confusing because brackets are only for rows
 mydata$Site[5:10] 
 
@@ -82,13 +82,13 @@ We now know how to select certain rows, and tell R what missing data looks like 
 
 If you know *a priori* that you do not need the missing data (often the case), you can filter out those `NA` rows. For example, let's pretend that I know I am going to be working with a variable named `Intensity`. To remove all rows that have a missing value in the `Intensity` column, I use this syntax taking advantage of the `is.na()` command:
 
-``` R
+``` r
 mydata <- mydata[!is.na(mydata$Intensity),]
 ```
 
 Can you decipher what this command does? (Hint: use the concatenate command `c()`to string together the numbers `1,2,3,NA,5` into a vector called `x`. Then try the `is.na()` command on `x`). What does the `!` operator do in this context? The Tidyverse equivalent is:
 
-``` R
+``` r
 mydata <- mydata %>%
    filter(!ia.na(Intensity))  
 
@@ -103,7 +103,7 @@ mydata.nonas <- mydata %>%
 
 Last week you figured out how to do simple numeric operations on a column, such as:
 
-``` R
+``` r
 mydata$z <- mydata$x * 10
 mydata$z <- mydata$x / mydata$y
 
@@ -124,7 +124,7 @@ mydata %>%
 
 Someone asked last week if you can do *conditional* operations. For example, let's say you have a column in a dataset full of zeros and various positive integers:
 
-``` R
+``` r
 mydata <- data.frame(x=c(0,5,0,0,4,9))
 mydata
   x
@@ -138,7 +138,7 @@ mydata
 
 Now, let's say you want to recode the column so that all positive numbers become `1` while the rest become `0`.
 
-``` R
+``` r
 mydata$z <- ifelse(mydata$x>0, 1, 0)
 mydata
   x z
@@ -154,7 +154,7 @@ The `ifelse()` command uses 3 arguments: first, a logical test, second, the valu
 
 There are other, more complicated operations possible, such as programming loops and the like. That is beyond the scope of this course, although I use them frequently in more complex analyses. In the Tidyverse, we can use both the `case_when()` and/or `if_else()` functions:
 
-``` R
+``` r
 mydata %>%
    mutate(z = case_when(x > 0 ~ 1,
                         x < 0 ~ 0))   
@@ -170,7 +170,7 @@ mydata %>%
 
 We have already used a few functions, such as `read.table()` and `summary()`. Here are a few more that summarize specific aspects of your data:\
 
-``` R
+``` r
 # Add the values in the column
 sum(mydata$height)
 
@@ -199,7 +199,7 @@ In this lab, we will experiment a little with the `aggregate()` command.
 Sometimes, I think it could be called the "aggravate" command because the syntax can get a little confusing for large datasets. However, it is very powerful, and can give you (almost) anything you want.\
 Suppose you have a dataset containing a variety of observations on cats. You want to know the average tail length and whisker length of different breeds, broken down also by sex. Here is the general structure of the command:
 
-``` R
+``` r
 catstats <- aggregate(cats[,c("taillength", "whiskerlength")], by=list(sex=cats$sex,
               variety=cats$breed), function(x) mean(x, na.rm=T))
 ```
@@ -231,7 +231,7 @@ catstats <- cats %>%
 
 The `xtabs()` command is another useful command. It does a crosstabulation of your data by two or more factors (i.e., it counts the observations). For example, if you typed
 
-``` R
+``` r
 meow <- xtabs(~ colour + breed, data=cats[!is.na(cats$taillength),])
 ```
 

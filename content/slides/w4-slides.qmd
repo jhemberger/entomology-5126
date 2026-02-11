@@ -37,6 +37,32 @@ format:
 [{{< fa chart-simple >}}]{.margin-1} Analysis of Variance (ANOVA)
 :::
 
+# But first...
+
+## Pop-quiz, hot shot(s)...
+![](https://y.yarn.co/4c18a944-8df2-4278-a69e-7d12fabb16e6_text.gif){width="1000" fig-align="center"}
+
+## Pop-quiz, hot shot(s)...
+![](https://i.ytimg.com/vi/lVTnOhJrMK4/maxresdefault.jpg)
+
+## Pop-quiz, hot shot(s)...
+
+Ok, but actually let's do a little mini-quiz since we're ~25% of the way though the semester! In groups, address the following questions:
+
+1. Imagine you've conducted a t-test (one, two sample, doesn't matter), and calculated a t-statistic of 3.6. Which t-distribution would yield a smaller p-value when calculated: $t_{15}$ or $t_{120}$? Why? 
+
+. . . 
+
+2. Related to number 1, what are the two things that we can change about an experiment/observational study, and in what direction should we change them, to *increase* the power of our statistical test? 
+
+. . . 
+
+3. What is the advantage of **standardizing** our data using a Z-distribution (i.e., Z-score)?
+
+. . . 
+
+4. Math time! Imagine we have a random variable, $Y \sim N(20, 3^2)$. Calculate the probability that our random variable takes the values between 20 and 23 (i.e., $P(20 ≤ Y ≤ 23)$). I'll give you a critical piece you need here...$P(Z ≥ 1) = 0.1587$.
+
 # Independent, two-sample *t* tests
 
 ## Comparing two samples: overview
@@ -80,7 +106,7 @@ A vet researcher is interested in comparing the effects of two diets on the weig
 ## Independent two-sample
 **Example: fat rats**
 
-| Subject | Diet 1 ($Y_1$) | Diet 2 ($Y_2$) |
+| Subject | Diet 1 ($Y_A$) | Diet 2 ($Y_B$) |
 |---------|----------------|----------------|
 | 1       | 37.8           | 12.3           |
 | 2       | 27.5           | 14.3           |
