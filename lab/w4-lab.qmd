@@ -4,15 +4,21 @@ subtitle: Entomology 5126 - Spring 2026
 author: Jeremy Hemberger and Brian Aukema
 date: last-modified
 date-format: long
-format: html
+# format: html
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
 
----
+------------------------------------------------------------------------
+
 # Introduction
 
 After three weeks, you are getting pretty good at reading data into R and obtaining summary statistics. Remember the initial steps in data analysis: annotating metadata, preparing the data for export into a statistical package, reading it in, performing a summary or two, converting all necessary variables to factors, and rechecking the summary.
 
-Today we will focus on comparing two groups, first using two sample independent $t$-tests, and second using Analysis of Variance (ANOVA). We are quickly working toward realistic examples that you may be analysing as part of your thesis or dissertation work. The latter tests form the cornerstones of many ecological analyses.\
+Today we will focus on comparing two groups, first using two sample independent $t$-tests, and second using Analysis of Variance (ANOVA). We are quickly working toward realistic examples that you may be analyzing as part of your thesis or dissertation work. The latter tests form the cornerstones of many ecological analyses.\
 
 # Reminders
 
@@ -106,7 +112,7 @@ In performing an ANOVA, we fit a linear model to the data. Here is how the linea
 
 ## Dire Warning
 
-A **critical** part of fitting an ANOVA model is that your factor variable is actually a factor! An extremely common mistake is failure to convert the proper variables to factors (such as if the types of diet are labelled 1, 2, and 3 and the statistics program treats them numerically). **You cannot do an ANOVA on a variable that is not a factor**.
+A **critical** part of fitting an ANOVA model is that your factor variable is actually a factor! An extremely common mistake is failure to convert the proper variables to factors (such as if the types of diet are labeled 1, 2, and 3 and the statistics program treats them numerically). **You cannot do an ANOVA on a variable that is not a factor**.
 
 # Today's data and assignment
 
@@ -114,13 +120,14 @@ Today we'll work with the `vitcap` dataset from the `ISwR` package. This dataset
 
 1.  Load the dataset, convert any necessary columns to factors, perform a summary, etc. You should be developing a good feel for this routine by now. You do not need to worry about transformations for the first few questions: I want you to first understand the mechanics of fitting an ANOVA and understand how to examine the output.
 
-2.  First, perform a $t$-test. Because the workers are not paired in any way, this is an independent two-sample $t$-test. We simply need to specify the two groups, the null hympothesis, and our expectation that the variances are equal between groups in the `t.test()` command. However, currently the grouping factor is in one column (as it should be for proper data setup), and for a $t$-test, we need to split it into two columns. I know you can do this, but you are beginning to feel semester fatigue. So here are some useful commands:
+2.  First, perform a $t$-test. Because the workers are not paired in any way, this is an independent two-sample $t$-test. We simply need to specify the two groups, the null hypothesis, and our expectation that the variances are equal between groups in the `t.test()` command. However, currently the grouping factor is in one column (as it should be for proper data setup), and for a $t$-test, we need to split it into two columns. I know you can do this, but you are beginning to feel semester fatigue. So here are some useful commands:
 
-    ```         
-    > group1 <- mydata[1:12, 3] # Create a new vector with first 12 rows and
-                                     3rd column of old dataset (mydata)
-    > group3 <- mydata[13:24, 3] # Create a new vector with responses of group 3
-                                                  from bottom 12 observations of 3rd column of old dataset
+    ``` R
+    group1 <- mydata[1:12, 3] # Create a new vector with first 12 rows and
+                              # 3rd column of old dataset (mydata)
+    group3 <- mydata[13:24, 3] # Create a new vector with responses of group 3
+                               # from bottom 12 observations of 3rd column of old 
+                               # dataset
     ```
 
     The appropriate `t.test()` command can be found in section 3. State your $H_0$ and $H_A$ hypotheses and perform a $t$-test. Are the vital capacities for the two groups different?
@@ -129,7 +136,7 @@ Today we'll work with the `vitcap` dataset from the `ISwR` package. This dataset
 
 4.  Examine the $F$-value from the `anova()` command. There is actually a pretty simple mathematical relationship between the $t$-value and the $F$-value (but *only* when there are two groups, so the $F$-value has 1 degree of freedom in the numerator). Many things in statistics are related, actually. What is the mathematical relationship between your $t$-value from the $t$-test and this $F$-value?
 
-5.  Now perform a `summary()` of your model. The summary is a little more detailed, because it lists the individual parameters of the model fit $Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$. In practice, it is standard to first look at the `anova()` output *first*, because if the overall effect of the factor is not significant, then it makes little sense to continue examining the intracies of the model itself.
+5.  Now perform a `summary()` of your model. The summary is a little more detailed, because it lists the individual parameters of the model fit $Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$. In practice, it is standard to first look at the `anova()` output *first*, because if the overall effect of the factor is not significant, then it makes little sense to continue examining the intricacies of the model itself.
 
     Using the `summary()` command, you will first see a **call**, which is the model that you fit. Next, you will see a summary of your **residuals**. These are the errors of the model: the distance between each data point and the mean for each group. If the model fit perfectly (never the case), all the data points would be right on top of the mean (i.e., *everyone* in group 1 might have a vital capacity of 2.78, and *everyone* in group 3 might have a capacity of 4.61). However, *every* model has errors, especially in ecology. It is good to scan this summary and just make sure that the residuals are roughly distributed around zero.\
     Below the residual summary in the printout, you will see the **coefficients** of the model. The **intercept** is the estimate of the "baseline." Many statistics programs set one particular group to the "baseline" or "reference level" (i.e., the $\mu$ in our written model $Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$) and compare all other groups to that one in the `summary()` output. In R, levels are sorted alphanumerically, so the first level is the reference level. In SAS, the last level is chosen as baseline. *Always know which level your statistics package is using as the intercept for an ANOVA*. Here, the intercept refers to the mean for Group 1, since "1" comes before "3".\
@@ -148,7 +155,7 @@ Today we'll work with the `vitcap` dataset from the `ISwR` package. This dataset
     There are 4 assumptions. The first, that our model is correct, depends in part on how you imported and set up your data. The second, that the data are independent, is best addressed in the experimental design stage. We have no reason to believe that this assumption is violated for this dataset. The second and third assumptions, that the variances are equal and the errors are normally distributed, are easily checked with a **residual plot**.\
     A residual plot is a plot of the model's errors (difference between each data point and the group mean) vs. predicted values (group means). One nice thing about R is that you can take apart pieces of your analysis, if you so desire. (*Advanced useRs, if you are curious:* The `attributes()` command allows you to list pieces of any object that you can grab). Other commands are built-in that take pieces for you, like `residuals()` and `fitted.values()`. You can plot a residual plot for a model named `mymodel` as follows:\
     `> plot(residuals(mymodel)`$\sim$`fitted.values(mymodel))`\
-    You should see two vertical lines of dots, one line for each fitted group mean. The vertical dots are the scatter about this mean. For example, if the vital capacity for group 1 is on average 3.95, some values might be below 3.95 and some might be above 3.95. A residual plot shows how far above and below the group mean these values are. A residual plot is always centered horizonally around zero.\
+    You should see two vertical lines of dots, one line for each fitted group mean. The vertical dots are the scatter about this mean. For example, if the vital capacity for group 1 is on average 3.95, some values might be below 3.95 and some might be above 3.95. A residual plot shows how far above and below the group mean these values are. A residual plot is always centered horizontally around zero.\
     When examining a residual plot for a model, you want to look for two things:
 
     1.  Given the assumption that the variances are equal across groups, the spread of the data points for each group should be approximately equal.
