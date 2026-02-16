@@ -451,11 +451,10 @@ on $df = 5$.
 To calculate $SS_{treatment}$, we ask the question: how much of the $SS_{total}$ be attributed to the differences *between* treatment groups? To get at this, we replace each observation in the dataset with the group mean:
 
 :::{.center-x}
-`x: 8, 8, 8`</br>
-`y: 12, 12, 12`
+`x: 4, 12, 8 --> x: 8, 8, 8`</br>
+`y: 17, 8, 11 --> y: 12, 12, 12`
 :::
 
-</br>
 </br>
 </br>
 
@@ -469,7 +468,6 @@ and the $SS_{treatment}$ is:
 
 $$(8-10)^2+(8-10)^2+(8-10)^2+(12-10)^2+$$ \br
 $$(12-10)^2+(12-10)^2=24$$
-
 on $df=1$.
 
 ## Analysis of variance (ANOVA)

@@ -583,15 +583,14 @@
 <p><strong>One-way ANOVA | Treatment sum of squares</strong></p>
 <p>To calculate <span class="math inline">\(SS_{treatment}\)</span>, we ask the question: how much of the <span class="math inline">\(SS_{total}\)</span> be attributed to the differences <em>between</em> treatment groups? To get at this, we replace each observation in the dataset with the group mean:</p>
 <div class="center-x">
-<p><code>x: 8, 8, 8</code><br> <code>y: 12, 12, 12</code></p>
+<p><code>x: 4, 12, 8 --&gt; x: 8, 8, 8</code><br> <code>y: 17, 8, 11 --&gt; y: 12, 12, 12</code></p>
 </div>
-<p><br> <br> <br></p>
+<p><br> <br></p>
 <div class="fragment">
 <p>The overall mean here is then:</p>
 <p><span class="math display">\[\frac{8+8+8+12+12+12}{6}=10\]</span></p>
 <p>and the <span class="math inline">\(SS_{treatment}\)</span> is:</p>
-<p><span class="math display">\[(8-10)^2+(8-10)^2+(8-10)^2+(12-10)^2+\]</span> <span class="math display">\[(12-10)^2+(12-10)^2=24\]</span></p>
-<p>on <span class="math inline">\(df=1\)</span>.</p>
+<p><span class="math display">\[(8-10)^2+(8-10)^2+(8-10)^2+(12-10)^2+\]</span> <span class="math display">\[(12-10)^2+(12-10)^2=24\]</span> on <span class="math inline">\(df=1\)</span>.</p>
 </div>
 </section>
 <section id="analysis-of-variance-anova-9" class="slide level2">

@@ -2039,7 +2039,7 @@
     "href": "content/slides/w4-slides.html#analysis-of-variance-anova-8",
     "title": "Week 4",
     "section": "Analysis of variance (ANOVA)",
-    "text": "Analysis of variance (ANOVA)\nOne-way ANOVA | Treatment sum of squares\nTo calculate \\(SS_{treatment}\\), we ask the question: how much of the \\(SS_{total}\\) be attributed to the differences between treatment groups? To get at this, we replace each observation in the dataset with the group mean:\n\nx: 8, 8, 8 y: 12, 12, 12\n\n  \n\nThe overall mean here is then:\n\\[\\frac{8+8+8+12+12+12}{6}=10\\]\nand the \\(SS_{treatment}\\) is:\n\\[(8-10)^2+(8-10)^2+(8-10)^2+(12-10)^2+\\] \\[(12-10)^2+(12-10)^2=24\\]\non \\(df=1\\)."
+    "text": "Analysis of variance (ANOVA)\nOne-way ANOVA | Treatment sum of squares\nTo calculate \\(SS_{treatment}\\), we ask the question: how much of the \\(SS_{total}\\) be attributed to the differences between treatment groups? To get at this, we replace each observation in the dataset with the group mean:\n\nx: 4, 12, 8 --&gt; x: 8, 8, 8 y: 17, 8, 11 --&gt; y: 12, 12, 12\n\n \n\nThe overall mean here is then:\n\\[\\frac{8+8+8+12+12+12}{6}=10\\]\nand the \\(SS_{treatment}\\) is:\n\\[(8-10)^2+(8-10)^2+(8-10)^2+(12-10)^2+\\] \\[(12-10)^2+(12-10)^2=24\\] on \\(df=1\\)."
   },
   {
     "objectID": "content/slides/w4-slides.html#analysis-of-variance-anova-9",
