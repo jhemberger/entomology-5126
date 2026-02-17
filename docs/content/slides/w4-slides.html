@@ -12,7 +12,7 @@
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.32">
 
-  <title>Entomology 5126 – Week 4</title>
+  <title>Entomology 5126 – Week 5</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -135,640 +135,95 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 4</h1>
-  <p class="subtitle">Independent t-tests and ANOVA</p>
+  <h1 class="title">Week 5</h1>
+  <p class="subtitle">Two-Way ANOVA &amp; linear model diagnostics</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
 <section>
-<section id="what-well-cover-this-week" class="title-slide slide level1 center">
-<h1>What we’ll cover this week</h1>
+<section id="what-well-cover-today" class="title-slide slide level1 center">
+<h1>What we’ll cover today</h1>
 
 </section>
 <section id="more-tools-to-detect-differences-among-samples" class="slide level2">
 <h2>More tools to detect differences among samples</h2>
 <div class="fragment">
 <div class="box-1-list">
-<p><span class="margin-1"><i class="fa-solid fa-chart-simple" aria-label="chart-simple"></i></span> Independent, two-sample <em>t</em>-tests</p>
+<p><span class="margin-1"><i class="fa-solid fa-chart-simple" aria-label="chart-simple"></i></span> Two-Way ANOVA</p>
 </div>
 </div>
 <div class="fragment">
 <div class="box-1-list">
-<p><span class="margin-1"><i class="fa-solid fa-chart-simple" aria-label="chart-simple"></i></span> Analysis of Variance (ANOVA)</p>
+<p><span class="margin-1"><i class="fa-solid fa-wrench" aria-label="wrench"></i></span> Linear model diagnostics</p>
 </div>
 </div>
-</section></section>
-<section>
-<section id="but-first" class="title-slide slide level1 center">
-<h1>But first…</h1>
-
+<div class="fragment">
+<p>But first…</p>
+</div>
 </section>
 <section id="pop-quiz-hot-shots" class="slide level2">
 <h2>Pop-quiz, hot shot(s)…</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="https://y.yarn.co/4c18a944-8df2-4278-a69e-7d12fabb16e6_text.gif" class="quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHN0OHdiN2I5Y2d3MjB3NXFjOTI3dm90YnAwODBmcWc0ZGRhZGU0ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4FATJpd4LWgeruTK/giphy.gif" class="quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
-<section id="pop-quiz-hot-shots-1" class="slide level2">
-<h2>Pop-quiz, hot shot(s)…</h2>
-<p><img data-src="https://i.ytimg.com/vi/lVTnOhJrMK4/maxresdefault.jpg"></p>
-</section>
-<section id="pop-quiz-hot-shots-2" class="slide level2 scrollable">
-<h2>Pop-quiz, hot shot(s)…</h2>
-<p>Ok, but actually let’s do a little mini-quiz since we’re ~25% of the way though the semester! In groups, address the following questions:</p>
+<section id="lets-check-our-anova-memory-from-last-week" class="slide level2 scrollable">
+<h2>Let’s check our ANOVA memory from last week…</h2>
+<p>We’ve learned a few ways to assess the differences between samples of data, so far mostly through comparing the <em>expected</em> values, or means. These questions will address the concepts we’ve discussed so far.</p>
 <div class="fragment">
 <ol type="1">
-<li>Imagine you’ve conducted a t-test (one, two sample, doesn’t matter), and calculated a t-statistic of 3.6. Which t-distribution would yield a smaller p-value when calculated: <span class="math inline">\(t_{15}\)</span> or <span class="math inline">\(t_{120}\)</span>? Why?</li>
+<li>Assume we have 3 independent samples of plants grown in different fertilizer regimes and we want to compare their total height after 30 days. Given the choice between conducting and ANOVA and three independent, two-sample t-tests, which would you choose and why?</li>
 </ol>
 </div>
 <div class="fragment">
 <ol start="2" type="1">
-<li>Related to number 1, what are the two things that we can change about an experiment/observational study, and in what direction should we change them, to <em>increase</em> the power of our statistical test?</li>
+<li>All this talk of Z-tests, one-sample t-tests, two-sample t-tests, and dependent and independent t-tests is making my head spin! Help me! Why do we use t-tests rather than z-tests most of the time? What’s the difference between dependent and independent two-sample t-tests?</li>
 </ol>
 </div>
 <div class="fragment">
 <ol start="3" type="1">
-<li>What is the advantage of <strong>standardizing</strong> our data using a Z-distribution (i.e., Z-score)?</li>
+<li>Look! I did an ANOVA! What the *!&amp;$ does it mean?! Give me a 30-second elevator pitch about what this particular <code>summary()</code> output tells us.</li>
 </ol>
 </div>
-<div class="fragment">
-<ol start="4" type="1">
-<li>Math time! Imagine we have a random variable, <span class="math inline">\(Y \sim N(15, 2^2)\)</span>. Calculate the probability that our random variable takes the values between 15 and 19 (i.e., <span class="math inline">\(P(15 ≤ Y ≤ 19)\)</span>). For the p-values, you can look it them with a simple Google search (in this case, the AI answer <em>should</em> be correct, last I checked)</li>
-</ol>
+</section>
+<section id="nice-work" class="slide level2">
+<h2>Nice work!</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://i.sstatic.net/AFpya.gif" class="quarto-figure quarto-figure-center" width="800"></p>
+</figure>
 </div>
 </section></section>
 <section>
-<section id="independent-two-sample-t-tests" class="title-slide slide level1 center">
-<h1>Independent, two-sample <em>t</em> tests</h1>
+<section id="two-way-anova" class="title-slide slide level1 center">
+<h1>Two-way ANOVA</h1>
 
 </section>
-<section id="comparing-two-samples-overview" class="slide level2">
-<h2>Comparing two samples: overview</h2>
-<div class="box-6-list">
-<p>There are two types of two-sample experiments: <span class="highlight-tomato">paired</span> two-sample and <span class="highlight-tomato">independent</span> (unpaired) two-sample</p>
-</div>
+<section id="two-way-anova-1" class="slide level2">
+<h2>Two-way ANOVA</h2>
+<p>Last week, we discussed 1-factor or “1-way” ANOVA. This let us compare the means of 2+ groups and determine whether there was any evidence that one or more groups were different than the others.</p>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> The paired two-sample <em>t</em> test is essentially a one-sample <em>t</em> test of the differences between the pairs</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> For example, is there a difference in the mean number of insects captured among 3 different colored sticky cards placed adjacent to a soybean field.</p>
 </div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> In an independent two-sample study, there are two treatments, but there is no direct relationship between observations in the two treatments.</p>
-</div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This means that we can re-arrange the data within each column with no effect on the result of the test.</p>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Remember!</strong></p>
-</div>
-<div class="callout-content">
-<p>It’s critical that we always analyze an experiment consistent with the manner in which the data were collected.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="independent-two-sample" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats</strong></p>
-<div class="box-6-list">
-<p>A vet researcher is interested in comparing the effects of two diets on the weight gains of juvenile rats. A total of 5 rats were assigned to diet type A and another 5 rats were assigned to diet type B. The weight gains (in grams) were recorded for a given period of time. The question of interest is whether there is evidence of a difference in the effect of diet on weight gains.</p>
-</div>
-</section>
-<section id="independent-two-sample-1" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats</strong></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Subject</th>
-<th>Diet 1 (<span class="math inline">\(Y_A\)</span>)</th>
-<th>Diet 2 (<span class="math inline">\(Y_B\)</span>)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>37.8</td>
-<td>12.3</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>27.5</td>
-<td>14.3</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>41.2</td>
-<td>19.2</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>26.5</td>
-<td>4.0</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>28.6</td>
-<td>25.9</td>
-</tr>
-</tbody>
-</table>
-<div class="indented-text">
-<p>Note:</p>
-</div>
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> There is <em>no</em> pairing between subjects</p>
-</div>
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We can permute (rearrange) the observations within each treatment with no effect on our results</p>
-</div>
-</section>
-<section id="independent-two-sample-2" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats</strong></p>
-<p>Recall the formula for a <em>t</em>-test:</p>
-<p><span class="math display">\[T = \frac{\bar{Y} - \mu_0}{S / \sqrt{n}}\]</span></p>
-<p>How can we get this to fit the experiment?</p>
-</section>
-<section id="independent-two-sample-3" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats</strong></p>
-<div class="box-6-list">
-<p>Let <span class="math inline">\(\mu_A =\)</span> the population mean weight gain of rats that are assigned diet A and <span class="math inline">\(\mu_B =\)</span> the population mean weight gain of rats that are assigned diet B.</p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We want to test:</p>
-</div>
-<p><span class="math display">\[H_0 : \mu_A = \mu_B \:\:\ vs \:\:\ H_A : \mu_A ≠ \mu_B\]</span></p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We can think about this in a similar way as a paired t-test, in that we can use the difference in the sample means (<span class="math inline">\(\bar{Y_A} - \bar{Y_B}\)</span>) to mathematically assess our null and alternative hypothesis.</p>
-</div>
-</div>
-</section>
-<section id="independent-two-sample-4" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats</strong></p>
-<div class="box-6-list">
-<p>Let <span class="math inline">\(\mu_{\bar{Y_A}-\bar{Y_B}} = \mu_A - \mu_B\)</span> (i.e., the mean of the sample differences approximates the difference between our populations)</p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Using a normal distribution, we can then calculate the test statistic as:</p>
-</div>
-<p><span class="math display">\[T = \frac{\bar{Y_A}-\bar{Y_B} - \mu_{\bar{Y_A}-\bar{Y_B}}}{S_{\bar{Y_A}-\bar{Y_B}}}\]</span> on <span class="math inline">\(n_1 + n_2 - 2\)</span> degrees of freedom</p>
-</div>
-</section>
-<section id="independent-two-sample-5" class="slide level2 scrollable">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats | assumptions</strong></p>
-<ol type="1">
-<li class="fragment">Assume two independent samples <span class="math inline">\(Y_A\)</span> and <span class="math inline">\(Y_B\)</span>.</li>
-<li class="fragment">The variances are the same in our two samples: <span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \sigma^2\)</span></li>
-<li class="fragment">The first sample <span class="math inline">\(Y_{A1}, Y_{A2},...,Y_{An_A}\)</span> is a random sample of size <span class="math inline">\(n_A\)</span> from <span class="math inline">\(N(\mu_A, \sigma_A^2)\)</span>. The second sample <span class="math inline">\(Y_{B1}, Y_{B2},...,Y_{Bn_B}\)</span> is a random sample of size <span class="math inline">\(n_B\)</span> from <span class="math inline">\(N(\mu_B, \sigma_B^2)\)</span>.</li>
-</ol>
-<div class="fragment">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note:</strong></p>
-</div>
-<div class="callout-content">
-<p>Sample sizes for the two groups do <em>not</em> have to be equal.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="independent-two-sample-6" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats | setup the test statistic</strong></p>
-<p>Under our assumptions:</p>
-<p><span class="math display">\[\bar Y_A\sim N(\mu_A,\frac{\sigma^2}{n_A}),\quad \bar Y_B\sim N(\mu_B,\frac{\sigma^2}{n_B})\]</span></p>
-<div class="fragment">
-<p>The expectation of <span class="math inline">\(\bar{Y_A}-\bar{Y_B}\)</span> is:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-\mu_{\bar Y_A-\bar Y_B}&amp;=&amp;E(\bar Y_A-\bar Y_B)\\
-&amp;=&amp;E(\bar Y_A)-E(\bar Y_B)=\mu_A-\mu_B
-\end{eqnarray*}\]</span></p>
-</div>
-<div class="fragment">
-<p>Thus we want to test:</p>
-<p><span class="math display">\[H_0:\mu_{\bar Y_A-\bar Y_B}=0 \quad{\rm vs}\quad H_A:\mu_{\bar Y_A-\bar Y_B}\neq 0\]</span></p>
-</div>
-</section>
-<section id="independent-two-sample-7" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats | calculating variance</strong></p>
-<div class="box-6-list">
-<p>Calculating the variance in a two-sample scenario is a bit different because we have two, independent samples and thus two variance estimates to determine!</p>
-</div>
-<div class="fragment">
-<p>The variance of <span class="math inline">\(\bar{Y_A}-\bar{Y_B}\)</span> is:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-\sigma^2_{\bar Y_A-\bar Y_B}&amp;=&amp;Var(\bar Y_A-\bar Y_B)\\
-&amp;=&amp;Var(\bar Y_A)+Var(\bar Y_B)\\
-&amp;=&amp;\frac{\sigma^2}{n_A} + \frac{\sigma^2}{n_B} = \sigma^2(\frac{1}{n_A}+\frac{1}{n_B})
-\end{eqnarray*}\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(S^2\)</span> is an estimator of <span class="math inline">\(\sigma^2\)</span>, so we can estimate <span class="math inline">\(\sigma^2_{\bar{Y_A}-\bar{Y_B}}\)</span> by <span class="math inline">\(S^2(\frac{1}{n_A}+\frac{1}{n_B})\)</span> and <span class="math inline">\(\sigma_{\bar{Y_A}-\bar{Y_B}}\)</span> by <span class="math inline">\(S\sqrt{\frac{1}{n_A} + \frac{1}{n_B}}\)</span></p>
-</div>
-</section>
-<section id="independent-two-sample-8" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats | calculating variance</strong></p>
-<p>But what is <span class="math inline">\(S^2\)</span> in this case? We know that <span class="math inline">\(S_A^2\)</span> and <span class="math inline">\(S_B^2\)</span> both estimate <span class="math inline">\(\sigma^2\)</span>. <span class="math inline">\(S^2\)</span> is a <em>pooled</em> estimate of <span class="math inline">\(\sigma^2\)</span>:</p>
-<p><span class="math display">\[S^2_p = \frac{(n_A-1)S_A^2+(n_B-1)S_B^2}{n_A+n_B-2}\]</span></p>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(S^2_p\)</span> is the <span class="highlight-tomato">weighted average</span> of the two sample variances, weighted by the total degrees of freedom. This accounts and adjusts for different group sizes. For example, if <span class="math inline">\(n_A\)</span> is larger, we’re giving it more weight in the calculation of the pooled variance estimate.</p>
-</div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> If sample sizes are equal, <span class="math inline">\(S_p^2 = \frac{S_A^2 + S_B^2}{2}\)</span> (simple average) and <span class="math inline">\(S = S_p\sqrt{\frac{2}{n}}\)</span>.</p>
-</div>
-</div>
-</section>
-<section id="independent-two-sample-9" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats | calculating our t-statistic</strong></p>
-<p>Going back to our hypotheses:</p>
-<p><span class="math display">\[H_0 : \mu_A = \mu_B \:\:\ vs \:\:\ H_A : \mu_A ≠ \mu_B\]</span></p>
-<div class="fragment">
-<p>Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(\mu_{\bar{Y_A} - \bar{Y_B}} = 0\)</span>, and thus:</p>
-<p><span class="math display">\[T=\frac{(\bar Y_A-\bar Y_B)-0}{S_p\sqrt{\frac{1}{n_A}+\frac{1}{n_B}}}\sim T_{n_A+n_B-2}\]</span></p>
-</div>
-</section>
-<section id="independent-two-sample-10" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats | calculating our t-statistic</strong></p>
-<p>Let’s calculate <span class="math inline">\(S_p\)</span>. Our observed parameters are: <span class="math inline">\(\bar y_A=32.32,\bar y_B=15.14,s^2_A=44.96, s^2_B=66.28\)</span> with <span class="math inline">\(n_A=n_B=5\)</span>.</p>
-<p><span class="math display">\[s^2_p=\frac{4\times 44.96+4\times 66.28}{8}=55.62,\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(s_p=\sqrt{55.62}=7.46\)</span>, and the observed test statistic is:</p>
-<p><span class="math display">\[t=\frac{(32.32-15.14)-0}{7.46\sqrt{1/5+1/5}}= 3.64\]</span></p>
-<p>on df = <span class="math inline">\(n_1+n_2-2=8\)</span>.</p>
-</div>
-</section>
-<section id="independent-two-sample-11" class="slide level2">
-<h2>Independent two-sample</h2>
-<p><strong>Example: fat rats | concluding our study</strong></p>
-<p><span class="math display">\[t=\frac{(32.32-15.14)-0}{7.46\sqrt{1/5+1/5}}= 3.64\]</span></p>
-<p>on df = <span class="math inline">\(n_1+n_2-2=8\)</span>.</p>
-<p><span class="math inline">\(p\)</span>-value is <span class="math inline">\(2\times P(T_{8}\geq 3.64)\)</span>, which is less than 0.01.</p>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <em>Reject</em> <span class="math inline">\(H_0\)</span> at the 5% level. There is strong evidence against <span class="math inline">\(H_0\)</span>.</p>
-</div>
-</div>
-</section></section>
-<section>
-<section id="analysis-of-variance-anova" class="title-slide slide level1 center">
-<h1>Analysis of variance (ANOVA)</h1>
-
-</section>
-<section id="analysis-of-variance-anova-1" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>An overview</strong></p>
-<div class="box-6-list">
-<p>We will continue to work with categorical or factor data (i.e., the type of data for which you’d draw a bar or box plot to depict your experimental results). This requires that we need:</p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> A response variable that is ~ normally distributed (or can be transformed as such)</p>
-</div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> A dependent variable with 2 or more categories/levels (i.e., treatment and control)</p>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Building on t-tests</strong></p>
-</div>
-<div class="callout-content">
-<p>ANOVAs will build on the methods we’ve already learned, but expand them to allow us to compare more than two categories!</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="analysis-of-variance-anova-2" class="slide level2 scrollable">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>Why ANOVA?</strong></p>
-<div class="box-6-list">
-<p>In ecology, we often have more than two groups or treatments that we want to compare!</p>
-</div>
-<ol type="1">
-<li class="fragment">Weight gain of horses on 3 diets as well as a control</li>
-<li class="fragment">Growth responses of plants on 3 different fertilizer regimes</li>
-<li class="fragment">Nesting habits of swallows provided with 3 different nest box designs</li>
-</ol>
-<div class="fragment">
-<p>But why don’t we just use what we’ve already learned and do comparisons across all possible pairings using independent, two-sample t-tests?</p>
-</div>
-</section>
-<section id="analysis-of-variance-anova-3" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>Why ANOVA?</strong></p>
-<div class="box-6-list">
-<p>ANOVA provides us with a method to compare more than two treatments without inflating our type-1 error rate</p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> One-way ANOVA can be viewed as an extension of the independent two-sample case to multiple, independent samples</p>
-</div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> As the name suggests, we’ll work to analyze how the variance is <span class="highlight-tomato">partitioned</span> across our samples, using a concept called the sum of squares</p>
-</div>
-<p><span class="math display">\[\sum(Y_i-\bar{Y})^2\]</span></p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> First, we’ll reconsider our independent, two-sample case and then generalize to multiple, independent samples.</p>
-</div>
-</div>
-</section>
-<section id="analysis-of-variance-anova-4" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Independent two samples</strong></p>
-<p>Consider the following independent samples:</p>
-<div class="center-x">
-<p><code>x: 4, 12, 8</code><br> <code>y: 17, 8, 11</code></p>
-</div>
-<p><br> <br> <br></p>
-<div class="fragment">
-<p>The summary statistics for these samples are:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-&amp;&amp;\bar x = 8, \quad s_x^2 = 16, \quad \sum_{i=1}^3 (x_i-\bar x)^2 = 32 \\
-&amp;&amp;\bar y = 12, \quad s_y^2 = 21, \quad \sum_{i=1}^3 (y_i-\bar y)^2 = 42 \\
-&amp;&amp;\quad s_p^2 = 18.5
-\end{eqnarray*}\]</span></p>
-</div>
-</section>
-<section id="analysis-of-variance-anova-5" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Independent two samples</strong></p>
-<p>For testing <span class="math inline">\(H_0:\mu_1=\mu_2\)</span> vs <span class="math inline">\(H_A:\mu_1\neq\mu_2\)</span>, use <span class="math inline">\(t\)</span>-test:</p>
-<div class="fragment">
-<p><span class="math display">\[T = \frac{(12-8)-0}{\sqrt{18.5(1/3+1/3)}}=1.14\]</span></p>
-<p>on df = 4. The two-side <span class="math inline">\(p\)</span>-value is 0.1590.</p>
 </div>
 <div class="fragment">
 <div class="box-6-list">
-<p>Thus do not reject <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha=5\%\)</span> and there is no evidence against <span class="math inline">\(H_0\)</span>.</p>
+<p>Cool! But what about when we have an experiment with <span class="highlight-tomato">more than 1 treatment factor</span> (e.g., temperature and precipitation?)</p>
 </div>
 </div>
 </section>
-<section id="analysis-of-variance-anova-6" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Partitioning sums of squares</strong></p>
-<div class="box-6-list">
-<p>We can answer the same question by partitioning the sums of squares</p>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We will split up (partition) the variance present in the system into components</p>
-</div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(SS_{total} = SS_{treatment} + SS_{error}\)</span></p>
-</div>
-</div>
-</section>
-<section id="analysis-of-variance-anova-7" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Total sum of squares</strong></p>
-<p>To calculate <span class="math inline">\(SS_{total}\)</span>, imagine that all of the observations are from a single population. The overall mean is:</p>
-<p><span class="math display">\[\frac{4+12+8+17+8+11}{6}=10\]</span></p>
-<div class="fragment">
-<p>and the <span class="math inline">\(SS_{total}\)</span> is:</p>
-<p><span class="math display">\[(4-10)^2+(12-10)^2+(8-10)^2+(17-10)^2+\]</span> <span class="math display">\[(8-10)^2+(11-10)^2=98\]</span></p>
-<p>on <span class="math inline">\(df = 5\)</span>.</p>
-</div>
-</section>
-<section id="analysis-of-variance-anova-8" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Treatment sum of squares</strong></p>
-<p>To calculate <span class="math inline">\(SS_{treatment}\)</span>, we ask the question: how much of the <span class="math inline">\(SS_{total}\)</span> be attributed to the differences <em>between</em> treatment groups? To get at this, we replace each observation in the dataset with the group mean:</p>
-<div class="center-x">
-<p><code>x: 4, 12, 8 --&gt; x: 8, 8, 8</code><br> <code>y: 17, 8, 11 --&gt; y: 12, 12, 12</code></p>
-</div>
-<p><br> <br></p>
-<div class="fragment">
-<p>The overall mean here is then:</p>
-<p><span class="math display">\[\frac{8+8+8+12+12+12}{6}=10\]</span></p>
-<p>and the <span class="math inline">\(SS_{treatment}\)</span> is:</p>
-<p><span class="math display">\[(8-10)^2+(8-10)^2+(8-10)^2+(12-10)^2+\]</span> <span class="math display">\[(12-10)^2+(12-10)^2=24\]</span> on <span class="math inline">\(df=1\)</span>.</p>
-</div>
-</section>
-<section id="analysis-of-variance-anova-9" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Error sum of squares</strong></p>
-<p>To calculate <span class="math inline">\(SS_{error}\)</span>, we ask the question: how much of the <span class="math inline">\(SS_{total}\)</span> be attributed to the differences <em>within</em> treatment groups (i.e., how variable are measurements within our groups)? To get at this, we sum the squared differences between each observation and its group mean:</p>
-<div class="fragment">
-<p><span class="math display">\[(4-8)^2+(12-8)^2+(8-8)^2+(17-12)^2+\]</span> <span class="math display">\[(8-12)^2+(11-12)^2=74\]</span></p>
-<p>on <span class="math inline">\(df=4\)</span></p>
-</div>
-<div class="fragment">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note:</strong></p>
-</div>
-<div class="callout-content">
-<p>The <span class="math inline">\(\frac{SS_{error}}{df_{error}} = 18.5 = s_p^2\)</span> from our two-sample t-test!</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="analysis-of-variance-anova-10" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Relationship of sums of squares</strong></p>
-<p>Folks that have done this before may recall that these sums of squares are related, and we can calculate them by:</p>
-<p><span class="math display">\[SS_{total} = SS_{treatment} + SS_{error} (98=24+74)\]</span> <span class="math display">\[df_{total} = df_{treatment} + df_{error} (5=1+4)\]</span></p>
-</section>
-<section id="analysis-of-variance-anova-11" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | The ANOVA table</strong></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Source</th>
-<th><em>df</em></th>
-<th>SS</th>
-<th>MS</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Treatment</td>
-<td>1</td>
-<td>24</td>
-<td>24</td>
-</tr>
-<tr class="even">
-<td>Error</td>
-<td>4</td>
-<td>74</td>
-<td>18.5</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>5</td>
-<td>98</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<p>Here, MS is the mean square, or the average variability from a source of variation: the between group variation [the treatment], or within group variation [the error].</p>
-</section>
-<section id="analysis-of-variance-anova-12" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | The ANOVA table</strong></p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 7%">
-<col style="width: 46%">
-<col style="width: 36%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Source</th>
-<th><em>df</em></th>
-<th>SS</th>
-<th>MS</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Treatment</td>
-<td>a-1</td>
-<td><span class="math inline">\(\sum_{i=1}^{a}\sum_{j=1}^{n}(\bar{Y_i}-\bar{Y})^2\)</span></td>
-<td><span class="math inline">\(\frac{SS_{treatment}}{df_{treatment}}\)</span></td>
-</tr>
-<tr class="even">
-<td>Error</td>
-<td>a(n-1)</td>
-<td><span class="math inline">\(\sum_{i=1}^{a}\sum_{j=1}^{n}(Y_{i,j}-\bar{Y_i})^2\)</span></td>
-<td><span class="math inline">\(\frac{SS_{error}}{df_{error}}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>an-1</td>
-<td><span class="math inline">\(\sum_{i=1}^{a}\sum_{j=1}^{n}(Y_{i,j}-\bar{Y})^2\)</span></td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="highlight-tomato"><span class="math inline">\(n\)</span></span> denotes the number of observations within each group. <span class="highlight-tomato"><span class="math inline">\(a\)</span></span> is the number of treatment groups (e.g., types of diet)</p>
-</div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> The <span class="math inline">\(F\)</span>-ratio is simply <span class="math inline">\(\frac{MS_{treatment}}{MS_{error}}\)</span> on the degrees of freedom associated with the treatment and error terms, respectively.</p>
-</div>
-</div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> From the <span class="math inline">\(F\)</span>-statistic, we can calculate a p-value and evaluate the support for our null hypothesis.</p>
-</div>
-</div>
-</section>
-<section id="analysis-of-variance-anova-13" class="slide level2">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>One-way ANOVA | Back to our samples! Let’s do the F-test…</strong></p>
-<p>Considering the following independent samples:</p>
-<div class="center-x">
-<p><code>x: 4, 12, 8</code><br> <code>y: 17, 8, 11</code></p>
-</div>
-<p><br> <br> <br></p>
-<div class="fragment">
-<p>Here, the observed <span class="math inline">\(f=24/18.5=1.30\)</span>.</p>
-</div>
-<div class="fragment">
-<p>Compare this to an <span class="math inline">\(F\)</span>-distribution with 1 and 4 df in the numerator and denominator, respectively: <span class="math inline">\(F_{1,4}\)</span>.</p>
-</div>
-<div class="fragment">
-<p>The (one-sided) p-value <span class="math inline">\(P(F_{1,4}\geq 1.30)\)</span> is 0.6523.</p>
-</div>
-<div class="fragment">
-<div class="box-6-list">
-<p>Do not reject <span class="math inline">\(H_0\)</span> at the 10% level. There is no evidence against <span class="math inline">\(H_0\)</span>.</p>
-</div>
-</div>
-</section>
-<section id="analysis-of-variance-anova-14" class="slide level2 scrollable">
-<h2>Analysis of variance (ANOVA)</h2>
-<p><strong>ANOVA Assumptions</strong></p>
-<div class="box-6-list">
-<p>Like any model, ANOVA has certain assumptions that must be met for our tests to be valid:</p>
-</div>
-<div class="fragment">
-<ol type="1">
-<li>Samples are independent</li>
-</ol>
-</div>
-<div class="fragment">
-<ol start="2" type="1">
-<li>Variance is homogeneous among groups (i.e., each group contributes ~ equally to the within group sum of squares)</li>
-</ol>
-</div>
-<div class="fragment">
-<ol start="3" type="1">
-<li>Residuals are normally distributed</li>
-</ol>
-</div>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<div class="center-xy">
-<p><strong>Cool! But what about when we have an experiment with more than 1 treatment factor (e.g., temperature and precipitation?)</strong></p>
-</div>
-</section>
-<section id="analysis-of-variance-anova-15" class="slide level2">
+<section id="analysis-of-variance-anova" class="slide level2">
 <h2>Analysis of variance (ANOVA)</h2>
 <p><strong>Two-way ANOVA</strong></p>
+<div class="fragment">
 <div class="box-6-list">
 <p>In a factorial design, two (or more) categorical variables are “crossed” with one another (e.g., two levels of temperature and two levels of irrigation)</p>
+</div>
 </div>
 <div class="fragment">
 <div class="indented-text">
@@ -786,7 +241,7 @@
 </div>
 </div>
 </section>
-<section id="analysis-of-variance-anova-16" class="slide level2">
+<section id="analysis-of-variance-anova-1" class="slide level2">
 <h2>Analysis of variance (ANOVA)</h2>
 <p><strong>Two-way ANOVA | The ANOVA table</strong></p>
 <table class="caption-top">
@@ -839,6 +294,126 @@
 </table>
 <div class="fragment">
 <p>Here, you can test 3 <span class="math inline">\(F\)</span>-ratios: two main effects and their interaction. All use the <span class="math inline">\(MS_{error}\)</span> term in the denominator!</p>
+</div>
+</section></section>
+<section>
+<section id="model-diagnostics" class="title-slide slide level1 center">
+<h1>Model diagnostics</h1>
+
+</section>
+<section id="linear-model-assumptions" class="slide level2 scrollable">
+<h2>Linear model assumptions</h2>
+<p><strong>ANOVA, Linear Models (regression), t-tests, and beyond!</strong></p>
+<div class="fragment">
+<ol type="1">
+<li>Model is correct</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li>Samples are independent across and within treatments</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>Variance is homogeneous among groups (i.e., each group contributes ~ equally to the within group sum of squares; <span class="math inline">\(\sigma_1^2 = \sigma_2^2 = ... = \sigma_k^2\)</span>)</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="4" type="1">
+<li>Residuals are normally distributed</li>
+</ol>
+</div>
+<div class="fragment">
+<div class="box-6-list">
+<p>These assumptions are listed from mostest to most important (because none of them are <em>not</em> important)</p>
+</div>
+</div>
+</section>
+<section id="linear-model-assumptions-1" class="slide level2">
+<h2>Linear model assumptions</h2>
+<p><strong>Assumption 1: Model is correct</strong></p>
+<div class="box-6-list">
+<p>This is the art of statistics! We can plug experimental data into just about any model framework in the computer and have it spit out some stuff for us to interpret. But is it meaningful?</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Folks tend to look for p-values before they look for anything else. This is a one of the perverse incentives from the publishing rat-race we’re all apart of.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This assumption is best addressed through common sense and attention to detail. And…</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> …conducting your analyses consistent with the manner in which you conduct your experiment/observational studies.</p>
+</div>
+</div>
+</section>
+<section id="linear-model-assumptions-2" class="slide level2">
+<h2>Linear model assumptions</h2>
+<p><strong>Assumption 2: Samples are independent across and within treatments</strong></p>
+<div class="box-6-list">
+<p>These details are best sorted at the experimental and study design phase. Recall the discussions we’ve had about bias, randomization, etc.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> This assumption is nothing that we can test or visualize to assess; we simply must critique the experimental methods/procedure used to collect our samples.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Recall the discussions we’ve had about bias, randomization, etc.</p>
+</div>
+</div>
+</section>
+<section id="linear-model-assumptions-3" class="slide level2">
+<h2>Linear model assumptions</h2>
+<p><strong>Assumption 3: Variance is homogenous among groups</strong></p>
+<div class="box-6-list">
+<p>Equal variance can be assessed using tests (e.g., Levene’s test), but in practice we tend to assess this assumption <strong>visually</strong> using residual plots</p>
+</div>
+</section>
+<section id="linear-model-assumptions-4" class="slide level2">
+<h2>Linear model assumptions</h2>
+<p><strong>Assumption 4: Residuals are normally distributed</strong></p>
+<div class="box-6-list">
+<p>Till now, we have been simplifying this assumption, saying something like: each treatment is a random sample <span class="math inline">\(Y_{ij} \sim N(\mu_i, \sigma_i^2)\)</span>. Technically, this isn’t quite correct (but it gets us most of the way there)</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We actually care the most about our residual error distribution; that is, we want our model to be “wrong” consistently and have these errors follow a random sample <span class="math inline">\(Y_{ij} \sim N(0, \sigma_i^2)\)</span></p>
+</div>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="center-xy">
+<p><strong>Cool. But how do we actually assess these assumptions in our analyses?</strong></p>
+</div>
+</section>
+<section id="residual-plots" class="slide level2">
+<h2>Residual plots</h2>
+<div class="box-6-list">
+<p>For linear models, we can assess many of our assumptions by examining <span class="highlight-tomato">residual plots</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> A residual plot graphs our residual values, <span class="math inline">\(r_i\)</span> against our fitted model values, <span class="math inline">\(\hat{y}_i\)</span>.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> If we add up all of our residuals, <span class="math inline">\(\sum_{i=1}^{n} r_i = 0\)</span> and <span class="math inline">\(\sum_{i=1}^{n} r_i^2 = SSError\)</span> aka within-group variance</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We can assess our assumptions of equal variance and normally distributed residuals with a single residual plot!</p>
+</div>
+<p>Go through typical residual patterns and what they mean, how to account for/address them.</p>
 
 
 </div>

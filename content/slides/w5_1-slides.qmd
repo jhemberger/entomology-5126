@@ -1,0 +1,247 @@
+---
+title: "Week 5"
+subtitle: "Two-Way ANOVA & linear model diagnostics"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w4-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    scrollable: true
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---
+
+# What we'll cover today
+
+## More tools to detect differences among samples
+
+. . .
+
+::: box-1-list
+[{{< fa chart-simple >}}]{.margin-1} Two-Way ANOVA
+:::
+
+. . .
+
+::: box-1-list
+[{{< fa wrench >}}]{.margin-1} Linear model diagnostics
+:::
+
+. . . 
+
+But first...
+
+## Pop-quiz, hot shot(s)...
+![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHN0OHdiN2I5Y2d3MjB3NXFjOTI3dm90YnAwODBmcWc0ZGRhZGU0ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4FATJpd4LWgeruTK/giphy.gif){width="1000" fig-align="center"}
+
+## Let's check our ANOVA memory from last week...
+
+We've learned a few ways to assess the differences between samples of data, so far mostly through comparing the *expected* values, or means. These questions will address the concepts we've discussed so far. 
+
+. . . 
+
+1. Assume we have 3 independent samples of plants grown in different fertilizer regimes and we want to compare their total height after 30 days. Given the choice between conducting and ANOVA and three independent, two-sample t-tests, which would you choose and why?
+
+. . . 
+
+2. All this talk of Z-tests, one-sample t-tests, two-sample t-tests, and dependent and independent t-tests is making my head spin! Help me! Why do we use t-tests rather than z-tests most of the time? What's the difference between dependent and independent two-sample t-tests?
+
+. . . 
+
+3. Look! I did an ANOVA! What the *!&$ does it mean?! Give me a 30-second elevator pitch about what this particular `summary()` output tells us.
+
+## Nice work!
+
+![](https://i.sstatic.net/AFpya.gif){width="800" fig-align="center"}
+
+# Two-way ANOVA
+
+## Two-way ANOVA
+Last week, we discussed 1-factor or "1-way" ANOVA. This let us compare the means of 2+ groups and determine whether there was any evidence that one or more groups were different than the others.
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> For example, is there a difference in the mean number of insects captured among 3 different colored sticky cards placed adjacent to a soybean field.
+:::
+
+. . . 
+
+:::box-6-list
+Cool! But what about when we have an experiment with [more than 1 treatment factor]{.highlight-tomato} (e.g., temperature and precipitation?)
+:::
+
+## Analysis of variance (ANOVA)
+**Two-way ANOVA**
+
+. . . 
+
+:::box-6-list
+In a factorial design, two (or more) categorical variables are "crossed" with one another (e.g., two levels of temperature and two levels of irrigation)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This design, also called a fully-factorial, or full-crossed design, yields 4 total treatment combinations that we *could* analyze in a 1-way ANOVA.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> However, such an approach only allows us to determine the impact of each treatment independently, and not their combined or interactive effects with one another!
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Two-way ANOVAs let us specifically model the [interaction]{.highlight-tomato} term that examines whether the effect of one treatment variable varies depending on the level of the other treatment.
+:::
+
+## Analysis of variance (ANOVA)
+**Two-way ANOVA | The ANOVA table**
+
+| Source            	| *df*         	| SS                	| MS                                          	|
+|-------------------------	|--------------	|----------------------------	|---------------------------------------------	|
+| Factor A          	| $a - 1$      	| (see PES pg. 305) 	| $\frac{SS_{factor A}}{df_{factor A}}$       	|
+| Factor B          	| $b - 1$      	| (see PES pg. 305) 	| $\frac{SS_{factor B}}{df_{factor B}}$       	|
+| A x B interaction 	| $(a-1)(b-1)$ 	| (see PES pg. 305) 	| $\frac{SS_{interaction}}{df_{interaction}}$ 	|
+| Error             	| $ab(n-1)$    	| (see PES pg. 305) 	| $\frac{SS_{error}}{df_{error}}$             	|
+| Total             	| $abn-1$      	| (see PES pg. 305) 	|                                             	|
+
+. . . 
+
+Here, you can test 3 $F$-ratios: two main effects and their interaction. All use the $MS_{error}$ term in the denominator!
+
+# Model diagnostics
+
+## Linear model assumptions
+**ANOVA, Linear Models (regression), t-tests, and beyond!**
+
+. . . 
+
+1. Model is correct
+
+. . . 
+
+2. Samples are independent across and within treatments
+
+. . . 
+
+3. Variance is homogeneous among groups (i.e., each group contributes ~ equally to the within group sum of squares; $\sigma_1^2 = \sigma_2^2 = ... = \sigma_k^2$)
+
+. . . 
+
+4. Residuals are normally distributed
+
+. . . 
+
+:::box-6-list
+These assumptions are listed from mostest to most important (because none of them are *not* important)
+:::
+
+## Linear model assumptions
+**Assumption 1: Model is correct**
+
+:::box-6-list
+This is the art of statistics! We can plug experimental data into just about any model framework in the computer and have it spit out some stuff for us to interpret. But is it meaningful?
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Folks tend to look for p-values before they look for anything else. This is a one of the perverse incentives from the publishing rat-race we're all apart of. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This assumption is best addressed through common sense and attention to detail. And...
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> ...conducting your analyses consistent with the manner in which you conduct your experiment/observational studies.
+:::
+
+## Linear model assumptions
+**Assumption 2: Samples are independent across and within treatments**
+
+:::box-6-list
+These details are best sorted at the experimental and study design phase. Recall the discussions we've had about bias, randomization, etc.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> This assumption is nothing that we can test or visualize to assess; we simply must critique the experimental methods/procedure used to collect our samples. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Recall the discussions we've had about bias, randomization, etc. 
+:::
+
+## Linear model assumptions
+**Assumption 3: Variance is homogenous among groups**
+
+:::box-6-list
+Equal variance can be assessed using tests (e.g., Levene's test), but in practice we tend to assess this assumption **visually** using residual plots
+:::
+
+## Linear model assumptions
+**Assumption 4: Residuals are normally distributed**
+
+:::box-6-list
+Till now, we have been simplifying this assumption, saying something like: each treatment is a random sample $Y_{ij} \sim N(\mu_i, \sigma_i^2)$. Technically, this isn't quite correct (but it gets us most of the way there)
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We actually care the most about our residual error distribution; that is, we want our model to be "wrong" consistently and have these errors follow a random sample $Y_{ij} \sim N(0, \sigma_i^2)$
+:::
+
+##
+
+:::{.center-xy}
+**Cool. But how do we actually assess these assumptions in our analyses?** 
+:::
+
+## Residual plots
+:::box-6-list
+For linear models, we can assess many of our assumptions by examining [residual plots]{.highlight-tomato}
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> A residual plot graphs our residual values, $r_i$ against our fitted model values, $\hat{y}_i$.
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> If we add up all of our residuals, $\sum_{i=1}^{n} r_i = 0$ and $\sum_{i=1}^{n} r_i^2 = SSError$ aka within-group variance
+::: 
+
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We can assess our assumptions of equal variance and normally distributed residuals with a single residual plot!
+::: 
+
+Go through typical residual patterns and what they mean, how to account for/address them.
