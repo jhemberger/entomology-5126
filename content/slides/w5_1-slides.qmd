@@ -136,6 +136,65 @@ In a factorial design, two (or more) categorical variables are "crossed" with on
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> Two-way ANOVAs let us specifically model the [interaction]{.highlight-tomato} term that examines whether the effect of one treatment variable varies depending on the level of the other treatment.
 :::
 
+## Example of 2-way ANOVA
+:::box-6-list
+Imagine that we are doing an experiment testing the impact of two temperature treatments on the growth of plants. We cross our temperature treatments with duration to understand how the effect of temperature may be mediated by the time of exposure. We can lay out our experimental design as such:
+:::
+
+. . . 
+
+![](./slide_media/w5/factorial-design.png){height="375" fig-align="center"}
+
+## Example of 2-way ANOVA
+:::box-6-list
+We could analyze this design using a 1-way ANOVA with each treatment combination as an treatment treatment.
+:::
+
+. . . 
+
+![](./slide_media/w5/1way-anova.png){height="375" fig-align="center"}
+
+
+## Example of 2-way ANOVA
+:::box-6-list
+When we build our ANOVA table and calculate our p-values, we're simply testing whether there is some difference among out groups. That is to say, all of our variation is lumped into the `treatment` variable (i.e., among-group differences)
+:::
+
+![](./slide_media/w5/1way-anova-table.png){fig-align="center"}
+
+. . . 
+
+::: {.callout-caution}
+Conducting our analyis in this manner doesn't allow us to partition the impact of each of our factors of interest! 
+:::
+
+## Example of 2-way ANOVA
+:::box-6-list
+Instead, we an build our model to account for the experimental design, fitting terms for both our temperature and duration, as well as their interaction!
+:::
+
+. . .
+
+![](./slide_media/w5/2way-anova.png){fig-align="center"}
+
+## Example of 2-way ANOVA
+:::box-6-list
+Now, when we build our ANOVA table, we can explicitly partition the variance between our two treatments and their interactive effect
+:::
+
+. . .
+
+![](./slide_media/w5/2way-anova-table.png){height="300" fig-align="center"}
+
+## Example of 2-way ANOVA
+:::box-6-list
+We can further visualize the how the 2-way anova differs from the 1-way anova by reconsructing the group means of our four treatment combinations:
+:::
+
+. . .
+
+![](./slide_media/w5/2way-estimates.png){height="275" fig-align="center"}
+
 ## Analysis of variance (ANOVA)
 **Two-way ANOVA | The ANOVA table**
 
@@ -150,6 +209,10 @@ In a factorial design, two (or more) categorical variables are "crossed" with on
 . . . 
 
 Here, you can test 3 $F$-ratios: two main effects and their interaction. All use the $MS_{error}$ term in the denominator!
+
+## Visualizing statistical interactions
+
+![](./slide_media/w5/interaction-plots.png){height="550" fig-align="center"}
 
 # Model diagnostics
 

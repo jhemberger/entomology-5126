@@ -2362,5 +2362,68 @@
     "title": "Week 5",
     "section": "A quiz!",
     "text": "A quiz!\nA quiz - what is it? It’s a small assessment of knowledge, but that’s not important right now."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#example-of-2-way-fully-factorial-anova",
+    "href": "content/slides/w4-slides.html#example-of-2-way-fully-factorial-anova",
+    "title": "Week 5",
+    "section": "Example of 2-way (fully-factorial) ANOVA",
+    "text": "Example of 2-way (fully-factorial) ANOVA\n\nImagine that we are doing an experiment testing the impact of two temperature treatments on the growth of plants. We cross our temperature treatments with duration to understand how the effect of temperature may be mediated by the time of exposure. We can lay out our experimental design as such:"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#example-of-2-way-anova",
+    "href": "content/slides/w4-slides.html#example-of-2-way-anova",
+    "title": "Week 5",
+    "section": "Example of 2-way ANOVA",
+    "text": "Example of 2-way ANOVA\n\nImagine that we are doing an experiment testing the impact of two temperature treatments on the growth of plants. We cross our temperature treatments with duration to understand how the effect of temperature may be mediated by the time of exposure. We can lay out our experimental design as such:"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#example-of-2-way-anova-1",
+    "href": "content/slides/w4-slides.html#example-of-2-way-anova-1",
+    "title": "Week 5",
+    "section": "Example of 2-way ANOVA",
+    "text": "Example of 2-way ANOVA\n\nWe could analyze this design using a 1-way ANOVA with each treatment combination as an treatment treatment."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#example-of-2-way-anova-2",
+    "href": "content/slides/w4-slides.html#example-of-2-way-anova-2",
+    "title": "Week 5",
+    "section": "Example of 2-way ANOVA",
+    "text": "Example of 2-way ANOVA\n\nWhen we build our ANOVA table and calculate our p-values, we’re simply testing whether there is some difference among out groups. That is to say, all of our variation is lumped into the treatment variable (i.e., among-group differences)\n\n\n\n\n\n\n\n\n\n\n\n\n\nCaution\n\n\nConducting our analyis in this manner doesn’t allow us to partition the impact of each of our factors of interest!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#example-of-2-way-anova-3",
+    "href": "content/slides/w4-slides.html#example-of-2-way-anova-3",
+    "title": "Week 5",
+    "section": "Example of 2-way ANOVA",
+    "text": "Example of 2-way ANOVA\n\nInstead, we an build our model to account for the experimental design, fitting terms for both our temperature and duration, as well as their interaction!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#example-of-2-way-anova-4",
+    "href": "content/slides/w4-slides.html#example-of-2-way-anova-4",
+    "title": "Week 5",
+    "section": "Example of 2-way ANOVA",
+    "text": "Example of 2-way ANOVA\n\nNow, when we build our ANOVA table, we can explicitly partition the variance between our two treatments and their interactive effect"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#example-of-2-way-anova-5",
+    "href": "content/slides/w4-slides.html#example-of-2-way-anova-5",
+    "title": "Week 5",
+    "section": "Example of 2-way ANOVA",
+    "text": "Example of 2-way ANOVA\n\nWe can further visualize the how the 2-way anova differs from the 1-way anova by reconsructing the group means of our four treatment combinations:"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#visualizing-2-way-anovas-and-statistical-interactions",
+    "href": "content/slides/w4-slides.html#visualizing-2-way-anovas-and-statistical-interactions",
+    "title": "Week 5",
+    "section": "Visualizing 2-way ANOVAs and statistical interactions",
+    "text": "Visualizing 2-way ANOVAs and statistical interactions"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#visualizing-statistical-interactions",
+    "href": "content/slides/w4-slides.html#visualizing-statistical-interactions",
+    "title": "Week 5",
+    "section": "Visualizing statistical interactions",
+    "text": "Visualizing statistical interactions"
   }
 ]

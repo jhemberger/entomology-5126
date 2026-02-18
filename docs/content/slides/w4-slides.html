@@ -260,6 +260,97 @@ F-statistic: 0.9424 on 2 and 27 DF,  p-value: 0.4021</code></pre>
 </div>
 </div>
 </section>
+<section id="example-of-2-way-anova" class="slide level2">
+<h2>Example of 2-way ANOVA</h2>
+<div class="box-6-list">
+<p>Imagine that we are doing an experiment testing the impact of two temperature treatments on the growth of plants. We cross our temperature treatments with duration to understand how the effect of temperature may be mediated by the time of exposure. We can lay out our experimental design as such:</p>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./slide_media/w5/factorial-design.png" class="quarto-figure quarto-figure-center" height="375"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="example-of-2-way-anova-1" class="slide level2">
+<h2>Example of 2-way ANOVA</h2>
+<div class="box-6-list">
+<p>We could analyze this design using a 1-way ANOVA with each treatment combination as an treatment treatment.</p>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./slide_media/w5/1way-anova.png" class="quarto-figure quarto-figure-center" height="375"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="example-of-2-way-anova-2" class="slide level2">
+<h2>Example of 2-way ANOVA</h2>
+<div class="box-6-list">
+<p>When we build our ANOVA table and calculate our p-values, we’re simply testing whether there is some difference among out groups. That is to say, all of our variation is lumped into the <code>treatment</code> variable (i.e., among-group differences)</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./slide_media/w5/1way-anova-table.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<div class="fragment">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p>Conducting our analyis in this manner doesn’t allow us to partition the impact of each of our factors of interest!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-of-2-way-anova-3" class="slide level2">
+<h2>Example of 2-way ANOVA</h2>
+<div class="box-6-list">
+<p>Instead, we an build our model to account for the experimental design, fitting terms for both our temperature and duration, as well as their interaction!</p>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./slide_media/w5/2way-anova.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="example-of-2-way-anova-4" class="slide level2">
+<h2>Example of 2-way ANOVA</h2>
+<div class="box-6-list">
+<p>Now, when we build our ANOVA table, we can explicitly partition the variance between our two treatments and their interactive effect</p>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./slide_media/w5/2way-anova-table.png" class="quarto-figure quarto-figure-center" height="300"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="example-of-2-way-anova-5" class="slide level2">
+<h2>Example of 2-way ANOVA</h2>
+<div class="box-6-list">
+<p>We can further visualize the how the 2-way anova differs from the 1-way anova by reconsructing the group means of our four treatment combinations:</p>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./slide_media/w5/2way-estimates.png" class="quarto-figure quarto-figure-center" height="275"></p>
+</figure>
+</div>
+</div>
+</section>
 <section id="analysis-of-variance-anova-1" class="slide level2">
 <h2>Analysis of variance (ANOVA)</h2>
 <p><strong>Two-way ANOVA | The ANOVA table</strong></p>
@@ -327,6 +418,14 @@ F-statistic: 0.9424 on 2 and 27 DF,  p-value: 0.4021</code></pre>
 </table>
 <div class="fragment">
 <p>Here, you can test 3 <span class="math inline">\(F\)</span>-ratios: two main effects and their interaction. All use the <span class="math inline">\(MS_{error}\)</span> term in the denominator!</p>
+</div>
+</section>
+<section id="visualizing-statistical-interactions" class="slide level2">
+<h2>Visualizing statistical interactions</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./slide_media/w5/interaction-plots.png" class="quarto-figure quarto-figure-center" height="550"></p>
+</figure>
 </div>
 </section></section>
 <section>
