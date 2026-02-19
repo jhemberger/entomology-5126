@@ -2081,7 +2081,7 @@
     "href": "content/slides/w4-slides.html#section",
     "title": "Week 5",
     "section": "",
-    "text": "Assume we have 3 independent samples of plants grown in different fertilizer regimes and we want to compare their total height after 30 days. Given the choice between conducting and ANOVA and three independent, two-sample t-tests, which would you choose and why?\n\n\n\nAll this talk of Z-tests, one-sample t-tests, two-sample t-tests, and dependent and independent t-tests is making my head spin! Help me! Why do we use t-tests rather than z-tests most of the time? What’s the difference between dependent and independent two-sample t-tests?\n\n\n\n\n\n\nLook! I did an ANOVA! What the *!&$ does it mean?! Give me a 30-second elevator pitch about what this particular summary() output tells us.\n\n\nCall:\nlm(formula = size_cm ~ trt, data = w2.fact.df)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.4641 -2.1500 -0.1284  1.3719  5.5777 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   6.3872     0.8894   7.181 1.01e-07 ***\ntrttrtA      -0.2686     1.2578  -0.214    0.832    \ntrttrtB       1.3430     1.2578   1.068    0.295    \n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 2.813 on 27 degrees of freedom\nMultiple R-squared:  0.06525,   Adjusted R-squared:  -0.003987 \nF-statistic: 0.9424 on 2 and 27 DF,  p-value: 0.4021"
+    "text": "\\[SSTotal = \\sum_{i = 1}^{n}(y_i - \\bar{y})^2, ~df = n - 1\\]"
   },
   {
     "objectID": "content/slides/w4-slides.html#analysis-of-variance-anova-14",
@@ -2340,7 +2340,7 @@
     "href": "content/slides/w4-slides.html#section-1",
     "title": "Week 5",
     "section": "",
-    "text": "Cool. But how do we actually assess these assumptions in our analyses?"
+    "text": "\\[SSRegression = \\sum_{i = 1}^{n}(\\hat{y_i} - \\bar{y})^2, ~df = 1\\]"
   },
   {
     "objectID": "content/slides/w4-slides.html#a-quiz---what-is-it-its-a-small-assessment-of-knowledge-but-thats-not-important-right-now.",
@@ -2354,7 +2354,7 @@
     "href": "content/slides/w4-slides.html#section-2",
     "title": "Week 5",
     "section": "",
-    "text": "Cool. But how do we actually assess these assumptions in our analyses?"
+    "text": "\\[SSError = \\sum_{i = 1}^{n}(y_i - \\hat{y_i})^2, ~ df = n - 2\\]"
   },
   {
     "objectID": "content/slides/w4-slides.html#a-quiz",
@@ -2565,5 +2565,159 @@
     "title": "Week 5",
     "section": "Simple linear regression",
     "text": "Simple linear regression\nSnowfall example | Step 1: fit a line"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-7",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-7",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 1: fit a line - regression coefficients\n\nThere are equations to find our coefficients though! We don’t have to do it by trial and error!\n\n\n\\[\\hat{b}_1 = \\frac{\\sum_{i= 1}^{n} (x_i - \\bar{x}) (y_i - \\bar{y})}{\\sum_{i = 1}^{n} (x_i - \\bar{x})^2}\\]\n\n\n\\[= \\frac{\\sum_{i = 1}^{n} x_i y_i - \\frac{1}{n}( \\sum_{i = 1}^{n} x_i)(\\sum_{i = 1}^{n} y_i)}{\\sum_{i = 1}^{n} x_i^2 - \\frac{1}{n}(\\sum_{i = 1}^{n} x_i)^2}\\]\n\n\nand\n\\[\\hat{b}_0 = \\bar{y} - \\hat{b}_1\\bar{x}\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-8",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-8",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 1: fit a line - regression coefficients\n\\[\\sum_{i=1}^n x_i = 24.40, ~\\sum_{i=1}^n x_i^2 = 107.42, ~\\sum_{i=1}^n x_i y_i = 154.07\\]\n\\[\\sum_{i=1}^n y_i = 35.50, \\sum_{i=1}^n y_i^2 = 222.03\\]\nThus\n\\[\\hat b_1 = \\frac{154.07-24.40\\times 35.50/7}{107.42-24.4\\times 24.40/7} = \\frac{30.33}{22.37} = 1.356\\]\n\\[\\hat b_0 = 35.50/7-1.356\\times 24.40/7 = 0.345\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#or-just-use-r",
+    "href": "content/slides/w4-slides.html#or-just-use-r",
+    "title": "Week 5",
+    "section": "Or just use R",
+    "text": "Or just use R\n\nm1 &lt;- lm(hours_to_clear_streets ~ snowfall_inches, data = snowfall)\n\ncoef(m1)\n\n    (Intercept) snowfall_inches \n      0.3455231       1.3557926"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-9",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-9",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 2: calculate uncertainty\n\nOur model equation is great, but it doesn’t allow us to assess any uncertainty around out predictions. How can we do this?\n\n\n\n We model \\(y\\) as a random variable \\(Y\\)\n\n\n\n\n Consider \\(x\\) to be fixed, but \\(x\\) could be random\n\n\n\n\n Consider the model of \\(Y\\) conditional on \\(x\\) such that \\(([Y|x])\\), so…\n\n\\[E(Y|x) = b_0 + b_1x\\]\n\n where \\(b_0, b_1\\) are fixed unknown parameters (intercept and slope) that characterize the relationship between \\(x\\) and \\(y\\)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-10",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-10",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 2: calculate uncertainty\n\nWe now have a more formal equation for our linear model:\n\n\n\\[Y_i = b_0 + b_1 x_i + e_i\\]\n\n\n\n \\(Y\\) is called a dependent variable or a response variable\n\n\n\n\n \\(x\\) is called an independent variable or covariate\n\n\n\n\n \\(e's\\) are called errors and are the distance between our observation and fitted line\n\n\n\n\n\n\n\nTip\n\n\nThis model, like the generalized one we developed for ANOVA, lets us reconstruct our dataset exactly!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-11",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-11",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 3: Evaluate model assumptions\n\nThe model is correct. In this case,\n\n\\[E(Y_i) = b_0 + b_1 x_1\\]\n\n That is, \\(y\\) is a function of the linear combination of our \\(x\\) variables (only 1 in the case of simple linear regression).\n\n\nErrors \\(e_i\\) are independent.\nErrors \\(e_i\\) have homogeneous variance: \\(Var(e_i) = \\sigma^2\\)\nErrors \\(e_i\\) have normal distribution: \\(e_i \\sim N(0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#key-assumptions",
+    "href": "content/slides/w4-slides.html#key-assumptions",
+    "title": "Week 5",
+    "section": "Key Assumptions!",
+    "text": "Key Assumptions!\n\nThe model is correct. In this case,\n\n\\[E(Y_i) = b_0 + b_1 x_1\\]\n\n That is, \\(y\\) is a function of the linear combination of our \\(x\\) variables (only 1 in the case of simple linear regression).\n\n\nErrors \\(e_i\\) are independent.\nErrors \\(e_i\\) have homogeneous variance: \\(Var(e_i) = \\sigma^2\\)\nErrors \\(e_i\\) have normal distribution: \\(e_i \\sim N(0, \\sigma^2)\\)\n\\(\\sigma^2\\) is sometimes written as \\(\\sigma_e^2\\)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-12",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-12",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 3: Evaluate model assumptions\n\nWe estimate the model our model parameters using the data that we have gathered, such that:\n\n\n\n \\(b_0, b_1, \\sigma^2\\) by estimators \\(\\hat{b}_0, \\hat{b}_1, \\hat{\\sigma}^2\\)\n\n\n\n\n \\(\\sigma^2\\) is analagous to MSErr from ANOVA\n\n\n\n\n\n\n\n\n\nTip\n\n\nProvided our model assumptions are met (via diagnostic plots, etc.), we can go onto testing hypothese about our model parameters!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-13",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-13",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\n\nIn our example, we’re interested in quantifying the relationship between snowfall and cleanup time. We can formalize this research question into a hypothesis!\n\n\n\\(H_0\\): There is no association between the amount of snowfall and the number of hours it takes to clear the streets.\n\n\n\\(H_A\\): There is an association between the amount of snowfall and the number of hours it takes to clear the streets."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-14",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-14",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\n\nGenerally, the most common hypothesis tested in regression is if there is a significant association between your \\(x\\) and \\(y\\) variables. This can be determined by testing if the slope of the regression is different than 0.\n\n\\(H_0 : b_1 = 0\\)\n\\(H_A: b_1 \\neq 0\\)\n\n\n To accomplish this, we can use both analysis of variance (ANOVA) or a T-test!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-15",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-15",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\n\nLet’s start with ANOVA: Recall that ANOVA stands for “ANalysis Of VAriance”\n\n\n\n We want to split up the total variation of our data and describe how much of the variation is explained by the model and how much variation is left unexplained.\n\n\n\n\n We will partition the sum of squares (SS):\n\n\\[SS~Total = SS~Regression + SS~Error\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-16",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-16",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\n\nSo, to test our hypothesis for the slope, let’s construct our ANOVA table:\n\n\n\n\n\n\nSource\ndf\nSum of Squares\nMean Square (SS / df)\nF\n\n\n\n\nRegression\n1\n41.13\n41.130\n239.13\n\n\nError\n5\n0.86\n0.172\n-\n\n\nTotal\n6\n41.99\n-\n-\n\n\n\n\n\n\n\n We estimate \\(\\sigma^2\\) by \\(s^2 = MSError = 0.172\\) on \\(df = 2\\).\n\n\\[F = \\frac{MSReg}{MSErr} \\sim F_{1, ~ n-2}\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-17",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-17",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\n\nSo, to test our hypothesis for the slope, let’s construct our ANOVA table:\n\n\n\n\n\n\nSource\ndf\nSum of Squares\nMean Square (SS / df)\nF\n\n\n\n\nRegression\n1\n41.13\n41.130\n239.13\n\n\nError\n5\n0.86\n0.172\n-\n\n\nTotal\n6\n41.99\n-\n-\n\n\n\n\n\n\nWe can then calculate the tail probability on \\(F_{1, 5}\\), p-value &lt;&lt; 0.01. Reject \\(H_0\\)! We have strong evidence that the slope is not 0."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-18",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-18",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\n\nAlternatively, we can conduct this hypothesis test using a t-test:\n\n\n\n \\(\\hat{b}_1\\) is a function of our random variables \\(X\\) and \\(Y\\), thus it is itself a random variable\n\n\\[\\hat b_1 = \\frac{\\sum_{i=1}^n (x_i-\\bar x)(Y_i-\\bar Y)}{\\sum_{i=1}^n (x_i-\\bar x)^2} = \\frac{\\sum_{i=1}^n (x_i-\\bar x) Y_i}{\\sum_{i=1}^n (x_i-\\bar x)^2}\\]\n\n\n\n Because \\(\\hat{b}_1\\) is a weighted sum of random distributions, it also has a normal distribution so we can use the t-test to determine if \\(\\hat{b}_1\\) is significantly different from 0.\n\n\\[t = \\frac{\\bar{x} - \\mu}{SE} = \\frac{\\hat{b}_1 - b_1^*}{s_{\\hat{b}_1}} = \\frac{1.356}{0.0877} = 15.46\\]\n\n\n\n \\(p &lt; 0.01\\), so we can reject the null hypothesis (\\(H_0: b_1 = 0\\))"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#section-3",
+    "href": "content/slides/w4-slides.html#section-3",
+    "title": "Week 5",
+    "section": "",
+    "text": "\\[SSTotal = SSReg + SSErr\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#poorly-fitting-model",
+    "href": "content/slides/w4-slides.html#poorly-fitting-model",
+    "title": "Week 5",
+    "section": "Poorly fitting model",
+    "text": "Poorly fitting model"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-19",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-19",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\nCheck out the summary of our lm object to see this in action:\n\n\n\nCall:\nlm(formula = hours_to_clear_streets ~ snowfall_inches, data = snowfall)\n\nResiduals:\n      1       2       3       4       5       6       7 \n 0.2159  0.1564  0.5294 -0.1005 -0.4264 -0.5504  0.1755 \n\nCoefficients:\n                Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)      0.34552    0.34688   0.996    0.365    \nsnowfall_inches  1.35579    0.08855  15.311 2.16e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4188 on 5 degrees of freedom\nMultiple R-squared:  0.9791,    Adjusted R-squared:  0.9749 \nF-statistic: 234.4 on 1 and 5 DF,  p-value: 2.156e-05\n\n\n\n\n\n\n\n\n\nCaution\n\n\nThis only holds up when our model has a numerator degrees of freedom of 1 (i.e., 1 predictor variable in the model!)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-20",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-20",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 4: Hypothesis testing\n\nWe can conduct a similar t-test to assess the significance of our model intercept, this is similar to what we did in 1 and 2-way ANOVA. I’ll spare you the math here, and just jump to the conclusions\n\n\n\n If we are testing \\(H_0: b_0 = 0\\) then the t-test for the intercept can be seen as choosing between \\(Y_i = b_1 x_1 + e_i\\) (a model with no intercept) and the model \\(Y_i = b_0 + b_1 * x_i + e_i\\) under the \\(H_A\\).\n\n\n\n\n We almost always leave the intercept in our models, unless we have a strong biological rationale for forcing the intercept through the origin (0,0)."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-21",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-21",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 5: assessing model fit\n\n\\(R^2\\) can be used to assess model fit\n\\(R^2 = \\frac{SS~Regression}{SS~Total}\\)\n\\(R^2\\) represents the proportion of the total SS that is explained by the regression model"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#assessing-model-fit",
+    "href": "content/slides/w4-slides.html#assessing-model-fit",
+    "title": "Week 5",
+    "section": "Assessing model fit",
+    "text": "Assessing model fit\n\n\\(R^2\\) can be used to assess model fit\n\n\n\n\n\\(R^2 = \\frac{SS~Regression}{SS~Total}\\)\n\n\n\n\n\n\n\\(R^2\\) represents the proportion of the total SS that is explained by the regression model"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#link-between-r-and-r2",
+    "href": "content/slides/w4-slides.html#link-between-r-and-r2",
+    "title": "Week 5",
+    "section": "Link between \\(r\\) and \\(R^2\\)",
+    "text": "Link between \\(r\\) and \\(R^2\\)\n\nCorrelation is important in regression analysis\nIn lab, you will (or have) learned that \\(R^2\\) is the proportion of variation in the response variable explained by our experimental factor\nPut mathematically, \\(R^2 = \\frac{SSTrt}{SSTotal}\\)\nFor a simple linear regression \\(R^2 = r^2\\).\nPut another way, \\(r = \\sqrt{R^2}\\)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-22",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-22",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 6: make predictions\nYay! We have a model! We can use it to make predictions, like, how many hours should we expect to clear the streets given 4” of snowfall?\n\n\npredict(m1, newdata = data.frame(\"snowfall_inches\" = 4))\n\n       1 \n5.768693 \n\n\n\n\n\n\n\n\n\n\nCaution\n\n\nBe careful! Interpolation (predicting between our observed values) is generally okay, but extrapolation (predicting outside our observed values) may be inaccurate if the linear relationship changes outside the range of our observed variables."
   }
 ]

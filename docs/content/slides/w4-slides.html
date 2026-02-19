@@ -30,6 +30,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-207d2aaea499fbf291ebd3ef4299628c.css">
   <link rel="stylesheet" href="default">
@@ -524,8 +590,497 @@ y = b_0 + b_1x
 <h2>Simple linear regression</h2>
 <p><strong>Snowfall example | Step 1: fit a line</strong></p>
 <p><img data-src="slide_media/w5/ss-simulated.gif"></p>
+</section>
+<section id="simple-linear-regression-7" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 1: fit a line - regression coefficients</strong></p>
+<div class="box-6-list">
+<p>There are equations to find our coefficients though! We don’t have to do it by trial and error!</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[\hat{b}_1 = \frac{\sum_{i= 1}^{n} (x_i - \bar{x}) (y_i - \bar{y})}{\sum_{i = 1}^{n} (x_i - \bar{x})^2}\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[= \frac{\sum_{i = 1}^{n} x_i y_i - \frac{1}{n}( \sum_{i = 1}^{n} x_i)(\sum_{i = 1}^{n} y_i)}{\sum_{i = 1}^{n} x_i^2 - \frac{1}{n}(\sum_{i = 1}^{n} x_i)^2}\]</span></p>
+</div>
+<div class="fragment">
+<p>and</p>
+<p><span class="math display">\[\hat{b}_0 = \bar{y} - \hat{b}_1\bar{x}\]</span></p>
+</div>
+</section>
+<section id="simple-linear-regression-8" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 1: fit a line - regression coefficients</strong></p>
+<p><span class="math display">\[\sum_{i=1}^n x_i = 24.40, ~\sum_{i=1}^n x_i^2 = 107.42, ~\sum_{i=1}^n x_i y_i = 154.07\]</span></p>
+<p><span class="math display">\[\sum_{i=1}^n y_i = 35.50, \sum_{i=1}^n y_i^2 = 222.03\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[\hat b_1 = \frac{154.07-24.40\times 35.50/7}{107.42-24.4\times 24.40/7} = \frac{30.33}{22.37} = 1.356\]</span></p>
+<p><span class="math display">\[\hat b_0 = 35.50/7-1.356\times 24.40/7 = 0.345\]</span></p>
+</section>
+<section id="or-just-use-r" class="slide level2">
+<h2>Or just use R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hours_to_clear_streets <span class="sc">~</span> snowfall_inches, <span class="at">data =</span> snowfall)</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a><span class="fu">coef</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    (Intercept) snowfall_inches 
+      0.3455231       1.3557926 </code></pre>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-9" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 2: calculate uncertainty</strong></p>
+<div class="box-6-list">
+<p>Our model equation is great, but it doesn’t allow us to assess any uncertainty around out predictions. How can we do this?</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We model <span class="math inline">\(y\)</span> as a random variable <span class="math inline">\(Y\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Consider <span class="math inline">\(x\)</span> to be fixed, but <span class="math inline">\(x\)</span> could be random</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Consider the model of <span class="math inline">\(Y\)</span> conditional on <span class="math inline">\(x\)</span> such that <span class="math inline">\(([Y|x])\)</span>, so…</p>
+</div>
+<p><span class="math display">\[E(Y|x) = b_0 + b_1x\]</span></p>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> where <span class="math inline">\(b_0, b_1\)</span> are fixed unknown parameters (intercept and slope) that characterize the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></p>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-10" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 2: calculate uncertainty</strong></p>
+<div class="box-6-list">
+<p>We now have a more formal equation for our linear model:</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[Y_i = b_0 + b_1 x_i + e_i\]</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(Y\)</span> is called a <em>dependent variable</em> or a <em>response variable</em></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(x\)</span> is called an <em>independent variable</em> or <em>covariate</em></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(e's\)</span> are called <em>errors</em> and are the distance between our observation and fitted line</p>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>This model, like the generalized one we developed for ANOVA, lets us reconstruct our dataset exactly!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-11" class="slide level2 scrollable">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 3: Evaluate model assumptions</strong></p>
+<ol type="1">
+<li>The model is correct. In this case,</li>
+</ol>
+<p><span class="math display">\[E(Y_i) = b_0 + b_1 x_1\]</span></p>
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> That is, <span class="math inline">\(y\)</span> is a function of the linear combination of our <span class="math inline">\(x\)</span> variables (only 1 in the case of simple linear regression).</p>
+</div>
+<ol start="2" type="1">
+<li>Errors <span class="math inline">\(e_i\)</span> are independent.</li>
+<li>Errors <span class="math inline">\(e_i\)</span> have homogeneous variance: <span class="math inline">\(Var(e_i) = \sigma^2\)</span></li>
+<li>Errors <span class="math inline">\(e_i\)</span> have normal distribution: <span class="math inline">\(e_i \sim N(0, \sigma^2)\)</span></li>
+</ol>
+</section>
+<section id="simple-linear-regression-12" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 3: Evaluate model assumptions</strong></p>
+<div class="box-6-list">
+<p>We estimate the model our model parameters using the data that we have gathered, such that:</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(b_0, b_1, \sigma^2\)</span> by estimators <span class="math inline">\(\hat{b}_0, \hat{b}_1, \hat{\sigma}^2\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(\sigma^2\)</span> is analagous to MSErr from ANOVA</p>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Provided our model assumptions are met (via diagnostic plots, etc.), we can go onto testing hypothese about our model parameters!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-13" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<div class="box-6-list">
+<p>In our example, we’re interested in quantifying the relationship between snowfall and cleanup time. We can formalize this research question into a hypothesis!</p>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(H_0\)</span>: There is no association between the amount of snowfall and the number of hours it takes to clear the streets.</p>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(H_A\)</span>: There is an association between the amount of snowfall and the number of hours it takes to clear the streets.</p>
+</div>
+</section>
+<section id="simple-linear-regression-14" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<div class="box-6-list">
+<p>Generally, the most common hypothesis tested in regression is if there is a significant association between your <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variables. This can be determined by testing if the slope of the regression is different than 0.</p>
+</div>
+<p><span class="math inline">\(H_0 : b_1 = 0\)</span></p>
+<p><span class="math inline">\(H_A: b_1 \neq 0\)</span></p>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> To accomplish this, we can use both analysis of variance (ANOVA) or a T-test!</p>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-15" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<div class="box-6-list">
+<p>Let’s start with ANOVA: Recall that ANOVA stands for “<strong>AN</strong>alysis <strong>O</strong>f <strong>VA</strong>riance”</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We want to split up the total variation of our data and describe how much of the variation is explained by the model and how much variation is left unexplained.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We will partition the sum of squares (SS):</p>
+</div>
+<p><span class="math display">\[SS~Total = SS~Regression + SS~Error\]</span></p>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[SSTotal = \sum_{i = 1}^{n}(y_i - \bar{y})^2, ~df = n - 1\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="w5_2-slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[SSRegression = \sum_{i = 1}^{n}(\hat{y_i} - \bar{y})^2, ~df = 1\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="w5_2-slides_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[SSError = \sum_{i = 1}^{n}(y_i - \hat{y_i})^2, ~ df = n - 2\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="w5_2-slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[SSTotal = SSReg + SSErr\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="w5_2-slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="poorly-fitting-model" class="slide level2">
+<h2>Poorly fitting model</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="w5_2-slides_files/figure-revealjs/nodiffresids-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-16" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<div class="box-6-list">
+<p>So, to test our hypothesis for the slope, let’s construct our ANOVA table:</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped caption-top" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sum of Squares</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Mean Square (SS / df)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Regression</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">41.13</td>
+<td style="text-align: center;">41.130</td>
+<td style="text-align: center;">239.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">0.86</td>
+<td style="text-align: center;">0.172</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">Total</td>
+<td style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: center; font-weight: bold;">41.99</td>
+<td style="text-align: center; font-weight: bold;">-</td>
+<td style="text-align: center; font-weight: bold;">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We estimate <span class="math inline">\(\sigma^2\)</span> by <span class="math inline">\(s^2 = MSError = 0.172\)</span> on <span class="math inline">\(df = 2\)</span>.</p>
+</div>
+<p><span class="math display">\[F = \frac{MSReg}{MSErr} \sim F_{1, ~ n-2}\]</span></p>
+</div>
+</section>
+<section id="simple-linear-regression-17" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<div class="box-6-list">
+<p>So, to test our hypothesis for the slope, let’s construct our ANOVA table:</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped caption-top" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sum of Squares</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Mean Square (SS / df)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Regression</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">41.13</td>
+<td style="text-align: center;">41.130</td>
+<td style="text-align: center;">239.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">0.86</td>
+<td style="text-align: center;">0.172</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">Total</td>
+<td style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: center; font-weight: bold;">41.99</td>
+<td style="text-align: center; font-weight: bold;">-</td>
+<td style="text-align: center; font-weight: bold;">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="fragment">
+<p>We can then calculate the tail probability on <span class="math inline">\(F_{1, 5}\)</span>, p-value &lt;&lt; 0.01. Reject <span class="math inline">\(H_0\)</span>! We have strong evidence that the slope is not 0.</p>
+</div>
+</section>
+<section id="simple-linear-regression-18" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<div class="box-6-list">
+<p>Alternatively, we can conduct this hypothesis test using a t-test:</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(\hat{b}_1\)</span> is a function of our random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, thus it is itself a random variable</p>
+</div>
+<p><span class="math display">\[\hat b_1 = \frac{\sum_{i=1}^n (x_i-\bar x)(Y_i-\bar Y)}{\sum_{i=1}^n (x_i-\bar x)^2} = \frac{\sum_{i=1}^n (x_i-\bar x) Y_i}{\sum_{i=1}^n (x_i-\bar x)^2}\]</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Because <span class="math inline">\(\hat{b}_1\)</span> is a weighted sum of random distributions, it also has a normal distribution so we can use the t-test to determine if <span class="math inline">\(\hat{b}_1\)</span> is significantly different from 0.</p>
+</div>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu}{SE} = \frac{\hat{b}_1 - b_1^*}{s_{\hat{b}_1}} = \frac{1.356}{0.0877} = 15.46\]</span></p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> <span class="math inline">\(p &lt; 0.01\)</span>, so we can reject the null hypothesis (<span class="math inline">\(H_0: b_1 = 0\)</span>)</p>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-19" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<p>Check out the summary of our <code>lm</code> object to see this in action:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hours_to_clear_streets ~ snowfall_inches, data = snowfall)
+
+Residuals:
+      1       2       3       4       5       6       7 
+ 0.2159  0.1564  0.5294 -0.1005 -0.4264 -0.5504  0.1755 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      0.34552    0.34688   0.996    0.365    
+snowfall_inches  1.35579    0.08855  15.311 2.16e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4188 on 5 degrees of freedom
+Multiple R-squared:  0.9791,    Adjusted R-squared:  0.9749 
+F-statistic: 234.4 on 1 and 5 DF,  p-value: 2.156e-05</code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p>This only holds up when our model has a numerator degrees of freedom of 1 (i.e., 1 predictor variable in the model!)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-20" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 4: Hypothesis testing</strong></p>
+<div class="box-6-list">
+<p>We can conduct a similar t-test to assess the significance of our model intercept, this is similar to what we did in 1 and 2-way ANOVA. I’ll spare you the math here, and just jump to the conclusions</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> If we are testing <span class="math inline">\(H_0: b_0 = 0\)</span> then the t-test for the intercept can be seen as choosing between <span class="math inline">\(Y_i = b_1 x_1 + e_i\)</span> (a model with no intercept) and the model <span class="math inline">\(Y_i = b_0 + b_1 * x_i + e_i\)</span> under the <span class="math inline">\(H_A\)</span>.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We almost <em>always</em> leave the intercept in our models, unless we have a strong biological rationale for forcing the intercept through the origin (0,0).</p>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression-21" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 5: assessing model fit</strong></p>
+<ul>
+<li><p><span class="math inline">\(R^2\)</span> can be used to assess model fit</p></li>
+<li><p><span class="math inline">\(R^2 = \frac{SS~Regression}{SS~Total}\)</span></p></li>
+<li><p><span class="math inline">\(R^2\)</span> represents the proportion of the total SS that is explained by the regression model</p></li>
+</ul>
+</section>
+<section id="link-between-r-and-r2" class="slide level2">
+<h2>Link between <span class="math inline">\(r\)</span> and <span class="math inline">\(R^2\)</span></h2>
+<ul>
+<li>Correlation is important in regression analysis</li>
+<li>In lab, you will (or have) learned that <span class="math inline">\(R^2\)</span> is the proportion of variation in the response variable explained by our experimental factor</li>
+<li>Put mathematically, <span class="math inline">\(R^2 = \frac{SSTrt}{SSTotal}\)</span></li>
+<li>For a simple linear regression <span class="math inline">\(R^2 = r^2\)</span>.</li>
+<li>Put another way, <span class="math inline">\(r = \sqrt{R^2}\)</span></li>
+</ul>
+</section>
+<section id="simple-linear-regression-22" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><strong>Snowfall example | Step 6: make predictions</strong></p>
+<p>Yay! We have a model! We can use it to make predictions, like, how many hours should we expect to clear the streets given 4” of snowfall?</p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="st">"snowfall_inches"</span> <span class="ot">=</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+5.768693 </code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p>Be careful! Interpolation (predicting between our observed values) is generally okay, but extrapolation (predicting outside our observed values) may be inaccurate if the linear relationship changes outside the range of our observed variables.</p>
+</div>
+</div>
+</div>
 
 
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
