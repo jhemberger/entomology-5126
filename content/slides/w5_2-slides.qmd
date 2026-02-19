@@ -1,0 +1,519 @@
+---
+title: "Week 5"
+subtitle: "Two-Way ANOVA & linear model diagnostics"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w4-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    scrollable: true
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---
+```{r defaults, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
+```
+
+```{r setup, include = FALSE, echo = FALSE}
+# Check gganimate wiki for more plot examples
+pacman::p_load(tidyverse,
+               gganimate,
+               datasauRus,
+               magick,
+               kableExtra,
+               patchwork)
+```
+
+```{r 5126theme, include = FALSE, echo = FALSE, cache = TRUE}
+library(hrbrthemes)
+library(ggthemes)
+
+theme_5126 <- function(base_size = 12, base_family = "sans") {
+  colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
+  (theme_foundation(base_size = base_size, base_family = base_family)
+  + theme(
+      # line = element_line(colour = "black"),
+      # rect = element_rect(
+      #   fill = colors["white"],
+      #   linetype = 0, colour = NA
+      # ),
+      # text = element_text(colour = colors["Dark Gray"]),
+      axis.title = element_blank(),
+      # axis.text = element_text(),
+      axis.ticks = element_blank(),
+      axis.line = element_blank(),
+      legend.background = element_rect(),
+      legend.position = "bottom",
+      legend.direction = "horizontal",
+      legend.box = "vertical",
+      panel.grid = element_line(colour = NULL),
+      panel.grid.major =
+        element_line(colour = colors["black"]),
+      panel.grid.minor = element_blank(),
+      # unfortunately, can't mimic subtitles TODO!
+      plot.title = element_text(hjust = 0, size = rel(1.5), face = "bold"),
+      plot.margin = unit(c(1, 1, 1, 1), "lines"),
+      # strip.background = element_rect(),
+      # my updates
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_blank(),
+      panel.border = element_rect(color = "black",
+                                  linewidth = 1,
+                                  fill = NA),
+      panel.background = element_rect(fill = NA),
+      axis.line.x = element_line(color = "gray20",
+                                 linewidth = 0.5),
+      axis.ticks.x = element_line(color = "gray20",
+                                  linewidth = 0.5),
+      axis.ticks.y = element_line(color = "gray20",
+                                  linewidth = 0.5),
+      text = element_text(family = "Roboto Condensed", size = 18),
+      axis.text = element_text(size = 18),
+      axis.title.y = element_text(family = "Roboto Condensed", face = "bold", size = 24),
+      axis.title.x = element_text(family = "Roboto Condensed", face = "bold", size = 24),
+      strip.background = element_rect(color = NA,
+                                      fill = NA)
+  ))
+}
+```
+
+```{r anscombeAnimation, include = FALSE, echo = FALSE, cache = TRUE}
+# Set up tidy version of anscombe quarter
+anscombe_tidy <- anscombe %>%
+  mutate(observation = seq_len(n())) %>%
+  gather(key, value,-observation) %>%
+  separate(key, c("variable", "set"), 1, convert = TRUE) %>%
+  mutate(set = c("I", "II", "III", "IV")[set]) %>%
+  spread(variable, value)
+
+anscombe_no_lines <- ggplot(anscombe_tidy, aes(x, y)) +
+  geom_point() +
+  facet_wrap(~ set) +
+  #geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  scale_x_continuous(limits = c(0, 20))
+
+anscombe_lines <- ggplot(anscombe_tidy, aes(x, y)) +
+  geom_point() +
+  facet_wrap(~ set) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  scale_x_continuous(limits = c(0, 20))
+
+# Datasaurus summary stats
+datasaurus_dozen %>% 
+  group_by(dataset) %>% 
+  summarise(mean_x = mean(x),
+            mean_y = mean(y),
+            sd_x = sd(x),
+            sd_y = sd(y),
+            cor = cor(x, y))
+
+ggplot(datasaurus_dozen, aes(x=x, y=y))+
+  geom_point() +
+  theme_minimal() +
+  facet_wrap(~ dataset)
+
+
+datasaurus_animation <- ggplot(datasaurus_dozen, aes(x=x, y=y))+
+  geom_point()+
+  theme_minimal() +
+  geom_smooth(method = "lm", se = TRUE) +
+  transition_states(dataset, 3, 7) + 
+  ease_aes('cubic-in-out')
+
+datasaurus_gif <- animate(datasaurus_animation,
+                          nframes = 200)
+```
+
+
+# What we'll cover today
+
+## Simple linear regression
+
+. . .
+
+::: box-1-list
+[{{< fa file-circle-question >}}]{.margin-1} Approaches to linear regression
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Experimental vs. observational studies
+:::
+
+. . .
+
+::: box-1-list
+[{{< fa arrow-trend-up >}}]{.margin-1} Correlation
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Measuring the relationship between two continuous variables
+:::
+
+. . . 
+
+::: box-1-list
+[{{< fa chart-line >}}]{.margin-1} Simple linear regression
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Using least-squares (sum of squares) approach to fitting and testing a model
+:::
+
+# Approaches to linear regression
+
+## The general concept
+
+:::box-6-list
+In regression analyses, we want to understand if there is a *statistically clear* relationship between two continuous variables, say $x$ and $y$.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $x$ may be a variable that we manipulated experimentally (e.g., temperature). The approach here is [experimental]{.highlight-tomato}
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $x$ may also be a variable that we simply measured (e.g., total rainfall). The approach here is [observational]{.highlight-tomato}
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We can also include categorical variables in regression (i.e., ANOVA!)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Correlation/regression are used to [infer linkages]{.highlight-tomato} between variables and [quantify the strength]{.highlight-tomato} of these links
+:::
+
+::: {.callout-warning}
+Correlation ≠ causation! 
+:::
+
+
+## FYI: read this paper!
+
+![](slide_media/w5/ecology-paper.png)
+
+# Correlation
+:::box-6-list
+Correlation is a measure of a [linear]{.highlight-tomato} relationship between our response variable $y$ and some predictor variable $x$. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We want to quantify how variables "move together" or how informative one variable is to *predict* values of another variable. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Just like our other statistical parameters we've been discussing, we differentiate between population and sampole correlation parameters!
+:::
+
+## Population correlation coefficient
+:::box-6-list
+- $\rho = Corr(X, Y) = \frac{Cov(X, Y)}{\sqrt{Var(X)}\sqrt{Var(Y)}}$ is the population correlation coefficient between $X$ and $Y$
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $-1 \leq \rho \leq 1$
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $\rho = 1$ indicates a perfect positive correlation
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $0 < \rho < 1$ indicates a positive correlation
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $\rho = 0$ indicates no linear relationship
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $-1 < \rho < 0$ indicates a negative correlation
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> $\rho = -1$ indicates a perfect negative correlation
+:::
+
+## Sample correlation coefficient
+:::box-6-list
+$r$ is the sample correlation coefficient and it is calculated similarly to $\rho$
+:::
+
+$$r = \frac{\sum_{i = 1}^n (x_i - \bar{x}) (y_i - \bar{y})}{\sqrt{\sum_{i = 1}^n (x_i - \bar{x})^2} \sqrt{\sum_{i = 1}^n(y_i - \bar{y})^2}}$$
+
+. . . 
+
+::: {.callout-note}
+The same guidelines/parameters about $\rho$ apply to $r$!
+:::
+
+. . . 
+
+::: {.callout-tip}
+$r$ is directly related to the $r^2$ we are all very familiar with! It's quite literally our sample correlation coefficient squared! We'll come back to this and show the math a bit later...
+:::
+
+## How do we calculate correlation?
+- Use R
+- in R:    `my_correlation <- cor.test(x, y)`
+
+:::center-x
+```{r}
+x <- seq(1, 50, 1) + rnorm(50)
+y <- seq(1, 50, 1) + rnorm(50, 0, 3)
+
+cor.test(x, y)
+```
+:::
+
+## Beware of spurious correlation!
+```{r, echo = FALSE, include = FALSE}
+spurious_corr <- data.frame(
+  apples = c(
+    0.68,
+    0.66,
+    0.55,
+    0.71,
+    0.57,
+    0.77,
+    0.83,
+    0.89,
+    0.9,
+    0.85,
+    0.92,
+    0.82,
+    0.89,
+    0.99,
+    0.96,
+    0.95,
+    0.97,
+    1.03,
+    1.12,
+    1.18,
+    1.11,
+    1.2
+  ),
+  science_spending = c(
+    8629,
+    8968,
+    9200,
+    10821,
+    12824,
+    14423,
+    16091,
+    16383,
+    17019,
+    16183,
+    16701,
+    16680,
+    17148,
+    18173,
+    18079,
+    18594,
+    19753,
+    20734,
+    20831,
+    23029,
+    23597,
+    23584
+  )
+)
+```
+
+
+```{r, echo = FALSE, include = TRUE}
+ggplot(spurious_corr, aes(x = apples, y = science_spending)) +
+  geom_point() +
+  theme_bw() +
+  labs(x = "Unadjusted cost of red delicious apples per lbs (USD)",
+       y = "US spending on science, space,\n and technology (Millions USD)") +
+  annotate("text", x = 0.65, y = 22000,
+           label = "r = 0.946",
+           size = 8) +
+  theme(axis.title = element_text(size = 16))
+
+```
+## Where does correlation fail?
+- Correlation measures a **linear** relationship - if your data are not linear correlation will fail to capture the relationship
+
+:::center-x
+```{r, echo = FALSE, fig.width=6}
+x <- rnorm(100, 10, 3)
+y <- (x - 10)^2 + rnorm(100)
+corr <- cor(x, y)
+data.frame(x = x, y = y) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  theme_minimal() +
+  annotate("text", label = paste("r =", round(corr, 3)),
+           x = 7, y = 35,
+           size = 8)
+```
+:::
+
+## Where does correlation fail? | A lesson in plotting your data
+
+```{r, echo = FALSE}
+anscombe_no_lines
+```
+
+## Where does correlation fail? | A lesson in plotting your data
+
+```{r, echo = FALSE}
+ann_text <- anscombe_tidy %>% 
+  group_by(set) %>% 
+  summarise(corr = round(cor(x = x, 
+  y = y), 3)) %>% 
+  mutate(x = 2, y = 10)
+anscombe_lines +
+  geom_text(data = ann_text, aes(label = paste("r =", corr), group = set))
+```
+
+# Simple linear regression
+
+## Why can't we just stop at our correlation coefficient? 
+:::box-6-list
+If we've calculated a $r$ statistic, we can't we just report that and be done with it? 
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> While the r value quantifies the correlation between our variables, it tells us nothing about [uncertainty]{.highlight-tomato} in the model that we are building. Uncertainty is key to developing hypothesis tests, predictions, and assessing the biological meaning of our model!
+:::
+
+. . .
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Linear regression lets us futher build out the model of our system so that we can [estimate the strength of a biological relationship]{.highlight-tomato} rather than simply a mathematical one!
+:::
+
+## Simple linear regression
+**Snowfall example**
+
+```{r, include = FALSE}
+snowfall <- data.frame(snowfall_inches = c(3.2, 1.4, 2.6, 6.9, 3.6, 1.7, 5.0),
+           hours_to_clear_streets = c(4.9, 2.4, 4.4, 9.6, 4.8, 2.1, 7.3))
+
+snow_fm <- lm(hours_to_clear_streets ~ snowfall_inches, data = snowfall)
+snowfall$fitted <- fitted(snow_fm)
+```
+
+```{r, echo = FALSE}
+snowfall %>% 
+  select(-fitted) %>% 
+  knitr::kable(col.names = c("Amount of snowfall (in)", "# of hours to clear street")) %>% 
+  kable_styling(full_width = F,
+                bootstrap_options = c("striped", "condensed"),
+                position = "left")
+```
+
+:::box-6-list
+Question of interest: What is the relationship between the amount of snow fall ($x$) and the time it takes to clear the streets ($y$)?
+:::
+
+## Simple linear regression
+**Snowfall example**
+
+```{r, echo = FALSE}
+snowfall_plot <- ggplot(snowfall, aes(x = snowfall_inches, y = hours_to_clear_streets)) +
+  geom_point(size = 5,
+             color = "#ffc107",
+             alpha = 0.5) +
+  labs(x = "Amount of snow (in)", y = "Hours to clear streets") +
+  theme_5126() +
+  coord_fixed(ratio = 0.5)
+
+print(snowfall_plot)
+```
+
+## Simple linear regression
+**Snowfall example | Step 1: fit a line**
+
+:::box-6-list
+The main idea behind linear regression is fitting a straight line to our data *(Recall equation for a straight line $y = mx + b$)*:
+:::
+
+. . .
+
+$$
+y = b_0 + b_1x
+$$
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Here $b_0$ is the y-intercept and $b_1$ is the slope.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> The goal is to find the coefficients that give the line of best fit
+:::
+
+## Simple linear regression
+**Snowfall example | Step 1: fit a line**
+
+:::box-6-list
+There are a variety of methods to find the coefficients $b_0$ and $b_1$ but the most common is [least squares]{.highlight-tomato}.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Find $b_0, ~b_1$ that minimize the "sum of squares" of our regression line
+:::
+
+$$\sum_{i = 1}^n (y_i - \hat{y_i})^2$$
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> where $y_i$ is your observed value and $\hat{y}_i$ is the value $y$ of the line $\hat{b}_0 + \hat{b}_1x_i$
+:::
+
+## Simple linear regression
+**Snowfall example | Step 1: fit a line**
+
+![](slide_media/w5/ss-simulated.gif)

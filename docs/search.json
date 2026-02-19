@@ -2425,5 +2425,145 @@
     "title": "Week 5",
     "section": "Visualizing statistical interactions",
     "text": "Visualizing statistical interactions"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression",
+    "href": "content/slides/w4-slides.html#simple-linear-regression",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\n\n\n Approaches to linear regression\n\n\n\n\n Experimental vs. observational studies\n\n\n\n\n Correlation\n\n\n\n\n Measuring the relationship between two continuous variables\n\n\n\n\n Simple linear regression\n\n\n\n\n Using least-squares (sum of squares) approach to fitting and testing a model"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#the-general-concept",
+    "href": "content/slides/w4-slides.html#the-general-concept",
+    "title": "Week 5",
+    "section": "The general concept",
+    "text": "The general concept\n\nIn regression analyses, we want to understand if there is a statistically clear relationship between two continuous variables, say \\(x\\) and \\(y\\).\n\n\n\n \\(x\\) may be a variable that we manipulated experimentally (e.g., temperature). The approach here is experimental\n\n\n\n\n \\(x\\) may also be a variable that we simply measured (e.g., total rainfall). The approach here is observational\n\n\n\n\n We can also include categorical variables in regression (i.e., ANOVA!)\n\n\n\n\n Correlation/regression are used to infer linkages between variables and quantify the strength of these links\n\n\n\n\n\n\n\nWarning\n\n\nCorrelation ≠ causation!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#fyi-read-this-paper",
+    "href": "content/slides/w4-slides.html#fyi-read-this-paper",
+    "title": "Week 5",
+    "section": "FYI: read this paper!",
+    "text": "FYI: read this paper!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#population-correlation-coefficient",
+    "href": "content/slides/w4-slides.html#population-correlation-coefficient",
+    "title": "Week 5",
+    "section": "Population correlation coefficient",
+    "text": "Population correlation coefficient\n\n\n\\(\\rho = Corr(X, Y) = \\frac{Cov(X, Y)}{\\sqrt{Var(X)}\\sqrt{Var(Y)}}\\) is the population correlation coefficient between \\(X\\) and \\(Y\\)\n\n\n\n\n \\(-1 \\leq \\rho \\leq 1\\)\n\n\n\n\n \\(\\rho = 1\\) indicates a perfect positive correlation\n\n\n\n\n \\(0 &lt; \\rho &lt; 1\\) indicates a positive correlation\n\n\n\n\n \\(\\rho = 0\\) indicates no linear relationship\n\n\n\n\n \\(-1 &lt; \\rho &lt; 0\\) indicates a negative correlation\n\n\n\n\n \\(\\rho = -1\\) indicates a perfect negative correlation"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#sample-correlation-coefficient",
+    "href": "content/slides/w4-slides.html#sample-correlation-coefficient",
+    "title": "Week 5",
+    "section": "Sample correlation coefficient",
+    "text": "Sample correlation coefficient\n\n\\(r\\) is the sample correlation coefficient and it is calculated similarly to \\(\\rho\\)\n\n\\[r = \\frac{\\sum_{i = 1}^n (x_i - \\bar{x}) (y_i - \\bar{y})}{\\sqrt{\\sum_{i = 1}^n (x_i - \\bar{x})^2} \\sqrt{\\sum_{i = 1}^n(y_i - \\bar{y})^2}}\\]\n\n\n\n\n\n\n\nNote\n\n\nThe same guidelines/parameters about \\(\\rho\\) apply to \\(r\\)!\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\\(r\\) is directly related to the \\(r^2\\) we are all very familiar with! It’s quite literally our sample correlation coefficient squared! We’ll come back to this and show the math a bit later…"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#sample-correlation-coefficient-1",
+    "href": "content/slides/w4-slides.html#sample-correlation-coefficient-1",
+    "title": "Week 5",
+    "section": "Sample correlation coefficient",
+    "text": "Sample correlation coefficient\n\n\\(r\\) is directly related to the \\(r^2\\) we are all very familiar with! It’s quite literally our sample correlation coefficient squared!\n\n\\[r = \\frac{\\sum_{i = 1}^n (x_i - \\bar{x}) (y_i - \\bar{y})}{\\sqrt{\\sum_{i = 1}^n (x_i - \\bar{x})^2} \\sqrt{\\sum_{i = 1}^n(y_i - \\bar{y})^2}}\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#how-do-we-calculate-correlation",
+    "href": "content/slides/w4-slides.html#how-do-we-calculate-correlation",
+    "title": "Week 5",
+    "section": "How do we calculate correlation?",
+    "text": "How do we calculate correlation?\n\nUse R\nin R: my_correlation &lt;- cor.test(x, y)\n\n\n\n\n\n    Pearson's product-moment correlation\n\ndata:  x and y\nt = 30.853, df = 48, p-value &lt; 2.2e-16\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.9573578 0.9862104\nsample estimates:\n     cor \n0.975702"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#beware-of-spurious-correlation",
+    "href": "content/slides/w4-slides.html#beware-of-spurious-correlation",
+    "title": "Week 5",
+    "section": "Beware of spurious correlation!",
+    "text": "Beware of spurious correlation!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#where-does-correlation-fail",
+    "href": "content/slides/w4-slides.html#where-does-correlation-fail",
+    "title": "Week 5",
+    "section": "Where does correlation fail?",
+    "text": "Where does correlation fail?\n\nCorrelation measures a linear relationship - if your data are not linear correlation will fail to capture the relationship"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#where-does-correlation-fail-a-lesson-in-plotting-your-data",
+    "href": "content/slides/w4-slides.html#where-does-correlation-fail-a-lesson-in-plotting-your-data",
+    "title": "Week 5",
+    "section": "Where does correlation fail? | A lesson in plotting your data",
+    "text": "Where does correlation fail? | A lesson in plotting your data"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#where-does-correlation-fail-a-lesson-in-plotting-your-data-1",
+    "href": "content/slides/w4-slides.html#where-does-correlation-fail-a-lesson-in-plotting-your-data-1",
+    "title": "Week 5",
+    "section": "Where does correlation fail? | A lesson in plotting your data",
+    "text": "Where does correlation fail? | A lesson in plotting your data"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#where-does-correlation-fail-a-lesson-in-plotting-your-data-2",
+    "href": "content/slides/w4-slides.html#where-does-correlation-fail-a-lesson-in-plotting-your-data-2",
+    "title": "Week 5",
+    "section": "Where does correlation fail? | A lesson in plotting your data",
+    "text": "Where does correlation fail? | A lesson in plotting your data"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#why-cant-we-just-stop-at-our-correlation-coefficient",
+    "href": "content/slides/w4-slides.html#why-cant-we-just-stop-at-our-correlation-coefficient",
+    "title": "Week 5",
+    "section": "Why can’t we just stop at our correlation coefficient?",
+    "text": "Why can’t we just stop at our correlation coefficient?\n\nIf we’ve calculated a \\(r\\) statistic, we can’t we just report that and be done with it?\n\n\n\n While the r value quantifies the correlation between our variables, it tells us nothing about uncertainty in the model that we are building. Uncertainty is key to developing hypothesis tests, predictions, and assessing the biological meaning of our model!\n\n\n\n\n Linear regression lets us futher build out the model of our system so that we can estimate the strength of a biological relationship rather than simply a mathematical one!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-2",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-2",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example\n\n\n\n\n\nAmount of snowfall (in)\n# of hours to clear street\n\n\n\n\n3.2\n4.9\n\n\n1.4\n2.4\n\n\n2.6\n4.4\n\n\n6.9\n9.6\n\n\n3.6\n4.8\n\n\n1.7\n2.1\n\n\n5.0\n7.3\n\n\n\n\n\n\nQuestion of interest: What is the relationship between the amount of snow fall (\\(x\\)) and the time it takes to clear the streets (\\(y\\))?"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-snowfall-example",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-snowfall-example",
+    "title": "Week 5",
+    "section": "Simple linear regression | Snowfall example",
+    "text": "Simple linear regression | Snowfall example"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-3",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-3",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-4",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-4",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 1: fit a line\n\nThe main idea behind linear regression is fitting a straight line to our data (Recall equation for a straight line \\(y = mx + b\\)):\n\n\n\\[\ny = b_0 + b_1x\n\\]\n\n\n\n Here \\(b_0\\) is the y-intercept and \\(b_1\\) is the slope.\n\n\n\n\n The goal is to find the coefficients that give the line of best fit"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#test",
+    "href": "content/slides/w4-slides.html#test",
+    "title": "Week 5",
+    "section": "test",
+    "text": "test"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-5",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-5",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 1: fit a line\n\nThere are a variety of methods to find the coefficients \\(b_0\\) and \\(b_1\\) but the most common is least squares.\n\n\n\n Find \\(b_0, ~b_1\\) that minimize the “sum of squares” of our regression line\n\n\\[\\sum_{i = 1}^n (y_i - \\hat{y_i})^2\\]\n\n where \\(y_i\\) is your observed value and \\(\\hat{y}_i\\) is the value \\(y\\) of the line \\(\\hat{b}_0 + \\hat{b}_1x_i\\)"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#simple-linear-regression-6",
+    "href": "content/slides/w4-slides.html#simple-linear-regression-6",
+    "title": "Week 5",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\nSnowfall example | Step 1: fit a line"
   }
 ]
