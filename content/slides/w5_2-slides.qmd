@@ -366,13 +366,13 @@ spurious_corr <- data.frame(
 ```{r, echo = FALSE, include = TRUE}
 ggplot(spurious_corr, aes(x = apples, y = science_spending)) +
   geom_point() +
-  theme_bw() +
   labs(x = "Unadjusted cost of red delicious apples per lbs (USD)",
        y = "US spending on science, space,\n and technology (Millions USD)") +
   annotate("text", x = 0.65, y = 22000,
            label = "r = 0.946",
            size = 8) +
-  theme(axis.title = element_text(size = 16))
+  # theme(axis.title = element_text(size = 16)) +
+  theme_5126()
 
 ```
 ## Where does correlation fail?
@@ -439,6 +439,7 @@ snowfall <- data.frame(snowfall_inches = c(3.2, 1.4, 2.6, 6.9, 3.6, 1.7, 5.0),
 
 snow_fm <- lm(hours_to_clear_streets ~ snowfall_inches, data = snowfall)
 snowfall$fitted <- fitted(snow_fm)
+snowfall
 ```
 
 ```{r, echo = FALSE}
@@ -851,7 +852,7 @@ dat <-
              SS = c(41.13, 0.86, 41.99),
              MS = c(41.13, 0.172, NA),
              `F` = c(239.13, NA, NA))
-
+# dat
 dat %>% 
   knitr::kable(col.names = c("Source", "df", "Sum of Squares", "Mean Square (SS / df)", "F"),
                align = c("l", "r", "c", "c", "c")) %>% 
@@ -883,7 +884,7 @@ dat <-
              SS = c(41.13, 0.86, 41.99),
              MS = c(41.13, 0.172, NA),
              `F` = c(239.13, NA, NA))
-
+# dat
 dat %>% 
   knitr::kable(col.names = c("Source", "df", "Sum of Squares", "Mean Square (SS / df)", "F"),
                align = c("l", "r", "c", "c", "c")) %>% 
