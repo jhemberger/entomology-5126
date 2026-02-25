@@ -2081,7 +2081,7 @@
     "href": "content/slides/w4-slides.html#section",
     "title": "Week 5",
     "section": "",
-    "text": "\\[SSTotal = \\sum_{i = 1}^{n}(y_i - \\bar{y})^2, ~df = n - 1\\]"
+    "text": "Assume we have 3 independent samples of plants grown in different fertilizer regimes and we want to compare their total height after 30 days. Given the choice between conducting and ANOVA and three independent, two-sample t-tests, which would you choose and why?\n\n\n\nAll this talk of Z-tests, one-sample t-tests, two-sample t-tests, and dependent and independent t-tests is making my head spin! Help me! Why do we use t-tests rather than z-tests most of the time? What’s the difference between dependent and independent two-sample t-tests?\n\n\n\n\n\n\nLook! I did an ANOVA! What the *!&$ does it mean?! Give me a 30-second elevator pitch about what this particular summary() output tells us.\n\n\nCall:\nlm(formula = size_cm ~ trt, data = w2.fact.df)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.4641 -2.1500 -0.1284  1.3719  5.5777 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   6.3872     0.8894   7.181 1.01e-07 ***\ntrttrtA      -0.2686     1.2578  -0.214    0.832    \ntrttrtB       1.3430     1.2578   1.068    0.295    \n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 2.813 on 27 degrees of freedom\nMultiple R-squared:  0.06525,   Adjusted R-squared:  -0.003987 \nF-statistic: 0.9424 on 2 and 27 DF,  p-value: 0.4021"
   },
   {
     "objectID": "content/slides/w4-slides.html#analysis-of-variance-anova-14",
@@ -2340,7 +2340,7 @@
     "href": "content/slides/w4-slides.html#section-1",
     "title": "Week 5",
     "section": "",
-    "text": "\\[SSRegression = \\sum_{i = 1}^{n}(\\hat{y_i} - \\bar{y})^2, ~df = 1\\]"
+    "text": "Let’s imagine we did an experiment where we manipulated two categorical variables, temperature and water availability for plants, with two levels (high and low) for each.\n\n\n\nWhat type of experiment is this called?\n\n\n\n\nWhat sort of analysis should we use to test for the effects of temperature and water on our plant response variables? Defend your choice of analysis.\n\n\n\n\nWe fit a model for this experiment with lm(plant_response ~ temp_trt * water_trt) and print the summary below. What is it telling us? Sketch out a figure that shows approximately what these results look like.\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-5.1032  -1.7324   0.1186   1.9541   5.4410 \n\nCoefficients:\n                          Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                15.420      0.812   18.99  &lt; 2e-16 ***\ntemp_trtWarm               3.180      1.149    2.77   0.008 ** \nwater_trtHigh              4.025      1.149    3.50   0.001 ***\ntemp_trtWarm:water_trtHigh 2.635      1.625    1.62   0.112    \n---\nSignif. codes:\n0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 2.58 on 36 degrees of freedom\nMultiple R-squared:  0.541,    Adjusted R-squared:  0.504 \nF-statistic: 14.1 on 3 and 36 DF,  p-value: 1.6e-06"
   },
   {
     "objectID": "content/slides/w4-slides.html#a-quiz---what-is-it-its-a-small-assessment-of-knowledge-but-thats-not-important-right-now.",
@@ -2354,7 +2354,7 @@
     "href": "content/slides/w4-slides.html#section-2",
     "title": "Week 5",
     "section": "",
-    "text": "\\[SSError = \\sum_{i = 1}^{n}(y_i - \\hat{y_i})^2, ~ df = n - 2\\]"
+    "text": "Now let’s imagine that we conducted a study where we examined how plant growth responded to a natural temperature variation across the whole biogeographical range of the species.\n\n\n\nHere’s the print out of that linear regression model summary. What is it telling us?\n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)     12.3845     1.7421   7.11  1.2e-09 ***\ntemperature_C    0.8532     0.1216   7.02  1.8e-09 ***\n---\nSignif. codes:  \n0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 3.12 on 48 degrees of freedom\nMultiple R-squared:  0.506,   Adjusted R-squared:  0.495 \nF-statistic: 49.3 on 1 and 48 DF,  p-value: 1.8e-09\n\n\n\nWe take a look at our residual vs. fitted diagnostic plot to see this. What does this indicate?\n\n\n\n\n\n\n\n\n\nHow should we interpret the “significance” of this model given the manner in which the data were collected?"
   },
   {
     "objectID": "content/slides/w4-slides.html#a-quiz",
@@ -2515,7 +2515,7 @@
     "href": "content/slides/w4-slides.html#why-cant-we-just-stop-at-our-correlation-coefficient",
     "title": "Week 5",
     "section": "Why can’t we just stop at our correlation coefficient?",
-    "text": "Why can’t we just stop at our correlation coefficient?\n\nIf we’ve calculated a \\(r\\) statistic, we can’t we just report that and be done with it?\n\n\n\n While the r value quantifies the correlation between our variables, it tells us nothing about uncertainty in the model that we are building. Uncertainty is key to developing hypothesis tests, predictions, and assessing the biological meaning of our model!\n\n\n\n\n Linear regression lets us futher build out the model of our system so that we can estimate the strength of a biological relationship rather than simply a mathematical one!"
+    "text": "Why can’t we just stop at our correlation coefficient?\n\nIf we’ve calculated a \\(r\\) statistic, we can’t we just report that and be done with it?\n\n\n\n While the r value quantifies the correlation between our variables, it tells us nothing about uncertainty or the fit/usefullness of our model because…"
   },
   {
     "objectID": "content/slides/w4-slides.html#simple-linear-regression-2",
@@ -2669,7 +2669,7 @@
     "href": "content/slides/w4-slides.html#section-3",
     "title": "Week 5",
     "section": "",
-    "text": "\\[SSTotal = SSReg + SSErr\\]"
+    "text": "\\[SSTotal = \\sum_{i = 1}^{n}(y_i - \\bar{y})^2, ~df = n - 1\\]"
   },
   {
     "objectID": "content/slides/w4-slides.html#poorly-fitting-model",
@@ -2719,5 +2719,47 @@
     "title": "Week 5",
     "section": "Simple linear regression",
     "text": "Simple linear regression\nSnowfall example | Step 6: make predictions\nYay! We have a model! We can use it to make predictions, like, how many hours should we expect to clear the streets given 4” of snowfall?\n\n\npredict(m1, newdata = data.frame(\"snowfall_inches\" = 4))\n\n       1 \n5.768693 \n\n\n\n\n\n\n\n\n\n\nCaution\n\n\nBe careful! Interpolation (predicting between our observed values) is generally okay, but extrapolation (predicting outside our observed values) may be inaccurate if the linear relationship changes outside the range of our observed variables."
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#why-cant-we-just-stop-at-our-correlation-coefficient-1",
+    "href": "content/slides/w4-slides.html#why-cant-we-just-stop-at-our-correlation-coefficient-1",
+    "title": "Week 5",
+    "section": "Why can’t we just stop at our correlation coefficient?",
+    "text": "Why can’t we just stop at our correlation coefficient?\n\nLinear regression lets us futher build out the model of our system so that we can estimate the strength of a biological relationship rather than simply a mathematical one!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#section-4",
+    "href": "content/slides/w4-slides.html#section-4",
+    "title": "Week 5",
+    "section": "",
+    "text": "\\[SSRegression = \\sum_{i = 1}^{n}(\\hat{y_i} - \\bar{y})^2, ~df = 1\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#lets-check-our-two-way-anova-and-regression-memory-from-last-week",
+    "href": "content/slides/w4-slides.html#lets-check-our-two-way-anova-and-regression-memory-from-last-week",
+    "title": "Week 5",
+    "section": "Let’s check our two-way ANOVA and regression memory from last week…",
+    "text": "Let’s check our two-way ANOVA and regression memory from last week…\nWe’re slowly building up an arsenal of different linear models that we can use to test hypotheses about both differences between samples (ANOVA), and relationships between variables (regression)!"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#section-5",
+    "href": "content/slides/w4-slides.html#section-5",
+    "title": "Week 5",
+    "section": "",
+    "text": "\\[SSError = \\sum_{i = 1}^{n}(y_i - \\hat{y_i})^2, ~ df = n - 2\\]"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#way-anova",
+    "href": "content/slides/w4-slides.html#way-anova",
+    "title": "Week 5",
+    "section": "2-way ANOVA",
+    "text": "2-way ANOVA\n\nLet’s imagine we did an experiment where we manipulated two categorical variables, temperature and water availability for plants, with two levels (high and low) for each.\n\n\n\nWhat type of experiment is this called?\n\n\n\n\nWhat sort of analysis should we use to test for the effects of temperature and water on our plant response variables? Defend your choice of analysis.\n\n\n\n\nWe fit a model for this experiment with lm(plant_response ~ temp_trt * water_trt) and print the summary below. What is it telling us? Sketch out a figure that shows approximately what these results look like.\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-5.1032  -1.7324   0.1186   1.9541   5.4410 \n\nCoefficients:\n                          Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                15.420      0.812   18.99  &lt; 2e-16 ***\ntemp_trtWarm               3.180      1.149    2.77   0.008 ** \nwater_trtHigh              4.025      1.149    3.50   0.001 ***\ntemp_trtWarm:water_trtHigh 2.635      1.625    1.62   0.112    \n---\nSignif. codes:\n0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 2.58 on 36 degrees of freedom\nMultiple R-squared:  0.541,    Adjusted R-squared:  0.504 \nF-statistic: 14.1 on 3 and 36 DF,  p-value: 1.6e-06"
+  },
+  {
+    "objectID": "content/slides/w4-slides.html#section-6",
+    "href": "content/slides/w4-slides.html#section-6",
+    "title": "Week 5",
+    "section": "",
+    "text": "\\[SSTotal = SSReg + SSErr\\]"
   }
 ]

@@ -122,7 +122,7 @@ Today we'll work with the `vitcap` dataset from the `ISwR` package. This dataset
 
 2.  First, perform a $t$-test. Because the workers are not paired in any way, this is an independent two-sample $t$-test. We simply need to specify the two groups, the null hypothesis, and our expectation that the variances are equal between groups in the `t.test()` command. However, currently the grouping factor is in one column (as it should be for proper data setup), and for a $t$-test, we need to split it into two columns. I know you can do this, but you are beginning to feel semester fatigue. So here are some useful commands:
 
-    ``` R
+    ``` r
     group1 <- mydata[1:12, 3] # Create a new vector with first 12 rows and
                               # 3rd column of old dataset (mydata)
     group3 <- mydata[13:24, 3] # Create a new vector with responses of group 3

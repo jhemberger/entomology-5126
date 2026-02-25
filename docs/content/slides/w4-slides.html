@@ -204,7 +204,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Week 5</h1>
-  <p class="subtitle">Two-Way ANOVA &amp; linear model diagnostics</p>
+  <p class="subtitle">Simple linear regression</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -477,13 +477,22 @@ sample estimates:
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> While the r value quantifies the correlation between our variables, it tells us nothing about <span class="highlight-tomato">uncertainty</span> in the model that we are building. Uncertainty is key to developing hypothesis tests, predictions, and assessing the biological meaning of our model!</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> While the r value quantifies the correlation between our variables, it tells us nothing about <span class="highlight-tomato">uncertainty</span> or the fit/usefullness of our model because…</p>
 </div>
 </div>
-<div class="fragment">
-<div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Linear regression lets us futher build out the model of our system so that we can <span class="highlight-tomato">estimate the strength of a biological relationship</span> rather than simply a mathematical one!</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slide_media/w5/spoon-model.jpg" class="quarto-figure quarto-figure-center" width="800"></p>
+</figure>
 </div>
+</section>
+<section id="why-cant-we-just-stop-at-our-correlation-coefficient-1" class="slide level2">
+<h2>Why can’t we just stop at our correlation coefficient?</h2>
+<div class="box-6-list">
+<p>Linear regression lets us futher build out the model of our system so that we can <span class="highlight-tomato">estimate the strength of a biological relationship</span> rather than simply a mathematical one!</p>
 </div>
 </section>
 <section id="simple-linear-regression-2" class="slide level2">
@@ -740,6 +749,90 @@ y = b_0 + b_1x
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="a-quiz" class="title-slide slide level1 center">
+<h1>A quiz!</h1>
+
+</section>
+<section id="lets-check-our-two-way-anova-and-regression-memory-from-last-week" class="slide level2">
+<h2>Let’s check our two-way ANOVA and regression memory from last week…</h2>
+<p>We’re slowly building up an arsenal of different linear models that we can use to test hypotheses about both differences between samples (ANOVA), and relationships between variables (regression)!</p>
+</section>
+<section id="section-1" class="slide level2 scrollable">
+<h2></h2>
+<div class="box-6-list">
+<p>Let’s imagine we did an experiment where we manipulated two categorical variables, temperature and water availability for plants, with two levels (high and low) for each.</p>
+</div>
+<div class="fragment">
+<ol type="1">
+<li>What type of experiment is this called?</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li>What sort of analysis should we use to test for the effects of temperature and water on our plant response variables? Defend your choice of analysis.</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>We fit a model for this experiment with <code>lm(plant_response ~ temp_trt * water_trt)</code> and print the summary below. What is it telling us? Sketch out a figure that shows approximately what these results look like.</li>
+</ol>
+<pre><code>Residuals:
+     Min       1Q   Median       3Q      Max 
+-5.1032  -1.7324   0.1186   1.9541   5.4410 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                15.420      0.812   18.99  &lt; 2e-16 ***
+temp_trtWarm               3.180      1.149    2.77   0.008 ** 
+water_trtHigh              4.025      1.149    3.50   0.001 ***
+temp_trtWarm:water_trtHigh 2.635      1.625    1.62   0.112    
+---
+Signif. codes:
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.58 on 36 degrees of freedom
+Multiple R-squared:  0.541,    Adjusted R-squared:  0.504 
+F-statistic: 14.1 on 3 and 36 DF,  p-value: 1.6e-06</code></pre>
+</div>
+</section>
+<section id="section-2" class="slide level2 scrollable">
+<h2></h2>
+<div class="box-6-list">
+<p>Now let’s imagine that we conducted a study where we examined how plant growth responded to a natural temperature variation across the whole biogeographical range of the species.</p>
+</div>
+<div class="fragment">
+<ol type="1">
+<li>Here’s the print out of that linear regression model summary. What is it telling us?</li>
+</ol>
+<pre><code>Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     12.3845     1.7421   7.11  1.2e-09 ***
+temperature_C    0.8532     0.1216   7.02  1.8e-09 ***
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.12 on 48 degrees of freedom
+Multiple R-squared:  0.506,   Adjusted R-squared:  0.495 
+F-statistic: 49.3 on 1 and 48 DF,  p-value: 1.8e-09</code></pre>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li>We take a look at our residual vs.&nbsp;fitted diagnostic plot to see this. What does this indicate?</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slide_media/w5/resid-nonlinear-tpc.png" class="quarto-figure quarto-figure-center" width="400"></p>
+</figure>
+</div>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>How should we interpret the “significance” of this model given the manner in which the data were collected?</li>
+</ol>
+</div>
 </section>
 <section id="simple-linear-regression-13" class="slide level2">
 <h2>Simple linear regression</h2>
@@ -786,7 +879,7 @@ y = b_0 + b_1x
 <p><span class="math display">\[SS~Total = SS~Regression + SS~Error\]</span></p>
 </div>
 </section>
-<section id="section" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[SSTotal = \sum_{i = 1}^{n}(y_i - \bar{y})^2, ~df = n - 1\]</span></p>
 <div class="cell">
@@ -799,7 +892,7 @@ y = b_0 + b_1x
 </div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[SSRegression = \sum_{i = 1}^{n}(\hat{y_i} - \bar{y})^2, ~df = 1\]</span></p>
 <div class="cell">
@@ -812,7 +905,7 @@ y = b_0 + b_1x
 </div>
 </div>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[SSError = \sum_{i = 1}^{n}(y_i - \hat{y_i})^2, ~ df = n - 2\]</span></p>
 <div class="cell">
@@ -825,7 +918,7 @@ y = b_0 + b_1x
 </div>
 </div>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[SSTotal = SSReg + SSErr\]</span></p>
 <div class="cell">
@@ -1057,7 +1150,7 @@ F-statistic: 234.4 on 1 and 5 DF,  p-value: 2.156e-05</code></pre>
 <p>Yay! We have a model! We can use it to make predictions, like, how many hours should we expect to clear the streets given 4” of snowfall?</p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="st">"snowfall_inches"</span> <span class="ot">=</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="st">"snowfall_inches"</span> <span class="ot">=</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       1 
 5.768693 </code></pre>

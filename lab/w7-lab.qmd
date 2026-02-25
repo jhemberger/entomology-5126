@@ -4,7 +4,12 @@ subtitle: Entomology 5126 - Spring 2026
 author: Jeremy Hemberger and Brian Aukema
 date: last-modified
 date-format: long
-format: html
+# format: html
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
 
 ------------------------------------------------------------------------
