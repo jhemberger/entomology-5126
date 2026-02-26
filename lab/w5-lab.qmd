@@ -1,12 +1,16 @@
 ---
-title: "Lab 5: Simple linear regression"
+title: "Lab 5: Linear Regression"
 subtitle: Entomology 5126 - Spring 2026
 author: Jeremy Hemberger and Brian Aukema
-date: last-modified
+date: 2/20/2026
 date-format: long
-format: html
+# format: html
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
-
 # Introduction
 
 Today's lab focuses on simple linear regression. ANOVA is used to examine factors; regression is used for continuous variables. Once you have both techniques in your toolbox, you will be able to do almost anything! This includes combining both factors and continuous variables in the same model (Analysis of Covariance, or ANCOVA), and changing assumptions about the distribution of the data (e.g., generalized linear models). This basic ANOVA and regression framework will serve us well as we move into more advanced topics in spatial and temporal analyses through the month of March.\

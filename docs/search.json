@@ -2340,7 +2340,11 @@
     "href": "content/slides/w4-slides.html#section-1",
     "title": "Week 5",
     "section": "",
+<<<<<<< HEAD
     "text": "Let’s imagine we did an experiment where we manipulated two categorical variables, temperature and water availability for plants, with two levels (high and low) for each.\n\n\n\nWhat type of experiment is this called?\n\n\n\n\nWhat sort of analysis should we use to test for the effects of temperature and water on our plant response variables? Defend your choice of analysis.\n\n\n\n\nWe fit a model for this experiment with lm(plant_response ~ temp_trt * water_trt) and print the summary below. What is it telling us? Sketch out a figure that shows approximately what these results look like.\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-5.1032  -1.7324   0.1186   1.9541   5.4410 \n\nCoefficients:\n                          Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                15.420      0.812   18.99  &lt; 2e-16 ***\ntemp_trtWarm               3.180      1.149    2.77   0.008 ** \nwater_trtHigh              4.025      1.149    3.50   0.001 ***\ntemp_trtWarm:water_trtHigh 2.635      1.625    1.62   0.112    \n---\nSignif. codes:\n0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 2.58 on 36 degrees of freedom\nMultiple R-squared:  0.541,    Adjusted R-squared:  0.504 \nF-statistic: 14.1 on 3 and 36 DF,  p-value: 1.6e-06"
+=======
+    "text": "Cool. But how do we actually assess these assumptions in our analyses?"
+>>>>>>> 5cd9c72 (update labs)
   },
   {
     "objectID": "content/slides/w4-slides.html#a-quiz---what-is-it-its-a-small-assessment-of-knowledge-but-thats-not-important-right-now.",
