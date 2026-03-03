@@ -48,7 +48,7 @@ As you might expect, you can check the assumptions of equal variances and normal
 
     Hey! This looks very similar to fitting an ANOVA (which is also a linear model)!
 
--   The `summary()` function. Examine the $F$-statistic of the overall model, which you can find at the bottom of the summary. This tells you whether there is *any* signficant relationship between your response variable and your predictor. (Alternatively, you can also recover the same $F$-statistic from the `anova()` command, because even a regression can be analysed using an ANOVA framework. There just aren't as many replicates in each "group"). If the $p$-value is greater than 0.05, then there is nothing significant. Go have lunch and design another experiment.
+-   The `summary()` function. Examine the $F$-statistic of the overall model, which you can find at the bottom of the summary. This tells you whether there is *any* significant relationship between your response variable and your predictor. (Alternatively, you can also recover the same $F$-statistic from the `anova()` command, because even a regression can be analyzed using an ANOVA framework. There just aren't as many replicates in each "group"). If the $p$-value is greater than 0.05, then there is nothing significant. Go have lunch and design another experiment.
 
 -   Remember, while the $p$-value from the overall model is good to examine, you should also simultaneously examine how well the model fits and if a transformation might be necessary:\
     `> plot(residuals(fm1)`$\sim$`fitted.values(fm1))`
@@ -56,7 +56,7 @@ As you might expect, you can check the assumptions of equal variances and normal
 -   Once you have a good model, to get detailed information on model coefficients:\
     `> summary(fm1)`
 
--   Remember, a residual plot should show roughly equal variance around the horizonal zero line across the plot. If the spread is like a fan, for example, you may need to apply a transformation. You can do this right in your model fitting command:\
+-   Remember, a residual plot should show roughly equal variance around the horizontal zero line across the plot. If the spread is like a fan, for example, you may need to apply a transformation. You can do this right in your model fitting command:\
     `> fm1 <- lm(sqrt(y)`$\sim$`precipitation, data=mylabdata)`\
 
 # Today's data
@@ -68,7 +68,7 @@ Today's data set, `Lab5data.xls`, comes from *The Song of Insects*, written in 1
 
 1.  You know what to do for question one. For regression, we want to work with explanatory variables that are *not* factors.
 
-2.  Check the data graphically with a scatterplot matrix (by now, of course, this is second nature). What sort of correlation is displayed (positive or negative)? Although this is not always done, you can determine the linear correlation using the `cor()` function, specifying the two variables separated by a comma. If you were to fit a regression, would you expect a postive or negative slope?
+2.  Check the data graphically with a scatterplot matrix (by now, of course, this is second nature). What sort of correlation is displayed (positive or negative)? Although this is not always done, you can determine the linear correlation using the `cor()` function, specifying the two variables separated by a comma. If you were to fit a regression, would you expect a positive or negative slope?
 
 3.  Fit a linear regression of pitch as a function of ambient air temperature. Examine and comment on the residual plot. In residual plots from ANOVAs, there was a vertical line for each group. Why are there no vertical lines for regression models?
 
@@ -80,7 +80,7 @@ Today's data set, `Lab5data.xls`, comes from *The Song of Insects*, written in 1
 
 7.  The `temperature` estimate in the `summary()` output is the slope coefficient. You will also see, of course, an estimate of the standard error and a $t$-value. What does this $t$-test test?
 
-8.  Of course, we could analyse this entire experiment by partitioning the variation by sums of squares, as we would do in an ANOVA, and derive an $F$-test that would test whether temperature has any explanatory utility. What is the relationship between the $t$-value and the overall $F$-ratio in the `summary()` output?
+8.  Of course, we could analyze this entire experiment by partitioning the variation by sums of squares, as we would do in an ANOVA, and derive an $F$-test that would test whether temperature has any explanatory utility. What is the relationship between the $t$-value and the overall $F$-ratio in the `summary()` output?
 
 9.  I found that the term for temperature is significant in explaining the average number of vibrations per second (pitch). For each one degree increase in temperature, the number of vibrations increases 0.21193. Needless to say, this is a bit awkward (e.g., for every 5 degree increase in air temperature, the number of vibrations increases by 1.05965). It might make more sense to round this number to exactly 0.2, so we could say that for every increase of 5 degrees, the number of vibrations increases by 1.\
     Test whether the slope is significantly different than 0.2. The numbers from the summary output may be helpful in constructing the test. Another useful command is the `pt()` function, which generates the probability from a $t$ distribution. The syntax is `pt(t-statistic value, df, lower.tail=T)`.\
