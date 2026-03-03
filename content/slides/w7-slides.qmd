@@ -1,0 +1,268 @@
+---
+title: "Week 7"
+subtitle: "Model selection"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w7-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    scrollable: true
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---
+
+# What we'll cover today
+
+## Methods in model selection
+
+. . .
+
+::: box-1-list
+[{{< fa arrow-right-arrow-left >}}]{.margin-1} Forward, backward, and stepwise regression
+:::
+
+. . .
+
+::: box-1-list
+[{{< fa file-circle-check >}}]{.margin-1} General guide to MLR modeling
+:::
+
+. . .
+
+::: box-1-list
+[{{< fa bacon >}}]{.margin-1} Polynomial regression (curvy data!)
+:::
+
+# Forward, backward, and stepwise regression
+
+## Too many choices!
+
+:::box-6-list
+So far, we've been building models to understand whether the is a relationship between some predictor variables ($x_1, x_2, ... x_n$) and a response variable, $y$. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> In experiments, where we only manipulate a couple of variables at a time, the *structure* of our models (i.e., which variables we include) is obvious: we typically include them all - that's the point of the experiment!
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> However, in observational studies, we often have many variables that we could use to predict our response variable of interest. This creates a challenge!
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Ideally, we would build our models using some *a priori* knowledge and structured hypotheses of how we think the system works, but sometimes we don't have this knowledge (e.g., in new systems) or we're interested in maximizing the *predictive* capacity of our model (i.e., how much variance, $R^2$ we can explain)
+:::
+
+. . . 
+
+:::{.center-x}
+[So, how do we decide on a good fitting model?]{.highlight-tomato}
+:::
+
+## Option 1: gotta fit 'em all!
+
+:::box-6-list
+If the number of candidate variables is small (e.g., $k ≤ 4$), fit all of your possible models and compare them using some pre-specified criterion (e.g., Adj-$R^2$): Total of $2^k$ candidate models.
+:::
+
+. . . 
+
+```{r fit-all, echo = TRUE, eval = FALSE}
+# Want to know whether abundance of bumble bees is best predicted by:
+# temperature, precipitation, or whether or not a prairie was burned
+
+m1 <- lm(abundance ~ 1) # intercept only model (null model) adj-R2 = 0.04
+m2 <- lm(abundance ~ temp) # adj-R2 = 0.31
+m3 <- lm(abundance ~ precip) # adj-R2 = 0.08
+m4 <- lm(abundance ~ burn_status) # adj-R2 = 0.13
+m5 <- lm(abundance ~ temp + precip) # adj-R2 = 0.35
+m6 <- lm(abundance ~ temp + burn_status) # adj-R2 = 0.48
+m7 <- lm(abundance ~ precip + burn_status) # adj-R2 = 0.19
+m8 <- lm(abundance ~ temp + precip + burn_status) # adj-R2 = 0.56
+```
+
+. . . 
+
+:::{.center-x}
+Or, if we have more than 4 variables, we can conduct a more structured model selection
+:::
+
+## Option 2: backward elimination
+
+:::box-6-list
+The name sort of says it all here! In [backward elimination]{.highlight-tomato}, we start with a full model containing all of the predictors of interest (a *global* model), and then sequentially work to eliminate (prune) 'unhelpful' predictors from our global model. 
+:::
+
+:::{.incremental}
+1. Fit the full model with all of our $x_i$ of interest
+2. Find the variable with the smallest t-statistic (i.e., highest p-value) using the model summary output
+3. Fit the a new subset model with the variable omitted
+4. Check the t-stats/p-values as in Step 2 and continue until no variables have a t-stat above your threshold/p-values above your alpha (typically $\alpha=0.05$)
+:::
+
+. . . 
+
+::: {.callout-tip}
+We typically do backward elimination when: (1) you believe most predictors are biologically relevant and (2) you have a TON of data to support fitting a big, global model
+:::
+
+## Option 2: forward selection
+
+:::box-6-list
+The name sort of says it all here, too! In [forward selection]{.highlight-tomato}, we start with a model containing only the intercept (a *null* model), and then sequentially add predictors to build up to a more complex model
+:::
+
+:::{.incremental}
+1. Find the predictor $x_i$ with the highest correlation with $y$ (i.e., highest $R^2$ from simple linear regressions)
+2. Fit a model with this predictor, $x_1$, and check the T-statistic 
+  - if the largest t-statistic is small, stop and the best model has only an intercept, $\beta_0$
+  - if the largest t-statistic is large, go to step 3.
+3. Find the next $x_i$ that causes the largest increase in $R^2$ while keeping the first $x_1$ in the model. That is, look at ALL of the models that have both $x_1$ plus one more and select the new variable that has the largest t-statistic. 
+4. Check the largest t-statistic. Stop if it's small, keep the variable and continue if it's big (≥ 2). 
+:::
+
+. . . 
+
+::: {.callout-tip}
+We typically do forward selection when: (1) you suspect only a few variables matter; (2) you have a TON of candidate variables; and (3) you can't possibly fit a global model given your sample size relative to number of candidate variables
+:::
+
+## Option 2: stepwise selection
+
+:::box-6-list
+In [stepwise selection]{.highlight-tomato}, we hybridize both backward elimination and forward selection, starting with forward selection:
+:::
+
+:::{.incremental}
+1. Add variables in the same manner you would forward selection (start with intercept only model, and add 1 variable that is best predictive of your response)
+2. After each addition, conduct backward elimination to see if any variables should be removed
+3. Continue until no additional variables can either be added or subtracted.
+:::
+
+
+## Caveats and warnings
+
+:::box-6-list
+There are many risks when performing model selection using these techniques, and neither approach can fully avoid them. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Backward elimination risks eliminating biologically meaningful variables 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Forward selection has the potential of stopping short and not including biologically meaningful variables
+:::
+
+. . . 
+
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Forward and backward often settle on different models 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Stepwise selection only considers best immediate choice, so can converge on a local optima rather than a global optima. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Stepwise selection can bias standard error down and therefore inflate p-values, leading to more type-1 errors (false positive)
+:::
+
+## What I recommend: 
+
+:::box-6-list
+In general, I counsel avoiding stepwise selection, especially when you have biologically meaningful predictors and you care about statistical inference. There are a few recommendations that have become commonplace in the biological/ecological literature that are worth heeding if you are considering doing model selection in this manner:
+:::
+
+:::{.incremental}
+1. Start with a pre-specificed set of predictor variables or models that have [biological relevance]{.highlight-tomato}, that is you have specific hypotheses as to why these variables matter.
+2. Use AIC, AICc (information criteria) rather than p-values to prune or add to models
+3. Consider model averaging (rather than relying on a single "optimal" model)
+4. Use selection approaches mostly for [prediction]{.highlight-tomato} or data exploration rather than [inference]{.highlight-tomato}
+:::
+
+. . . 
+
+:::{.center-x}
+[And read this paper!](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecy.3336)
+:::
+
+# General guide to multiple linear regression modeling
+
+## MLR guide: step 1
+**Exploratory data analysis**
+
+:::box-6-list
+Begin by doing exploratory data analysis between your $y$ and $x_1....x_k$ variables
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Plot your data! Scatterplot matrix, boxplots, etc.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Plot some "models" using `geom_smooth()` in `ggplot` to visualize potential linear and/or non-linear relationships
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Summarize your data using the `summary()`, `glimpse()` and other commands to inspect all of your variables to ensure the values make sense!
+:::
+
+## MLR guide: step 2
+**Fit model**
+
+:::box-6-list
+Consider a full, global model that includes all of your explanatory variables ($x_1....x_k$). Fit the full model and evaluate the overall F-test, inspect the fitted model coefficients ($\hat{\beta}$}, their t-tests, and the model predictive power ($R^2$))
+:::
+
+
+## MLR guide: step 3
+**Model diagnostics**
+
+## MLR guide: step 4
+**Check multicollinearity**
+
+## MLR guide: step 5
+**Model selection**
+
+## MLR guide: step 5
+**General principles and suggestions**
+
+:::{.incremental}
+1. Parsimony! The best model is the simplest possible model that best explains variation in your data.
+2. Let science (experimental design, bias accounting) and common sense guide your approach
+3. Sometimes there isn't a single best model; all models are wrong, some are useful.
+4. We may not have enough information in the data to tell what the truth is exactly!
+:::
+
