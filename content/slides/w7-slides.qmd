@@ -243,9 +243,20 @@ Begin by doing exploratory data analysis between your $y$ and $x_1....x_k$ varia
 **Fit model**
 
 :::box-6-list
-Consider a full, global model that includes all of your explanatory variables ($x_1....x_k$). Fit the full model and evaluate the overall F-test, inspect the fitted model coefficients ($\hat{\beta}$}, their t-tests, and the model predictive power ($R^2$))
+Consider a full, global model that includes all of your explanatory variables ($x_1....x_k$).
 :::
 
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Fit the full model and evaluate the overall F-test
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Inspect the fitted model coefficients ($\hat{\beta}$}, their t-tests, and the model predictive power ($R^2$)
+:::
 
 ## MLR guide: step 3
 **Model diagnostics**
