@@ -164,11 +164,30 @@ There are many risks when performing model selection using these techniques, and
 
 . . . 
 
+**Backward elimination:**
+
+. . . 
+
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> Backward elimination risks eliminating biologically meaningful variables 
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Requires big sample size ($n >> k$)
 :::
 
 . . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Risks eliminating biologically meaningful variables 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Purely conditional tests: variables weak in full model may be important in smaller models given we're interpreting each holding the others constant.
+:::
+
+## Caveats and warnings
+**Foward selection**
+
+. . .
 
 ::: indented-text
 <i class="fa-solid fa-turn-up fa-rotate-90"></i> Forward selection has the potential of stopping short and not including biologically meaningful variables
@@ -176,9 +195,17 @@ There are many risks when performing model selection using these techniques, and
 
 . . . 
 
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Order dependent! Early choices strongly influence our final model form
+:::
+
+## Caveats and warnings
+**Stepwise selection:**
+
+. . .
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> Forward and backward often settle on different models 
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Unstable method: small changes in the data can have very outsized impacts on the final model 
 :::
 
 . . . 
@@ -190,7 +217,7 @@ There are many risks when performing model selection using these techniques, and
 . . . 
 
 ::: indented-text
-<i class="fa-solid fa-turn-up fa-rotate-90"></i> Stepwise selection can bias standard error down and therefore inflate p-values, leading to more type-1 errors (false positive)
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Stepwise selection can bias standard error down and therefore inflate p-values, leading to more type-1 errors (false positive): infernce is really hard given these circumstances.
 :::
 
 ## What I recommend: 
@@ -203,7 +230,7 @@ In general, I counsel avoiding stepwise selection, especially when you have biol
 1. Start with a pre-specificed set of predictor variables or models that have [biological relevance]{.highlight-tomato}, that is you have specific hypotheses as to why these variables matter.
 2. Use AIC, AICc (information criteria) rather than p-values to prune or add to models
 3. Consider model averaging (rather than relying on a single "optimal" model)
-4. Use selection approaches mostly for [prediction]{.highlight-tomato} or data exploration rather than [inference]{.highlight-tomato}
+4. Use selection approaches mostly for [prediction]{.highlight-tomato} or [data exploration]{.highlight-tomato} rather than [inference]{.highlight-tomato}
 :::
 
 . . . 
@@ -243,7 +270,7 @@ Begin by doing exploratory data analysis between your $y$ and $x_1....x_k$ varia
 **Fit model**
 
 :::box-6-list
-Consider a full, global model that includes all of your explanatory variables ($x_1....x_k$).
+Consider a full, global model that includes all of your explanatory variables that you believe are [biolgically relevant]{.highlight-tomato} ($x_1....x_k$).
 :::
 
 . . . 
@@ -261,13 +288,73 @@ Consider a full, global model that includes all of your explanatory variables ($
 ## MLR guide: step 3
 **Model diagnostics**
 
+:::box-6-list
+Check our model assumptions by plotting residuals ($r$) vs. predicted values ($\hat{y})
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> We can examine for evidence that the model is the correct model
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Verify that variance is equal and normally distributed about 0
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> For time-series, we can evaluate for independence/temporal autocorrelation (a topic for after the midterm!)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Identify influential observations and outliers. Explicitly test/treat if needed.
+:::
+
 ## MLR guide: step 4
 **Check multicollinearity**
+
+:::box-6-list
+High correlation among our predictors serves as a warnning for potential problems due to multicollinearity, as you discussed with Brian last week (unstable $\hat{\beta}$'s and t-ratios)
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Check [variance inflation factor]{.highlight-tomato} (VIF) values which provide a test of how correlated variables in our model. VIF > 5 typically indicates problematic multicollinearity
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Remember: multicollinearity may be present even when pairwise correlations are small!
+:::
 
 ## MLR guide: step 5
 **Model selection**
 
-## MLR guide: step 5
+:::box-6-list
+If necessary (number of predictors, $k$, is large, and insufficient theory exists to generate *a priori* models), select the best model using backward elimination, foward selection, or stepwise selection.
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Remember: this is best for situations where we're not explicitly interested in inference about our variables but rather data exploration or variable reduction because our standard error will be biased downward and thus our p-values inflated (more significant than they should be). 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> Check model assumptions for at the least at the beginning and at the end of model selection (but ideally check every candidate model if feasible)
+:::
+
+## MLR guide: 
 **General principles and suggestions**
 
 :::{.incremental}
@@ -277,3 +364,8 @@ Consider a full, global model that includes all of your explanatory variables ($
 4. We may not have enough information in the data to tell what the truth is exactly!
 :::
 
+. . . 
+
+:::{.callout-tip}
+This is where statistics becomes equal parts art and math. There are many ways to arrive at a defensible answer: what's most important is that you document and are transparent about your decisions, output, and conclusions.
+:::

@@ -365,10 +365,27 @@
 <p>There are many risks when performing model selection using these techniques, and neither approach can fully avoid them.</p>
 </div>
 <div class="fragment">
+<p><strong>Backward elimination:</strong></p>
+</div>
+<div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Backward elimination risks eliminating biologically meaningful variables</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Requires big sample size (<span class="math inline">\(n &gt;&gt; k\)</span>)</p>
 </div>
 </div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Risks eliminating biologically meaningful variables</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Purely conditional tests: variables weak in full model may be important in smaller models given we’re interpreting each holding the others constant.</p>
+</div>
+</div>
+</section>
+<section id="caveats-and-warnings-1" class="slide level2">
+<h2>Caveats and warnings</h2>
+<p><strong>Foward selection</strong></p>
 <div class="fragment">
 <div class="indented-text">
 <p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Forward selection has the potential of stopping short and not including biologically meaningful variables</p>
@@ -376,7 +393,16 @@
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Forward and backward often settle on different models</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Order dependent! Early choices strongly influence our final model form</p>
+</div>
+</div>
+</section>
+<section id="caveats-and-warnings-2" class="slide level2">
+<h2>Caveats and warnings</h2>
+<p><strong>Stepwise selection:</strong></p>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Unstable method: small changes in the data can have very outsized impacts on the final model</p>
 </div>
 </div>
 <div class="fragment">
@@ -386,7 +412,7 @@
 </div>
 <div class="fragment">
 <div class="indented-text">
-<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Stepwise selection can bias standard error down and therefore inflate p-values, leading to more type-1 errors (false positive)</p>
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Stepwise selection can bias standard error down and therefore inflate p-values, leading to more type-1 errors (false positive): infernce is really hard given these circumstances.</p>
 </div>
 </div>
 </section>
@@ -399,7 +425,7 @@
 <li class="fragment">Start with a pre-specificed set of predictor variables or models that have <span class="highlight-tomato">biological relevance</span>, that is you have specific hypotheses as to why these variables matter.</li>
 <li class="fragment">Use AIC, AICc (information criteria) rather than p-values to prune or add to models</li>
 <li class="fragment">Consider model averaging (rather than relying on a single “optimal” model)</li>
-<li class="fragment">Use selection approaches mostly for <span class="highlight-tomato">prediction</span> or data exploration rather than <span class="highlight-tomato">inference</span></li>
+<li class="fragment">Use selection approaches mostly for <span class="highlight-tomato">prediction</span> or <span class="highlight-tomato">data exploration</span> rather than <span class="highlight-tomato">inference</span></li>
 </ol>
 <div class="fragment">
 <div class="center-x">
@@ -438,7 +464,7 @@
 <h2>MLR guide: step 2</h2>
 <p><strong>Fit model</strong></p>
 <div class="box-6-list">
-<p>Consider a full, global model that includes all of your explanatory variables (<span class="math inline">\(x_1....x_k\)</span>).</p>
+<p>Consider a full, global model that includes all of your explanatory variables that you believe are <span class="highlight-tomato">biolgically relevant</span> (<span class="math inline">\(x_1....x_k\)</span>).</p>
 </div>
 <div class="fragment">
 <div class="indented-text">
@@ -454,17 +480,66 @@
 <section id="mlr-guide-step-3" class="slide level2">
 <h2>MLR guide: step 3</h2>
 <p><strong>Model diagnostics</strong></p>
+<div class="box-6-list">
+<p>Check our model assumptions by plotting residuals (<span class="math inline">\(r\)</span>) vs.&nbsp;predicted values ($)</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> We can examine for evidence that the model is the correct model</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Verify that variance is equal and normally distributed about 0</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> For time-series, we can evaluate for independence/temporal autocorrelation (a topic for after the midterm!)</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Identify influential observations and outliers. Explicitly test/treat if needed.</p>
+</div>
+</div>
 </section>
 <section id="mlr-guide-step-4" class="slide level2">
 <h2>MLR guide: step 4</h2>
 <p><strong>Check multicollinearity</strong></p>
+<div class="box-6-list">
+<p>High correlation among our predictors serves as a warnning for potential problems due to multicollinearity, as you discussed with Brian last week (unstable <span class="math inline">\(\hat{\beta}\)</span>’s and t-ratios)</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Check <span class="highlight-tomato">variance inflation factor</span> (VIF) values which provide a test of how correlated variables in our model. VIF &gt; 5 typically indicates problematic multicollinearity</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Remember: multicollinearity may be present even when pairwise correlations are small!</p>
+</div>
+</div>
 </section>
 <section id="mlr-guide-step-5" class="slide level2">
 <h2>MLR guide: step 5</h2>
 <p><strong>Model selection</strong></p>
+<div class="box-6-list">
+<p>If necessary (number of predictors, <span class="math inline">\(k\)</span>, is large, and insufficient theory exists to generate <em>a priori</em> models), select the best model using backward elimination, foward selection, or stepwise selection.</p>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Remember: this is best for situations where we’re not explicitly interested in inference about our variables but rather data exploration or variable reduction because our standard error will be biased downward and thus our p-values inflated (more significant than they should be).</p>
+</div>
+</div>
+<div class="fragment">
+<div class="indented-text">
+<p><i class="fa-solid fa-turn-up fa-rotate-90"></i> Check model assumptions for at the least at the beginning and at the end of model selection (but ideally check every candidate model if feasible)</p>
+</div>
+</div>
 </section>
-<section id="mlr-guide-step-5-1" class="slide level2 scrollable">
-<h2>MLR guide: step 5</h2>
+<section id="mlr-guide" class="slide level2 scrollable">
+<h2>MLR guide:</h2>
 <p><strong>General principles and suggestions</strong></p>
 <ol type="1">
 <li class="fragment">Parsimony! The best model is the simplest possible model that best explains variation in your data.</li>
@@ -472,8 +547,23 @@
 <li class="fragment">Sometimes there isn’t a single best model; all models are wrong, some are useful.</li>
 <li class="fragment">We may not have enough information in the data to tell what the truth is exactly!</li>
 </ol>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>This is where statistics becomes equal parts art and math. There are many ways to arrive at a defensible answer: what’s most important is that you document and are transparent about your decisions, output, and conclusions.</p>
+</div>
+</div>
+</div>
 
 
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
