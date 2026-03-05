@@ -1,0 +1,29 @@
+---
+title: "Midterm Exam"
+subtitle: Entomology 5126 - Spring 2026
+author: Jeremy Hemberger and Brian Aukema
+date: 2026-03-05
+date-format: long
+# format: html
+format:
+  pdf:
+    toc: false
+    number-sections: true
+    colorlinks: true
+---
+
+This midterm is worth 80 points and 20% of your overall grade. There are x pages and X questions in total. You may use **one** double-sided 8.5" x 11" sheet of paper with any notes you wish, and a calculator. Please read each question carefully. If you get hung up on a question, skip it and come back to it later. Good luck
+
+1. We'll start off easy. What is your name? (0 pts)
+
+2. Below is an excerpt from a paper that I was reading the other day, where the authors were measuring the impact of temperature on insect herbivory (total leaf area consumed) in both a controlled experiment comparing two temperature treatments, and an observational dataset in the field.
+
+> "There was a significant increase in defoliation when herbivores and their plants were maintained at 35C as compared to those maintained at 25C (t = 3.76, *p* = 0.004). Our In addition, we observed a significant increase in the rate of herbivory as temperature increased in the field (F\_{1, 454}=143.6 , *p* \< 0.001 )
+
+2. How many total plants were measured in the observational field study? (1 pt)
+
+2. Assuming the analyses were performed correctly, what error do you see in the reporting of the statistical tests conducted? (1 pt)
+
+3. It's going to be almost 70°F this weekend! (😁 but also...😬🌡️🏭🌎🔥). You get excited because of this warming weather and go out to sample temperatures across the Metro area because you are curious how temperatures vary across a variety of different neighborhoods, and it's a chance to ride your bike around and bask in the spring weather. The temperatures you collect are normally distributed N(73, 9) (measured in degrees farenheit). What is the probability that a given neighborhood's temperature is greater than 73 degrees?
+
+4. Imagine you are watching a seminar talk and the speaker puts up a graph associated with a one-way ANOVA design. They inform you that the 4 treatments were balanced, with 15 reps each. How many degrees of freedom do you expect to see in the F-statistic that they are about to display?

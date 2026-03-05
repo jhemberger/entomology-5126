@@ -2,7 +2,7 @@
 title: "Lab 7: Curvy data"
 subtitle: Entomology 5126 - Spring 2026
 author: Jeremy Hemberger and Brian Aukema
-date: last-modified
+date: 2026-03-06
 date-format: long
 # format: html
 format:

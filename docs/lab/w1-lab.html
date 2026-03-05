@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jeremy Hemberger and Brian Aukema">
-<meta name="dcterms.date" content="2025-08-13">
+<meta name="dcterms.date" content="2026-01-23">
 
 <title>Lab 1: an introduction to R – Entomology 5126</title>
 <style>
@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -145,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.html">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w1-lab.html">Lab 1: An introduction to R</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Lab 1: An introduction to R</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -185,19 +185,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w1-lab.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lab/w1-lab.pdf" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lab 1: An introduction to R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w2-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w2-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 2: Data wrangling and plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w3-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w3-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 3: Summarizing data</span></a>
   </div>
 </li>
@@ -214,25 +214,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w4-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w4-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 4: Independent two-sample t-tests and ANOVA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w5-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w5-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 5: Simple linear regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w6-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w6-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 6: Multiple linear regression and ANCOVA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w7-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w7-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 7: Curvy data</span></a>
   </div>
 </li>
@@ -310,10 +310,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
   <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a></li>
   <li><a href="#making-mistakes" id="toc-making-mistakes" class="nav-link" data-scroll-target="#making-mistakes">Making mistakes</a></li>
-  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a>
-  <ul class="collapse">
-  <li><a href="#pro-tip-keep-notes" id="toc-pro-tip-keep-notes" class="nav-link" data-scroll-target="#pro-tip-keep-notes">Pro tip: Keep notes!</a></li>
-  </ul></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
   <li><a href="#working-with-batch-files-r-scripts" id="toc-working-with-batch-files-r-scripts" class="nav-link" data-scroll-target="#working-with-batch-files-r-scripts">Working with batch files (“R scripts”)</a></li>
   <li><a href="#sending-code-to-r" id="toc-sending-code-to-r" class="nav-link" data-scroll-target="#sending-code-to-r">Sending code to R</a></li>
   <li><a href="#annotating-code" id="toc-annotating-code" class="nav-link" data-scroll-target="#annotating-code">Annotating code</a></li>
@@ -331,12 +328,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data-sets-for-assignments" id="toc-data-sets-for-assignments" class="nav-link" data-scroll-target="#data-sets-for-assignments">Data sets for assignments</a></li>
   <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="w1-lab.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.html">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w1-lab.html">Lab 1: An introduction to R</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Lab 1: An introduction to R</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Lab 1: an introduction to R</h1>
 <p class="subtitle lead">Entomology 5126 - Spring 2026</p>
@@ -356,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 13, 2025</p>
+      <p class="date">January 23, 2026</p>
     </div>
   </div>
   
@@ -371,18 +368,27 @@ ul.task-list li input[type="checkbox"] {
 <section id="frontmatter" class="level2">
 <h2 class="anchored" data-anchor-id="frontmatter">Frontmatter</h2>
 <p class="buttons" style="text-align:left;">
-</p><p><span class="btn btn-outline-warning"><i class="fa-solid fa-download" aria-label="download"></i> <a href="../lab/data/lab1.csv">Download lab data</a></span> <span class="btn btn-outline-warning"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i> <a href="../lab/data/lab1.csv">Download R project file</a></span></p>
+</p><p><i class="fa-solid fa-download" aria-label="download"></i> <a href="https://canvas.umn.edu/courses/539629/modules/items/15583284" class="btn btn-outline-warning">Download lab data</a></p>
 <p></p>
 </section>
 <section id="r" class="level2">
 <h2 class="anchored" data-anchor-id="r">R</h2>
 <p><code>R</code> is a software environment for statistical computing and graphics. It’s also a word that pirates say, but that’s not important right now. <code>R</code> is the best statistical software available, is free, and runs on Windows, Macintosh, and Linux platforms. <code>R</code> may be downloaded for personal use from <code>http://www.r-project.org</code>. <code>R</code> is open-source, which means that many people work on it around the world and are constantly improving it. Updated versions are released on the website every 2 months or so. If there is an advancement in statistics, it is incorporated rapidly.</p>
+<p><code>R</code> is both a programming language and has an integrated console that allows us to write and compile code. This interface hasn’t been updated in 20 years, and serves functionally equivalent to a Mac console or Windows Command Prompt instance. We won’t ever (and I don’t really recommend that you do) use this way of writing R code. It’s cumbersome, error-prone, and lacks many of the quality-of-life enhancements that a modern integrated development environment (IDE) provides. We’ll be using <a href="https://posit.co/download/rstudio-desktop/">RStudio</a> as our IDE of choice in this course. It’s the standard for most Bio/Eco folks doing stats, though there are others including <a href="https://code.visualstudio.com/">VS Code</a> and <a href="https://positron.posit.co/">Positron</a>.</p>
 </section>
 <section id="installing-packages" class="level2">
 <h2 class="anchored" data-anchor-id="installing-packages">Installing packages</h2>
-<p>Like ecology, there are many subdisciplines of statistics. <code>R</code> comes as a ‘base’ package. Depending on what you want to do, this may be sufficient. Often, however, you will need to install a contributed addition to do more specialized tasks, like spatial or temporal analyses. These additions are called “packages.” Think of statistics as creating a recipe to analyze your data, where <code>R</code> is an oven to bake your creation. Packages, then, are extra features you can add to the oven (e.g., air fryer, stainless steel griddle, extra burner, etc.) if your recipe needs it. You can either use the “Load package” command from the “Packages” menu, or you can simply type</p>
+<p>Like ecology, there are many subdisciplines of statistics. <code>R</code> comes as a ‘base’ package. Depending on what you want to do, this may be sufficient. Often, however, you will need to install a contributed addition to do more specialized tasks, like plotting, modeling, or spatial or temporal analyses. These additions are called “packages.” Think of statistics as creating a recipe to analyze your data, where <code>R</code> is an oven to bake your creation. Packages, then, are extra features you can add to the oven (e.g., air fryer, stainless steel griddle, extra burner, etc.) if your recipe needs it. These packages don’t come with your base installation or R: you’ll need to install them. To do this, you can use the package manager (Tools –&gt; Install Packages), or you can write code to do so:</p>
+<pre><code>install.packages("packagenamehere")</code></pre>
+<p>Once installed, these packages are available for your use. However, R doesn’t automaticaly load all of your installed packages in when you boot up RStudio as this would slow down your computer by adding a bunch of features/programs that may not be necessary for your particular session. As such, we should take care to only load the packages that we need for a particular analysis. To load packages in, we use the <code>library()</code> command:</p>
 <pre><code>library(whateverpackageyouneed)</code></pre>
-<p>In today’s lab, you will not need any extra packages.</p>
+<p>If you’re only interested in using a couple of functions from a package, you don’t need to load the entire thing into memory. You can directly call functions from packages in your code using the following format:</p>
+<pre><code>superPackage::nifty_function()</code></pre>
+<p>The package name is specified before the double semi-colon, and the function you want to use follows. Keep in mind that this formatting won’t load the package, so any subsequent functions you need from that package must be similarly specified, or you’ll need to load the whole package with the <code>library()</code> function.</p>
+<p>I typically start all of my scripts with a chunk of code to load in the appropriate packages. In today’s lab, we’ll be working mostly in base R, but we’ll also use functions from the <code>janitor</code> and <code>tidyverse</code> ecosystem of data science packages. You can install those and load them now if you’d like!</p>
+<pre><code>install.packages(c("janitor", "tidyverse"))
+library(janitor)
+library(tidyverse)</code></pre>
 </section>
 <section id="making-mistakes" class="level2">
 <h2 class="anchored" data-anchor-id="making-mistakes">Making mistakes</h2>
@@ -397,8 +403,8 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Consult a classmate.</p></li>
 <li><p>Ask me.</p></li>
 <li><p>Consult a help manual or book.</p></li>
-<li><p>Ask the internet.</p></li>
-<li><p>Ask ChatGPT. In all seriousness, troubleshooting error codes is an excellent use of GenAI tools as it can quickly aggregate information from a bunch of different sources that you might otherwise find yourself after great effort. The key here is, once you find the error/solution to the issue, internalizing what exactly it is that went wrong and why.</p></li>
+<li><p>Ask the internet (StackExchange, CrossValidated, and GitHub are all good sources).</p></li>
+<li><p>Ask ChatGPT. In all seriousness, troubleshooting error codes is an excellent use of GenAI tools as it can quickly aggregate information from a bunch of different sources that you might otherwise find yourself after great effort. The key here is, once you find the error/solution to the issue, internalizing what exactly it is that went wrong and why (i.e., learning!).</p></li>
 <li><p>Type in a question mark before the command you are trying to use. For example, <code>?summary</code> provides help on the “summary” command. This is a good way to find all of the arguments that may be used with a command, for example. Unfortunately, you may find that the help files are most useful if you are already experienced with <code>R</code>.</p></li>
 <li><p>Ask the R-help mailing list (the email address can be found through the R website, <code>www.r-project.org</code>). You will generally get a response in an hour or less, at any time day or night, because there are millions of useRs around the world. Often, however, the answers are provided by experienced R users, who <em>may</em> speak more Math than English and may have maladapted social skills.</p></li>
 </ul>
@@ -412,14 +418,15 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Pro tip: 95.6% of the time, a silly spelling or syntax error is the reason behind your code is not working</figcaption>
 </figure>
 </div>
-<section id="pro-tip-keep-notes" class="level3">
-<h3 class="anchored" data-anchor-id="pro-tip-keep-notes">Pro tip: Keep notes!</h3>
-<p>It is a good idea to keep a notes while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future. What I do with every single project I am working on, is create a <code>project_notes</code> R Notebook file. I treat this like a digital lab notebook, recording what I do each day, issues I’m running into, ideas for future analyses or figures to make, a checklist of tasks I have yet to accomplish, and as a sandbox to play with analysis ideas/building skeletons of functions.</p>
-</section>
+<p><strong>Pro tip: Keep notes!</strong></p>
+<p>It is a good idea to keep a notes while you work. As our analyses get progressively more difficult this semester, you will find yourself needing commands from earlier in the semester. If you make your own notes of tricks and techniques that you know worked (e.g., what was the simple command I used to read in data? can I copy and paste it later?), it can avert lots of headaches in the future. What I do with every single project I am working on, is create a <code>project_notes</code> R Notebook file. I treat this like a digital lab notebook, recording what I do each day/session, issues I’m running into, ideas for future analyses or figures to make, a checklist of tasks I have yet to accomplish, and as a sandbox to play with analysis ideas/building skeletons of functions.</p>
 </section>
 <section id="working-with-batch-files-r-scripts" class="level2">
 <h2 class="anchored" data-anchor-id="working-with-batch-files-r-scripts">Working with batch files (“R scripts”)</h2>
-<p>A common method of statistical analysis uses “batch files.” This is a rather old, but effective, way of conducting analyses. Essentially, one writes the programming code and sends it to the statistical software, either line by line or in large chunks. The computer runs the code, and then gives the output. That could include error messages (hopefully not!), or the answer to your analysis. The really nice thing about a batch file is that you can save it for later, and always rerun the analysis later. Think of it like writing a recipe (batch file) before putting your creation into the oven (<code>R</code>).\ The most common batch file interface in <code>R</code> is <code>RStudio</code> available from <code>http://www.rstudio.com</code>. <code>RStudio</code> is a free and open source integrated development environment (IDE) for <code>R</code>. You can run it on your desktop (Windows, Mac, or Linux) or even over the web using RStudio Server.\ With <code>RStudio</code>, you can write your batch code on one window, and then send directly to <code>R</code> that is running in another window (Ctrl-Enter to send a single line). You can easily save and reload your analyses later by saving the batch file with a “.R” file extension. <code>RStudio</code> also has the advantage of syntactic highlighting. That is, when you mouse over a parenthesis, quotes, etc., the program will highlight its partner. It is an easy way to keep track of missing punctuation that can drive a computer program (and the user!) crazy.\ Open R studio and create a new R script (File/New File/R script…). First, save it somewhere so that you can find it back later (File/Save As…). The file will have a <code>.R</code> file extension that designates it as an R coding script file. You should now have a blank file named <code>iLOVElearning.R</code> or similar. Now close it (File/Close…).</p>
+<p>A common method of statistical analysis uses “batch files.” This is a rather old, but effective, way of conducting analyses. Essentially, one writes the programming code and sends it to the statistical software, either line by line or in large chunks. The computer runs the code, and then gives the output. That could include error messages (hopefully not!), or the results of your analysis. The really nice thing about a batch file is that you can save it and rerun the analysis later. Think of it like writing a recipe (batch file) before putting your creation into the oven (<code>R</code>).</p>
+<p>The most common batch file interface in <code>R</code> is <code>RStudio</code> available from <code>http://www.rstudio.com</code>. <code>RStudio</code> is a free and open source integrated development environment (IDE) for <code>R</code>. You can run it on your desktop (Windows, Mac, or Linux) or even over the web using RStudio Server.</p>
+<p>With <code>RStudio</code>, you can write your batch code on one window, and then send directly to <code>R</code> that is running in another window (Ctrl-Enter/Command-Enter to send a single line). You can easily save and reload your analyses later by saving the batch file with a “.R” file extension (or using R Notebooks/Markdown documents). <code>RStudio</code> also has the advantage of syntactic highlighting. That is, when you mouse over a parenthesis, quotes, etc., the program will highlight its partner. It is an easy way to keep track of missing punctuation that can drive a computer program (and the user!) crazy.</p>
+<p>Open R studio and create a new R script (File/New File/R script…). First, save it somewhere so that you can find it back later (File/Save As…). The file will have a <code>.R</code> file extension that designates it as an R coding script file. You should now have a blank file named <code>iLOVElearning.R</code> or similar. Now close it (File/Close…).</p>
 </section>
 <section id="sending-code-to-r" class="level2">
 <h2 class="anchored" data-anchor-id="sending-code-to-r">Sending code to R</h2>
@@ -455,7 +462,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="object-oriented-programming" class="level2">
 <h2 class="anchored" data-anchor-id="object-oriented-programming">Object-oriented programming</h2>
-<p>R uses something called “object-oriented” programming. This means that you assign names to various pieces of your data and analyses. You can name things whatever you want to help you keep track. Analyses are performed on these objects, one command at a time through something called a “command line interface.” It’s like a batch file in slow motion: if there is an error, you will see it instantly.\ To assign names to various pieces of your data or analyses, simply use an arrow (<code>&lt;-</code>), or an equal sign if you prefer. This will become clear below.</p>
+<p>R uses something called “object-oriented” programming. This means that you assign names to various pieces of your data and analyses. You can name things whatever you want to help you keep track. Analyses are performed on these objects, one command at a time through something called a “command line interface.” It’s like a batch file in slow motion: if there is an error, you will see it instantly. To assign names to various pieces of your data or analyses, simply use an arrow (<code>&lt;-</code>), or an equal sign if you prefer. Once you run code creating a new object, you will see this oject pop up in your <code>Environment</code> RStudio Pane (typically in the top right of the IDE).</p>
+<p>The downside to OOP is that you can quickly create many objects that you then have to keep track of and take care to not overwrite (unless you’re specifically trying to do so). This makes <em>consistency</em> in your naming conventions important. In general, I highly recommend following a fixed coding style (i.e., https://style.tidyverse.org/). This will make debugging analyses faster, and make the lives of your collaborators, reviewers, and other folks who see your code much easier.</p>
 </section>
 <section id="commands-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="commands-in-r">Commands in <code>R</code></h2>
@@ -463,65 +471,79 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="entering-data-by-hand" class="level2">
 <h2 class="anchored" data-anchor-id="entering-data-by-hand">Entering data by hand</h2>
-<p><code>R</code> is like an overgrown calculator, really. Simple calculations are straightforward, and you can sometimes guess at any commands or operators you need (like <code>sqrt()</code>). You can stick numbers together using a technique called “concatenation.” To stick the numbers together in a “vector” (list of numbers, like a spreadsheet column), name the vector, and use the concatenate command:</p>
+<p><code>R</code> is like an overgrown calculator, really. Simple calculations are straightforward, and you can sometimes guess at any commands or operators you need (like <code>sqrt()</code>). You can stick numbers together using a technique called “concatenation.” To stick the numbers together in a “vector” (list of numbers, like a spreadsheet column), name the vector, and use the concatenate command <code>c()</code>:</p>
 <pre><code>myniftyvector &lt;- c(1,2,3,4,5)</code></pre>
-<p>Send that to the <code>R</code> console with <code>Ctrl+Enter</code>. Then if you type and send</p>
+<p>Send that to the <code>R</code> console with <code>Ctrl+Enter</code>. Then, if you type and send:</p>
 <pre><code>myniftyvector</code></pre>
-<p>you will get</p>
+<p>R will return the follwing in the console:</p>
 <pre><code>[1] 1 2 3 4 5</code></pre>
-<p>You have just created your first object!</p>
+<p>You have just created your first object! Note: when concatenating data, it’s important to ensure the elements are of the same data type (i.e., a number, or a “string”). If you concatenate a mixture of numbers and words, R will default to making all of the elements strings making them useless for any arithmatic operations.</p>
 </section>
 <section id="entering-data-into-r" class="level2">
 <h2 class="anchored" data-anchor-id="entering-data-into-r">Entering data into <code>R</code></h2>
-<p>Ok, seriously, if you have lots of data, you are not going to enter it like that. An easy way is to transfer it from a spreadsheet. When R reads a spreadsheet into memory, it goes into what is called a “dataframe.” Dataframes are essentially a collection of “vectors” or lists of numbers. So, each variable and its column is a vector, and all of them side-by-side in the spreadsheet make a dataframe.\</p>
+<p>Ok, seriously, if you have lots of data, you are not going to enter it one line at a time. An easy way is to transfer it from a spreadsheet or text file. When R reads a spreadsheet into memory, it goes into what is called a “data frame” or “tibble”. Data frames are essentially a collection of “vectors” or lists of numbers. So, each variable and its column is a vector, and all of them side-by-side in the spreadsheet make a data frame.</p>
 <section id="loading-excel-files-directly-into-r" class="level3">
 <h3 class="anchored" data-anchor-id="loading-excel-files-directly-into-r">Loading Excel files directly into <code>R</code></h3>
-<p>Disclaimer; I do not use or recommend this method because there are a few “point and click” steps that are difficult to reproduce if you forget a step. I include it because many people use this method and is simple for small datasets.\ <code>R Studio</code> has a tab labeled “Import Dataset” from which one can choose importation from an Excel spreadsheet. Once the file is identified, the data will be shown in a Data Preview screen. You can make adjustments (identifying rows or columns to exclude, for example), by editing options or clicking buttons at the bottom of the screen under Import Options. Notice that as you change options (e.g., excluding the first row as column names), the code that imports the data (bottom right pane) changes.\ In the interest of <em>reproducible results</em>, I start with a simple text file and write the accompanying code to load that data set directly. Then I never have to worry about changes to the recipe. That method is shown below.\</p>
+<p>Disclaimer; I do not use or recommend this method because there are a few “point and click” steps that are difficult to reproduce if you forget a step. I include it because many people use this method and is simple for small datasets. <code>R Studio</code> has a menu item labeled “Import Dataset” (File –&gt; Import Dataset) from which one can choose importation from an Excel spreadsheet. Once the file is identified, the data will be shown in a Data Preview screen. You can make adjustments (identifying rows or columns to exclude, for example), by editing options or clicking buttons at the bottom of the screen under Import Options. Notice that as you change options (e.g., excluding the first row as column names), the code that imports the data (bottom right pane) changes. In the interest of <em>reproducible results</em>, I start with a simple text file and write the accompanying code to load that data set directly. Then I never have to worry about changes to the recipe. That method is shown below.</p>
 </section>
 <section id="loading-plain-text-files-directly-into-r" class="level3">
 <h3 class="anchored" data-anchor-id="loading-plain-text-files-directly-into-r">Loading plain text files directly into <code>R</code></h3>
-<p>At the bottom of every Excel spreadsheet are tabs. I keep three tabs in every Excel spreadsheet.\ In the <em>first</em> tab, I keep all <strong>metadata</strong> or records of what the variables mean, how the data were collected, and so on. The <em>second</em> tab might contain the raw data as collected, and might be a little messy, perhaps with a final column of notes. The <em>third</em> tab is a cleaned version of my data in logical or rectangular record format, with proper column headers (just text, no special characters). To avoid problems, keep column titles to one word each. Make sure each one is different. <strong>Pay attention to capitalization vs.&nbsp;small case: if your spreadsheet column is named “Year,” then R will not understand if you later ask for the column named “year.”</strong> Also, avoid special characters in your column titles.\ When preparing to import data, I first save my spreadsheet as as a regular Excel file so that Excel saves all of the tabs. I then go to the final tab where I have my cleaned data, ready for import and analysis. For this tab, I save it as a plain, tab-delimited text file (File/Save As… then choose file type as <code>Text (tab delimited) (*.txt)</code>.\ To load data into R, I use the <code>read.table()</code> command, for example:</p>
+<p>At the bottom of every Excel spreadsheet are tabs. I keep three tabs in every Excel spreadsheet. In the <em>first</em> tab, I keep all <strong>metadata</strong> or records of what the variables mean, how the data were collected, and so on. The <em>second</em> tab might contain the raw data as collected, and might be a little messy, perhaps with a final column of notes. The <em>third</em> tab is a cleaned version of my data in logical or rectangular record format, with proper column headers (just text, no special characters). To avoid problems, keep column titles to one word each. Make sure each one is different. <strong>Pay attention to capitalization vs.&nbsp;small case: if your spreadsheet column is named “Year,” then R will not understand if you later ask for the column named “year.”</strong> Also, avoid special characters in your column titles. When preparing to import data, I first save my spreadsheet as as a regular Excel file so that Excel saves all of the tabs. I then go to the final tab where I have my cleaned data, ready for import and analysis. For this tab, I save it as a plain, tab-delimited text file (File/Save As… then choose file type as <code>Text (tab delimited) (*.txt)</code>. To load data into R, I use the <code>read.table()</code> command, for example:</p>
 <pre><code>myniftydata &lt;- read.table("D:/path/data.txt", header=T, sep="\t", na.strings=".")</code></pre>
-<p>By using object-oriented programming, your data set can be referred to simply as <code>myniftydata</code> from now on. The <code>read.table()</code> command reads data files. Inside the parentheses, you provide the <em>arguments</em> separated by commas.\</p>
+<p>By using object-oriented programming, your data set can be referred to simply as <code>myniftydata</code> from now on. The <code>read.table()</code> command reads data files. Inside the parentheses, you provide the <em>arguments</em> separated by commas. Each argument specifies options to the functions base recipe</p>
 <ul>
-<li><p>The first argument is the path to the data file. Enclose the path in quotes. You can make this whatever you’d like; R can read data off a network drive (H:/), your USB memory stick, or even the internet (instead of a file name, use <code>http://www.whateverpath.com/file.txt</code>).\</p></li>
-<li><p>The <code>header</code> argument is a logical True or False that indicates whether your data set contains column titles. You may abbreviate the answer to simply <code>T</code> or <code>F</code>.</p></li>
+<li><p>The first argument is the path to the data file. Enclose the path in quotes. You can make this whatever you’d like; R can read data off a network drive (H:/), your USB memory stick, or even the internet (instead of a file name, use <code>http://www.whateverpath.com/file.txt</code>).</p></li>
+<li><p>The <code>header</code> argument is a logical <code>TRUE</code> or <code>FALSE</code> that indicates whether your data set contains column titles. You may abbreviate the answer to simply <code>T</code> or <code>F</code>.</p></li>
 <li><p>The <code>sep</code> command specifies the delimiter between columns. You can change this as needed, of course. Space delimited files (sometimes called *.dat files) are <code>sep=" "</code> while comma separated files (often named *.csv files in Microsoft Excel) are <code>sep=","</code>. Because there is no “tab” character on the keyboard (like a space or comma), tab-delimited files are specified in a special way: <code>sep="\``t"</code>.</p></li>
 <li><p>The <code>na.strings="."</code> argument tells <code>R</code> what denotes your missing data. A period is a good symbol to use, although sometimes asterisks or special numbers are used. In climatological data, -9 or some similar identifier is frequently used. <code>R</code> will take these values and change them to NA.</p></li>
 </ul>
+<p>Sometimes, our raw data files are messy (especially those from our silly collaborators!) and you need to clean them up a bit. The <code>janitor</code> package has some great tools to help expediate this process and find errors in raw data files. My personal favorite is the <code>clean_names()</code> function: it automatically converts the column headers into names with the same style and convention. Try using this function out on a data file. Open up the help file for this function for some more details on how to use it and what the various arguments do.</p>
+<pre><code>clean.names.df &lt;- clean_names(myniftydata)</code></pre>
 </section>
 </section>
 <section id="checking-data" class="level2">
 <h2 class="anchored" data-anchor-id="checking-data">Checking data</h2>
-<p>Once you get the data read into <code>R</code>, it is a good idea to check the data. There are several commands you could use, including:\</p>
+<p>Once you get the data read into <code>R</code>, it is a good idea to check the data. There are several commands you could use, including:</p>
 <ul>
 <li><p><code>dim(myniftydata)</code> returns the number of rows and columns in the dataframe.</p></li>
 <li><p><code>nrow(myniftydata)</code> returns the number of rows.</p></li>
 <li><p><code>ncol(myniftydata)</code> returns the number of columns.</p></li>
 <li><p><code>head(myniftydata)</code> returns the first five rows.</p></li>
 <li><p><code>tail(myniftydata)</code> returns the last five rows.</p></li>
+<li><p><code>unique(myniftydata$columnA)</code> returns the all of the unique values within <code>columnA</code></p></li>
+<li><p><code>str(myniftydata)</code> returns the structure of your data frame</p></li>
+<li><p><code>glimpse(myniftydata)</code> returns a more thorough and aesthetically clean structure of your data (in the <code>dplyr</code> package that is a part of the <code>tidyverse</code>)</p></li>
 </ul>
 <p>Perhaps the most useful command is</p>
 <pre><code>summary(myniftydata)</code></pre>
-<p>This command summarizes the dataset you have just input (or whatever object happens to be specified - it is a very versatile command). For a dataset, <code>R</code> will list all the different variables, along with brief summary statistics for each. This is the best command to spot problems. All <strong>numerical columns</strong> will appear with summary statistics min, max, mean, etc. All columns with text, that are often indicative of <strong>categorical</strong> variables (next week’s lab), will appear with the number of observations and type of variable (i.e., character). (Value added: if you or one of your classmates knows how to convert a character column to a categorical factor variable right now, note how the <code>summary()</code> output changes!). If you input numerical data and see a frequency list from a summary command, there is a good chance that there is a nonnumber somewhere in the column. Check the original data, correct the mistake, and try again.\</p>
+<p>This command summarizes the dataset you have just input (or whatever object happens to be specified - it is a very versatile command). For a dataset, <code>R</code> will list all the different variables, along with brief summary statistics for each. This is the best command to spot problems. All <strong>numerical columns</strong> will appear with summary statistics min, max, mean, etc. All columns with text, that are often indicative of <strong>categorical</strong> variables (next week’s lab), will appear with the number of observations and type of variable (i.e., character). (Value added: if you or one of your classmates knows how to convert a character column to a categorical factor variable right now, note how the <code>summary()</code> output changes!). If you input numerical data and see a frequency list from a summary command, there is a good chance that there is a nonnumber somewhere in the column. Check the original data, correct the mistake, and try again.</p>
 </section>
 <section id="sub-setting-data" class="level2">
 <h2 class="anchored" data-anchor-id="sub-setting-data">Sub-setting data</h2>
 <p>Quite often, we want to perform an operation or analysis on only one portion of the data. <code>R</code> uses indexing to select variables, in a scheme like this:</p>
 <pre><code>myniftydata[rowsIwant, columnsIwant]</code></pre>
-<p>It’s relatively simple to select various rows or columns. You can either name them, or use the indexing position. A comma separates the row from the column arguments.\ <code>&gt; myniftydata[1:5,2]</code> selects the first 5 rows in the 2nd column.\ <code>&gt; myniftydata[-3,2]</code> selects all rows EXCEPT the 3rd, in the 2nd column.\ <code>&gt; myniftydata[,2:6]</code> selects all rows and columns 2 through 6.\ <code>&gt; myniftydata[3:5,]</code> selects rows 3 to 5 of all columns.\ <code>&gt; myniftydata[1:5, c("year","trial")]</code> selects the first 5 rows of two columns named “year” and “trial.”\ The commands above use base <code>R</code>. Packages such as <code>tidyR</code> have exploded in popularity in the last decade and use a slightly different syntax. Our TA, Audrey, is a <em>great</em> resource for questions about the Tidyverse!\</p>
+<p>It’s relatively simple to select various rows or columns. You can either name them, or use the indexing position. A comma separates the row from the column arguments.</p>
+<ul>
+<li><p><code>myniftydata[1:5,2]</code> selects the first 5 rows in the 2nd column.</p></li>
+<li><p><code>myniftydata[-3,2]</code> selects all rows EXCEPT the 3rd, in the 2nd column.</p></li>
+<li><p><code>myniftydata[,2:6]</code> selects all rows and columns 2 through 6.</p></li>
+<li><p><code>myniftydata[3:5,]</code> selects rows 3 to 5 of all columns.</p></li>
+<li><p><code>myniftydata[1:5, c("year","trial")]</code> selects the first 5 rows of two columns named “year” and “trial.”</p></li>
+</ul>
+<p>The commands above use base <code>R</code>. Packages such as <code>tidyR</code> have exploded in popularity in the last decade and use a slightly different syntax. Most of you, myself included, are probably best versed in this “Tidyverse” ecosystem. I highly recommend using it over base R as most package development is in line with this coding philosophy (and it will make your life easier).</p>
 </section>
 <section id="objects-in-memory" class="level2">
 <h2 class="anchored" data-anchor-id="objects-in-memory">Objects in memory</h2>
-<p>You can always view objects in memory using the <code>ls()</code> command. To delete a specific object from memory, such as <code>mydata</code>, type <code>remove(mydata)</code>. Generally, you should not need to do this unless you are working with multiple copies of HUGE datasets and <code>R</code> tells you it has run out of computer memory. To remove all objects from memory, type <code>remove(list=ls())</code>.\</p>
+<p>You can always view objects in memory using the <code>ls()</code> command. To delete a specific object from memory, such as <code>mydata</code>, type <code>remove(mydata)</code>. Generally, you should not need to do this unless you are working with multiple copies of HUGE datasets and <code>R</code> tells you it has run out of computer memory. To remove all objects from memory, type <code>remove(list=ls())</code>.</p>
+<p>RStudio also has some features to help clean up memory to optimize performance. In your environment pane, you should see a little disc icon along with an estimate of the total size of R objects currently stored in memory. Click on this, and select “Free Unused R Memory” to free up some space.</p>
 </section>
 <section id="data-sets-for-assignments" class="level2">
 <h2 class="anchored" data-anchor-id="data-sets-for-assignments">Data sets for assignments</h2>
-<p>The datasets for each class may be found on Canvas. Download the file to your workspace (e.g., USB drive, network space, laptop, etc). You may want to create a folder for this class named <code>ENT5126</code> or <code>iLOVEstats</code> or something similar and putting all data files there (including your R scripts). Then you can use this file path:\ <code>"D:/ENT5126/whateverdatafile.txt"</code> (change the drive, depending on where your data resides). Note that when specifying data pathways in the <code>read.table()</code> command, the slashes must be <em>forward</em>!</p>
+<p>The datasets for each class may be found on Canvas. Download the file to your workspace (e.g., USB drive, network space, laptop, etc). You may want to create a folder for this class named <code>ENT5126</code> or <code>iLOVEstats</code> or something similar and putting all data files there (including your R scripts). Then you can use this file path: <code>"D:/ENT5126/whateverdatafile.txt"</code> (change the drive, depending on where your data resides). Note that when specifying data pathways in the <code>read.table()</code> command, the slashes must be <em>forward</em>!</p>
 </section>
 <section id="assignment" class="level2">
 <h2 class="anchored" data-anchor-id="assignment">Assignment</h2>
-<p>Data for a rodent toxicology study are stored in a spreadsheet named <code>Lab1data.xls</code>. The assignment is simple (?): open the data, clean it up, and import it into <code>R</code>.\ Please\</p>
+<p>Data for a rodent toxicology study are stored in a spreadsheet named <code>lab-1_data.xls</code>. The assignment is simple: open the data, clean it up, and import it into <code>R</code>. Please:</p>
 <ol type="1">
 <li><p>List all of the errors that you have found in the data.</p></li>
 <li><p>Provide a copy of a printout of the spreadsheet containing the metadata.</p></li>

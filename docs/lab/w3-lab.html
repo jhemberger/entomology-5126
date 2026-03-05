@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -105,7 +140,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -174,7 +209,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.html">Lab 3: Summarizing data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.pdf">Lab 3: Summarizing data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -226,7 +261,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w3-lab.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lab/w3-lab.pdf" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lab 3: Summarizing data</span></a>
   </div>
 </li>
@@ -243,25 +278,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w4-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w4-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 4: Independent two-sample t-tests and ANOVA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w5-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w5-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 5: Simple linear regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w6-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w6-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 6: Multiple linear regression and ANCOVA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w7-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w7-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 7: Curvy data</span></a>
   </div>
 </li>
@@ -344,7 +379,7 @@ window.Quarto = {
   <li><a href="#the-sign" id="toc-the-sign" class="nav-link" data-scroll-target="#the-sign">The + sign</a></li>
   <li><a href="#selecting-specific-rows-or-columns" id="toc-selecting-specific-rows-or-columns" class="nav-link" data-scroll-target="#selecting-specific-rows-or-columns">Selecting specific rows or columns</a></li>
   <li><a href="#getting-rid-of-missing-data" id="toc-getting-rid-of-missing-data" class="nav-link" data-scroll-target="#getting-rid-of-missing-data">Getting rid of missing data</a></li>
-  <li><a href="#deriving-a-new-colum-based-on-a-condition" id="toc-deriving-a-new-colum-based-on-a-condition" class="nav-link" data-scroll-target="#deriving-a-new-colum-based-on-a-condition">Deriving a new colum based on a condition</a></li>
+  <li><a href="#deriving-a-new-column-based-on-a-condition" id="toc-deriving-a-new-column-based-on-a-condition" class="nav-link" data-scroll-target="#deriving-a-new-column-based-on-a-condition">Deriving a new column based on a condition</a></li>
   </ul></li>
   <li><a href="#summary-functions" id="toc-summary-functions" class="nav-link" data-scroll-target="#summary-functions">Summary Functions</a></li>
   <li><a href="#examining-your-data-by-groups" id="toc-examining-your-data-by-groups" class="nav-link" data-scroll-target="#examining-your-data-by-groups">Examining your data by groups</a>
@@ -355,12 +390,12 @@ window.Quarto = {
   <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
   <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="w3-lab.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.html">Lab 3: Summarizing data</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w1-lab.pdf">Module 1: RStudio and Tidyverse crash course</a></li><li class="breadcrumb-item"><a href="../lab/w3-lab.pdf">Lab 3: Summarizing data</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Lab 3: summarizing data</h1>
 <p class="subtitle lead">Entomology 5126 - Spring 2026</p>
@@ -395,8 +430,8 @@ window.Quarto = {
 <hr>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>By now I hope that you are becoming comfortable with the initial steps in data analysis: annotating metadata, preparing the data for export from a spreadsheet, reading it into a statistics package, performing a summary or two both graphically and numerically, converting all necessary variables to factors, and rechecking. You have probably run into some typical problems (e.g., not spelling a column name correctly, forward vs.&nbsp;backwards slashes, etc.) but are getting better at spotting such stumbles and correcting them.<br>
-Today, we’ll focus less on selecting specific elements in a dataframe (last week’s exercise) and more on <em>doing things</em> with those particular elements. Our examples will use both a base R and tidyverse approach.<br>
+<p>By now I hope that you are becoming comfortable with the initial steps in data analysis: annotating metadata, preparing the data for export from a spreadsheet, reading it into a statistics package, performing a summary or two both graphically and numerically, converting all necessary variables to factors, and rechecking. You have probably run into some typical problems (e.g., not spelling a column name correctly, forward vs.&nbsp;backwards slashes, etc.) but are getting better at spotting such stumbles and correcting them.</p>
+<p>Today, we’ll focus less on selecting specific elements in a dataframe (last week’s exercise) and more on <em>doing things</em> with those particular elements. Our examples will use both a base R and Tidyverse approach.<br>
 </p>
 <section id="reminder" class="level2">
 <h2 class="anchored" data-anchor-id="reminder">Reminder</h2>
@@ -412,64 +447,129 @@ Today, we’ll focus less on selecting specific elements in a dataframe (last we
 <section id="selecting-specific-rows-or-columns" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-specific-rows-or-columns">Selecting specific rows or columns</h2>
 <p>A quick review: suppose the second column is named <code>"Site"</code>. To select this column in a dataframe of 8 columns, these commands would all be the same:</p>
-<pre><code>&gt; mydata$Site        # Probably the easiest when selecting entire column
-&gt; mydata[,2]         # This works too, if you remember it is the second column!
-&gt; mydata[,c("Site")] # Use this when working with dataframes.  If you need multiple columns,
-                         separate quoted titles by commas</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Probably the easiest when selecting entire column</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>Site </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This works too, if you remember it is the second column!</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mydata[,<span class="dv">2</span>]     </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use this when working with dataframes. If you need multiple columns,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># separate quoted titles by commas</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mydata[,<span class="fu">c</span>(<span class="st">"Site"</span>)] </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidyverse equivalent:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(site) </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># You can select as many columns as you want.  See ?select() for the</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># many helper functions that you can use in select to make your selection</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># easier/more efficient!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To select the 5th through 10th rows of this column, these commands would all be the same:</p>
-<pre><code>&gt; mydata$Site[5:10]      # Works, but confusing because brackets are only for rows
-&gt; mydata[5:10,2]         # This works too, if you remember it is the second column!
-&gt; mydata[5:10,c("Site")] # Use this when working with dataframes.  Probably the easiest
-                                when selecting rows</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Works, but confusing because brackets are only for rows</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>Site[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>] </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This works too, if you remember it is the second column!</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>mydata[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">2</span>]  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use this when working with dataframes.  Probably the easiest</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># when selecting rows</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>mydata[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">c</span>(<span class="st">"Site"</span>)] </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidyverse equivalent:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(Site) <span class="sc">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">slice</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Last week I also included commands for conditional selection (selecting all rows where a value equals a certain value).</p>
 </section>
 <section id="getting-rid-of-missing-data" class="level2">
 <h2 class="anchored" data-anchor-id="getting-rid-of-missing-data">Getting rid of missing data</h2>
-<p>We now know how to select certain rows, and tell R what missing data looks like when we read in the spreadsheet. R codes missing observations then as green NA values. We should note, however, that when we get into analyses, R usually includes missing data unless told otherwise. Most software packages do not give you this option (although Microsoft Excel had well-publicized problems with incorrectly calculating the degrees of freedom for <span class="math inline">\(t\)</span>-tests with missing values a number of years ago). Frequently, we <em>do</em> want to get rid of these values.<br>
-If you know <em>a priori</em> that you do not need the missing data (often the case), I go ahead and delete it immediately. For example, let’s pretend that I know I am going to be working with a variable named <code>Intensity</code>. To delete all rows that have a missing value in the <code>Intensity</code> column, I use this syntax taking advantage of the <code>is.na()</code> command:</p>
-<pre><code>&gt; mydata &lt;- mydata[!is.na(mydata$Intensity),]</code></pre>
-<p>Can you decipher what this command does? (Hint: use the concatenate command <code>c()</code>to string together the numbers <code>1,2,3,NA,5</code> into a vector called <code>x</code>. Then try the <code>is.na()</code> command on <code>x</code>).</p>
+<p>We now know how to select certain rows, and tell R what missing data looks like when we read in the spreadsheet. R codes missing observations then as green NA values. We should note, however, that when we get into analyses, R usually includes missing data unless told otherwise. Most software packages do not give you this option (although Microsoft Excel had well-publicized problems with incorrectly calculating the degrees of freedom for <span class="math inline">\(t\)</span>-tests with missing values a number of years ago). Frequently, we <em>do</em> want to get rid of these values.</p>
+<p>If you know <em>a priori</em> that you do not need the missing data (often the case), you can filter out those <code>NA</code> rows. For example, let’s pretend that I know I am going to be working with a variable named <code>Intensity</code>. To remove all rows that have a missing value in the <code>Intensity</code> column, I use this syntax taking advantage of the <code>is.na()</code> command:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> mydata[<span class="sc">!</span><span class="fu">is.na</span>(mydata<span class="sc">$</span>Intensity),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Can you decipher what this command does? (Hint: use the concatenate command <code>c()</code>to string together the numbers <code>1,2,3,NA,5</code> into a vector called <code>x</code>. Then try the <code>is.na()</code> command on <code>x</code>). What does the <code>!</code> operator do in this context? The Tidyverse equivalent is:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">ia.na</span>(Intensity))  </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep in mind this will *overwrite* your original mydata object in R.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if you don't want to do that, save as a new object:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>mydata.nonas <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">ia.na</span>(Intensity))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="deriving-a-new-colum-based-on-a-condition" class="level2">
-<h2 class="anchored" data-anchor-id="deriving-a-new-colum-based-on-a-condition">Deriving a new colum based on a condition</h2>
+<section id="deriving-a-new-column-based-on-a-condition" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-a-new-column-based-on-a-condition">Deriving a new column based on a condition</h2>
 <p>Last week you figured out how to do simple numeric operations on a column, such as:</p>
-<pre><code>&gt; mydata$z &lt;- mydata$x * 10
-&gt; mydata$z &lt;- mydata$x / mydata$y</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>z <span class="ot">&lt;-</span> mydata<span class="sc">$</span>x <span class="sc">*</span> <span class="dv">10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>z <span class="ot">&lt;-</span> mydata<span class="sc">$</span>x <span class="sc">/</span> mydata<span class="sc">$</span>y</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidyverse equivalent:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutate is the dplyr (Tidyverse) function to create new</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># variables in your dataframe</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">z =</span> x <span class="sc">*</span> <span class="dv">10</span>)          </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">z =</span> x <span class="sc">/</span> y)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># You can create multiple new variables in the same mutate</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># call! Here we create `z` and `zz`.</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">z =</span> x <span class="sc">/</span> y,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">zz =</span> (x <span class="sc">/</span> y) <span class="sc">+</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Someone asked last week if you can do <em>conditional</em> operations. For example, let’s say you have a column in a dataset full of zeros and various positive integers:</p>
-<pre><code>&gt; mydata &lt;- data.frame(x=c(0,5,0,0,4,9))
-&gt; mydata
-  x
-1 4
-2 0
-3 0
-4 6
-5 0
-6 9</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">9</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mydata</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">0</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">0</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">6</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">0</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, let’s say you want to recode the column so that all positive numbers become <code>1</code> while the rest become <code>0</code>.</p>
-<pre><code>&gt; mydata$z &lt;- ifelse(mydata$x&gt;0, 1, 0)
-&gt; mydata
-  x z
-1 4 1
-2 0 0
-3 0 0
-4 6 1
-5 0 0
-6 9 1</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>z <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(mydata<span class="sc">$</span>x<span class="sc">&gt;</span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mydata</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  x z</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span> <span class="dv">1</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">0</span> <span class="dv">0</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">6</span> <span class="dv">1</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">0</span> <span class="dv">0</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="dv">9</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>ifelse()</code> command uses 3 arguments: first, a logical test, second, the value if true, and third, the value to record if false.</p>
-<p>There are other, more complicated operations possible, such as programming loops and the like. That is beyond the scope of this course, although I use them frequently in more complex analyses.</p>
+<p>There are other, more complicated operations possible, such as programming loops and the like. That is beyond the scope of this course, although I use them frequently in more complex analyses. In the Tidyverse, we can use both the <code>case_when()</code> and/or <code>if_else()</code> functions:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">z =</span> <span class="fu">case_when</span>(x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                        x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>))   </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Important to note is that, in this example, any values that </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># are exactly 0 will be assigned `NA` </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">z =</span> <span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="summary-functions" class="level1">
 <h1>Summary Functions</h1>
 <p>We have already used a few functions, such as <code>read.table()</code> and <code>summary()</code>. Here are a few more that summarize specific aspects of your data:<br>
 </p>
-<pre><code>&gt; sum(mydata$height)           # Adds the values in the column
-&gt; mean(mydata$height, na.rm=T) # The second argument is a T/F logical to remove missing values
-                                  before computing the mean (defaults to False if not included)
-&gt; min(mydata$height)           # Minimum of column (you can also add the na.rm=T argument to
-                                   exclude missing data if you haven't removed it already!)
-&gt; sd(mydata$height)            # Standard deviation
-&gt; length(mydata$height)        # Counts the number of observations</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the values in the column</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(mydata<span class="sc">$</span>height)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The second argument is a T/F logical to remove missing values</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># before computing the mean (defaults to False if not included)</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mydata<span class="sc">$</span>height, <span class="at">na.rm=</span>T) </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimum of column (you can also add the na.rm=T argument to</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># exclude missing data if you haven't removed it already!)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(mydata<span class="sc">$</span>height)       </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(mydata<span class="sc">$</span>height) </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Counts the number of observations (n elements in the vector)</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(mydata<span class="sc">$</span>height)        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="examining-your-data-by-groups" class="level1">
 <h1>Examining your data by groups</h1>
@@ -479,25 +579,34 @@ If you know <em>a priori</em> that you do not need the missing data (often the c
 In this lab, we will experiment a little with the <code>aggregate()</code> command.</p>
 <p>Sometimes, I think it could be called the “aggravate” command because the syntax can get a little confusing for large datasets. However, it is very powerful, and can give you (almost) anything you want.<br>
 Suppose you have a dataset containing a variety of observations on cats. You want to know the average tail length and whisker length of different breeds, broken down also by sex. Here is the general structure of the command:</p>
-<pre><code>catstats &lt;- aggregate(cats[,c("taillength", "whiskerlength")], by=list(sex=cats$sex,
-              variety=cats$breed), function(x) mean(x, na.rm=T))</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>catstats <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(cats[,<span class="fu">c</span>(<span class="st">"taillength"</span>, <span class="st">"whiskerlength"</span>)], <span class="at">by=</span><span class="fu">list</span>(<span class="at">sex=</span>cats<span class="sc">$</span>sex,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">variety=</span>cats<span class="sc">$</span>breed), <span class="cf">function</span>(x) <span class="fu">mean</span>(x, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>The first argument, <code>dataframe[,c("column")]</code> specifies which column variable(s) you want information on. What are you counting, taking the average of, etc.? You need to use that exact syntax: you <em>cannot</em> use dataframe$column.<br>
-</p></li>
+<li><p>The first argument, <code>dataframe[,c("column")]</code> specifies which column variable(s) you want information on. What are you counting, taking the average of, etc.? You need to use that exact syntax: you <em>cannot</em> use dataframe$column.</p></li>
 <li><p>The second argument, <code>by=list(group1=dataframe$group1,</code><br>
-<code>group2=dataframe$group2)</code> specifies how to break down the information by groups from the dataframe. Do you want the information broken down by sex? by sex and breed? These are all <em>categorical</em> variables (i.e., factors). You can specify as many categorical variables as you want. You may also rename each group in the new dataframe. In the example, I have renamed the <code>breed</code> variable to <code>variety</code> in the output. Generally, to avoid confusion, I keep the variable names the same.<br>
-</p></li>
-<li><p>The last argument is unusual because there is no comma between the <code>function(x)</code> and the specified function. The function can be whatever you want: <code>length(x)</code> to count the observations, <code>mean(x)</code> to take the average, <code>mean(x)+</code><span class="math inline">\(\pi\)</span> to take the mean and add 3.14 (if you had a bizarre desire to do so), etc.. You can <em>even</em> write your own (very complex) functions within R. We won’t cover how to write functions in R in this course (although it is not hard). (Several years ago, someone wrote a function to order pizzas using R, a valid zip code and street address, and <code>www.papajohnsonline.com</code>. How cool is that?!).<br>
-</p></li>
+<code>group2=dataframe$group2)</code> specifies how to break down the information by groups from the dataframe. Do you want the information broken down by sex? by sex and breed? These are all <em>categorical</em> variables (i.e., factors). You can specify as many categorical variables as you want. You may also rename each group in the new dataframe. In the example, I have renamed the <code>breed</code> variable to <code>variety</code> in the output. Generally, to avoid confusion, I keep the variable names the same.</p></li>
+<li><p>The last argument is unusual because there is no comma between the <code>function(x)</code> and the specified function. The function can be whatever you want: <code>length(x)</code> to count the observations, <code>mean(x)</code> to take the average, <code>mean(x)+</code><span class="math inline">\(\pi\)</span> to take the mean and add 3.14 (if you had a bizarre desire to do so), etc.. You can <em>even</em> write your own (very complex) functions within R. We won’t cover how to write functions in R in this course (although it is not hard). (Several years ago, someone wrote a function to order pizzas using R, a valid zip code and street address, and <code>www.papajohnsonline.com</code>. How cool is that?!).</p></li>
 </ul>
 <p><br>
 Remember, the <code>aggregate()</code> command produces a summary table (i.e., a variable custom-summarized by specified categories). In the example above, just type in the name of the table (<code>catstats</code>) to display it. A common mistake is overuse of the <code>summary()</code> command. In this instance, it would summarize the already-summarized summary table.</p>
+<p>The Tidyverse example has a far more readable, easy-on-the-eyes syntax using the <code>summarize()</code> function:</p>
+<pre><code>catstats &lt;- cats %&gt;%
+    summarize(mean_taillength = mean(taillength, na.rm = TRUE),
+              mean_whiskerlength = mean(whiskerlength, na.rm = TRUE),
+              .by = breed)</code></pre>
+<ul>
+<li><p>We can pass as many summarizations into the function as we want, or even apply the same summarization to a variety of different columns. Our new, summarized variables are indicated to the left of the <code>=</code> sign, while the functions to create them are specified on the right of the <code>=</code> sign.</p></li>
+<li><p>We tell R to calculate the summaries by specific groups using the <code>.by</code> argument. This gives us a mean tail and whisker length by all breeds in our data set. If we wanted to pass additional grouping variables into this, we can adjust our argument to, for example: <code>.by = c(breed, color)</code> which will calculate mean tail and whisker lengths for every color in every breed.</p></li>
+</ul>
 </section>
 <section id="the-xtabs-command" class="level2">
 <h2 class="anchored" data-anchor-id="the-xtabs-command">The <code>xtabs</code> command</h2>
 <p>The <code>xtabs()</code> command is another useful command. It does a crosstabulation of your data by two or more factors (i.e., it counts the observations). For example, if you typed</p>
-<pre><code>meow &lt;- xtabs(~ colour + breed, data=cats[!is.na(cats$taillength),])</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>meow <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> colour <span class="sc">+</span> breed, <span class="at">data=</span>cats[<span class="sc">!</span><span class="fu">is.na</span>(cats<span class="sc">$</span>taillength),])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>you would get the number of observations of taillength for each category. Note that I have asked R to delete any missing observations for this variable when doing the crosstabulation (suppose I did not do this earlier after reading in my data). This command is an easy way to see where you are missing observations!</p>
+<p>There’s of course a Tidy way to do this using the <code>janitor</code> package that we’ve used in the last two labs to help clean up column names. It uses the <code>tabyl()</code> function:</p>
+<pre><code>meow &lt;- cats %&gt;%
+    tabyl(colour, breed)</code></pre>
 </section>
 </section>
 <section id="todays-data" class="level1">
@@ -507,11 +616,11 @@ Today’s data set comes from Alaska. It is a pilot study of the number of spore
 </section>
 <section id="assignment" class="level1">
 <h1>Assignment</h1>
-<p>I would like written answers to the last 7 questions.</p>
+<p>I would like written answers to 3-9 below. The questions and prompts are written suggesting you use base R, but you’re welcome to use Tidyverse equivalents, as well (or both!). Even if you want to focus on learning Tidy solutions, for this sort of foundational work, it’s a good idea to know at least a bit of base R as it helps you learn more about how R objects are constructed and organized.</p>
 <ol type="1">
 <li><p>Load the data.</p></li>
 <li><p>Like last week, perform a summary and convert any necessary variables to factors. If you’d like a challenge, convert the first column to a date format for R using the <code>as.Date(dataset$column, format=’...’)</code> command. Helpful parameters within the <code>format</code> argument: <code>%y</code> is a two digit year code, <code>%Y</code> four digits; month abbreviation is <code>%b</code> while <code>%B</code> represents data containing full names of months, <code>%m</code> is month as decimal number between 1-12, and <code>%d</code> is day as decimal number between 1-31. If there are any other characters in the date column such as commas or dashes separating the elements of your chosen date format, you will need to incorporate those between the date parameters in the <code>format</code> argument. If you do it correctly, the <code>Date</code> column will appear as a numeric variable in your <code>summary()</code> output.</p></li>
-<li><p>Perform a scatterplot matrix. The graphs between <code>Tree_Species</code> and <code>Site</code> should have eight dots. Let’s pretend that you executed a <span class="math inline">\(2 \times 2\)</span> factorial experiment, where you were collecting observations on four treatments: two experimental factors crossed by two other experimental factors (e.g., counting seed yield on four treatments: high/low nitrogren crossed by high/low irrigation). If you only saw three dots in a scatterplot matrix crossing the two factors, what would this signify?</p></li>
+<li><p>Perform a scatterplot matrix. The graphs between <code>Tree_Species</code> and <code>Site</code> should have eight dots. Let’s pretend that you executed a <span class="math inline">\(2 \times 2\)</span> factorial experiment, where you were collecting observations on four treatments: two experimental factors crossed by two other experimental factors (e.g., counting seed yield on four treatments: high/low nitrogen crossed by high/low irrigation). If you only saw three dots in a scatterplot matrix crossing the two factors, what would this signify?</p></li>
 <li><p>Plot a histogram of tree age. Does it look normally distributed?</p></li>
 <li><p>You will be working with the Sporecount variable today. Create a new dataset that has removed all rows with missing observations for this variable.</p></li>
 <li><p>How many observations are there by Site and Tree species? Assuming it was a balanced experimental design, where is the missing data?</p></li>

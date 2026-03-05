@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jeremy Hemberger and Brian Aukema">
-<meta name="dcterms.date" content="2025-07-28">
+<meta name="dcterms.date" content="2026-02-23">
 
 <title>Lab 4: Independent two-sample t-tests and ANOVA – Entomology 5126</title>
 <style>
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -105,7 +140,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -174,7 +209,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w4-lab.html">Module 2: Reviewing foundations in statistics</a></li><li class="breadcrumb-item"><a href="../lab/w4-lab.html">Lab 4: Independent two-sample t-tests and ANOVA</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w4-lab.pdf">Module 2: Reviewing foundations in statistics</a></li><li class="breadcrumb-item"><a href="../lab/w4-lab.pdf">Lab 4: Independent two-sample t-tests and ANOVA</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -214,19 +249,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w1-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w1-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 1: An introduction to R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w2-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w2-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 2: Data wrangling and plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w3-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w3-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 3: Summarizing data</span></a>
   </div>
 </li>
@@ -243,25 +278,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w4-lab.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lab/w4-lab.pdf" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lab 4: Independent two-sample t-tests and ANOVA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w5-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w5-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 5: Simple linear regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w6-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w6-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 6: Multiple linear regression and ANCOVA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/w7-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/w7-lab.pdf" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 7: Curvy data</span></a>
   </div>
 </li>
@@ -354,12 +389,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#todays-data-and-assignment" id="toc-todays-data-and-assignment" class="nav-link" data-scroll-target="#todays-data-and-assignment">Today’s data and assignment</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="w4-lab.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w4-lab.html">Module 2: Reviewing foundations in statistics</a></li><li class="breadcrumb-item"><a href="../lab/w4-lab.html">Lab 4: Independent two-sample t-tests and ANOVA</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/w4-lab.pdf">Module 2: Reviewing foundations in statistics</a></li><li class="breadcrumb-item"><a href="../lab/w4-lab.pdf">Lab 4: Independent two-sample t-tests and ANOVA</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Lab 4: Independent two-sample <em>t</em>-tests and ANOVA</h1>
 <p class="subtitle lead">Entomology 5126 - Spring 2026</p>
@@ -379,7 +414,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 28, 2025</p>
+      <p class="date">February 23, 2026</p>
     </div>
   </div>
   
@@ -395,7 +430,7 @@ window.Quarto = {
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>After three weeks, you are getting pretty good at reading data into R and obtaining summary statistics. Remember the initial steps in data analysis: annotating metadata, preparing the data for export into a statistical package, reading it in, performing a summary or two, converting all necessary variables to factors, and rechecking the summary.</p>
-<p>Today we will focus on comparing two groups, first using two sample independent <span class="math inline">\(t\)</span>-tests, and second using Analysis of Variance (ANOVA). We are quickly working toward realistic examples that you may be analysing as part of your thesis or dissertation work. The latter tests form the cornerstones of many ecological analyses.<br>
+<p>Today we will focus on comparing two groups, first using two sample independent <span class="math inline">\(t\)</span>-tests, and second using Analysis of Variance (ANOVA). We are quickly working toward realistic examples that you may be analyzing as part of your thesis or dissertation work. The latter tests form the cornerstones of many ecological analyses.<br>
 </p>
 </section>
 <section id="reminders" class="level1">
@@ -484,7 +519,7 @@ Remember, the -1 is just convention and has nothing to do with subtracting 1 fro
 </section>
 <section id="dire-warning" class="level2">
 <h2 class="anchored" data-anchor-id="dire-warning">Dire Warning</h2>
-<p>A <strong>critical</strong> part of fitting an ANOVA model is that your factor variable is actually a factor! An extremely common mistake is failure to convert the proper variables to factors (such as if the types of diet are labelled 1, 2, and 3 and the statistics program treats them numerically). <strong>You cannot do an ANOVA on a variable that is not a factor</strong>.</p>
+<p>A <strong>critical</strong> part of fitting an ANOVA model is that your factor variable is actually a factor! An extremely common mistake is failure to convert the proper variables to factors (such as if the types of diet are labeled 1, 2, and 3 and the statistics program treats them numerically). <strong>You cannot do an ANOVA on a variable that is not a factor</strong>.</p>
 </section>
 </section>
 <section id="todays-data-and-assignment" class="level1">
@@ -492,15 +527,16 @@ Remember, the -1 is just convention and has nothing to do with subtracting 1 fro
 <p>Today we’ll work with the <code>vitcap</code> dataset from the <code>ISwR</code> package. This dataset contains measurements of the vital capacity (a measurement of lung volume) for workers in the cadmium industry. Cadmium is an element that is frequently found with zinc, and is used extensively in the battery industry. The data set, saved in in <code>Lab4data.xls</code>, has three columns. The first contains a group code. <code>1</code> indicates exposure to cadmium dust for more than 10 years. <code>2</code> indicates exposure for less than 10 years. You have been provided a subset of this data, as I have not included group <code>2</code>. Group <code>3</code> indicates no exposure. The second column, <code>age</code>, indicates the age of the worker in years. The third column, <code>capacity</code>, is the response variable. There should be measurements on 24 workers, and no missing data. For more information, see P. Armitage and G. Berry (1987), <em>Statistical Methods in Medical Research</em>, 2nd ed., Blackwell, p.286.</p>
 <ol type="1">
 <li><p>Load the dataset, convert any necessary columns to factors, perform a summary, etc. You should be developing a good feel for this routine by now. You do not need to worry about transformations for the first few questions: I want you to first understand the mechanics of fitting an ANOVA and understand how to examine the output.</p></li>
-<li><p>First, perform a <span class="math inline">\(t\)</span>-test. Because the workers are not paired in any way, this is an independent two-sample <span class="math inline">\(t\)</span>-test. We simply need to specify the two groups, the null hympothesis, and our expectation that the variances are equal between groups in the <code>t.test()</code> command. However, currently the grouping factor is in one column (as it should be for proper data setup), and for a <span class="math inline">\(t\)</span>-test, we need to split it into two columns. I know you can do this, but you are beginning to feel semester fatigue. So here are some useful commands:</p>
-<pre><code>&gt; group1 &lt;- mydata[1:12, 3] # Create a new vector with first 12 rows and
-                                 3rd column of old dataset (mydata)
-&gt; group3 &lt;- mydata[13:24, 3] # Create a new vector with responses of group 3
-                                              from bottom 12 observations of 3rd column of old dataset</code></pre>
+<li><p>First, perform a <span class="math inline">\(t\)</span>-test. Because the workers are not paired in any way, this is an independent two-sample <span class="math inline">\(t\)</span>-test. We simply need to specify the two groups, the null hypothesis, and our expectation that the variances are equal between groups in the <code>t.test()</code> command. However, currently the grouping factor is in one column (as it should be for proper data setup), and for a <span class="math inline">\(t\)</span>-test, we need to split it into two columns. I know you can do this, but you are beginning to feel semester fatigue. So here are some useful commands:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> mydata[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">3</span>] <span class="co"># Create a new vector with first 12 rows and</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># 3rd column of old dataset (mydata)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>group3 <span class="ot">&lt;-</span> mydata[<span class="dv">13</span><span class="sc">:</span><span class="dv">24</span>, <span class="dv">3</span>] <span class="co"># Create a new vector with responses of group 3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># from bottom 12 observations of 3rd column of old </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The appropriate <code>t.test()</code> command can be found in section 3. State your <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> hypotheses and perform a <span class="math inline">\(t\)</span>-test. Are the vital capacities for the two groups different?</p></li>
 <li><p>Now, let’s perform an ANOVA. Fit a linear model that examines whether vital capacity differs between the two groups. For an ANOVA, you want the response variable in one single column, and the variable that identifies the different groups in another, just like the data you originally imported. This is how <em>most</em> data is set up, and what you were taught at the beginning of the course. State the <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span> hypotheses. What is the <span class="math inline">\(p\)</span>-value from the ANOVA (i.e., <code>anova()</code> command)? Is your conclusion about the null hypothesis the same as using the <span class="math inline">\(t\)</span>-test in the previous question (use <span class="math inline">\(\alpha\)</span>=0.05)?</p></li>
 <li><p>Examine the <span class="math inline">\(F\)</span>-value from the <code>anova()</code> command. There is actually a pretty simple mathematical relationship between the <span class="math inline">\(t\)</span>-value and the <span class="math inline">\(F\)</span>-value (but <em>only</em> when there are two groups, so the <span class="math inline">\(F\)</span>-value has 1 degree of freedom in the numerator). Many things in statistics are related, actually. What is the mathematical relationship between your <span class="math inline">\(t\)</span>-value from the <span class="math inline">\(t\)</span>-test and this <span class="math inline">\(F\)</span>-value?</p></li>
-<li><p>Now perform a <code>summary()</code> of your model. The summary is a little more detailed, because it lists the individual parameters of the model fit <span class="math inline">\(Y_{ij} = \mu + \alpha_i + \epsilon_{ij}\)</span>. In practice, it is standard to first look at the <code>anova()</code> output <em>first</em>, because if the overall effect of the factor is not significant, then it makes little sense to continue examining the intracies of the model itself.</p>
+<li><p>Now perform a <code>summary()</code> of your model. The summary is a little more detailed, because it lists the individual parameters of the model fit <span class="math inline">\(Y_{ij} = \mu + \alpha_i + \epsilon_{ij}\)</span>. In practice, it is standard to first look at the <code>anova()</code> output <em>first</em>, because if the overall effect of the factor is not significant, then it makes little sense to continue examining the intricacies of the model itself.</p>
 <p>Using the <code>summary()</code> command, you will first see a <strong>call</strong>, which is the model that you fit. Next, you will see a summary of your <strong>residuals</strong>. These are the errors of the model: the distance between each data point and the mean for each group. If the model fit perfectly (never the case), all the data points would be right on top of the mean (i.e., <em>everyone</em> in group 1 might have a vital capacity of 2.78, and <em>everyone</em> in group 3 might have a capacity of 4.61). However, <em>every</em> model has errors, especially in ecology. It is good to scan this summary and just make sure that the residuals are roughly distributed around zero.<br>
 Below the residual summary in the printout, you will see the <strong>coefficients</strong> of the model. The <strong>intercept</strong> is the estimate of the “baseline.” Many statistics programs set one particular group to the “baseline” or “reference level” (i.e., the <span class="math inline">\(\mu\)</span> in our written model <span class="math inline">\(Y_{ij} = \mu + \alpha_i + \epsilon_{ij}\)</span>) and compare all other groups to that one in the <code>summary()</code> output. In R, levels are sorted alphanumerically, so the first level is the reference level. In SAS, the last level is chosen as baseline. <em>Always know which level your statistics package is using as the intercept for an ANOVA</em>. Here, the intercept refers to the mean for Group 1, since “1” comes before “3”.<br>
 The estimate of the intercept has an associated standard error. If you divide the estimate by the standard error, the result gives a <span class="math inline">\(t\)</span>-value and <span class="math inline">\(p\)</span>-value. What does this <span class="math inline">\(t\)</span>-test test?<br>
@@ -516,7 +552,7 @@ Without knowing anything else about the data set, what other variable do you thi
 There are 4 assumptions. The first, that our model is correct, depends in part on how you imported and set up your data. The second, that the data are independent, is best addressed in the experimental design stage. We have no reason to believe that this assumption is violated for this dataset. The second and third assumptions, that the variances are equal and the errors are normally distributed, are easily checked with a <strong>residual plot</strong>.<br>
 A residual plot is a plot of the model’s errors (difference between each data point and the group mean) vs.&nbsp;predicted values (group means). One nice thing about R is that you can take apart pieces of your analysis, if you so desire. (<em>Advanced useRs, if you are curious:</em> The <code>attributes()</code> command allows you to list pieces of any object that you can grab). Other commands are built-in that take pieces for you, like <code>residuals()</code> and <code>fitted.values()</code>. You can plot a residual plot for a model named <code>mymodel</code> as follows:<br>
 <code>&gt; plot(residuals(mymodel)</code><span class="math inline">\(\sim\)</span><code>fitted.values(mymodel))</code><br>
-You should see two vertical lines of dots, one line for each fitted group mean. The vertical dots are the scatter about this mean. For example, if the vital capacity for group 1 is on average 3.95, some values might be below 3.95 and some might be above 3.95. A residual plot shows how far above and below the group mean these values are. A residual plot is always centered horizonally around zero.<br>
+You should see two vertical lines of dots, one line for each fitted group mean. The vertical dots are the scatter about this mean. For example, if the vital capacity for group 1 is on average 3.95, some values might be below 3.95 and some might be above 3.95. A residual plot shows how far above and below the group mean these values are. A residual plot is always centered horizontally around zero.<br>
 When examining a residual plot for a model, you want to look for two things:</p>
 <ol type="1">
 <li><p>Given the assumption that the variances are equal across groups, the spread of the data points for each group should be approximately equal.</p></li>
