@@ -1,0 +1,145 @@
+---
+title: "Week 9"
+subtitle: "Midterm review"
+editor:
+  mode: source
+format:
+  revealjs: 
+    output-file: w9-slides.html
+    theme: ["simple", "slide_styles/slide-styles.scss"]
+    smaller: true
+    # navigation-mode: vertical
+    slide-number: c/t
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    auto-stretch: false
+    transition: fade
+    transition-speed: slow
+    scrollable: true
+    logo: /media/5126-header.png
+    css: ["default", "slide_styles/slide-styles.css", "slide_styles/slide-styles.scss"]
+---
+```{r defaults, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
+```
+
+```{r setup, include = FALSE, echo = FALSE}
+# Check gganimate wiki for more plot examples
+pacman::p_load(tidyverse,
+               gganimate,
+               datasauRus,
+               magick,
+               kableExtra,
+               patchwork)
+```
+
+```{r 5126theme, include = FALSE, echo = FALSE, cache = TRUE}
+library(tidyverse)
+library(janitor)
+library(hrbrthemes)
+library(ggthemes)
+
+theme_5126 <- function(base_size = 12, base_family = "sans") {
+  colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
+  (theme_foundation(base_size = base_size, base_family = base_family)
+  + theme(
+      # line = element_line(colour = "black"),
+      # rect = element_rect(
+      #   fill = colors["white"],
+      #   linetype = 0, colour = NA
+      # ),
+      # text = element_text(colour = colors["Dark Gray"]),
+      axis.title = element_blank(),
+      # axis.text = element_text(),
+      axis.ticks = element_blank(),
+      axis.line = element_blank(),
+      legend.background = element_rect(),
+      legend.position = "bottom",
+      legend.direction = "horizontal",
+      legend.box = "vertical",
+      panel.grid = element_line(colour = NULL),
+      panel.grid.major =
+        element_line(colour = colors["black"]),
+      panel.grid.minor = element_blank(),
+      # unfortunately, can't mimic subtitles TODO!
+      plot.title = element_text(hjust = 0, size = rel(1.5), face = "bold"),
+      plot.margin = unit(c(1, 1, 1, 1), "lines"),
+      # strip.background = element_rect(),
+      # my updates
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_blank(),
+      panel.border = element_rect(color = "black",
+                                  linewidth = 1,
+                                  fill = NA),
+      panel.background = element_rect(fill = NA),
+      axis.line.x = element_line(color = "gray20",
+                                 linewidth = 0.5),
+      axis.ticks.x = element_line(color = "gray20",
+                                  linewidth = 0.5),
+      axis.ticks.y = element_line(color = "gray20",
+                                  linewidth = 0.5),
+      text = element_text(family = "Roboto Condensed", size = 18),
+      axis.text = element_text(size = 18),
+      axis.title.y = element_text(family = "Roboto Condensed", face = "bold", size = 18),
+      axis.title.x = element_text(family = "Roboto Condensed", face = "bold", size = 18),
+      strip.background = element_rect(color = NA,
+                                      fill = NA)
+  ))
+}
+```
+
+## Score breakdown
+
+<center>
+
+```{r score-histogram, echo = FALSE, fig.width=6, fig.height = 4}
+library(tidyverse)
+midterm.df <- c(score = 40,
+                34,
+                22,
+                27,
+                44.5,
+                37,
+                43,
+                46,
+                35,
+                33,
+                36,
+                48,
+                33.5,
+                27)
+
+midterm.df %>%
+  as_data_frame() %>%
+  mutate(score = value) %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = score),
+                 binwidth = 3,
+                 color = "darkred",
+                 fill = "tomato") +
+  geom_vline(aes(xintercept = 36.7),
+             color = "black",
+             linewidth = 2) +
+  ylab("Count") +
+  xlab("Score") +
+  theme_5126()
+```
+
+</center>
+
+- **Exam average:** 36.7 / 50 = **73.4%**
+- **Most missed question:** 7 + **8** (interpreting ANOVA coefficients and plotting residuals)
+
+## Submitting exam corrections
+
+:::box-6-list
+By [Friday, March 27th]{.highlight-tomato}, you can submit corrections for all of the questions missed to earn back [half]{.highlight-tomato} of the possible points. 
+:::
+
+. . . 
+
+::: indented-text
+<i class="fa-solid fa-turn-up fa-rotate-90"></i> For each question, you must not only submit the correct answer, but a detailed explanation of *why* it is the correct answer (i.e., explain what you got wrong in your initial attempt, and why your new answer is correct). 
+
+:::
