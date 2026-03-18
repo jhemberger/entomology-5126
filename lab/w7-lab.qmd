@@ -28,15 +28,28 @@ Today, we'll work on regression techniques for curvy data. Sometimes, when you f
 
 Decay functions and asymptotes are frequently seen in dose-response curves where increasing doses have decreasing biological effects, or perhaps an effect decays through time. One of the easiest things to do is transform the $x$ variable, fit a regular regression line, and then back-transform.
 
-------------------------------------------------------------------------
+:::: {.columns}
 
-```         
-       reciprocal $x$ transformation                        logarithmic $x$ transformation
-```
+::: {.column width="40%"}
+Reciprocal $x$ transformation
+
+![](../content/slides/slide_media/w7/reciprocal-curve.png)
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+Logarithmic $x$ transformation
+
+![](../content/slides/slide_media/w7/logrithmic-curve.png)
+:::
+
+::::
 
 $y_i = \beta_0 + \beta_1 (1/x_i) + \epsilon_i$ $y_i = \beta_0 + \beta_1$log$(x_i) + \epsilon_i$
 
-------------------------------------------------------------------------
 
 ## Polynomial regression
 
